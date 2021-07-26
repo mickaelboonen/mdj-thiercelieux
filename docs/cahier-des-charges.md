@@ -168,4 +168,4 @@ Product Owner : Micka
 
 ## WIREFRAMES
 
-[WF mobile first](https://whimsical.com/mobile-first-BpneGmNqjyFqCPRJ6BFAGR )
+[WF mobile first](https://whimsical.com/mobile-first-BpneGmNqjyFqCPRJ6BFAGR)
