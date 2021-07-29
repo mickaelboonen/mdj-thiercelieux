@@ -25,7 +25,7 @@ Toi aussi t'es toujours le Maître du Jeu quand tu joues aux Loups-Garous de Thi
 
 - Lancement d'une partie de Loup-Garou
 - Possibilité d'ajouter des joueurs non inscrits à la partie (pas d'enregistrement des stats)
-- POssibilité d'ajouter des joueurs inscrits à la partie
+- Possibilité d'ajouter des joueurs inscrits à la partie
 - Possibilité de choisir la configuration classique ou sa préférence
 - Possibilité de choisir la ou les extensions à rajouter
 - Attribution des roles manuellement mais aussi aléatoirement par l'appli
@@ -54,6 +54,10 @@ Toi aussi t'es toujours le Maître du Jeu quand tu joues aux Loups-Garous de Thi
 - Gestion des New Moon (CRUD)
 - Gestion des Rôles (CRUD)
 - Gestion du Village (CRUD)
+
+### Evolution
+
+A voir ce qu'on peut débloquer, si on gagne de l'expérience, des avatars, des skins, etc.
 
 ## CIBLES ET TECHNOS
 
