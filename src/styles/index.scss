@@ -1,10 +1,20 @@
 @use 'reset';
-@use 'vars';
+@use 'src/styles/vars';
 
 body {
   font-family: sans-serif;
 }
 
+
+h2 {
+  font-size: 1.5em;
+  text-transform: uppercase;
+  
+}
+
+h3 {
+  font-family: vars.$fontAbril;
+}
 /* 
   // or you can import your own font
   @font-face {

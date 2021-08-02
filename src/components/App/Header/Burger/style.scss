@@ -1,0 +1,33 @@
+@use 'src/styles/vars';
+
+.dropdown {
+  background-color: #3a3939;
+  position: absolute;
+  top: -100vh;
+  left: 0;
+  width: 100vw;
+  height: vars.$main-height;
+  padding: vars.$gutter;
+  transition: 2s;
+
+  &__list {
+
+    &-li {
+      margin-bottom: 0.5rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+
+    &-separator {
+      margin: 1rem auto 1rem;
+      width: 80%;
+      border-bottom: 1px solid #fff;
+    }
+  }
+
+  &--open {
+    top: vars.$navbar-height;
+  }
+}

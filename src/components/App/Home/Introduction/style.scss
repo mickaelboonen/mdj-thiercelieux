@@ -1,0 +1,20 @@
+@use 'src/styles/vars';
+
+.introduction {
+
+  &__animation {
+
+    height: vars.$main-height;
+    background-image: vars.$redGradient;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: 1.5rem;
+  }
+
+  &__presentation {
+    background-color: #f0f;
+    padding: vars.$gutter;
+  }
+}
