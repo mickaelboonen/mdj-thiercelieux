@@ -1,0 +1,29 @@
+@use 'src/styles/vars';
+
+.expansions {
+
+  height: 60vh;
+  background-color: red;
+  padding: vars.$gutter;
+
+  &__title {
+    text-align: center;
+    margin-bottom: vars.$gutter;
+  }
+
+  &__slider {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70%;
+  }
+
+  &__link {
+    margin: auto;
+  }
+}
+
+.card {
+  background-color: green;
+  height: 100%;
+}
