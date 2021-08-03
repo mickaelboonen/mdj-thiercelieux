@@ -1,0 +1,23 @@
+@use 'src/styles/vars';
+@use 'sass:math';
+
+.badgesUser {
+    background-color: #02182B;
+    width: 100vw;
+    height: 6em;
+    padding: vars.$gutter;
+
+    &__content {
+        background-color: #0b2236;
+        padding: math.div(vars.$gutter, 2);
+    }
+
+    &__award {
+        background-color: #02182B;
+        margin: 0.2em;
+        padding: 0.2em;
+        border-radius: 50%;
+        fill: rgba(118,8,23,1);
+        border: 2px solid rgb(39, 39, 39);
+    }
+}
