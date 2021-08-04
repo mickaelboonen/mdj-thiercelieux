@@ -7,6 +7,9 @@ import { Switch, Route } from 'react-router-dom';
 import Header from 'src/components/App/Header';
 import Home from 'src/components/App/Home';
 import Footer from 'src/components/App/Footer';
+
+import Roles from 'src/containers/App/Roles';
+
 import ProfileUser from './ProfileUser';
 import Mailbox from './ProfileUser/Mailbox';
 
@@ -18,6 +21,9 @@ const App = () => (
       <Switch>
         <Route path="/" exact>
           <Home />
+        </Route>
+        <Route path="/the-game/roles" exact>
+          <Roles />
         </Route>
         <Route path="/profil" exact>
           <ProfileUser />
