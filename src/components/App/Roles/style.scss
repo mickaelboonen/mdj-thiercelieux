@@ -1,0 +1,45 @@
+@use 'src/styles/vars';
+
+.roles {
+
+  min-height: vars.$main-height;
+  background-color: #2c2b2b;
+  padding: vars.$gutter;
+
+  &__title {
+    text-align: center;
+    margin: vars.$gutter;
+  }
+
+  &__input {
+    width: calc(100% - 2rem);
+    height: 1.5rem;
+    background-color: #413f3f;
+    border-radius: 5px;
+    border: 0;
+    margin: vars.$gutter 0 vars.$gutter * 2 ;
+  }
+
+  &__results {
+    border: 1px solid red;
+    padding: 0.5rem;;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+  }
+}
+
+.role {
+  width: 100px;
+  height: 100px;
+  border: 1px solid aquamarine;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__image {
+    max-width: 95%;
+    border: 1px solid azure;
+  }
+}
