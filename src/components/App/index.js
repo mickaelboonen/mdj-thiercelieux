@@ -8,6 +8,7 @@ import Header from 'src/components/App/Header';
 import Home from 'src/components/App/Home';
 import Footer from 'src/components/App/Footer';
 import ProfileUser from './ProfileUser';
+import Mailbox from './ProfileUser/Mailbox';
 
 // == Composant
 const App = () => (
@@ -20,6 +21,9 @@ const App = () => (
         </Route>
         <Route path="/profil" exact>
           <ProfileUser />
+        </Route>
+        <Route path="/ma-messagerie" exact>
+          <Mailbox />
         </Route>
       </Switch>
     </main>

@@ -1,0 +1,53 @@
+@use 'src/styles/vars';
+@use 'sass:math';
+
+.messages {
+
+    width: 100%;
+    height: 6em;
+    margin-bottom: 0.1em;
+    background-color: #0b2236;
+
+    &__content {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0.7em 0.2em 0.8em;
+
+        &-avatar {
+            width: 4.5em;
+            height: 4.5em;
+            border-radius: 50%;
+        }
+
+        &-object {
+            width: 12em;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display:inline-block;
+            color: #c7b8b8;
+
+            &-username {
+                font-weight: bolder;
+                font-family: vars.$fontRakkas;
+                font-variant: small-caps;
+                text-transform: uppercase;
+                margin-bottom: 0.5em;
+            
+                &:after {
+                    content:'';
+                    border-bottom: 2px solid #c7b8b8;
+                    display: block;
+                }
+            }
+
+            &-title {
+                font-style: italic;
+                font-size:0.75em;
+            }
+        }
+    };
+}
