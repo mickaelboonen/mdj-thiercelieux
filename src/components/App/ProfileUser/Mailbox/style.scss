@@ -1,0 +1,57 @@
+@use 'src/styles/vars';
+
+
+.mailbox {
+    background-color: #02182b;
+    padding: vars.$gutter;
+    width: 100vw;
+    color: #c7b8b8;
+
+    &__title {
+        font-weight: bolder;
+        font-family: vars.$fontRakkas;
+        font-variant: small-caps;
+        text-transform: uppercase;
+        display: flex;
+        justify-content: center;
+        padding: vars.$gutter;
+        
+    }
+
+    &__newmess {
+        background: vars.$redGradient;
+        display: initial;
+        font-variant: small-caps;
+        text-transform: lowercase;
+        padding: 0.3em 0.4em;
+        border-radius: 0.2em;
+        font-weight: bolder;
+    
+        &:hover {
+            filter: grayscale(1);
+        }
+    }
+
+    &__select {
+        text-align: right;
+       
+
+        &-opt {
+            font-size: 0.7em;
+            padding-left: 1em;
+        }
+    }
+
+    &__content {
+        background-color: #c7b8b8; 
+        margin-top: 0.2em;
+    }
+
+    &__options {
+        font-weight: bolder;
+        text-transform: lowercase;
+        font-variant: small-caps;
+        text-align: right;
+        margin-top: vars.$gutter;
+    }
+}
