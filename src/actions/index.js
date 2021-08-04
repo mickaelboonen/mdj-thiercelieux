@@ -1,14 +1,13 @@
-// Actions related to the roles
-
-export const DISPLAY_ROLE = 'DISPLAY_ROLE';
-export const displayRole = (id) => ({
-  type: DISPLAY_ROLE,
-  id,
+// ACTIONS RELATED TO FIELD---------------------------------------------------
+export const CHANGE_VALUE = 'CHANGE_VALUE';
+export const changeValue = (value, input) => ({
+  type: CHANGE_VALUE,
+  value,
+  input,
 });
 
-export const TOGGLE_FOCUS = 'TOGGLE_FOCUS';
-export const toggleFocus = () => ({
-  type: TOGGLE_FOCUS,
+export const CLEAR_INPUT = 'CLEAR_INPUT';
+export const clearInput = (input) => ({
+  type: CLEAR_INPUT,
+  input,
 });
-
-// New actions
