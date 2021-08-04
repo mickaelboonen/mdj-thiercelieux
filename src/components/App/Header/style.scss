@@ -1,6 +1,8 @@
 @use 'src/styles/vars';
 
 .navbar {
+  position: absolute;
+  top: 0;
   background-color: #1a1a1a;
   width: 100vw;
   height: vars.$navbar-height;
@@ -8,4 +10,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  z-index: 2;
 }

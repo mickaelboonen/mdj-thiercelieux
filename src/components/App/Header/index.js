@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Burger from 'src/containers/App/Header/Burger';
 
 import Logo from './Logo';
-import Burger from './Burger';
 
 import './style.scss';
 
