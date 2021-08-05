@@ -9,6 +9,7 @@
   height: vars.$main-height;
   padding: vars.$gutter;
   transition: 1.5s;
+  z-index: 998;
 
   &__list {
 
