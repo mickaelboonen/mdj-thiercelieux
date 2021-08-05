@@ -22,7 +22,7 @@ const App = () => (
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/the-game/roles" exact>
+        <Route path="/le-jeu/les-roles" exact>
           <Roles />
         </Route>
         <Route path="/profil" exact>

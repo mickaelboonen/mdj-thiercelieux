@@ -29,6 +29,8 @@ const Role = ({
 Role.propTypes = {
   image: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+
+  // FUNCTIONS
   displayRole: PropTypes.func.isRequired,
   toggleFocus: PropTypes.func.isRequired,
 };

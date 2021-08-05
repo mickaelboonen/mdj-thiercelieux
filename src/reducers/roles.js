@@ -32,7 +32,6 @@ const reducer = (state = initialState, action = {}) => {
         onFocus: !state.onFocus,
       };
     case DISPLAY_RESULTS: {
-      // const newArray = [];
       const newRolesArray = hiddenRoles.filter((role) => {
         if (role.name.toLowerCase().includes(action.value.toLowerCase())) {
           return role;

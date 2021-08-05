@@ -1,33 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Menu } from 'react-feather';
+import { useLocation } from 'react-router-dom';
+// import { Menu } from 'react-feather';
+
+import classNames from 'classnames';
 import './style.scss';
 
-const Burger = () => (
-  <div className="burger">
-    <Menu />
-    <div className="dropdown">
-      <ul className="dropdown__list">
-        <li className="dropdown__list-li">Lancer une partie</li>
-        {/* <li className="dropdown__list-li">Trouver une partie</li> */}
-        <li className="dropdown__list-li">Trouver un joueur</li>
-        <div className="dropdown__list-separator" />
-        <li className="dropdown__list-li">Les roles</li>
-        <li className="dropdown__list-li">Les extensions</li>
-        <div className="dropdown__list-separator" />
-        {/* Vue conditionnelle pour les suivants */}
-        <li className="dropdown__list-li">Sign in</li>
-        <li className="dropdown__list-li">Sign up</li>
-        <li className="dropdown__list-li">Mon Compte</li>
-        <li className="dropdown__list-li">Messagerie</li>
-        <li className="dropdown__list-li">Log out</li>
-      </ul>
+const Burger = ({ isBurgerOpen, toggleBurger, closeBurger }) => {
+  const handleClickOnBurger = () => {
+    toggleBurger();
+  };
+  // useLocation is a Hook from React Router DOM and can only be used in the body of a component
+  const location = useLocation();
+
+  // useEffect is a Hook from React
+  // Every change of a variable cause a re rendering of the page
+  // useEffect allows to re render the page only when an indicated variable is changed
+  // useEffect(classBack function, array)
+  useEffect(() => {
+    closeBurger();
+  }, [location.pathname]);
+
+  return (
+    <div className="burger">
+      {/* <div className="burger__icon">
+        <Menu size={40} onClick={handleClickOnBurger} />
+      </div> */}
+      <div className={classNames('burger__icon', { 'burger__icon--open': isBurgerOpen })} onClick={handleClickOnBurger}>
+        <div />
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 Burger.propTypes = {
+  isBurgerOpen: PropTypes.bool.isRequired,
 
+  // FUNCTIONS
+  toggleBurger: PropTypes.func.isRequired,
+  closeBurger: PropTypes.func.isRequired,
 };
 
 export default Burger;

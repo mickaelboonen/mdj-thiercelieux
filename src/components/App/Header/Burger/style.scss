@@ -8,7 +8,8 @@
   width: 100vw;
   height: vars.$main-height;
   padding: vars.$gutter;
-  transition: 2s;
+  transition: 1.5s;
+  z-index: 998;
 
   &__list {
 
@@ -29,5 +30,43 @@
 
   &--open {
     top: vars.$navbar-height;
+  }
+}
+
+.burger {
+
+  // Code by Bilal.Rizwaan
+  // https://codepen.io/Bilal1909/pen/KKdrmRP
+  &__icon {
+    top: 50%;
+    right: 0;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    width: 40px;
+   
+
+    &:before,
+    &:after,
+    & div {
+      background: #000;
+      content: "";
+      display: block;
+      height: 6px;
+      border-radius: 3px;
+      margin: 7px 0;
+      transition: 0.5s;
+    }
+
+  &--open {
+    &:before {
+      transform: translateY(12px) rotate(135deg);
+    }
+    &:after {
+      transform: translateY(-12px) rotate(-135deg);
+    }
+    & div {
+      transform: scale(0);
+    }
+  }
   }
 }

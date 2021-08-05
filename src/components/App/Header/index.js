@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Burger from 'src/containers/App/Header/Burger';
+import DropdownBurger from 'src/containers/App/Header/Burger/DropdownBurger';
 
 import Logo from './Logo';
-import Burger from './Burger';
 
 import './style.scss';
 
@@ -12,6 +13,7 @@ const Header = () => (
       <Logo />
       <Burger />
     </nav>
+    <DropdownBurger />
   </header>
 );
 

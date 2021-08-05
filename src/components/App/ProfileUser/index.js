@@ -7,12 +7,11 @@ import MenuUser from './MenuUser';
 
 import './style.scss';
 
-
 const ProfileUser = () => (
-  <div>
-      <ProfileInfo />
-      <BadgesUser />
-      <MenuUser />
+  <div className="profil">
+    <ProfileInfo />
+    <BadgesUser />
+    <MenuUser />
   </div>
 );
 

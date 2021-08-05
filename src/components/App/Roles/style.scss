@@ -2,9 +2,9 @@
 
 .roles {
 
-  height: vars.$main-height;
+  height: 100vh;
   background-color: #686767;
-  padding: vars.$gutter;
+  padding: 5rem vars.$gutter vars.$gutter;
 
   &__search {
     display: flex;
