@@ -1,17 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Menu } from 'react-feather';
+import { Link, useLocation } from 'react-router-dom';
+// import { Menu } from 'react-feather';
 
 import classNames from 'classnames';
 import './style.scss';
 
-const Burger = ({ isBurgerOpen, toggleBurger }) => {
+const Burger = ({ isBurgerOpen, toggleBurger, closeBurger }) => {
   const handleClickOnBurger = () => {
     toggleBurger();
   };
 
-  // TODO : useLocation pour modifier l'état du burger
+  const location = useLocation();
+
+  useEffect(() => {
+    closeBurger();
+  }, [location.pathname]);
+
   return (
     <div className="burger">
       {/* <div className="burger__icon">
@@ -43,7 +48,10 @@ const Burger = ({ isBurgerOpen, toggleBurger }) => {
 
 Burger.propTypes = {
   isBurgerOpen: PropTypes.bool.isRequired,
+
+  // FUNCTIONS
   toggleBurger: PropTypes.func.isRequired,
+  closeBurger: PropTypes.func.isRequired,
 };
 
 export default Burger;

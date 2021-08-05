@@ -62,6 +62,7 @@ Roles.propTypes = {
   roles: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
   })).isRequired,
+
   roleToDisplay: PropTypes.object.isRequired,
   onFocus: PropTypes.bool.isRequired,
   rolesInputValue: PropTypes.string.isRequired,

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Burger from 'src/components/App/Header/Burger';
-import { toggleBurger } from 'src/actions';
+import { toggleBurger, closeBurger } from 'src/actions';
 
 const mapStateToProps = (state) => ({
   isBurgerOpen: state.app.isBurgerOpen,
@@ -9,6 +9,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   toggleBurger: (id) => {
     dispatch(toggleBurger(id));
+  },
+  closeBurger: () => {
+    dispatch(closeBurger());
   },
 });
 
