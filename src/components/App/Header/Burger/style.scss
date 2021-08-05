@@ -9,6 +9,7 @@
   height: vars.$main-height;
   padding: vars.$gutter;
   transition: 1.5s;
+  z-index: -1;
 
   &__list {
 
@@ -42,6 +43,7 @@
     transform: translate(-50%, -50%);
     position: absolute;
     width: 40px;
+   
 
     &:before,
     &:after,

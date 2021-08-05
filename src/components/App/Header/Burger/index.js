@@ -10,9 +10,13 @@ const Burger = ({ isBurgerOpen, toggleBurger, closeBurger }) => {
   const handleClickOnBurger = () => {
     toggleBurger();
   };
-
+  // useLocation is a Hook from React Router DOM and can only be used in the body of a component
   const location = useLocation();
 
+  // useEffect is a Hook from React
+  // Every change of a variable cause a re rendering of the page
+  // useEffect allows to re render the page only when an indicated variable is changed
+  // useEffect(classBack function, array)
   useEffect(() => {
     closeBurger();
   }, [location.pathname]);

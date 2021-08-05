@@ -12,6 +12,7 @@ const Header = () => (
       <Logo />
       <Burger />
     </nav>
+    <DropdownBurger />
   </header>
 );
 
