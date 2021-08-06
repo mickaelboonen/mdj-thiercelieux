@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 const Game = ({ games }) => {
   // const location = useLocation().pathname.slice(10);
@@ -27,9 +27,11 @@ const Game = ({ games }) => {
       </ul>
     </div>
   ));
-
   return (
     <div className="game">
+      <div className="game__path">
+        <Link to={location[0]}> Accueil </Link> &gt; <Link to={`/${location[1]}`}>Les jeux </Link> &gt; <Link to={location[2]}> {name}</Link>
+      </div>
       <h2 className="game__title">{name}</h2>
       <div className="game__synopsis">
         <h4 className="game__synopsis-title">Synopsis</h4>

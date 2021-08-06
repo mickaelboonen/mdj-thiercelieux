@@ -1,6 +1,6 @@
 @use 'src/styles/vars';
 
-.expansion-page {
+.games {
   height : calc(100vh - 4rem);
   margin-top: vars.$navbar-height;
   // padding: vars.$navbar-height 0 1rem;
@@ -15,6 +15,19 @@
 
   &__list {
     height: 80%;
+  }
+  
+  &__path {
+    position: absolute;
+    top: vars.$navbar-height;
+    padding: 0.4rem 0 0 0.4rem;
+    font-style: italic;
+    font-size: 0.8em;
+    color: #696868;
+
+    & a {
+      text-decoration: 1px underline dotted #696868;
+    }
   }
 }
 
