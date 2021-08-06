@@ -1,0 +1,60 @@
+@use 'src/styles/vars';
+
+.game {
+  margin-top: vars.$navbar-height;
+  background-color: #3a3737;
+
+  &__title {
+    font-family: vars.$fontAbril;
+    padding: 2rem 2rem;
+    text-align: center;
+    
+  }
+
+  &__synopsis {
+    padding: vars.$gutter;
+
+    &-title {
+      
+      
+    }
+
+    &-image {
+      width: 100px;
+      height: 100px;
+      margin-right: vars.$gutter;
+      float: left;
+      border: 1px solid black;
+    }
+
+    &-description {
+      text-align: justify;
+      
+    }
+    
+  }
+
+  &__roles {
+    padding: vars.$gutter;
+    
+    &-list {
+      padding-left: vars.$gutter;
+
+      &-item {
+        margin-bottom: 0.3rem;
+      }
+    }
+  }
+
+  &__specificity {
+    padding: vars.$gutter;
+    
+    &-list {
+      padding-left: vars.$gutter;
+
+      &-item {
+        margin-bottom: 0.3rem;
+      }
+    }
+  }
+}

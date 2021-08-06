@@ -8,7 +8,10 @@ import Header from 'src/components/App/Header';
 import Home from 'src/components/App/Home';
 import Footer from 'src/components/App/Footer';
 
+import Game from 'src/containers/App/Expansions/Game';
+
 import Roles from 'src/containers/App/Roles';
+import Expansions from 'src/containers/App/Expansions';
 
 import ProfileUser from './ProfileUser';
 import Mailbox from './ProfileUser/Mailbox';
@@ -25,6 +28,12 @@ const App = () => (
         </Route>
         <Route path="/le-jeu/les-roles" exact>
           <Roles />
+        </Route>
+        <Route path="/les-jeux">
+          <Switch>
+            <Route path="/les-jeux/:slug" exact component={Game} />
+            <Route component={Expansions} />
+          </Switch>
         </Route>
         <Route path="/profil" exact>
           <ProfileUser />
