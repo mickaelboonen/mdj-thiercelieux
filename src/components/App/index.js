@@ -12,6 +12,7 @@ import Roles from 'src/containers/App/Roles';
 
 import ProfileUser from './ProfileUser';
 import Mailbox from './ProfileUser/Mailbox';
+import Aboutus from './Aboutus';
 
 // == Composant
 const App = () => (
@@ -30,6 +31,9 @@ const App = () => (
         </Route>
         <Route path="/ma-messagerie" exact>
           <Mailbox />
+        </Route>
+        <Route path="/qui-sommes-nous" exact>
+          <Aboutus />
         </Route>
       </Switch>
     </main>
