@@ -1,0 +1,53 @@
+@use 'src/styles/vars';
+
+
+.aboutus {
+
+    width: 100vw;
+    height: 100vh;
+    background-color: aquamarine;
+    
+    h2 {
+        text-align: center;
+        padding: vars.$gutter;
+    }
+
+    &__content {
+        background-color: pink;
+        margin: vars.$gutter;
+        padding: vars.$gutter;
+        height: 70%;
+
+        &-staff {
+
+            display: flex;
+            justify-content: space-around;
+            background-color: red;
+            padding: 0.5em 0em;
+
+            img {
+                width: 6em;
+                height: 6em;
+                padding: 0.2em;
+                border-radius: 50%;
+            }
+        }
+
+        &-info {
+            padding: vars.$gutter;
+
+            p {
+                text-align: justify;
+            }
+        }
+    }
+
+    &__back-home {
+        display: flex;
+        justify-content: center;
+        font-family: vars.$fontRakkas;
+        font-variant: small-caps;
+        text-transform: lowercase;
+        font-size: 1.2em;
+    }
+}
