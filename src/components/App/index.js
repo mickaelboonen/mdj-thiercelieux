@@ -9,10 +9,11 @@ import Home from 'src/components/App/Home';
 import Footer from 'src/components/App/Footer';
 
 import Roles from 'src/containers/App/Roles';
+import Aboutus from 'src/containers/App/Aboutus';
 
 import ProfileUser from './ProfileUser';
 import Mailbox from './ProfileUser/Mailbox';
-import Aboutus from './Aboutus';
+
 
 // == Composant
 const App = () => (
