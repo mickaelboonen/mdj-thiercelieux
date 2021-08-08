@@ -1,0 +1,17 @@
+@use 'src/styles/vars';
+
+.footer {
+    width: 100vw;
+    height: vars.$navbar-height;
+    background-color: #1a1a1a;
+    color: white;
+
+    &__navbar {
+        padding: vars.$gutter;
+   
+        &-list {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
