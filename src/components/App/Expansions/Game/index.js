@@ -8,8 +8,9 @@ const Game = ({ games }) => {
   // const location = useLocation().pathname.slice(10);
   // const gameToDisplay = games.find((game) => game.hash === location);
 
-  const location = useLocation().pathname.split('/');
-  const gameToDisplay = games.find((game) => game.hash === location[2]);
+  const location = useLocation()
+  const paths = location.pathname.split('/');
+  const gameToDisplay = games.find((game) => game.hash === paths[2]);
 
   const {
     name,
@@ -18,19 +19,20 @@ const Game = ({ games }) => {
     image,
     specificity,
   } = gameToDisplay;
+  console.log(specificity);
 
   const specificityElement = specificity.map((item) => (
     <div>
-      <h5 className="game__roles-title">{item.name}</h5>
+      <Link to={`${location.pathname}/${item.name}`}><h5 className="game__roles-title">{item.name}</h5></Link>
       <ul className="game__roles-list">
-        {item.rules.map((rule) => <li key={rule.id}>{rule.name}</li>)}
+        {item.rules.map((rule) => <Link to={`${location.pathname}/${rule.name}`}><li key={rule.id}>{rule.name}</li></Link>)}
       </ul>
     </div>
   ));
   return (
     <div className="game">
       <div className="game__path">
-        <Link to={location[0]}> Accueil </Link> &gt; <Link to={`/${location[1]}`}>Les jeux </Link> &gt; <Link to={location[2]}> {name}</Link>
+        <Link to={paths[0]}> Accueil </Link> &gt; <Link to={`/${paths[1]}`}>Les jeux </Link> &gt; <Link to={paths[2]}> {name}</Link>
       </div>
       <h2 className="game__title">{name}</h2>
       <div className="game__synopsis">

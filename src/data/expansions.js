@@ -81,52 +81,62 @@ export const expansions = [
     specificity: [
       {
         name: 'Variantes',
+        hash: 'variantes',
         description: '<p>En dehors des règles de base, il existe de nombreuses façons de jouer aux Loups-Garous de Thiercelieux.</p><p>Ces variantes résultent des facéties que nous nous permettons durant les innombrables parties que nous avons animées ainsi qu\'une sélection de certaines de vos nombreuses propositions postées sur notre site <a href="www.loups-garous.com">www.loups-garous.com</a>."</p><p>Nous vous proposons ici le meilleur de ces variantes, testées et optimisées pour renouveler votre plaisir de jouer.',
         rules: [
           {
             id: 1,
             name: 'Clair de Lune',
+            hash: 'clair-de-lune',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi ad ratione minus, mollitia, eveniet dolore corporis quasi accusantium at facere asperiores eos neque aut rem excepturi beatae veniam a!',
           },
           {
             id: 2,
             name: 'La communauté des hameaux',
+            hash: 'la-communauté-des-hameaux',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi ad ratione minus, mollitia, eveniet dolore corporis quasi accusantium at facere asperiores eos neque aut rem excepturi beatae veniam a!',
           },
           {
             id: 3,
             name: '"Entout cas c\'est sûrement pas lui !"',
+            hash: 'en-tout-cas-c-est-surement-pas-lui',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi ad ratione minus, mollitia, eveniet dolore corporis quasi accusantium at facere asperiores eos neque aut rem excepturi beatae veniam a!',
           },
           {
             id: 4,
             name: 'Murs-murs',
+            hash: 'murs-murs',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi ad ratione minus, mollitia, eveniet dolore corporis quasi accusantium at facere asperiores eos neque aut rem excepturi beatae veniam a!',
           },
           {
             id: 5,
             name: 'Double-"je"',
+            hash: 'double-je',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi ad ratione minus, mollitia, eveniet dolore corporis quasi accusantium at facere asperiores eos neque aut rem excepturi beatae veniam a!',
           },
           {
             id: 6,
             name: 'Fête de la moisson',
+            hash: 'fete-de-la-moisson',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi ad ratione minus, mollitia, eveniet dolore corporis quasi accusantium at facere asperiores eos neque aut rem excepturi beatae veniam a!',
           },
           {
             id: 7,
             name: 'La peste noire',
+            hash: 'la-peste-noire',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi ad ratione minus, mollitia, eveniet dolore corporis quasi accusantium at facere asperiores eos neque aut rem excepturi beatae veniam a!',
           },
           {
             id: 8,
             name: 'Fascination lycanthropique',
+            hash: 'fascination-lycanthropique',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi ad ratione minus, mollitia, eveniet dolore corporis quasi accusantium at facere asperiores eos neque aut rem excepturi beatae veniam a!',
           },
         ],
       },
       {
         name: 'Nouvelle Lune',
+        hash: 'nouvelle-lune',
         description: '',
         rules: newMoonCards,
       },
@@ -229,6 +239,7 @@ export const expansions = [
     specificity: [
       {
         name: 'Le Village',
+        hash: 'le-village',
         description: '',
         rules: villagePeople,
       },

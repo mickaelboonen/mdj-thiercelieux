@@ -9,6 +9,7 @@ import Home from 'src/components/App/Home';
 import Footer from 'src/components/App/Footer';
 
 import Game from 'src/containers/App/Expansions/Game';
+import Specificity from 'src/containers/App/Expansions/Specificity';
 
 import Roles from 'src/containers/App/Roles';
 import Expansions from 'src/containers/App/Expansions';
@@ -32,6 +33,7 @@ const App = () => (
         <Route path="/les-jeux">
           <Switch>
             <Route path="/les-jeux/:slug" exact component={Game} />
+            <Route path="/les-jeux/:slug/:slug" exact component={Specificity} />
             <Route component={Expansions} />
           </Switch>
         </Route>
