@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 import { Link, useHistory, useLocation } from 'react-router-dom';
+import Path from '../../../Path';
 
 const Game = ({ games }) => {
   // const location = useLocation().pathname.slice(10);
@@ -24,6 +25,7 @@ const Game = ({ games }) => {
   const specificityElement = specificity.map((item) => (
     <div>
       <Link to={`${location.pathname}/${item.name}`}><h5 className="game__roles-title">{item.name}</h5></Link>
+      <Path />
       <ul className="game__roles-list">
         {item.rules.map((rule) => <Link to={`${location.pathname}/${rule.name}`}><li key={rule.id}>{rule.name}</li></Link>)}
       </ul>

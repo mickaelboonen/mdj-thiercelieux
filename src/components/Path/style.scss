@@ -1,0 +1,18 @@
+.path {
+  margin-top: 4rem;
+
+   & p {
+     display: inline-block;
+     margin-right: 0.2rem;
+   }
+
+   
+   padding: 0.4rem 0 0 0.4rem;
+   font-style: italic;
+   font-size: 0.8em;
+   color: #696868;
+
+   & a {
+     text-decoration: 1px underline dotted #696868;
+   }
+}

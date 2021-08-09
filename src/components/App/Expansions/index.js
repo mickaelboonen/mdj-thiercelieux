@@ -17,7 +17,7 @@ const Expansions = ({ expansionsArray }) => {
   return (
     <div className="games">
       <div className="games__path">
-        <Link to={location[0]}> Accueil </Link> &gt; <Link to={`/${location[1]}`}>Les jeux </Link>
+        {/* <Link to={location[0]}> Accueil </Link> &gt; <Link to={`/${location[1]}`}>Les jeux </Link> */}
       </div>
       <h2 className="games__title">Les Extensions</h2>
       <div className="games__list">

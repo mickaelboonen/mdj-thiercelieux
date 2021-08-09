@@ -17,11 +17,13 @@ import Expansions from 'src/containers/App/Expansions';
 import ProfileUser from './ProfileUser';
 import Mailbox from './ProfileUser/Mailbox';
 import Aboutus from './Aboutus';
+import Path from '../Path';
 
 // == Composant
 const App = () => (
   <div className="app">
     <Header />
+    <Path />
     <main>
       <Switch>
         <Route path="/" exact>
