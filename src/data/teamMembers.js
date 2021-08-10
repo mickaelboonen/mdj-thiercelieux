@@ -5,6 +5,7 @@ import simpleVillageois from 'src/assets/pictures/roles/simple-villageois.png';
 // eslint-disable-next-line import/prefer-default-export
 export const teamMembers = [
   {
+    id: 1,
     isActive: true,
     name: 'Micka',
     icon: loupGarouBlanc,
@@ -16,6 +17,7 @@ export const teamMembers = [
     linkedin: 'https://www.linkedin.com/in/mickael-boonen/',
   },
   {
+    id: 2,
     isActive: false,
     name: 'Christal',
     icon: ange,
@@ -27,6 +29,7 @@ export const teamMembers = [
     linkedin: '',
   },
   {
+    id: 3,
     isActive: false,
     name: 'Romain',
     icon: simpleVillageois,

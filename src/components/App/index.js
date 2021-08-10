@@ -12,12 +12,13 @@ import Game from 'src/containers/App/Expansions/Game';
 import Specificity from 'src/containers/App/Expansions/Specificity';
 
 import Roles from 'src/containers/App/Roles';
-import Expansions from 'src/containers/App/Expansions';
 
+import Expansions from 'src/containers/App/Expansions';
+import Aboutus from 'src/containers/App/Aboutus';
 import ProfileUser from './ProfileUser';
 import Mailbox from './ProfileUser/Mailbox';
-import Aboutus from './Aboutus';
 import Path from '../Path';
+
 
 // == Composant
 const App = () => (

@@ -5,27 +5,69 @@ import { NavLink } from 'react-router-dom';
 
 import './style.scss';
 
-const Aboutus = () => (
-  <div className="aboutus">
+
+const Aboutus = ({ 
+  members, 
+  memberToDisplay,
+  displayMember,
+  focusMember, 
+}) => {
+  function handleMemberClick(event) {
+    let chosenMemberId = event.target.dataset.id;
+
+    // if (event.target.textContent !== undefined) {
+    //   chosenMemberId = event.target.dataset.id;
+    // }
+    // else {
+    //   chosenMemberId = event.target.dataset.id;
+    // }
+    displayMember(chosenMemberId);
+    focusMember();
+    console.log('click', event.currentTarget);
+  }
+ 
+
+  return (
+    <div className="aboutus">
       <h2>Qui sommes-nous ?</h2>
       <div className="aboutus__content">
-          <div className="aboutus__content-staff">
-              <img src="https://zupimages.net/up/21/31/tonc.png" alt="" />
-              <img src="https://zupimages.net/up/21/31/tonc.png" alt="" />
-              <img src="https://zupimages.net/up/21/31/tonc.png" alt="" />
+        <div className="aboutus__content-staff">
+        {members.map((member) => ( 
+           <div 
+           className="aboutus__content-staff-name" 
+           key={member.id} 
+           onClick={handleMemberClick}
+           >
+             <span data-id={member.id} className="aboutus__content-staff-name-each">{member.name}</span>
+             <img src={member.icon} data-id={member.id} alt="" />
+            </div>
+           ))}
+        </div>
+        <div className="aboutus__content-info">
+          <div className="flip-card">
+            <div className="flip-card__inner">
+              <div className="flip-card__front">
+                <img className="flip-card__front-image" src={memberToDisplay.icon} alt="team" />
+                <h3 className="flip-card__front-name">{memberToDisplay.name}</h3>
+              </div>
+              <div className="flip-card__back">
+                <h3 className="flip-card__back-name">{memberToDisplay.name}</h3>
+                <p className="flip-card__back-side">{memberToDisplay.favoriteRole}</p>
+                <p className="flip-card__back-description">{memberToDisplay.description}</p>
+              </div>
+            </div>
           </div>
-          <div className="aboutus__content-info">
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum in reiciendis veniam vitae ut harum ea at, nam perspiciatis quas optio ullam, et atque numquam ex sapiente eaque sunt quia.</p>
-          </div>
+        </div>
       </div>
       <NavLink
-            to="/"
-            className="aboutus__back-home"
-          >
-            Retour à la page d'accueil
-          </NavLink>
-  </div>
-);
+        to="/"
+        className="aboutus__back-home"
+      >
+        Retour à la page d'accueil
+      </NavLink>
+    </div>
+  );
+}
 
 Aboutus.propTypes = {
 
