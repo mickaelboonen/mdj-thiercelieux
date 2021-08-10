@@ -44,6 +44,7 @@ const Aboutus = ({
            ))}
         </div>
         <div className="aboutus__content-info">
+        {memberToDisplay.id == null ? <div className="aboutus__content-info-each">Clique sur les images pour découvrir la dream team</div> : (
           <div className="flip-card">
             <div className="flip-card__inner">
               <div className="flip-card__front">
@@ -57,6 +58,7 @@ const Aboutus = ({
               </div>
             </div>
           </div>
+        )}
         </div>
       </div>
       <NavLink
