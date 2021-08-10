@@ -10,9 +10,10 @@ import Footer from 'src/components/App/Footer';
 
 import Roles from 'src/containers/App/Roles';
 import Aboutus from 'src/containers/App/Aboutus';
+import Mailbox from 'src/containers/App/Mailbox';
 
 import ProfileUser from './ProfileUser';
-import Mailbox from './ProfileUser/Mailbox';
+
 
 
 // == Composant
