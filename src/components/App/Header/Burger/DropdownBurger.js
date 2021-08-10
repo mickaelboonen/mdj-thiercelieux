@@ -14,8 +14,10 @@ const DropdownBurger = ({ isBurgerOpen }) => (
       {/* <li className="dropdown__list-li">Trouver une partie</li> */}
       <Link to=""><li className="dropdown__list-li">Trouver un joueur</li></Link>
       <div className="dropdown__list-separator" />
-      <Link to="/le-jeu/les-roles"><li className="dropdown__list-li">Les roles</li></Link>
-      <Link to="/les-jeux"><li className="dropdown__list-li">Les extensions</li></Link>
+      <Link to="/les-jeux"><li className="dropdown__list-li">Les jeux</li></Link>
+      <Link to="/le-jeu/les-roles"><li className="dropdown__list-li">Les Rôles Secrets</li></Link>
+      <Link to="/le-jeu/les-cartes-nouvelle-lune"><li className="dropdown__list-li">Les Cartes Nouvelle Lune</li></Link>
+      <Link to="/le-jeu/les-villageois"><li className="dropdown__list-li">Les Villageois</li></Link>
       <Link to=""><div className="dropdown__list-separator" /></Link>
       {/* Vue conditionnelle pour les suivants */}
       <Link to="/se-connecter"><li className="dropdown__list-li">Sign in</li></Link>

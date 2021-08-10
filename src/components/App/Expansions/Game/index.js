@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useLocation } from 'react-router-dom';
@@ -30,7 +31,6 @@ const Game = ({ games }) => {
   const specificityElement = specificity.map((item) => (
     <div>
       <Link to={`${location.pathname}/${item.hash}`}><h5 className="game__roles-title">{item.name}</h5></Link>
-      {/* <Path /> */}
       <ul className="game__roles-list">
         {item.rules.map((rule) => <Link to={`${location.pathname}/${rule.hash}`}><li key={rule.id}>{rule.name}</li></Link>)}
       </ul>

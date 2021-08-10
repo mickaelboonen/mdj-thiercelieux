@@ -12,14 +12,14 @@ import Game from 'src/containers/App/Expansions/Game';
 import Specificity from 'src/containers/App/Expansions/Specificity';
 
 import Roles from 'src/containers/App/Roles';
+import NewMoon from 'src/containers/App/NewMoon';
 import Aboutus from 'src/containers/App/Aboutus';
 import Mailbox from 'src/containers/App/Mailbox';
-
-
 import Expansions from 'src/containers/App/Expansions';
-import Aboutus from 'src/containers/App/Aboutus';
+
 import ProfileUser from './ProfileUser';
 
+// Free comment
 
 // == Composant
 const App = () => (
@@ -30,9 +30,8 @@ const App = () => (
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/le-jeu/les-roles" exact>
-          <Roles />
-        </Route>
+        <Route path="/le-jeu/les-roles" exact component={Roles} />
+        <Route path="/le-jeu/les-cartes-nouvelle-lune" exact component={NewMoon} />
         <Route path="/les-jeux">
           <Switch>
             <Route path="/les-jeux/:slug" exact component={Game} />
