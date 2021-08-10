@@ -23,7 +23,6 @@ import Path from '../Path';
 const App = () => (
   <div className="app">
     <Header />
-    <Path />
     <main>
       <Switch>
         <Route path="/" exact>
