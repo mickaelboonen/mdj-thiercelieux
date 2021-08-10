@@ -15,7 +15,7 @@ const DropdownBurger = ({ isBurgerOpen }) => (
       <Link to=""><li className="dropdown__list-li">Trouver un joueur</li></Link>
       <div className="dropdown__list-separator" />
       <Link to="/le-jeu/les-roles"><li className="dropdown__list-li">Les roles</li></Link>
-      <Link to="/les-extensions"><li className="dropdown__list-li">Les extensions</li></Link>
+      <Link to="/les-jeux"><li className="dropdown__list-li">Les extensions</li></Link>
       <Link to=""><div className="dropdown__list-separator" /></Link>
       {/* Vue conditionnelle pour les suivants */}
       <Link to="/se-connecter"><li className="dropdown__list-li">Sign in</li></Link>
