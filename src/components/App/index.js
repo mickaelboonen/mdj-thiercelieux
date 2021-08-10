@@ -13,11 +13,13 @@ import Specificity from 'src/containers/App/Expansions/Specificity';
 
 import Roles from 'src/containers/App/Roles';
 import NewMoon from 'src/containers/App/NewMoon';
+import Aboutus from 'src/containers/App/Aboutus';
+import Mailbox from 'src/containers/App/Mailbox';
+
 
 import Expansions from 'src/containers/App/Expansions';
 import Aboutus from 'src/containers/App/Aboutus';
 import ProfileUser from './ProfileUser';
-import Mailbox from './ProfileUser/Mailbox';
 
 // == Composant
 const App = () => (
