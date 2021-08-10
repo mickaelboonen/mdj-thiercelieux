@@ -5,10 +5,11 @@ import classNames from 'classnames';
 import Field from 'src/containers/Field';
 
 import Flipcard from 'src/components/Flipcard';
-import Card from './Card';
+import Card from 'src/containers/App/NewMoon/Card';
 
 import './style.scss';
 
+// TODO : DISPLAY CARD
 const NewMoon = ({
   cards,
   cardToDisplay,
@@ -16,7 +17,9 @@ const NewMoon = ({
   cardsInputValue,
   toggleFocus,
   clearInput,
+  isFiltered,
   reinitializeCardsList,
+  filterByPhase,
 }) => {
   const handleClickOnX = () => {
     toggleFocus();
@@ -24,6 +27,9 @@ const NewMoon = ({
   const hancleClickToReinitialize = () => {
     clearInput();
     reinitializeCardsList();
+  };
+  const hancleClickToFilter = () => {
+    filterByPhase();
   };
   return (
     <div className="cards">
@@ -36,8 +42,13 @@ const NewMoon = ({
           placeholder="Searching for a specific role ? "
         />
         <div className="cards__search-buttons">
-          <button type="button">Trier par phase</button>
-          {cardsInputValue !== '' && (
+          <button
+            type="button"
+            onClick={hancleClickToFilter}
+          >
+            Trier par phase
+          </button>
+          {(cardsInputValue !== '' || isFiltered) && (
           <button
             type="button"
             onClick={hancleClickToReinitialize}
@@ -62,18 +73,22 @@ const NewMoon = ({
 };
 
 NewMoon.propTypes = {
-  // roles: PropTypes.arrayOf(PropTypes.shape({
-  //   id: PropTypes.number.isRequired,
-  // })).isRequired,
+  cards: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  })).isRequired,
 
   // roleToDisplay: PropTypes.object.isRequired,
-  // onFocus: PropTypes.bool.isRequired,
-  // rolesInputValue: PropTypes.string.isRequired,
+  cardsInputValue: PropTypes.string.isRequired,
 
-  // // FUNCTIONS
+  // BOOLEENS
+  // onFocus: PropTypes.bool.isRequired,
+  isFiltered: PropTypes.bool.isRequired,
+
+  // FUNCTIONS
   // toggleFocus: PropTypes.func.isRequired,
-  // clearInput: PropTypes.func.isRequired,
+  clearInput: PropTypes.func.isRequired,
   reinitializeCardsList: PropTypes.func.isRequired,
+  filterByPhase: PropTypes.func.isRequired,
 };
 
 export default NewMoon;

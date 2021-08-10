@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
 import NewMoon from 'src/components/App/NewMoon';
 
-import { toggleFocus, reinitializeCardsList } from 'src/actions/cards';
+import { toggleFocus, reinitializeCardsList, filterByPhase } from 'src/actions/cards';
 import { clearInput } from 'src/actions';
 
 const mapStateToProps = (state) => ({
   cards: state.newMoon.cards,
   cardToDisplay: state.newMoon.cardToDisplay,
+  isFiltered: state.newMoon.isFiltered,
   onFocus: state.newMoon.onFocus,
   cardsInputValue: state.newMoon.cardsInputValue,
 });
@@ -20,6 +21,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   reinitializeCardsList: () => {
     dispatch(reinitializeCardsList());
+  },
+  filterByPhase: () => {
+    dispatch(filterByPhase());
   },
 });
 

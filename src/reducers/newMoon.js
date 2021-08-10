@@ -1,9 +1,12 @@
 import {
-  DISPLAY_ROLE,
   TOGGLE_FOCUS,
   DISPLAY_RESULTS,
 } from 'src/actions/roles';
-import { REINITIALIZE_CARDS_LIST } from 'src/actions/cards';
+import {
+  REINITIALIZE_CARDS_LIST,
+  FILTER_BY_PHASE,
+  DISPLAY_CARD,
+} from 'src/actions/cards';
 import {
   CHANGE_VALUE,
   CLEAR_INPUT,
@@ -15,15 +18,16 @@ const initialState = {
   cardToDisplay: {},
   onFocus: false,
   cardsInputValue: '',
+  isFiltered: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case DISPLAY_ROLE: {
-      const roleToDisplay = state.roles.find((role) => role.id === action.id);
+    case DISPLAY_CARD: {
+      const cardToDisplay = state.cards.find((card) => card.id === action.id);
       return {
         ...state,
-        roleToDisplay: roleToDisplay,
+        cardToDisplay: cardToDisplay,
       };
     }
     case TOGGLE_FOCUS:
@@ -47,6 +51,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         cards: newMoonCards,
+        isFiltered: false,
       };
     case CHANGE_VALUE:
       return {
@@ -58,6 +63,32 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         cardsInputValue: '',
       };
+    case FILTER_BY_PHASE: {
+      const croissantCards = [];
+      const fullMoonCards = [];
+      const newmoonCards = [];
+      state.cards.forEach((card) => {
+        if (card.phase === 'Croissant') {
+          croissantCards.push(card);
+        }
+        else if (card.phase === 'Nouvelle Lune') {
+          newmoonCards.push(card);
+        }
+        else {
+          fullMoonCards.push(card);
+        }
+      });
+      const filteredCards = [
+        ...croissantCards,
+        ...newmoonCards,
+        ...fullMoonCards,
+      ];
+      return {
+        ...state,
+        cards: filteredCards,
+        isFiltered: true,
+      };
+    }
     default:
       return state;
   }

@@ -88,7 +88,7 @@ export const newMoonCards = [
   {
     id: 13,
     name: 'Influences',
-    phase: 'Premier Croissant',
+    phase: 'Croissant',
     image: loupGarou,
     description: "Le prochain vote se fait à <bnm>tour de rôle</bnm>. <inm>C'est le dernier éliminé qui choisit le premier votant.</inm> Le <bnm>premier</bnm> votant désigne un joueur et <bnm>laisse</bnm> le bras pointé. Son voisin de <bnm>gauche</bnm> fait de même et ainsi de suite. <inm>Le résultat du vote est géré comme d'habitude.</inm>",
   },
@@ -109,7 +109,7 @@ export const newMoonCards = [
   {
     id: 16,
     name: 'Mécontentement',
-    phase: 'Premier Croissant',
+    phase: 'Croissant',
     image: loupGarou,
     description: "Déçue par ses <bnm>mauvais</bnm> résultats, la justice du village s'emballe. Si le <bnm>prochain</bnm> joueur éliminé par le village n'est <bnm>pas</bnm> un Loup-Garou, le village dépité vote une <bnm>seconde</bnm> fois. Le second vote se déroule <bnm>immédiatement</bnm> et sans concertation pour éliminer un <bnm>deuxième</bnm> suspect.",
   },
@@ -130,7 +130,7 @@ export const newMoonCards = [
   {
     id: 19,
     name: 'Nuit des Fous',
-    phase: 'Premier Croissant',
+    phase: 'Croissant',
     image: loupGarou,
     description: "La nuit prochaine, les <bnm>Loups-Garous</bnm> deviennent <bnm>Voyantes</bnm>. Chacun d'eux se réveillera à tour de rôle pour <bnm>espionner</bnm> 1 joueur. Le <bnm>Chasseur</bnm>, la <bnm>Sorcière</bnm> et la <bnm>Voyante</bnm> deviennent <bnm>Loups-Garous</bnm>, ils se réveillent ensemble et <bnm>éliminent</bnm> 1 joueur durant la nuit. <inm>Au matin suivant, tout redeviendra normal.</inm>",
   },
@@ -144,7 +144,7 @@ export const newMoonCards = [
   {
     id: 21,
     name: 'le Petiot',
-    phase: 'Premier Croissant',
+    phase: 'Croissant',
     image: loupGarou,
     description: "Le ou la plus <bnm>jeune</bnm> du village sera le 'Petiot'. Celui-ci <bnm>part</bnm> chercher de l'aide au village voisin. Le Petiot va dans une autre pièce et ne participera ni aux débats, ni aux votes; il ne pourra pas non plus être dévoré. On le <bnm>rappelle</bnm> le matin <bnm>suivant</bnm> et il reprend sa place normale mais son <bnm>vote</bnm> vaudra <bnm>triple</bnm>. <inm>Les autres joueurs vont bien entendu le mettre au courant des derniers événements.</inm>",
   },
@@ -179,7 +179,7 @@ export const newMoonCards = [
   {
     id: 26,
     name: 'Retour de Flamme',
-    phase: 'Premier Croissant',
+    phase: 'Croissant',
     image: loupGarou,
     description: "La nuit prochaine, si les Loups-Garous désignent un <bnm>Simple Villageois</bnm>, celui-ci n'est pas éliminé et se <bnm>transforme</bnm> en Loup-Garou. <inm>Le meneur de jeu échange sa carte et le prévient discrètement.</inm> <bnm>Sinon</bnm>, la victime <bnm>survit</bnm> et le premier Loup-Garou à sa gauche est <bnm>foudroyé</bnm>. <inm>Si les Loups-Garous ne se mettent pas d'accord, il n'y a aucune victime.</inm>",
   },
@@ -207,7 +207,7 @@ export const newMoonCards = [
   {
     id: 30,
     name: 'le Spectre',
-    phase: 'Premier Croissant',
+    phase: 'Croissant',
     image: loupGarou,
     description: 'Discrètement touché par le meneur, le prochain joueur <bnm>désigné</bnm> par les Loups-Garous <bnm>ouvre</bnm> les yeux. <inm>Les Loups-Garous gardent les yeux ouverts.</inm> Il <bnm>devient</bnm> Loup-Garou et désigne <bnm>1</bnm> des <bnm>anciens</bnm> Loups-Garous qui est immédiatement <bnm>éliminé</bnm>. <inm>Le meneur échange les cartes des joueurs avant de réveiller le village.</inm>',
   },

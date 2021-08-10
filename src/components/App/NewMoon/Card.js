@@ -8,11 +8,11 @@ const Card = ({
   phase,
   id,
   name,
-  displayRole,
+  displayCard,
   toggleFocus,
 }) => {
   const handleClick = () => {
-    displayRole(id);
+    displayCard(id);
     toggleFocus();
   };
 

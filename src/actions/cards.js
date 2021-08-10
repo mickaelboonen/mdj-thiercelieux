@@ -1,7 +1,7 @@
 // ACTIONS RELATED TO CARDS --------------------------------------------------
-export const DISPLAY_ROLE = 'DISPLAY_ROLE';
-export const displayRole = (id) => ({
-  type: DISPLAY_ROLE,
+export const DISPLAY_CARD = 'DISPLAY_CARD';
+export const displayCard = (id) => ({
+  type: DISPLAY_CARD,
   id,
 });
 
@@ -19,4 +19,9 @@ export const displayResults = (value) => ({
 export const REINITIALIZE_CARDS_LIST = 'REINITIALIZE_CARDS_LIST';
 export const reinitializeCardsList = () => ({
   type: REINITIALIZE_CARDS_LIST,
+});
+
+export const FILTER_BY_PHASE = 'FILTER_BY_PHASE';
+export const filterByPhase = () => ({
+  type: FILTER_BY_PHASE,
 });
