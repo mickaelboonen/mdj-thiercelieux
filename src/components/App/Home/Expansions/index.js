@@ -9,7 +9,6 @@ import loupGarou from 'src/assets/pictures/roles/loup-garou.png';
 import './style.scss';
 
 const Expansions = () => {
-  console.log(expansions);
   const divStyle = {
     backgroundImage: `url(${loupGarou})`,
   };

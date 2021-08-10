@@ -1,0 +1,63 @@
+@use 'src/styles/vars';
+
+.specificity {
+  margin-top: vars.$navbar-height;
+  background-color: #3a3737;
+
+  &__title {
+    font-family: vars.$fontAbril;
+    padding: 2rem;
+    text-align: center;
+    
+  }
+
+  &__description {
+    padding: vars.$gutter;
+    margin-bottom: vars.$gutter;
+
+    &-text {
+    text-align: justify;
+    }
+    
+  }
+
+  &__rules {
+    padding: vars.$gutter;
+    margin-bottom: vars.$gutter;
+
+    &-item {
+
+    &-name {
+      border-bottom: 1px solid black;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      height: 2rem;
+
+      &--open {
+        border-bottom: 0;
+        font-weight: bold;
+      }
+
+      &:hover {
+        background-color: #585656;
+        font-style: italic;
+      }
+      
+    }
+
+    &-description {
+      background-color: #585656;
+      display: none;
+      padding: vars.$gutter 0 vars.$gutter 0.5rem ;
+      font-size: 0.8em;
+      border-bottom: 1px solid black;
+      
+      &--open {
+        display: block;
+        transition: 1s;
+      }
+    }
+    }    
+  }
+}

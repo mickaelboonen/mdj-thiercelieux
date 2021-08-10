@@ -57,7 +57,7 @@ export const villagePeople = [
     max: 1,
   },
   {
-    id: 7,
+    id: 8,
     name: 'Le Bailli',
     token: '',
     description: "Représentant de l'ordre et de la loi, c'est lui qui porte la responsabilité d'attribuer les logements vacances aux Vagabonds. Lorsqu'un bâtiment se libère, le Bailli peut désigner un Vagabond de son choix. Ce Vagabond change de place pour s'asseoir derrière le bâtiment, rend son jeton baluchon et récupère le 'jeton pouvoir' associé au bâtiment s'il était déjà utilisé. Si un matin plusieurs bâtiments sont libres, on procédera de même pour chaque bâtiment. Remarque: l'élimination du Bailli entraîne la fin de la distribution des logements. La maison du Bailli restera vide. Les Vagabonds ont donc tout intérêt à protéger le Bailli s'ils espèrent récupérer un logis !",
@@ -65,15 +65,7 @@ export const villagePeople = [
     max: 1,
   },
   {
-    id: 7,
-    name: 'Le Bailli',
-    token: '',
-    description: "Représentant de l'ordre et de la loi, c'est lui qui porte la responsabilité d'attribuer les logements vacances aux Vagabonds. Lorsqu'un bâtiment se libère, le Bailli peut désigner un Vagabond de son choix. Ce Vagabond change de place pour s'asseoir derrière le bâtiment, rend son jeton baluchon et récupère le 'jeton pouvoir' associé au bâtiment s'il était déjà utilisé. Si un matin plusieurs bâtiments sont libres, on procédera de même pour chaque bâtiment. Remarque: l'élimination du Bailli entraîne la fin de la distribution des logements. La maison du Bailli restera vide. Les Vagabonds ont donc tout intérêt à protéger le Bailli s'ils espèrent récupérer un logis !",
-    permanentPower: true,
-    max: 1,
-  },
-  {
-    id: 7,
+    id: 9,
     name: 'Le Châtelain',
     token: '',
     description: "Bien entendu son attitude hautaine est parfois énervante, mais c'est le seul qui par une tradition ancienne et non abolie à ce jour, peut grâcier un condamné. Le Châtelain reste donc une personnalité respectée avec laquelle il vaut mieux être en bons termes. Après n'importe quel vote, le Châtelain peut, sur demande de la future victime, faire grâce à un Villageois désigné par le vote du village. Le joueur ne sera donc pas éliminé et ne révélera pas sa carte. Un Châtelain égoïste peut évidemment se gracier lui-même...",
@@ -81,7 +73,7 @@ export const villagePeople = [
     max: 1,
   },
   {
-    id: 8,
+    id: 10,
     name: 'Le Vagabond',
     token: '',
     description: "Ces courageux sans-logis n'aspirent qu'à intégrer le village afin de laisser libre cours à leurs désirs de se rendre utiles... Les pouvoirs de l'Institutrice, du Barbier, du Corbeau et du Pyromane n'ont pas d'effet sur les Vagabonds. Lorsqu'un bâtiment se libère, le Bailli désigne un Vagabond de son choix. Le joueur change de place pour s'asseoir derrière ce bâtiment, rend son jeton baluchon et récupère le jeton pouvoir associé au bâtiment. Un Vagabons peut refuser d'occuper une maison proposée par le Bailli.",

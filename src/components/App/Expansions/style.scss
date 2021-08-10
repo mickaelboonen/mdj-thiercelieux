@@ -1,0 +1,81 @@
+@use 'src/styles/vars';
+
+.games {
+  height : calc(100vh - 4rem);
+  margin-top: vars.$navbar-height;
+  background-color: #3a3737;
+
+  &__title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+  }
+
+  &__list {
+    height: 80%;
+  }
+  
+  &__path {
+    position: absolute;
+    top: vars.$navbar-height;
+    padding: 0.4rem 0 0 0.4rem;
+    font-style: italic;
+    font-size: 0.8em;
+    color: #696868;
+
+    & a {
+      text-decoration: 1px underline dotted #696868;
+    }
+  }
+}
+
+.expansion {
+  height: 25%;
+  width: 100%;
+  background-color: #3a3737;
+  // border: 1px solid black;
+  // border-bottom: 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &__title {
+    width: 65%;
+    margin: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+  & a {
+    position: absolute;
+  }
+
+  &__image {
+    width: 35%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-item {
+
+      max-height: 90%;
+      border: 1px solid black;
+    }
+     
+  }
+
+  &:nth-child(2n+1) {
+    flex-direction: row-reverse;
+    background-color: #696868;
+  }
+
+  // &:last-child {
+    
+  //   border-bottom: 1px solid black ;
+  // }
+}

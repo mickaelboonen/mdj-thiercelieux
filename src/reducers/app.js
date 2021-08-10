@@ -1,3 +1,4 @@
+import { expansions } from 'src/data/expansions';
 import {
   CLOSE_BURGER,
   TOGGLE_BURGER,
@@ -5,6 +6,7 @@ import {
 
 const initialState = {
   isBurgerOpen: false,
+  expansions: expansions,
 };
 
 const reducer = (state = initialState, action = {}) => {
