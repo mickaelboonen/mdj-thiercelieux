@@ -1,6 +1,6 @@
 @use 'src/styles/vars';
 
-.roles {
+.cards {
 
   height: 100vh;
   background-color: #686767;
@@ -10,6 +10,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     height: 22%;
     background-color: #1a1a1a;
 
@@ -17,23 +18,38 @@
         margin: vars.$gutter;
       }
 
-      &-input {
-        height: 1.5rem;
-        background-color: #413f3f;
-        border-radius: 5px;
-        border: 0;
+    &-buttons {
+      width: 100%;
+      display: flex;
+      flex-direction: flex-start;
+      padding: 0.5rem 0.5rem 0;
 
-        &-btn {
-          border: 0;
-          font-style: italic;
-          background-color: transparent;
-          text-decoration: 1px underline dotted #cac9c9;
-          text-underline-offset: 2px;
-          padding: 0.5rem;
-          color: rgb(226, 221, 221);
-          margin: 0.5rem auto 1.5rem;
-        }
+      & button {
+        height: fit-content;
+        margin-right: 0.2rem;
+        background-color: #686767;
+        color: #fff;
       }
+    }
+
+
+    &-input {
+      height: 1.5rem;
+      background-color: #413f3f;
+      border-radius: 5px;
+      border: 0;
+
+      &-btn {
+        border: 0;
+        font-style: italic;
+        background-color: transparent;
+        text-decoration: 1px underline dotted #cac9c9;
+        text-underline-offset: 2px;
+        padding: 0.5rem;
+        color: rgb(226, 221, 221);
+        // margin: 0.5rem auto 1.5rem;
+      }
+    }
   }
 
   

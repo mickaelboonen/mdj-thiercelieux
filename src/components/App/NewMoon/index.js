@@ -16,36 +16,36 @@ const NewMoon = ({
   cardsInputValue,
   toggleFocus,
   clearInput,
-  reinitializeRolesList,
+  reinitializeCardsList,
 }) => {
   const handleClickOnX = () => {
     toggleFocus();
   };
   const hancleClickToReinitialize = () => {
     clearInput();
-    reinitializeRolesList();
+    reinitializeCardsList();
   };
   return (
-    <div className="roles">
-
-
-      <div className="roles__search">
-        <h2 className="roles__search-title">Cartes Nouvelle Lune</h2>
+    <div className="cards">
+      <div className="cards__search">
+        <h2 className="cards__search-title">Cartes Nouvelle Lune</h2>
         <Field
-          className="roles__search-input"
+          className="cards__search-input"
           type="text"
           name="cardsInput"
           placeholder="Searching for a specific role ? "
         />
-        {cardsInputValue !== '' && (
-        <button
-          className="roles__search-input-btn"
-          type="button"
-          onClick={hancleClickToReinitialize}
-        >
-          Réinitialiser la recherche
-        </button>
-        )}
+        <div className="cards__search-buttons">
+          <button type="button">Trier par phase</button>
+          {cardsInputValue !== '' && (
+          <button
+            type="button"
+            onClick={hancleClickToReinitialize}
+          >
+            Réinitialiser la recherche
+          </button>
+          )}
+        </div>
       </div>
       <div className="roles__results">
         {cards.map((card) => <Card key={card.id} {...card} />)}
@@ -73,7 +73,7 @@ NewMoon.propTypes = {
   // // FUNCTIONS
   // toggleFocus: PropTypes.func.isRequired,
   // clearInput: PropTypes.func.isRequired,
-  // reinitializeRolesList: PropTypes.func.isRequired,
+  reinitializeCardsList: PropTypes.func.isRequired,
 };
 
 export default NewMoon;

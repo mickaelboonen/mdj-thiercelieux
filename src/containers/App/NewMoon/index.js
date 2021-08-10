@@ -1,6 +1,9 @@
 import { connect } from 'react-redux';
 import NewMoon from 'src/components/App/NewMoon';
 
+import { toggleFocus, reinitializeCardsList } from 'src/actions/cards';
+import { clearInput } from 'src/actions';
+
 const mapStateToProps = (state) => ({
   cards: state.newMoon.cards,
   cardToDisplay: state.newMoon.cardToDisplay,
@@ -15,8 +18,8 @@ const mapDispatchToProps = (dispatch) => ({
   clearInput: (input) => {
     dispatch(clearInput(input));
   },
-  reinitializeRolesList: () => {
-    dispatch(reinitializeRolesList());
+  reinitializeCardsList: () => {
+    dispatch(reinitializeCardsList());
   },
 });
 

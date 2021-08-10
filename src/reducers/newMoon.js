@@ -2,8 +2,8 @@ import {
   DISPLAY_ROLE,
   TOGGLE_FOCUS,
   DISPLAY_RESULTS,
-  REINITIALIZE_ROLES_LIST,
 } from 'src/actions/roles';
+import { REINITIALIZE_CARDS_LIST } from 'src/actions/cards';
 import {
   CHANGE_VALUE,
   CLEAR_INPUT,
@@ -43,10 +43,10 @@ const reducer = (state = initialState, action = {}) => {
         cards: newCardsArray,
       };
     }
-    case REINITIALIZE_ROLES_LIST:
+    case REINITIALIZE_CARDS_LIST:
       return {
         ...state,
-        roles: hiddenRoles,
+        cards: newMoonCards,
       };
     case CHANGE_VALUE:
       return {
@@ -56,7 +56,7 @@ const reducer = (state = initialState, action = {}) => {
     case CLEAR_INPUT:
       return {
         ...state,
-        rolesInputValue: '',
+        cardsInputValue: '',
       };
     default:
       return state;
