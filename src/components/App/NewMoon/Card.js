@@ -5,7 +5,6 @@ import './style.scss';
 
 const Card = ({
   image,
-  phase,
   id,
   name,
   displayCard,
@@ -30,12 +29,15 @@ const Card = ({
 };
 
 Card.propTypes = {
-  image: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
 
+  // STRINGS
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+
   // FUNCTIONS
-  // displayRole: PropTypes.func.isRequired,
-  // toggleFocus: PropTypes.func.isRequired,
+  displayCard: PropTypes.func.isRequired,
+  toggleFocus: PropTypes.func.isRequired,
 };
 
 export default Card;

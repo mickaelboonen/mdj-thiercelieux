@@ -28,10 +28,8 @@ const App = () => (
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/le-jeu/les-roles" exact>
-          {/* <Roles /> */}
-          <NewMoon />
-        </Route>
+        <Route path="/le-jeu/les-roles" exact component={Roles} />
+        <Route path="/le-jeu/les-cartes-nouvelle-lune" exact component={NewMoon} />
         <Route path="/les-jeux">
           <Switch>
             <Route path="/les-jeux/:slug" exact component={Game} />

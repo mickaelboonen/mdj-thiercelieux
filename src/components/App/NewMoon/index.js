@@ -77,15 +77,15 @@ NewMoon.propTypes = {
     id: PropTypes.number.isRequired,
   })).isRequired,
 
-  // roleToDisplay: PropTypes.object.isRequired,
+  cardToDisplay: PropTypes.object.isRequired,
   cardsInputValue: PropTypes.string.isRequired,
 
   // BOOLEENS
-  // onFocus: PropTypes.bool.isRequired,
+  onFocus: PropTypes.bool.isRequired,
   isFiltered: PropTypes.bool.isRequired,
 
   // FUNCTIONS
-  // toggleFocus: PropTypes.func.isRequired,
+  toggleFocus: PropTypes.func.isRequired,
   clearInput: PropTypes.func.isRequired,
   reinitializeCardsList: PropTypes.func.isRequired,
   filterByPhase: PropTypes.func.isRequired,
