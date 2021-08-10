@@ -13,7 +13,7 @@ const NewMoon = ({
   cards,
   cardToDisplay,
   onFocus,
-  cardInputValue,
+  cardsInputValue,
   toggleFocus,
   clearInput,
   reinitializeRolesList,
@@ -37,7 +37,7 @@ const NewMoon = ({
           name="cardsInput"
           placeholder="Searching for a specific role ? "
         />
-        {cardInputValue !== '' && (
+        {cardsInputValue !== '' && (
         <button
           className="roles__search-input-btn"
           type="button"
@@ -48,7 +48,6 @@ const NewMoon = ({
         )}
       </div>
       <div className="roles__results">
-        {/*  */}
         {cards.map((card) => <Card key={card.id} {...card} />)}
 
         <div className={classNames('roles__results-info', { 'roles__results-info--open': onFocus })}>

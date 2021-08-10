@@ -5,7 +5,7 @@ const mapStateToProps = (state) => ({
   cards: state.newMoon.cards,
   cardToDisplay: state.newMoon.cardToDisplay,
   onFocus: state.newMoon.onFocus,
-  cardInputValue: state.newMoon.cardInputValue,
+  cardsInputValue: state.newMoon.cardsInputValue,
 });
 
 const mapDispatchToProps = (dispatch) => ({

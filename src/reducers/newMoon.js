@@ -32,15 +32,15 @@ const reducer = (state = initialState, action = {}) => {
         onFocus: !state.onFocus,
       };
     case DISPLAY_RESULTS: {
-      const newRolesArray = hiddenRoles.filter((role) => {
-        if (role.name.toLowerCase().includes(action.value.toLowerCase())) {
-          return role;
+      const newCardsArray = newMoonCards.filter((card) => {
+        if (card.name.toLowerCase().includes(action.value.toLowerCase())) {
+          return card;
         }
       });
 
       return {
         ...state,
-        roles: newRolesArray,
+        cards: newCardsArray,
       };
     }
     case REINITIALIZE_ROLES_LIST:
@@ -51,7 +51,7 @@ const reducer = (state = initialState, action = {}) => {
     case CHANGE_VALUE:
       return {
         ...state,
-        rolesInputValue: action.value,
+        cardsInputValue: action.value,
       };
     case CLEAR_INPUT:
       return {
