@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 /* eslint-disable max-len */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -62,7 +63,7 @@ const Specificity = ({ games }) => {
       <h2 className="specificity__title">{name}</h2>
       <div className="specificity__description">
         <h4 className="specificity__description-title">Description</h4>
-        <p className="specificity__description-text" dangerouslySetInnerHTML={createMarkup(description)}/>
+        <p className="specificity__description-text" dangerouslySetInnerHTML={createMarkup(description)} />
       </div>
       <div className="specificity__rules">
         <h4 className="specificity__rules-title">Les règles</h4>

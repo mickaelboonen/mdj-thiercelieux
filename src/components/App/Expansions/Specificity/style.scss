@@ -15,10 +15,6 @@
     padding: vars.$gutter;
     margin-bottom: vars.$gutter;
 
-    &-title {
-      
-    }
-
     &-text {
     text-align: justify;
     }
@@ -62,12 +58,6 @@
         transition: 1s;
       }
     }
-
-    }
-
-    &-title {
-      
-    }
-    
+    }    
   }
 }
