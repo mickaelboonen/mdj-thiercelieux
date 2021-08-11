@@ -4,6 +4,7 @@ import appReducer from './app';
 import rolesReducer from './roles';
 import membersReducer from './members';
 import newMoonReducer from './newMoon';
+import villageReducer from './village';
 import mailboxReducer from './mailbox';
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   roles: rolesReducer,
   members: membersReducer,
   newMoon: newMoonReducer,
+  village: villageReducer,
   mails: mailboxReducer,
 });
 

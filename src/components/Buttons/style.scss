@@ -1,0 +1,42 @@
+.buttons {
+  width: 100%;
+
+  &__erase-button {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 0.5rem 0;
+
+    &-item {
+      
+      // border: 0;
+      // font-style: italic;
+      // background-color: transparent;
+      // text-decoration: 1px underline dotted #cac9c9;
+      // text-underline-offset: 2px;
+      // color: rgb(226, 221, 221);
+      padding: 0.2rem 0.5rem;
+      background-color: #686767;
+      border: 1px solid black;
+    }
+    
+  }
+
+  &__selects {
+    display: flex;
+    padding: 0 0.5rem;
+
+    & select {
+      flex-grow: 1;
+      margin-right: 0.5rem;
+      padding: 0.2rem 0;
+      background-color: #686767;
+      border: 1px solid black;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    
+  }
+}

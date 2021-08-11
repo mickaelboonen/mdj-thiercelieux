@@ -12,7 +12,7 @@ const mapDispatchToProps = (dispatch) => ({
   changeValue: (value, name) => {
     dispatch(changeValue(value, name));
 
-    if (name === 'rolesInput' || name === 'cardsInput') {
+    if (name === 'rolesInput' || name === 'cardsInput' || name === 'villageInput') {
       dispatch(displayResults(value));
     }
   },
