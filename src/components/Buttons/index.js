@@ -9,9 +9,10 @@ const Buttons = ({
   clearInput,
   reinitializeVillageRolesList,
   data,
+  filterBy,
 }) => {
-  const handleChangeToFilter = () => {
-
+  const handleChangeToFilter = (event) => {
+    // filterBy(event.currentTarget.id, event.currentTarget.value);
   };
   const hancleClickToReinitialize = () => {
     clearInput();
@@ -32,22 +33,32 @@ const Buttons = ({
         )}
       </div>
       <div className="buttons__selects">
-        {data.map((select) => {
-          console.log(1);
-          return (
-            <select id={select.idName} key={select.idName} onChange={handleChangeToFilter}>
-              <option value="">{select.idName === 'sorting-select' ? 'Trier par ...' : 'Filtrer par ...'}</option>
-              {select.options.map((option) => <option value={option.value}>{option.name}</option>)}
-            </select>
-          );
-        })}
+        {data.map((select) => (
+          <select id={select.idName} key={select.idName} onChange={handleChangeToFilter}>
+            <option value="">{select.idName === 'sorting-select' ? 'Trier par ...' : 'Filtrer par ...'}</option>
+            {select.options.map((option) => <option value={option.value}>{option.name}</option>)}
+          </select>
+        ))}
       </div>
     </div>
   );
 };
 
 Buttons.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    idName: PropTypes.string.isRequired,
+    options: PropTypes.arrayOf(PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    })).isRequired,
+  })).isRequired,
+  input: PropTypes.string.isRequired,
+  isFiltered: PropTypes.bool.isRequired,
 
+  // FUNCTIONS
+  clearInput: PropTypes.func.isRequired,
+  filterBy: PropTypes.func.isRequired,
+  reinitializeVillageRolesList: PropTypes.func.isRequired,
 };
 
 export default Buttons;

@@ -4,7 +4,7 @@ import { X } from 'react-feather';
 import classNames from 'classnames';
 
 import Flipcard from 'src/components/Flipcard';
-import Role from 'src/containers/App/Roles/Role';
+import Role from 'src/containers/App/VillagePeople/Role';
 
 import './style.scss';
 import Field from 'src/containers/Field';

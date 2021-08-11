@@ -22,7 +22,7 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case DISPLAY_ROLE: {
-      const roleToDisplay = state.roles.find((role) => role.id === action.id);
+      const roleToDisplay = state.villageRoles.find((role) => role.id === action.id);
       return {
         ...state,
         roleToDisplay: roleToDisplay,
