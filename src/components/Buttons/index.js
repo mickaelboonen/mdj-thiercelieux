@@ -12,7 +12,7 @@ const Buttons = ({
   filterBy,
 }) => {
   const handleChangeToFilter = (event) => {
-    // filterBy(event.currentTarget.id, event.currentTarget.value);
+    filterBy(event.currentTarget.value, event.currentTarget.id);
   };
   const hancleClickToReinitialize = () => {
     clearInput();

@@ -1,3 +1,4 @@
+/* eslint-disable no-lonely-if */
 import {
   DISPLAY_ROLE,
   TOGGLE_FOCUS,
@@ -11,6 +12,10 @@ import {
   CLEAR_INPUT,
 } from 'src/actions';
 import { villagePeople } from 'src/data/villagePeople';
+import { FILTER_BY } from 'src/actions/Cards/index';
+
+// SELECTORS
+import { sortBy, filterByPower } from 'src/selectors/sortingFunctions';
 
 const initialState = {
   villageRoles: villagePeople,
@@ -21,6 +26,24 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case FILTER_BY: {
+      let newArray = [];
+      if (action.filter === 'sorting-select') {
+        newArray = sortBy(action.value, state.villageRoles);
+      }
+      else {
+        if (action.value !== '') {
+          newArray = filterByPower(action.value, villagePeople);
+        }
+        else {
+          newArray = villagePeople;
+        }
+      }
+      return {
+        ...state,
+        villageRoles: newArray,
+      };
+    }
     case DISPLAY_ROLE: {
       const roleToDisplay = state.villageRoles.find((role) => role.id === action.id);
       return {
