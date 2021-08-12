@@ -6,6 +6,7 @@ import membersReducer from './members';
 import newMoonReducer from './newMoon';
 import villageReducer from './village';
 import mailboxReducer from './mailbox';
+import rolesDescriptionsReducer from './rolesDescriptions';
 
 const rootReducer = combineReducers({
   app: appReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   newMoon: newMoonReducer,
   village: villageReducer,
   mails: mailboxReducer,
+  rolesDescriptions: rolesDescriptionsReducer,
 });
 
 export default rootReducer;

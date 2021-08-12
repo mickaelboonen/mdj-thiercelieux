@@ -95,3 +95,32 @@ export const villagePeople = [
   },
 
 ];
+
+export const villageRolesSelects = [
+  {
+    idName: 'power-select',
+    options: [
+      {
+        value: 'permanent',
+        name: 'Pouvoir permanent',
+      },
+      {
+        value: 'unique',
+        name: 'Pouvoir unique',
+      },
+    ],
+  },
+  {
+    idName: 'sorting-select',
+    options: [
+      {
+        value: 'alphabetic',
+        name: 'Ordre alphabétique',
+      },
+      {
+        value: 'power',
+        name: 'Pouvoirs',
+      },
+    ],
+  },
+];

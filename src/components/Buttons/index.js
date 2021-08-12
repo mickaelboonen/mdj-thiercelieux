@@ -36,7 +36,9 @@ const Buttons = ({
         {data.map((select) => (
           <select id={select.idName} key={select.idName} onChange={handleChangeToFilter}>
             <option value="">{select.idName === 'sorting-select' ? 'Trier par ...' : 'Filtrer par ...'}</option>
-            {select.options.map((option) => <option value={option.value}>{option.name}</option>)}
+            {select.options.map((option) => (
+              <option key={option.name} value={option.value}>{option.name}</option>
+            ))}
           </select>
         ))}
       </div>

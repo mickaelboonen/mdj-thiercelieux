@@ -12,6 +12,7 @@ import Game from 'src/containers/App/Expansions/Game';
 import Specificity from 'src/containers/App/Expansions/Specificity';
 
 import Roles from 'src/containers/App/Roles';
+import RolesDescriptions from 'src/containers/App/RolesDescriptions';
 import NewMoon from 'src/containers/App/NewMoon';
 import VillagePeople from 'src/containers/App/VillagePeople';
 import Aboutus from 'src/containers/App/Aboutus';
@@ -31,9 +32,10 @@ const App = () => (
         <Route path="/" exact>
           <Home />
         </Route>
-        <Route path="/le-jeu/les-roles" exact component={Roles} />
+        <Route path="/le-jeu/:slug" exact component={RolesDescriptions} />
+        {/* <Route path="/le-jeu/les-roles" exact component={Roles} />
         <Route path="/le-jeu/les-cartes-nouvelle-lune" exact component={NewMoon} />
-        <Route path="/le-jeu/les-villageois" exact component={VillagePeople} />
+        <Route path="/le-jeu/les-villageois" exact component={VillagePeople} /> */}
         <Route path="/les-jeux">
           <Switch>
             <Route path="/les-jeux/:slug" exact component={Game} />

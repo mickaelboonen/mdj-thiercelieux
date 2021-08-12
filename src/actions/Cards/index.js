@@ -4,3 +4,9 @@ export const filterBy = (value, filter) => ({
   value,
   filter,
 });
+
+export const FILL_REDUCER = 'FILL_REDUCER';
+export const fillReducer = (currentPage) => ({
+  type: FILL_REDUCER,
+  currentPage,
+});

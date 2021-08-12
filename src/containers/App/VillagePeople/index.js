@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
   roleToDisplay: state.village.roleToDisplay,
   selects: state.village.selects,
   isFiltered: state.village.isFiltered,
+  onFocus: state.village.onFocus,
   villageInputValue: state.village.villageInputValue,
 });
 

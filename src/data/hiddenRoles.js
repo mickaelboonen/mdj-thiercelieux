@@ -330,3 +330,40 @@ export const titles = [
     expansion: 'Personnages',
   },
 ];
+
+export const rolesSelects = [
+  {
+    idName: 'side-select',
+    options: [
+      {
+        value: 'village',
+        name: 'Les Villageois',
+      },
+      {
+        value: 'werewolves',
+        name: 'Les Loups-Garous',
+      },
+      {
+        value: 'ambiguous',
+        name: 'Les Ambigüs',
+      },
+      {
+        value: 'solitary',
+        name: 'Les Solitaires',
+      },
+    ],
+  },
+  {
+    idName: 'sorting-select',
+    options: [
+      {
+        value: 'alphabetic',
+        name: 'Ordre alphabétique',
+      },
+      {
+        value: 'side',
+        name: 'Camp',
+      },
+    ],
+  },
+];
