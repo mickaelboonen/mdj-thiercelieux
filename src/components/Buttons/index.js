@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const Buttons = ({
-  input,
+  inputValue,
   isFiltered,
   clearInput,
-  reinitializeVillageRolesList,
+  reinitializeData,
   data,
   filterBy,
 }) => {
@@ -16,13 +16,12 @@ const Buttons = ({
   };
   const hancleClickToReinitialize = () => {
     clearInput();
-    reinitializeVillageRolesList();
+    reinitializeData();
   };
-
   return (
     <div className="buttons">
       <div className="buttons__erase-button">
-        {(input !== '' || isFiltered) && (
+        {(inputValue !== '' || isFiltered) && (
         <button
           type="button"
           className="buttons__erase-button-item"
@@ -54,13 +53,13 @@ Buttons.propTypes = {
       name: PropTypes.string.isRequired,
     })).isRequired,
   })).isRequired,
-  input: PropTypes.string.isRequired,
+  inputValue: PropTypes.string.isRequired,
   isFiltered: PropTypes.bool.isRequired,
 
   // FUNCTIONS
   clearInput: PropTypes.func.isRequired,
   filterBy: PropTypes.func.isRequired,
-  reinitializeVillageRolesList: PropTypes.func.isRequired,
+  reinitializeData: PropTypes.func.isRequired,
 };
 
 export default Buttons;

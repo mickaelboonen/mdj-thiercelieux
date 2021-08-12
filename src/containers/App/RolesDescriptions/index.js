@@ -9,9 +9,7 @@ const mapStateToProps = (state) => ({
   currentPageButtons: state.rolesDescriptions.currentPageButtons,
   onFocus: state.rolesDescriptions.onFocus,
   isFiltered: state.rolesDescriptions.isFiltered,
-  rolesInputValue: state.rolesDescriptions.rolesInputValue,
-  cardsInputValue: state.rolesDescriptions.cardsInputValue,
-  villageInputValue: state.rolesDescriptions.villageInputValue,
+  rolesInputValue: state.rolesDescriptions.rolesInput,
   loading: state.rolesDescriptions.loading,
 });
 

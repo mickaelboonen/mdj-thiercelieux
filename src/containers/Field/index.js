@@ -1,8 +1,7 @@
 import { connect } from 'react-redux';
 import Field from 'src/components/Field';
 
-import { changeValue } from 'src/actions';
-import { displayResults } from 'src/actions/roles';
+import { changeValue, displayResults } from 'src/actions/Cards';
 
 const mapStateToProps = (state) => ({
   value: state.roles.rolesInputValue,
@@ -11,7 +10,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeValue: (value, name) => {
     dispatch(changeValue(value, name));
-
+    console.log(name);
     if (name === 'rolesInput' || name === 'cardsInput' || name === 'villageInput') {
       dispatch(displayResults(value));
     }

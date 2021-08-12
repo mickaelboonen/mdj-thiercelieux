@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
+import Results from 'src/containers/App/RolesDescriptions/Results';
 
 import './style.scss';
 import Sort from './Sort';
-import Results from './Results';
 
 const Roles = ({
   data,
@@ -18,14 +18,19 @@ const Roles = ({
 }) => {
   // UseEffect qui fera l'appel à l'API pour remplir le reducer.
   const location = useLocation().pathname.split('/');
+  const currentPage = location[2];
   useEffect(() => {
-    fillReducer(location[2]);
-  }, [location[2]]);
-  console.log(loading);
+    fillReducer(currentPage);
+  }, [currentPage]);
   return (
     <div className="roles">
       {!loading && (
-        <Sort currentInput={rolesInputValue} isFiltered={isFiltered} data={currentPageButtons} />
+        <Sort
+          currentInput={rolesInputValue}
+          isFiltered={isFiltered}
+          data={currentPageButtons}
+          pageTitle={currentPage}
+        />
       )}
       {!loading && (
         <Results data={data} flipcardData={flipcardData} onFocus={onFocus} />

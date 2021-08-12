@@ -1,21 +1,19 @@
 import { connect } from 'react-redux';
 import Buttons from 'src/components/Buttons';
 
-import { reinitializeVillageRolesList } from 'src/actions/Cards/villageActions';
-import { filterBy } from 'src/actions/Cards/index';
-import { clearInput } from 'src/actions';
+import { filterBy, clearInput, reinitializeData } from 'src/actions/Cards/index';
+// import { clearInput } from 'src/actions';
 
-const mapStateToProps = null;
+const mapStateToProps = (state) => ({
+  inputValue: state.rolesDescriptions.rolesInput,
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  // toggleFocus: (id) => {
-  //   dispatch(toggleFocus(id));
-  // },
   clearInput: (input) => {
     dispatch(clearInput(input));
   },
-  reinitializeVillageRolesList: () => {
-    dispatch(reinitializeVillageRolesList());
+  reinitializeData: () => {
+    dispatch(reinitializeData());
   },
   filterBy: (value, filter) => {
     dispatch(filterBy(value, filter));

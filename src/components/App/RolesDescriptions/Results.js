@@ -35,7 +35,7 @@ Results.propTypes = {
   })).isRequired,
 
   flipcardData: PropTypes.object.isRequired,
-  // toggleFocus: PropTypes.func.isRequired,
+  toggleFocus: PropTypes.func.isRequired,
   onFocus: PropTypes.bool.isRequired,
 };
 

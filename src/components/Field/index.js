@@ -12,6 +12,7 @@ const Field = ({
   ...props
 }) => {
   const handleChange = (event) => {
+    console.log(event.target.value, name);
     changeValue(event.target.value, name);
   };
 
