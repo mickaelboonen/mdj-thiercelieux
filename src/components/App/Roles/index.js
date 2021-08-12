@@ -4,6 +4,7 @@ import { X } from 'react-feather';
 import classNames from 'classnames';
 
 import Flipcard from 'src/components/Flipcard';
+import Buttons from 'src/components/Buttons';
 import Role from 'src/containers/App/Roles/Role';
 
 import './style.scss';
@@ -16,6 +17,8 @@ const Roles = ({
   rolesInputValue,
   toggleFocus,
   clearInput,
+  selects,
+  isFiltered,
   reinitializeRolesList,
 }) => {
   const handleClickOnX = () => {
@@ -35,7 +38,8 @@ const Roles = ({
           name="rolesInput"
           placeholder="Searching for a specific role ? "
         />
-        {rolesInputValue !== '' && (
+        <Buttons input={rolesInputValue} isFiltered={isFiltered} data={selects} />
+        {/* {rolesInputValue !== '' && (
         <button
           className="roles__search-input-btn"
           type="button"
@@ -43,7 +47,7 @@ const Roles = ({
         >
           Réinitialiser la recherche
         </button>
-        )}
+        )} */}
       </div>
       <div className="roles__results">
         {roles.map((role) => <Role key={role.id} {...role} />)}
@@ -63,9 +67,13 @@ Roles.propTypes = {
     id: PropTypes.number.isRequired,
   })).isRequired,
 
+  selects: PropTypes.array.isRequired,
   roleToDisplay: PropTypes.object.isRequired,
-  onFocus: PropTypes.bool.isRequired,
   rolesInputValue: PropTypes.string.isRequired,
+
+  // BOOLEENS
+  onFocus: PropTypes.bool.isRequired,
+  isFiltered: PropTypes.bool.isRequired,
 
   // FUNCTIONS
   toggleFocus: PropTypes.func.isRequired,

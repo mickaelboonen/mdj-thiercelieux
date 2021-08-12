@@ -7,7 +7,8 @@ import { clearInput } from 'src/actions';
 const mapStateToProps = (state) => ({
   roles: state.village.villageRoles,
   roleToDisplay: state.village.roleToDisplay,
-  onFocus: state.village.onFocus,
+  selects: state.village.selects,
+  isFiltered: state.village.isFiltered,
   villageInputValue: state.village.villageInputValue,
 });
 

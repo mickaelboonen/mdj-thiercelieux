@@ -17,39 +17,11 @@ const VillagePeople = ({
   villageInputValue,
   toggleFocus,
   isFiltered,
+  selects,
 }) => {
   const handleClickOnX = () => {
     toggleFocus();
   };
-  const selects = [
-    {
-      idName: 'power-select',
-      options: [
-        {
-          value: 'permanent',
-          name: 'Pouvoir permanent',
-        },
-        {
-          value: 'unique',
-          name: 'Pouvoir unique',
-        },
-      ],
-    },
-    {
-      idName: 'sorting-select',
-      options: [
-        {
-          value: 'alphabetic',
-          name: 'Ordre alphabétique',
-        },
-        {
-          value: 'power',
-          name: 'Pouvoirs',
-        },
-      ],
-    },
-  ];
-  console.log(roles);
   return (
     <div className="roles">
       <div className="roles__search">
@@ -76,18 +48,22 @@ const VillagePeople = ({
 };
 
 VillagePeople.propTypes = {
-  // roles: PropTypes.arrayOf(PropTypes.shape({
-  //   id: PropTypes.number.isRequired,
-  // })).isRequired,
+  roles: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  })).isRequired,
 
-  // roleToDisplay: PropTypes.object.isRequired,
-  // onFocus: PropTypes.bool.isRequired,
-  // rolesInputValue: PropTypes.string.isRequired,
+  selects: PropTypes.array.isRequired,
+  roleToDisplay: PropTypes.object.isRequired,
+  villageInputValue: PropTypes.string.isRequired,
 
-  // // FUNCTIONS
-  // toggleFocus: PropTypes.func.isRequired,
-  // clearInput: PropTypes.func.isRequired,
-  // reinitializeRolesList: PropTypes.func.isRequired,
+  // BOOLEENS
+  isFiltered: PropTypes.bool.isRequired,
+  onFocus: PropTypes.bool.isRequired,
+
+  // FUNCTIONS
+  toggleFocus: PropTypes.func.isRequired,
+  clearInput: PropTypes.func.isRequired,
+  reinitializeRolesList: PropTypes.func.isRequired,
 };
 
 export default VillagePeople;

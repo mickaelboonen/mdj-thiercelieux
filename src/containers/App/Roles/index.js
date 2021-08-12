@@ -8,6 +8,8 @@ const mapStateToProps = (state) => ({
   roles: state.roles.roles,
   roleToDisplay: state.roles.roleToDisplay,
   onFocus: state.roles.onFocus,
+  selects: state.roles.selects,
+  isFiltered: state.village.isFiltered,
   rolesInputValue: state.roles.rolesInputValue,
 });
 

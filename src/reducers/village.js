@@ -21,7 +21,36 @@ const initialState = {
   villageRoles: villagePeople,
   roleToDisplay: {},
   onFocus: false,
+  isFiltered: false,
   villageInputValue: '',
+  selects: [
+    {
+      idName: 'power-select',
+      options: [
+        {
+          value: 'permanent',
+          name: 'Pouvoir permanent',
+        },
+        {
+          value: 'unique',
+          name: 'Pouvoir unique',
+        },
+      ],
+    },
+    {
+      idName: 'sorting-select',
+      options: [
+        {
+          value: 'alphabetic',
+          name: 'Ordre alphabétique',
+        },
+        {
+          value: 'power',
+          name: 'Pouvoirs',
+        },
+      ],
+    },
+  ],
 };
 
 const reducer = (state = initialState, action = {}) => {
