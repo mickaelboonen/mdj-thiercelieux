@@ -44,3 +44,9 @@ export const REINITIALIZE_DATA = 'REINITIALIZE_DATA';
 export const reinitializeData = () => ({
   type: REINITIALIZE_DATA,
 });
+
+export const DISPLAY_CARD = 'DISPLAY_CARD';
+export const displayCard = (id) => ({
+  type: DISPLAY_CARD,
+  id,
+});

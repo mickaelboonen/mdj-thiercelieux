@@ -12,6 +12,7 @@ const Buttons = ({
   filterBy,
 }) => {
   const handleChangeToFilter = (event) => {
+    console.log('component', event.currentTarget.value, event.currentTarget.id);
     filterBy(event.currentTarget.value, event.currentTarget.id);
   };
   const hancleClickToReinitialize = () => {

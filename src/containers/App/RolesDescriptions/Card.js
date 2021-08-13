@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
-import Role from 'src/components/App/NewMoon/Card';
+import Card from 'src/components/App/RolesDescriptions/Card';
 
-import { displayCard, toggleFocus } from 'src/actions/cards';
+import { displayCard, toggleFocus } from 'src/actions/Cards';
 
 const mapStateToProps = null;
 
@@ -14,4 +14,4 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Role);
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

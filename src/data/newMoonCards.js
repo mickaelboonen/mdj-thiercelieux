@@ -256,5 +256,34 @@ export const newMoonCards = [
 ];
 
 export const newMoonCardsSelects = [
-
+  {
+    idName: 'phase-select',
+    options: [
+      {
+        value: 'full-moon',
+        name: 'Pleine Lune (immédiat)',
+      },
+      {
+        value: 'warning-crescent',
+        name: 'Premier Croissant (différé)',
+      },
+      {
+        value: 'new-moon',
+        name: 'Nouvelle Lune (permanent)',
+      },
+    ],
+  },
+  {
+    idName: 'sorting-select',
+    options: [
+      {
+        value: 'alphabetic',
+        name: 'Ordre alphabétique',
+      },
+      {
+        value: 'phase',
+        name: 'Phase',
+      },
+    ],
+  },
 ];

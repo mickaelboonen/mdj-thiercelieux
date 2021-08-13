@@ -4,7 +4,7 @@ import Field from 'src/components/Field';
 import { changeValue, displayResults } from 'src/actions/Cards';
 
 const mapStateToProps = (state) => ({
-  value: state.roles.rolesInputValue,
+  value: state.rolesDescriptions.rolesInput,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -14,10 +14,16 @@ import {
   TOGGLE_FOCUS,
   DISPLAY_RESULTS,
   REINITIALIZE_DATA,
+  DISPLAY_CARD,
 } from 'src/actions/Cards';
 
 // SELECTORS
-import { sortBy, filterByPower } from 'src/selectors/sortingFunctions';
+import {
+  sortBy,
+  filterByPower,
+  filterBySide,
+  filterByPhase,
+} from 'src/selectors/sortingFunctions';
 import { selectData } from 'src/selectors/selectData';
 
 const initialState = {
@@ -49,6 +55,13 @@ const reducer = (state = initialState, action = {}) => {
         flipcardData: roleToDisplay,
       };
     }
+    case DISPLAY_CARD: {
+      const roleToDisplay = state.data.find((role) => role.id === action.id);
+      return {
+        ...state,
+        flipcardData: roleToDisplay,
+      };
+    }
     case TOGGLE_FOCUS:
       return {
         ...state,
@@ -69,25 +82,32 @@ const reducer = (state = initialState, action = {}) => {
     }
     case FILTER_BY: {
       let newArray = [];
-      console.log(action);
       if (action.filter === 'sorting-select') {
         newArray = sortBy(action.value, state.data);
       }
       else {
         // VILLAGE PEOPLE
-        if (action.value === 'permanent' || action.value === 'unique') {
+        if (action.value !== '' && state.villageRolesPage) {
           newArray = filterByPower(action.value, villagePeople);
         }
-        else if (action.value === '' && action.filter === 'powwer-select') {
+        else if (action.value === '' && action.filter === 'power-select') {
           newArray = villagePeople;
-        }
-        else {
-          console.log('pas encore fait');
         }
 
         // HIDDEN ROLES
-
+        else if (action.value !== '' && state.hiddenRolesPage) {
+          newArray = filterBySide(action.value, hiddenRoles);
+        }
+        else if (action.value === '' && action.filter === 'side-select') {
+          newArray = hiddenRoles;
+        }
         // NEW MOON CARDS
+        else if (action.value !== '' && state.newMoonCardsPage) {
+          newArray = filterByPhase(action.value, newMoonCards);
+        }
+        else if (action.value === '' && action.filter === 'phase-select') {
+          newArray = newMoonCards;
+        }
       }
       return {
         ...state,

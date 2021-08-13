@@ -3,7 +3,9 @@ import Results from 'src/components/App/RolesDescriptions/Results';
 
 import { toggleFocus } from 'src/actions/Cards';
 
-const mapStateToProps = null;
+const mapStateToProps = (state) => ({
+  newMoonCardsPage: state.rolesDescriptions.newMoonCardsPage,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   toggleFocus: (id) => {
