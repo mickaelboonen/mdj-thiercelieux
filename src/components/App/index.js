@@ -16,8 +16,10 @@ import NewMoon from 'src/containers/App/NewMoon';
 import Aboutus from 'src/containers/App/Aboutus';
 import Mailbox from 'src/containers/App/Mailbox';
 import Expansions from 'src/containers/App/Expansions';
+import MessagePrive from 'src/components/App/ProfileUser/Mailbox/MessagePrive';
 
 import ProfileUser from './ProfileUser';
+
 
 // Free comment
 
@@ -42,9 +44,8 @@ const App = () => (
         <Route path="/profil" exact>
           <ProfileUser />
         </Route>
-        <Route path="/ma-messagerie" exact>
-          <Mailbox />
-        </Route>
+        <Route path="/ma-messagerie" exact component={Mailbox} />
+        <Route path="/ma-messagerie/:id" exact component={MessagePrive} />
         <Route path="/qui-sommes-nous" exact>
           <Aboutus />
         </Route>
