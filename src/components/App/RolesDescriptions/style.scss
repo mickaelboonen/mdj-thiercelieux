@@ -10,20 +10,26 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 22%;
+    height: 25%;
+    // height: fit-content;
     background-color: #1a1a1a;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #686767;
 
     &-title {
-        height: 70%;
+        padding: 0.5rem 0;
+        height: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
+        font-family: vars.$fontAbril;
+        color: #9b9898;
+        text-shadow: 1px 1px 1px black;
       }
 
       &-input {
         height: 1.5rem;
-        background-color: #413f3f;
-        border-radius: 5px;
+        background-color: #686767;
         border: 0;
 
         &-btn {
@@ -42,7 +48,7 @@
   
 
   &__results {
-    height: 78%;
+    height: 75%;
     width: 100%;
     position: relative;
     background-color: #1a1a1a;
@@ -97,7 +103,7 @@
   width: 31.5%;
   background-color: #686767;
   display: flex;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   align-items: center;
 
   &__image {
@@ -120,13 +126,24 @@
 
   &__name {
     width: 90px;
-    font-size: 0.8em;
-    font-family: vars.$fontAbril;
-    text-transform: uppercase;
-    color: #fff;
-    text-align: center;
+    height: 2rem;
     position: absolute;
-    display: inline-block;
-    bottom: 0.2rem;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &-text {
+      color: #fff;
+      font-size: 0.8em;
+      font-family: vars.$fontAbril;
+      text-transform: uppercase;
+      text-align: center;
+
+      &--too-long {
+        font-size: 0.65em;;
+      }
+
+    }
   }
 }

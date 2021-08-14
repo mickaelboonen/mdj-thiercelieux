@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
+import classNames from 'classnames';
 
 const Card = ({
   image,
@@ -15,6 +16,12 @@ const Card = ({
     toggleFocus();
   };
 
+  const firstWord = name.split(' ')[0];
+  let isTooLong = false;
+  if (firstWord.length >= 13) {
+    isTooLong = true;
+  }
+
   return (
     <div className="card">
       <img
@@ -23,7 +30,9 @@ const Card = ({
         alt=""
         onClick={handleClick}
       />
-      <p className="card__name">{name}</p>
+      <div className="card__name">
+        <p className={classNames('card__name-text', { 'card__name-text--too-long': isTooLong })}>{name}</p>
+      </div>
     </div>
   );
 };

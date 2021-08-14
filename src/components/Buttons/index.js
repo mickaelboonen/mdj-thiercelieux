@@ -16,13 +16,13 @@ const Buttons = ({
     filterBy(event.currentTarget.value, event.currentTarget.id);
   };
   const hancleClickToReinitialize = () => {
-    clearInput();
-    reinitializeData();
+    // clearInput();
+    // reinitializeData();
   };
   return (
     <div className="buttons">
       <div className="buttons__erase-button">
-        {(inputValue !== '' || isFiltered) && (
+        {/* {(inputValue !== '' || isFiltered) && (
         <button
           type="button"
           className="buttons__erase-button-item"
@@ -30,7 +30,7 @@ const Buttons = ({
         >
           Réinitialiser la recherche
         </button>
-        )}
+        )} */}
       </div>
       <div className="buttons__selects">
         {data.map((select) => (
