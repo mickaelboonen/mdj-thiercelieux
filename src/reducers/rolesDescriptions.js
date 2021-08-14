@@ -15,7 +15,7 @@ import {
   DISPLAY_RESULTS,
   REINITIALIZE_DATA,
   DISPLAY_CARD,
-} from 'src/actions/Cards';
+} from 'src/actions/RolesDescriptions';
 
 // SELECTORS
 import {

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import RolesDescriptions from 'src/components/App/RolesDescriptions';
 
-import { fillReducer } from '../../../actions/Cards';
+import { fillReducer } from 'src/actions/RolesDescriptions';
 
 const mapStateToProps = (state) => ({
   data: state.rolesDescriptions.data,

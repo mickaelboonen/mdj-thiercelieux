@@ -40,17 +40,19 @@ const Roles = ({
 };
 
 Roles.propTypes = {
-  // roles: PropTypes.arrayOf(PropTypes.shape({
-  //   id: PropTypes.number.isRequired,
-  // })).isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  })).isRequired,
 
-  // selects: PropTypes.array.isRequired,
-  // roleToDisplay: PropTypes.object.isRequired,
-  // rolesInputValue: PropTypes.string.isRequired,
+  currentPageButtons: PropTypes.array.isRequired,
+  flipcardData: PropTypes.object.isRequired,
+  rolesInputValue: PropTypes.string.isRequired,
+  fillReducer: PropTypes.func.isRequired,
 
-  // // BOOLEENS
-  // onFocus: PropTypes.bool.isRequired,
-  // isFiltered: PropTypes.bool.isRequired,
+  // BOOLEENS
+  onFocus: PropTypes.bool.isRequired,
+  isFiltered: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default Roles;

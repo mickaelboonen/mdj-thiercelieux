@@ -6,7 +6,7 @@ import {
   displayResults,
   clearInput,
   reinitializeData,
-} from 'src/actions/Cards';
+} from 'src/actions/RolesDescriptions';
 
 const mapStateToProps = (state) => ({
   value: state.rolesDescriptions.rolesInput,
@@ -15,7 +15,6 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   changeValue: (value, name) => {
     dispatch(changeValue(value, name));
-    console.log(name);
     if (name === 'rolesInput' || name === 'cardsInput' || name === 'villageInput') {
       dispatch(displayResults(value));
     }

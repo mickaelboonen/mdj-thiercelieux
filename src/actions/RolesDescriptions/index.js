@@ -22,7 +22,6 @@ export const clearInput = () => ({
   type: CLEAR_INPUT,
 });
 
-
 export const DISPLAY_RESULTS = 'DISPLAY_RESULTS';
 export const displayResults = (value) => ({
   type: DISPLAY_RESULTS,

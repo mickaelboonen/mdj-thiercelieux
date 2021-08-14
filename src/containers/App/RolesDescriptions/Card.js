@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Card from 'src/components/App/RolesDescriptions/Card';
 
-import { displayCard, toggleFocus } from 'src/actions/Cards';
+import { displayCard, toggleFocus } from 'src/actions/RolesDescriptions';
 
 const mapStateToProps = null;
 
