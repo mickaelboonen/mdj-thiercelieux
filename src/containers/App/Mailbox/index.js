@@ -7,7 +7,9 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  
+    selectAll: (id) => {
+        dispatch(selectAll(id));
+      },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Mailbox);

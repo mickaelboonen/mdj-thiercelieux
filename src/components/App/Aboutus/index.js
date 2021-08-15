@@ -72,7 +72,16 @@ const Aboutus = ({
 }
 
 Aboutus.propTypes = {
+  members: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+  })).isRequired,
 
+  memberToDisplay: PropTypes.object.isRequired,
+
+  displayMember: PropTypes.func.isRequired,
+  focusMember: PropTypes.func.isRequired,
 };
 
 export default Aboutus;
