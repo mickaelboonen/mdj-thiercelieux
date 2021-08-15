@@ -1,0 +1,24 @@
+@use 'src/styles/vars';
+
+.buttons {
+  width: 100%;
+  margin-top: vars.$gutter;
+
+  &__selects {
+    display: flex;
+    padding: 0 0.5rem;
+
+    & select {
+      flex-grow: 1;
+      margin-right: 0.5rem;
+      padding: 0.2rem 0;
+      background-color: #9b9898;
+      border: 1px solid black;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+    
+  }
+}

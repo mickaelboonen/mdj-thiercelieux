@@ -254,3 +254,36 @@ export const newMoonCards = [
     description: "Dorénavant et jusqu'à la fin de la partie, pour être <bnm>dévorée</bnm>, la victime des Loups-Garous devra obligatoirement être <bnm>touchée</bnm> par l'un d'entre eux. Faute de quoi il n'y aurait pas de victime des Loups-Garous.",
   },
 ];
+
+export const newMoonCardsSelects = [
+  {
+    idName: 'phase-select',
+    options: [
+      {
+        value: 'full-moon',
+        name: 'Pleine Lune (immédiat)',
+      },
+      {
+        value: 'warning-crescent',
+        name: 'Premier Croissant (différé)',
+      },
+      {
+        value: 'new-moon',
+        name: 'Nouvelle Lune (permanent)',
+      },
+    ],
+  },
+  {
+    idName: 'sorting-select',
+    options: [
+      {
+        value: 'alphabetic',
+        name: 'Ordre alphabétique',
+      },
+      {
+        value: 'phase',
+        name: 'Phase',
+      },
+    ],
+  },
+];

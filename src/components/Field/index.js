@@ -1,7 +1,6 @@
 import React from 'react';
 // import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
 import './style.scss';
 
 const Field = ({
@@ -9,22 +8,20 @@ const Field = ({
   value,
   placeholder,
   name,
+  clearInput,
+  reinitializeData,
   ...props
 }) => {
   const handleChange = (event) => {
     changeValue(event.target.value, name);
   };
+  const hancleClickToReinitialize = () => {
+    clearInput();
+    reinitializeData();
+  };
 
   return (
     <div className="input">
-      {/* {location.pathname !== '/' && (
-      <label
-        htmlFor={placeholder}
-        className="input__label"
-      >
-        {placeholder}
-      </label>
-      )} */}
       <input
         className="input__field"
         onChange={handleChange}
@@ -32,6 +29,15 @@ const Field = ({
         placeholder={placeholder}
         {...props}
       />
+      {value !== '' && (
+      <button
+        type="button"
+        className="input__button"
+        onClick={hancleClickToReinitialize}
+      >
+        X
+      </button>
+      )}
     </div>
   );
 };
@@ -44,6 +50,8 @@ Field.propTypes = {
 
   // FUNCTIONS
   changeValue: PropTypes.func.isRequired,
+  clearInput: PropTypes.func.isRequired,
+  reinitializeData: PropTypes.func.isRequired,
 
 };
 

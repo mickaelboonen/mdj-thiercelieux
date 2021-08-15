@@ -1,0 +1,29 @@
+@use 'src/styles/vars';
+
+.input {
+    height:  1.5rem;
+  display: flex;
+  align-items: flex-start;
+
+  &__field {
+    height: 100%;
+& input::placeholder {
+      color: #1a1a1a;
+    }
+    
+  }
+  &__button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    background-color: #686767;
+    margin-left: 0.2rem;
+    font-family: vars.$fontAbril;
+    font-size: 1.1em;
+  }
+}
+
+::placeholder {
+  color: #1a1a1a;
+}
