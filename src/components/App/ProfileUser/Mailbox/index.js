@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 
 
 import './style.scss';
-import Messages from './Messages';
-import { selectAll } from '../../../../actions/mailbox';
+import Messages from 'src/containers/App/Mailbox/Messages';
 
-const Mailbox = ({ mails })  => {
+const Mailbox = ({ mails, selectAll, deleteConversation })  => {
 
   const sortedMails = mails.sort(function(a,b){
     // Turn your strings into dates, and then subtract them
@@ -14,19 +13,21 @@ const Mailbox = ({ mails })  => {
     return new Date(b.date) - new Date(a.date);
   });
 
-  const handleSelectAll = () => {
-    selectAll();
-    console.log('handleclick')
+  const handleSelectOptions = (event) => {
+    selectAll(event.currentTarget.textContent);
   };
 
-  console.log(sortedMails);
+  const handleDelete = () => {
+    deleteConversation();
+  };
+
   return (
     <div className="mailbox">
       <span className="mailbox__title">Ma messagerie</span>
       <div className="mailbox__newmess">Nouveau</div>
       <div className="mailbox__select">
-        <span className="mailbox__select-opt">Tout sélectionner</span>
-        <span className="mailbox__select-opt">Tout désélectionner</span>
+        <span className="mailbox__select-opt" onClick={handleSelectOptions}>Tout sélectionner</span>
+        <span className="mailbox__select-opt" onClick={handleSelectOptions}>Tout désélectionner</span>
       </div>
       <div className="mailbox__content">
           {sortedMails.map((mail) => 
@@ -35,11 +36,11 @@ const Mailbox = ({ mails })  => {
       </div>
 
       <div className="mailbox__select">
-        <span className="mailbox__select-opt" onClick={handleSelectAll} >Tout sélectionner</span>
-        <span className="mailbox__select-opt">Tout désélectionner</span>
+        <span className="mailbox__select-opt" onClick={handleSelectOptions} >Tout sélectionner</span>
+        <span className="mailbox__select-opt" onClick={handleSelectOptions}>Tout désélectionner</span>
       </div>
       <div className="mailbox__newmess">Nouveau</div>
-      <div className="mailbox__options">Supprimer</div>
+      <div className="mailbox__options" onClick={handleDelete}>Supprimer</div>
     </div>
   );
 }
@@ -48,6 +49,10 @@ Mailbox.propTypes = {
   mails: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
   })).isRequired,
+
+  // FUNCTIONS
+  selectAll: PropTypes.func.isRequired,
+  deleteConversation: PropTypes.func.isRequired,
 }
 
 export default Mailbox;
