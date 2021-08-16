@@ -32,7 +32,7 @@ const Characters = () => {
       <h2 className="characters__title">Quelques personnages</h2>
       <div className="characters__slider">
         <ChevronLeft size={50} />
-        <div className="card">
+        <div className="characters__slider-flipcard">
           <Flipcard role={rolesToDisplay[0]} />
         </div>
         <ChevronRight size={50} />

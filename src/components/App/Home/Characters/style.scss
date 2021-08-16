@@ -2,8 +2,8 @@
 
 .characters {
 
-  height: 60vh;
-  background-color: yellow;
+  // height: 60vh;
+  background-color: #696868;
   padding: vars.$gutter;
   display: flex;
   flex-direction: column;
@@ -19,10 +19,14 @@
     justify-content: space-between;
     align-items: center;
     height: 80%;
+
+    &-flipcard {
+      height: fit-content;
+    }
   }
 
   &__link {
-    margin: auto;
+    margin: vars.$gutter auto 0;
     font-style: italic;
     font-size: 0.8em;
     text-decoration: underline dotted ;

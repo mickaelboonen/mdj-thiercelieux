@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { X } from 'react-feather';
 import classNames from 'classnames';
@@ -18,6 +18,18 @@ const Results = ({
   const handleClickOnX = () => {
     toggleFocus();
   };
+  // TODO : verifier la hauteur, la dynamiser
+  let divStyle = {
+    height: `428px`,};
+  useEffect(() => {
+    const resultsHeight = document.querySelector('.roles__results').offsetHeight;
+    console.log(resultsHeight);
+    divStyle = {
+      height: `${resultsHeight}px`,
+    };
+  }, []);
+
+  // console.log(resultsHeight);
   return (
     <div className="roles__results">
       {newMoonCardsPage && (
@@ -30,7 +42,10 @@ const Results = ({
           {data.map((card) => <Role key={card.id} {...card} />)}
         </div>
       )}
-      <div className={classNames('roles__results-info', { 'roles__results-info--open': onFocus })}>
+      <div
+        className={classNames('roles__results-info', { 'roles__results-info--open': onFocus })}
+        style={divStyle}
+      >
         <X size={40} onClick={handleClickOnX} />
         <div className="roles__results-info-flipcard">
           <Flipcard role={flipcardData} />

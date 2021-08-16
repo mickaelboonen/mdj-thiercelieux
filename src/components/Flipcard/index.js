@@ -29,8 +29,9 @@ const Flipcard = ({ role }) => {
     <div className="flip-card">
       <div className="flip-card__inner">
         <div className="flip-card__front">
-          <img className="flip-card__front-image" src={image} alt="character" />
           <h3 className="flip-card__front-name">{name}</h3>
+          <img className="flip-card__front-image" src={image} alt="character" />
+          <div className="flip-card__front-div" />
         </div>
         <div className="flip-card__back">
           <h3 className="flip-card__back-name">{name}</h3>
