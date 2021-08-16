@@ -1,9 +1,10 @@
 
-import { mailbox } from "src/data/mailbox";
+import { mailbox, conversation } from "src/data/mailbox";
 import { SELECT_ALL } from "../actions/mailbox";
 
 const initialState = {
     mails: mailbox,
+    conversations: conversation,
     checked: false,
 };
 
