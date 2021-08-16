@@ -1,10 +1,9 @@
 
 import { mailbox } from "src/data/mailbox";
-import { SELECT_ALL, SELECT_MESSAGE } from "../actions/mailbox";
+import { DELETE_CONVERSATION, SELECT_ALL, SELECT_MESSAGE } from "../actions/mailbox";
 
 const initialState = {
     mails: mailbox,
-    checked: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -27,7 +26,6 @@ const reducer = (state = initialState, action = {}) => {
         mails: selectArray,
       }
     };
-
     case SELECT_MESSAGE: {
       const newArray = state.mails.map((mail) => {
         if (action.id === mail.id ) {
@@ -36,13 +34,17 @@ const reducer = (state = initialState, action = {}) => {
         }
         return mail;
       });
-      console.log(newArray);
       return {
         ...state,
         mails: newArray,
       }
-    }  
-
+    };
+    case DELETE_CONVERSATION:
+      const newArray = state.mails.filter((mail) => !mail.checked)
+      return {
+        ...state,
+        mails: newArray,
+      }
     default:
       return state;
   }

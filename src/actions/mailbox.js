@@ -15,3 +15,8 @@ export const selectMessage = (id) => ({
   type: SELECT_MESSAGE,
   id,
 });
+
+export const DELETE_CONVERSATION = 'DELETE_CONVERSATION';
+export const deleteConversation = () => ({
+  type: DELETE_CONVERSATION,
+});
