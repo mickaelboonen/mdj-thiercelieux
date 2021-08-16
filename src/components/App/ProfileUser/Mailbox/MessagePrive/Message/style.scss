@@ -3,12 +3,18 @@
 .message {
     display:flex;
     justify-content: space-evenly;
+    margin-top: 2em;
+    align-items: center;
+
+    &--me {
+        flex-direction: row-reverse;
+    }
 
     &__icon {
         
         img {
-            width: 5em;
-            height: 5em;
+            width: 3em;
+            height: 3em;
             border-radius: 50%;
         }
     }
@@ -23,6 +29,12 @@
             text-transform: uppercase;
             font-variant: small-caps;
             font-family: vars.$fontRakkas;
+            
+            & span {
+                font-family: initial;
+                font-size: 0.8em;
+                font-style: italic;
+            } 
         }
 
         &-msg {

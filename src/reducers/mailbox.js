@@ -1,9 +1,9 @@
-
-import { mailbox } from "src/data/mailbox";
+import { mailbox, conversation } from "src/data/mailbox";
 import { DELETE_CONVERSATION, SELECT_ALL, SELECT_MESSAGE } from "../actions/mailbox";
 
 const initialState = {
     mails: mailbox,
+    conversations: conversation,
 };
 
 const reducer = (state = initialState, action = {}) => {

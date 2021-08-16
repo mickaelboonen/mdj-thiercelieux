@@ -5,7 +5,6 @@ import { selectAll, deleteConversation } from 'src/actions/mailbox'
 
 const mapStateToProps = (state) => ({
     mails: state.mails.mails,
-   
 });
 
 const mapDispatchToProps = (dispatch) => ({
