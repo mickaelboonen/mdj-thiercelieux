@@ -5,6 +5,7 @@ import { fetchRandomRoles, displayNewRole } from 'src/actions';
 
 const mapStateToProps = (state) => ({
   roleToDisplay: state.app.roleToDisplay,
+  randomRoles: state.app.randomRoles,
 });
 
 const mapDispatchToProps = (dispatch) => ({
