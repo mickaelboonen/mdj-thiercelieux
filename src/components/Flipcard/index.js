@@ -14,6 +14,7 @@ const Flipcard = ({ role }) => {
     image,
     side,
     excerpt,
+    phase,
   } = role;
   const location = useLocation().pathname;
   /**

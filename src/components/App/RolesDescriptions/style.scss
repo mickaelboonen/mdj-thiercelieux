@@ -105,8 +105,7 @@
   align-items: center;
 
   &__image {
-    max-width: 90%;
-    margin: 0.2rem;
+    max-width: 100%;
   }
 }
 
@@ -116,20 +115,26 @@
 }
 
 .card {
-  height: fit-content + 2rem;
-  height: calc(93px + 2rem);
+  background-color: transparent;
+  margin-bottom: 0.3rem;
   flex-direction: column;
   justify-content: flex-start;
   position: relative;
+  width: 31%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 8.5rem;
+
+
 
   &__name {
-    width: 90px;
-    height: 2rem;
+    width: 100%;
     position: absolute;
-    bottom: 0;
+    bottom: 0.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-family: 'Special Elite', cursive;
 
     &-text {
       color: #fff;
