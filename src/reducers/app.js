@@ -5,6 +5,7 @@ import {
   FETCH_RANDOM_ROLES,
   TOGGLE_BURGER,
   DISPLAY_NEW_ROLE,
+  DISPLAY_NEW_GAME,
 } from 'src/actions';
 
 import { generateRandomNumber } from 'src/selectors/generateRandomNumber';
@@ -15,6 +16,7 @@ const initialState = {
   loading: true,
   randomRoles: [],
   roleToDisplay: {},
+  gameToDisplay: expansions[0],
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -29,6 +31,22 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         isBurgerOpen: !state.isBurgerOpen,
       };
+    case DISPLAY_NEW_GAME: {
+      const idArray = state.expansions.map((role) => role.id);
+      const currentIndex = idArray.indexOf(action.id);
+      let newIndex = currentIndex + action.newIndexValue;
+
+      if (newIndex > state.expansions.length - 1) {
+        newIndex = 0;
+      }
+      else if (newIndex < 0) {
+        newIndex = state.expansions.length - 1;
+      }
+      return {
+        ...state,
+        gameToDisplay: state.expansions[newIndex],
+      };
+    }
     case DISPLAY_NEW_ROLE: {
       const idArray = state.randomRoles.map((role) => role.id);
       const currentIndex = idArray.indexOf(action.id);

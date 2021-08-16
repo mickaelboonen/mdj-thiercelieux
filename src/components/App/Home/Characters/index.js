@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react';
-import { ChevronRight, ChevronLeft } from 'react-feather';
-import { hiddenRoles } from 'src/data/hiddenRoles';
-
-import { generateRandomNumber } from 'src/selectors/generateRandomNumber';
 import PropTypes from 'prop-types';
+import { ChevronRight, ChevronLeft } from 'react-feather';
+import { Link } from 'react-router-dom';
 
 import Flipcard from 'src/components/Flipcard';
 import './style.scss';
 
 const Characters = ({ fetchRandomRoles, roleToDisplay, displayNewRole }) => {
+  const { id } = roleToDisplay;
   useEffect(() => {
     fetchRandomRoles();
   }, []);
@@ -18,7 +17,7 @@ const Characters = ({ fetchRandomRoles, roleToDisplay, displayNewRole }) => {
     if (event.currentTarget.id === 'characters__slider-left-chevron') {
       newIndexValue = -1;
     }
-    displayNewRole(newIndexValue, roleToDisplay.id);
+    displayNewRole(newIndexValue, id);
   };
 
   return (
@@ -31,14 +30,19 @@ const Characters = ({ fetchRandomRoles, roleToDisplay, displayNewRole }) => {
         </div>
         <ChevronRight size={50} id="characters__slider-right-chevron" onClick={handleClickOnChevron} />
       </div>
-      {/* A METTRE EN LINK */}
-      <a href="#" className="characters__link">Viens découvrir les autres rôles</a>
+      <Link to="/le-jeu/les-roles" className="characters__link">Viens découvrir les autres rôles</Link>
     </section>
   );
 };
 
 Characters.propTypes = {
+  roleToDisplay: PropTypes.objectOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+  })).isRequired,
 
+  // FUNCTIONS
+  displayNewRole: PropTypes.func.isRequired,
+  fetchRandomRoles: PropTypes.func.isRequired,
 };
 
 export default Characters;

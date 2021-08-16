@@ -4,6 +4,11 @@ import newMoon from 'src/assets/pictures/games/nouvelle-lune.jpg';
 import personnages from 'src/assets/pictures/games/personnages.jpg';
 import village from 'src/assets/pictures/games/village.jpg';
 
+import thiercelieuxIcon from 'src/assets/pictures/games/base-icon.png';
+import newMoonIcon from 'src/assets/pictures/games/nouvelle-lune-icon.png';
+import personnagesIcon from 'src/assets/pictures/games/personnages-icon.jpg';
+import villageIcon from 'src/assets/pictures/games/village-icon.jpg';
+
 import { newMoonCards } from './newMoonCards';
 import { villagePeople } from './villagePeople';
 // eslint-disable-next-line import/prefer-default-export
@@ -13,6 +18,7 @@ export const expansions = [
     name: 'Loup-Garou de Thiercelieux',
     hash: 'loup-garou-de-thiercelieux',
     image: thiercelieux,
+    icon: thiercelieuxIcon,
     description: `<p>Dans "l'Est sauvage", le petit hameau de Thiercelieux est depuis peu devenu la proie des Loups-Garous. </p><p>Des meurtres sont commis chaque nuit par certains habitants du villages, devenus Lycanthropes à cause d'un phénomène mystérieux (peut-être l'effet de serre ?)... </p><p>Les Villageois doivent se ressaisir pour éradiquer ce nouveau fléau venu du fond des âges, avant que le hameau ne perde ses derniers habitants.</p>`,
     roles: [
       {
@@ -55,6 +61,7 @@ export const expansions = [
     name: 'Nouvelle Lune',
     hash: 'nouvelle-lune',
     image: newMoon,
+    icon: newMoonIcon,
     description: `<p>Bienvenue dans ce nouvel opus "Locatercien", puisqu'ainsi se nomment les habitants de Thiercelieux, hameau dévasté. </p><p> Le village étant devenu trop dangereux pour certains d'entre nous, c'est en exil forcé que nous mettons la dernière main à cet ouvrage. </p><p> Des messages secrets, au péril de leur vie, sont venus nous trouver dans notre retraite cachée et nous ont faits part de l'évolution de la terrible menace. </p><p> TOutefois la résistance s'organise et de nouveaux personnages aux talents prometteurs ont rejoint le combat contre les terribles Loups-Garous !</p>`,
     roles: [
       {
@@ -147,6 +154,7 @@ export const expansions = [
     name: 'Personnages',
     hash: 'personnages',
     image: personnages,
+    icon: personnagesIcon,
     description: `<p>Depuis de nombreux cycles lunaires, la quiétude était enfin revenue dans les environs de "Thiercelieux". Jusqu'à ce qu'un "enfançon sauvage" regagne la forêt profonde et commence à hurler chaque nuit. </p><p> Peu de temps après, de nouvelles disparitions mystérieuses ainsi que d'atroces vestiges criminels convainquirent les habitants du village que des monstres polymorphes encore plus redoutables vivaient parmi eux. <br/>Ils convoquèrent alors, depuis les confins de la contrée, d'autres "<b>Personnages</b>" très puissants, pour lutter contre cette abominable engeance...</p>`,
     roles: [
       {
@@ -221,6 +229,7 @@ export const expansions = [
     name: 'Le Village',
     hash: 'le-village',
     image: village,
+    icon: villageIcon,
     description: "<p>Le village de Thiercelieux n'était plus qu'un désert de ruines. De tous les recoins du pays, les volontaires ont afflué pour s'installer dans les maisons, les fermes et les échoppes flambant neuves et recréer une vie digne de ce site merveilleux.</p><p>Toutefois il demeure que certains esprits chagrins font courir un bruit inquétant : de sinistres loups-garous se seraient immiscés dans leur nouvelle communauté !</p>",
     roles: [
       {

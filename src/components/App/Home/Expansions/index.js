@@ -1,26 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ChevronLeft, ChevronRight } from 'react-feather';
-import { expansions } from 'src/data/expansions';
-
-// Image temporaire
-import loupGarou from 'src/assets/pictures/roles/loup-garou.png';
 
 import './style.scss';
+import { Link } from 'react-router-dom';
 
-const Expansions = () => {
+const Expansions = ({ game, displayNewGame }) => {
+  const handleClickOnChevron = (event) => {
+    let newIndexValue = 1;
+    if (event.currentTarget.id === 'characters__slider-left-chevron') {
+      newIndexValue = -1;
+    }
+    displayNewGame(newIndexValue, game.id);
+  };
   const divStyle = {
-    backgroundImage: `url(${loupGarou})`,
+    backgroundImage: `url(${game.icon})`,
   };
   return (
     <section className="expansions">
       <h2 className="expansions__title">Les extensions</h2>
       <div className="expansions__slider">
-        <ChevronLeft size={50} />
-        <div className="expansions__slider-item" style={divStyle}>
-          <p className="expansions__slider-item-name">{expansions[0].name}</p>
-        </div>
-        <ChevronRight size={50} />
+        <ChevronLeft size={50} id="expansions__slider-left-chevron" onClick={handleClickOnChevron} />
+        <Link to={`/les-jeux/${game.hash}`}>
+          <div className="expansions__slider-item" style={divStyle}>
+            <p className="expansions__slider-item-name">{game.name}</p>
+          </div>
+        </Link>
+        <ChevronRight size={50} id="expansions__slider-right-chevron" onClick={handleClickOnChevron} />
       </div>
     </section>
   );

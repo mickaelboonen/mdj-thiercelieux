@@ -18,18 +18,19 @@
     height: 70%;
 
     &-item {
-      background-color: green;
       width: 13em;
       height: 13em;
-      border-radius: 50%;
       background-size: cover;
       display: flex;
       align-items: center;
+      justify-content: center;
+      border: 1px solid black;
 
       &-name {
         color: #fff;
         text-transform: uppercase;
         font-weight: bold;
+        font-size: 1.6em;
         letter-spacing: 1px;
         margin-bottom: 0.2rem;
         font-family: vars.$fontAbril;
