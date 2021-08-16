@@ -5,7 +5,13 @@ export const displayMail = (id) => ({
 });
 
 export const SELECT_ALL = 'SELECT_ALL';
-export const selectAll = (id) => ({
+export const selectAll = (option) => ({
   type: SELECT_ALL,
+  option,
+});
+
+export const SELECT_MESSAGE = 'SELECT_MESSAGE';
+export const selectMessage = (id) => ({
+  type: SELECT_MESSAGE,
   id,
 });
