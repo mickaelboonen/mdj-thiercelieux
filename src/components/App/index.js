@@ -15,7 +15,7 @@ import RolesDescriptions from 'src/containers/App/RolesDescriptions';
 import Aboutus from 'src/containers/App/Aboutus';
 import Mailbox from 'src/containers/App/Mailbox';
 import Expansions from 'src/containers/App/Expansions';
-import MessagePrive from 'src/components/App/ProfileUser/Mailbox/MessagePrive';
+import MessagePrive from 'src/containers/App/Mailbox/MessagePrive';
 
 import ProfileUser from './ProfileUser';
 

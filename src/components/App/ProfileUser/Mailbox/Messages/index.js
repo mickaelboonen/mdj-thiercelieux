@@ -5,7 +5,6 @@ import { NavLink } from 'react-router-dom';
 import './style.scss';
 
 const Messages = ({
-  mails,
   id,
   name,
   icon,
