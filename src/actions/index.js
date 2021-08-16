@@ -22,3 +22,24 @@ export const CLOSE_BURGER = 'CLOSE_BURGER';
 export const closeBurger = () => ({
   type: CLOSE_BURGER,
 });
+
+// ACTIONS RELATED TO THE HOME COMPONENT
+
+export const FETCH_RANDOM_ROLES = 'FETCH_RANDOM_ROLES';
+export const fetchRandomRoles = () => ({
+  type: FETCH_RANDOM_ROLES,
+});
+
+export const DISPLAY_NEW_ROLE = 'DISPLAY_NEW_ROLE';
+export const displayNewRole = (newIndexValue, id) => ({
+  type: DISPLAY_NEW_ROLE,
+  newIndexValue,
+  id,
+});
+
+export const DISPLAY_NEW_GAME = 'DISPLAY_NEW_GAME';
+export const displayNewGame = (newIndexValue, id) => ({
+  type: DISPLAY_NEW_GAME,
+  newIndexValue,
+  id,
+});

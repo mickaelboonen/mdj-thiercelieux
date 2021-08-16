@@ -4,9 +4,9 @@
 /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .flip-card {
     width: 15em;
-    height: 15em;
-    background-color: transparent;
-    // border: 1px solid #f1f1f1;
+    height: 20em;
+    background-color: #1a1a1a;
+    border: 1px solid #fff;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
 
         /* This container is needed to position the front and back side */
@@ -31,48 +31,68 @@
       /* Style the front side (fallback if image is missing) */
     &__front {
       // background-color: #bbb;
-      color: black;
+      color: #fff;
       
       &-image {
         max-width: 100%;
       }
 
       &-name {
+        height: 2.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-transform: uppercase;
         font-weight: bold;
         letter-spacing: 1px;
+      }
+
+      &-div {
+        height: 2.5rem;
       }
     }
 
     /* Style the back side */
     &__back {
-      background-color: dodgerblue;
-      color: #000;
+      color: #686767;
       transform: rotateY(180deg);
       overflow: auto;
       // padding: math.div(vars.$gutter, 2);
       padding: vars.$gutter;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
-      &-name {
-        text-transform: uppercase;
-        font-weight: bold;
-        letter-spacing: 1px;
-        margin-bottom: 0.2rem;
-        // font-family: vars.$fontAbril;
-      }
+      &-top {
 
-      &-side {
-        font-style: italic;
-        font-size: 0.8em;
-        margin-bottom: 0.5rem;
+        &-name {
+          text-transform: uppercase;
+          font-weight: bold;
+          letter-spacing: 1px;
+          margin-bottom: 0.2rem;
+          // font-family: vars.$fontAbril;
+        }
+
+        &-side {
+          font-style: italic;
+          font-size: 0.8em;
+        }
       }
 
       &-description {
         text-align: justify;
-        // text-overflow: ellipsis;
-        // height: 10rem;
-        // white-space: nowrap;
-        // overflow: hidden;
+      }
+
+      &-link {
+        text-align: left;
+
+        & a {
+          margin: 1rem auto 0;
+          font-style: italic;
+          text-decoration: underline dotted;
+          text-underline-offset: 3px;
+          cursor: pointer;
+        }
       }
     }
 

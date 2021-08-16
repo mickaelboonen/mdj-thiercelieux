@@ -27,6 +27,7 @@ import {
 import { selectData } from 'src/selectors/selectData';
 
 const initialState = {
+  randomData: [],
   data: [],
   flipcardData: {},
   currentPageButtons: [],
