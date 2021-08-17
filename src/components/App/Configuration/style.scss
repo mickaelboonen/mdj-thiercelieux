@@ -25,6 +25,34 @@
 
   &__settings {
     height: 90%;
+
+    &-players {
+      border: 1px solid #1a1a1a;
+      padding: vars.$gutter;
+      background-color: #979595;
+
+      &-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+
+      &-list {
+        padding: 0 1rem;
+      }
+
+      &-add {
+        display: flex;
+        justify-content: center;
+
+        & button {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          font-size: 2em;
+        }
+      }
+    }
     
     &-link {
       display: none;
@@ -84,6 +112,43 @@
           flex-direction: row-reverse;
         }
       }
+    }
+  }
+}
+
+.player {
+  list-style-type: disc;
+  margin-bottom: 0.7rem;
+
+  &__name {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+
+  }
+
+  &__roles {
+    font-style: italic;
+    font-size: 0.9em;
+    &-hidden {
+      display: none;
+
+      &--open {
+        display: inline-block;
+
+      }
+    }
+
+    &-stars {
+      display: none;
+
+      &--open {
+        display: inline-block;
+      }
+    }
+
+    &-village {
+
     }
   }
 }

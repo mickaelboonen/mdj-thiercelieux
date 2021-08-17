@@ -4,6 +4,7 @@ import {
   SET_NEWMOON_CARDS,
   SET_PLAYERS_NUMBER,
   SET_ROLES_ATTRIBUTION,
+  ADD_NEW_PLAYER,
 } from 'src/actions/gameConfiguration';
 
 const initialState = {
@@ -14,11 +15,55 @@ const initialState = {
     newmoonCards: [], // si classic, on injecte le tableau classic sinon les prefs
     rolesAttribution: 'manual',
   },
+  players: [
+    {
+      id: 1,
+      name: 'Micka',
+      hiddenRole: 'Loup-Garou',
+      villageRole: 'Tavernier',
+    },
+    {
+      id: 2,
+      name: 'Quentin',
+      hiddenRole: 'Sorcière',
+      villageRole: 'Institutrice',
+    },
+    {
+      id: 3,
+      name: 'Océane',
+      hiddenRole: 'Cupidon',
+      villageRole: 'Fermier',
+    },
+    {
+      id: 4,
+      name: 'Lud',
+      hiddenRole: 'Villageois',
+      villageRole: 'Fermier',
+    },
+    {
+      id: 5,
+      name: 'Chris',
+      hiddenRole: 'Idiot du Village',
+      villageRole: 'Vagabond',
+    },
+    {
+      id: 6,
+      name: 'BDR',
+      hiddenRole: 'Bouc Émissaire',
+      villageRole: 'Barbier',
+    },
+  ],
+  addingNewPlayer: false,
   errorMessage: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case ADD_NEW_PLAYER:
+      return {
+        ...state,
+        addingNewPlayer: !state.addingNewPlayer,
+      };
     case SET_PLAYERS_NUMBER: {
       const message = [];
       const newConfigurationObject = state.configuration;

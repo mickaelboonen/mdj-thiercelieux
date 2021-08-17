@@ -32,3 +32,8 @@ export const setRolesAttribution = (value) => ({
   type: SET_ROLES_ATTRIBUTION,
   value,
 });
+
+export const ADD_NEW_PLAYER = 'ADD_NEW_PLAYER';
+export const addNewPlayer = () => ({
+  type: ADD_NEW_PLAYER,
+});
