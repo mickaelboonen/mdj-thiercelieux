@@ -37,3 +37,10 @@ export const ADD_NEW_PLAYER = 'ADD_NEW_PLAYER';
 export const addNewPlayer = () => ({
   type: ADD_NEW_PLAYER,
 });
+
+export const SAVE_SELECT_CHANGE = 'SAVE_SELECT_CHANGE';
+export const saveSelectChange = (value, select) => ({
+  type: SAVE_SELECT_CHANGE,
+  value,
+  select,
+});

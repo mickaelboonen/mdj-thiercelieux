@@ -92,17 +92,17 @@ const Step1 = ({
         <h5 className="configuration__settings-field-title">Extensions</h5>
         <div className="configuration__settings-field-item">
           <label htmlFor="newmoon">Nouvelle Lune
-            <input type="checkbox" name="extensions" value="newmoon" id="newmoon" onChange={handleChange} />
+            <input type="checkbox" name="extensions" value="Nouvelle Lune" id="newmoon" onChange={handleChange} />
           </label>
         </div>
         <div className="configuration__settings-field-item">
           <label htmlFor="characters">Personnages
-            <input type="checkbox" name="extensions" value="characters" id="characters" onChange={handleChange} />
+            <input type="checkbox" name="extensions" value="Personnages" id="characters" onChange={handleChange} />
           </label>
         </div>
         <div className="configuration__settings-field-item">
           <label htmlFor="village">Le Village
-            <input type="checkbox" name="extensions" value="village" id="village" onChange={handleChange} />
+            <input type="checkbox" name="extensions" value="Le Village" id="village" onChange={handleChange} />
           </label>
         </div>
         <div className="configuration__settings-field-item">
@@ -151,7 +151,7 @@ const Step1 = ({
         </div>
       </div>
       <div className="configuration__settings-link">
-        <Link to="/configurer-ma-partie?etape=2">Suivant</Link>
+        <Link to="/configurer-ma-partie/etape/2">Suivant</Link>
       </div>
       {errorMessage.length > 0 && (
         <div className="configuration__settings-error">

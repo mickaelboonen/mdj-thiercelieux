@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import AddPlayer from 'src/containers/App/Configuration/AddPlayer';
 
 import '../style.scss';
 import Player from './Player';
@@ -32,9 +33,7 @@ const Step2 = ({
         </div>
       </div>
       )}
-      {addingNewPlayer && (
-        'coucou'
-      )}
+      {addingNewPlayer && <AddPlayer />}
     </div>
   );
 };
@@ -44,6 +43,7 @@ Step2.propTypes = {
     playersNumber: PropTypes.number.isRequired,
   })).isRequired,
   players: PropTypes.array.isRequired,
+  addingNewPlayer: PropTypes.bool.isRequired,
   addNewPlayer: PropTypes.func.isRequired,
 
 };

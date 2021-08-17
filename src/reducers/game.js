@@ -7,6 +7,12 @@ import {
   ADD_NEW_PLAYER,
 } from 'src/actions/gameConfiguration';
 
+import { hiddenRoles } from 'src/data/hiddenRoles';
+import { villagePeople } from 'src/data/villagePeople';
+import { SAVE_SELECT_CHANGE } from '../actions/gameConfiguration';
+
+const villageRoleList = villagePeople.map((role) => role.name);
+
 const initialState = {
   configuration: {
     playersNumber: 8,
@@ -53,12 +59,31 @@ const initialState = {
       villageRole: 'Barbier',
     },
   ],
+  pseudo: '',
+  role: '',
+  village: '',
+  rolesList: [],
+  villageList: villageRoleList,
   addingNewPlayer: false,
   errorMessage: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SAVE_SELECT_CHANGE: {
+      const roleToSave = action.value;
+      let propriety = '';
+      if (action.select === 'add-form__roles-select') {
+        propriety = 'role';
+      }
+      else {
+        propriety = 'village';
+      }
+      return {
+        ...state,
+        [propriety]: roleToSave,
+      };
+    }
     case ADD_NEW_PLAYER:
       return {
         ...state,
@@ -92,9 +117,23 @@ const reducer = (state = initialState, action = {}) => {
       else {
         newConfigurationObject.games.push(action.value);
       }
+      const rolesArray = [];
+      hiddenRoles.forEach((role) => {
+        if (role.expansion === 'Thiercelieux') {
+          rolesArray.push(role.name);
+        }
+      });
+      newConfigurationObject.games.forEach((game) => {
+        hiddenRoles.forEach((role) => {
+          if (game === role.expansion) {
+            rolesArray.push(role.name);
+          }
+        });
+      });
       return {
         ...state,
         configuration: newConfigurationObject,
+        rolesList: rolesArray,
       };
     }
     case SET_GAME_ORDER: {
