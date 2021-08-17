@@ -13,10 +13,6 @@ const Step1 = ({
   setRolesAttribution,
   errorMessage,
 }) => {
-  // const history = useHistory();
-  // const handleClick = () => {
-  //   history.push('/configurer-ma-partie?etape=2');
-  // };
   const handleChange = (event) => {
     let currentId = '';
     const newMoonElement = document.querySelector('#newmoon');
