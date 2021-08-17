@@ -8,7 +8,7 @@ const Introduction = () => (
   <section className="introduction">
     <div className="introduction__animation">
       Maître du Jeu de Thiercelieux
-      <Link to="/configurer-ma-partie">
+      <Link to="/configurer-ma-partie?etape=1">
         <button type="button" className="introduction__animation-btn">Lancer une partie</button>
       </Link>
     </div>

@@ -26,16 +26,21 @@
   &__settings {
     height: 90%;
     
-    &-button {
+    &-link {
       display: none;
       margin: 1rem auto;
       text-align: center;
-      // border: 1px solid #1a1a1a;
-      // border-top: 0;
-      // padding: vars.$gutter;
+      justify-content: center;
+
+      & a {
+        border: 1px solid #1a1a1a;
+        padding: 0.5rem;
+        background-color: #979595;
+
+      }
 
       &--open {
-        display: block;
+        display: flex;
       animation: slidein forwards 1s;
       }
     }

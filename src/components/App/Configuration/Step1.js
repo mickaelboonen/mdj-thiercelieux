@@ -1,9 +1,11 @@
+/* eslint-disable prefer-template */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
+import { Link } from 'react-router-dom';
 
-const Step1 = ({ 
+const Step1 = ({
   setPlayersNumber,
   setGames,
   setGameOrder,
@@ -11,40 +13,43 @@ const Step1 = ({
   setRolesAttribution,
   errorMessage,
 }) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('je veux vérifier les données et submit');
-    // saveGameConfiguration();
-  };
+  // const history = useHistory();
+  // const handleClick = () => {
+  //   history.push('/configurer-ma-partie?etape=2');
+  // };
   const handleChange = (event) => {
     let currentId = '';
     const newMoonElement = document.querySelector('#newmoon');
+    const thirdGenUncle = event.target.parentNode.parentNode.parentNode.nextElementSibling;
 
-    // IFs for xxtensions, game order, newmoon cards and roles attribution
+    // IFs for extensions, game order, newmoon cards and roles attribution
     if (event.target.parentNode.id === '') {
       currentId = event.target.parentNode.parentNode.parentNode.id;
+
       const classNamesArray = event.target.parentNode.parentNode.parentNode.nextElementSibling.className.split(' ');
+
       if (classNamesArray.length === 1) {
         if (event.target.id === 'classic-order' || event.target.id === 'preferences-order') {
           // if the newmoon input is checked
           if (newMoonElement.checked) {
             // then add the new className to display the newmoon cards setup
-            const { className } = event.target.parentNode.parentNode.parentNode.nextElementSibling;
-            event.target.parentNode.parentNode.parentNode.nextElementSibling.classList.add(className + '--open');
+            const { className } = thirdGenUncle;
+            thirdGenUncle.classList.add(className + '--open');
           }
           else {
             // else, add the new className to the roles attribution setup
-            const { className } = event.target.parentNode.parentNode.parentNode.nextElementSibling;
-            event.target.parentNode.parentNode.parentNode.nextElementSibling.nextElementSibling.classList.add(className + '--open');
+            const { className } = thirdGenUncle;
+            thirdGenUncle.nextElementSibling.classList.add(className + '--open');
           }
         }
         else {
           // add the new className to display the next element
-          const { className } = event.target.parentNode.parentNode.parentNode.nextElementSibling;
-          event.target.parentNode.parentNode.parentNode.nextElementSibling.classList.add(className + '--open');
+          const { className } = thirdGenUncle;
+          thirdGenUncle.classList.add(className + '--open');
         }
       }
       else {
+        // eslint-disable-next-line no-lonely-if
         if (event.target.id === 'newmoon') {
           const newMoonCardsElement = document.querySelector('#newmoon-cards-field');
           newMoonCardsElement.classList.toggle('configuration__settings-field--open');
@@ -53,12 +58,14 @@ const Step1 = ({
     }
     else {
       // Else for player number
-      const classNamesArray = event.target.parentNode.nextElementSibling.className.split(' ');
+      const classNamesArray = event.target.parentNode.className.split(' ');
 
       if (classNamesArray.length === 1) {
         currentId = event.target.parentNode.id;
-        const { className } = event.target.parentNode.nextElementSibling;
-        event.target.parentNode.nextElementSibling.classList.add(className + '--open');
+        const gamesElement = document.querySelector('#expansions-field');
+
+        const { className } = event.target.parentNode;
+        gamesElement.classList.add(className + '--open');
       }
     }
 
@@ -80,13 +87,11 @@ const Step1 = ({
     }
   };
   return (
-    <form className="configuration__settings">
-      {/* ------------------------------------------------------------------------------------ */}
+    <div className="configuration__settings">
       <div className="configuration__settings-field" id="player-number-field">
         <h5 className="configuration__settings-field-title">Nombre de Joueurs</h5>
         <input type="number" name="player-number" id="player-number" min="8" max="15" onChange={handleChange} />
       </div>
-      {/* ------------------------------------------------------------------------------------ */}
       <div className="configuration__settings-field" id="expansions-field">
         <h5 className="configuration__settings-field-title">Extensions</h5>
         <div className="configuration__settings-field-item">
@@ -110,7 +115,6 @@ const Step1 = ({
           </label>
         </div>
       </div>
-      {/* ------------------------------------------------------------------------------------ */}
       <div className="configuration__settings-field" id="game-order-field">
         <h5 className="configuration__settings-field-title">Ordre de jeu</h5>
         <div className="configuration__settings-field-item">
@@ -124,7 +128,6 @@ const Step1 = ({
           </label>
         </div>
       </div>
-      {/* ------------------------------------------------------------------------------------ */}
       <div className="configuration__settings-field" id="newmoon-cards-field">
         <h5 className="configuration__settings-field-title">Cartes Nouvelle Lune</h5>
         <div className="configuration__settings-field-item">
@@ -138,7 +141,6 @@ const Step1 = ({
           </label>
         </div>
       </div>
-      {/* ------------------------------------------------------------------------------------ */}
       <div className="configuration__settings-field" id="roles-attribution-field">
         <h5 className="configuration__settings-field-title">Attribution des Roles</h5>
         <div className="configuration__settings-field-item">
@@ -152,20 +154,27 @@ const Step1 = ({
           </label>
         </div>
       </div>
-      <div className="configuration__settings-button">
-        <button type="submit" onSubmit={handleSubmit}>Valider</button>
+      <div className="configuration__settings-link">
+        <Link to="/configurer-ma-partie?etape=2">Suivant</Link>
       </div>
       {errorMessage.length > 0 && (
         <div className="configuration__settings-error">
           {errorMessage.map((error) => <p>{error}</p>)}
         </div>
       )}
-    </form>
+    </div>
   );
 };
 
 Step1.propTypes = {
+  errorMessage: PropTypes.array.isRequired,
 
+  // FUNCTIONS
+  setPlayersNumber: PropTypes.func.isRequired,
+  setGames: PropTypes.func.isRequired,
+  setGameOrder: PropTypes.func.isRequired,
+  setNewmoonCards: PropTypes.func.isRequired,
+  setRolesAttribution: PropTypes.func.isRequired,
 };
 
 export default Step1;
