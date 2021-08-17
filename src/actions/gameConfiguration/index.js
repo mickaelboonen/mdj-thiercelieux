@@ -44,3 +44,8 @@ export const saveSelectChange = (value, select) => ({
   value,
   select,
 });
+
+export const SAVE_PLAYER = 'SAVE_PLAYER';
+export const savePlayer = () => ({
+  type: SAVE_PLAYER,
+});

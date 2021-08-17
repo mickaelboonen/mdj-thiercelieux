@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 
 import '../style.scss';
 
-const Player = ({ name, hiddenRole, villageRole }) => {
-  console.log();
+const Player = ({
+  name,
+  hiddenRole,
+  villageRole,
+}) => {
   const handleClick = (event) => {
     const target = event.currentTarget;
 
@@ -42,6 +45,11 @@ const Player = ({ name, hiddenRole, villageRole }) => {
 };
 
 Player.propTypes = {
+
+  // STRINGS
+  name: PropTypes.string.isRequired,
+  hiddenRole: PropTypes.string.isRequired,
+  villageRole: PropTypes.string.isRequired,
 
 };
 

@@ -12,9 +12,10 @@ export const fillReducer = (currentPage) => ({
 });
 
 export const CHANGE_VALUE = 'CHANGE_VALUE';
-export const changeValue = (value) => ({
+export const changeValue = (value, input) => ({
   type: CHANGE_VALUE,
   value,
+  input,
 });
 
 export const CLEAR_INPUT = 'CLEAR_INPUT';

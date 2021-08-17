@@ -1,3 +1,4 @@
+// ACTIONS
 import {
   SET_GAMES,
   SET_GAME_ORDER,
@@ -5,12 +6,16 @@ import {
   SET_PLAYERS_NUMBER,
   SET_ROLES_ATTRIBUTION,
   ADD_NEW_PLAYER,
+  SAVE_SELECT_CHANGE,
+  SAVE_PLAYER,
 } from 'src/actions/gameConfiguration';
+import { CHANGE_VALUE } from 'src/actions';
 
+// DATA
 import { hiddenRoles } from 'src/data/hiddenRoles';
 import { villagePeople } from 'src/data/villagePeople';
-import { SAVE_SELECT_CHANGE } from '../actions/gameConfiguration';
 
+// TEMPORARY DATA
 const villageRoleList = villagePeople.map((role) => role.name);
 
 const initialState = {
@@ -70,6 +75,32 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SAVE_PLAYER: {
+      const newPlayersArray = state.players;
+      const newId = newPlayersArray.length + 1;
+      const newPlayer = {
+        id: newId,
+        name: state.pseudo,
+        hiddenRole: state.role,
+        villageRole: state.village,
+      };
+      newPlayersArray.push(newPlayer);
+      return {
+        ...state,
+        players: newPlayersArray,
+        addingNewPlayer: false,
+      };
+    }
+    case CHANGE_VALUE: {
+      let newPseudo = '';
+      if (action.input === 'pseudoInput') {
+        newPseudo = action.value;
+      }
+      return {
+        ...state,
+        pseudo: newPseudo,
+      };
+    }
     case SAVE_SELECT_CHANGE: {
       const roleToSave = action.value;
       let propriety = '';

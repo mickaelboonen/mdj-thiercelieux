@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import Field from 'src/containers/Field';
 
 import './style.scss';
 
@@ -9,12 +10,22 @@ const AddPlayer = ({
   rolesList,
   villageList,
   saveSelectChange,
+  savePlayer,
 }) => {
+  // TODO : vérifier l'attribution des roles
+  // peut pas donner deux fois le meme role (se supprime de la liste)
+  // pareil pour le village (faire les calculs pour fermiers et vagabonds)
+  // nettoyer le code
   const isVillageSelected = games.indexOf('Le Village');
 
   const handleSelectChange = (event) => {
     saveSelectChange(event.target.value, event.target.id);
-  }
+  };
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    savePlayer();
+  };
   return (
     <form className="add-form">
       <div className="add-form__search-input">
@@ -29,8 +40,13 @@ const AddPlayer = ({
         </ul>
       </div>
       <div className="add-form__pseudo">
-        <label htmlFor="">PSEUDO</label>
-        <input type="text" name="" id="" />
+        <p>PSEUDO</p>
+        <Field
+          id="add-form__pseudo-input"
+          type="text"
+          name="pseudoInput"
+          placeholder="Veuillez renseigner le prénom"
+        />
       </div>
       <div className="add-form__hidden">
         <div className="add-form__hidden-radio">
@@ -58,7 +74,7 @@ const AddPlayer = ({
       </div>
       )}
       <div className="add-form__button">
-        <button type="submit">Ajouter ce joueur</button>
+        <button type="button" onClick={handleClick}>Ajouter ce joueur</button>
       </div>
     </form>
   );
@@ -66,6 +82,14 @@ const AddPlayer = ({
 
 AddPlayer.propTypes = {
 
+  // FUNCTIONS
+  savePlayer: PropTypes.func.isRequired,
+  saveSelectChange: PropTypes.func.isRequired,
+
+  // ARRAYS
+  games: PropTypes.array.isRequired,
+  rolesList: PropTypes.array.isRequired,
+  villageList: PropTypes.array.isRequired,
 };
 
 export default AddPlayer;
