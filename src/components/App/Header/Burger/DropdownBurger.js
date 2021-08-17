@@ -7,10 +7,10 @@ import classNames from 'classnames';
 
 import './style.scss';
 
-const DropdownBurger = ({ isBurgerOpen }) => (
+const DropdownBurger = ({ isBurgerOpen, isConnected }) => (
   <div className={classNames('dropdown', { 'dropdown--open': isBurgerOpen })}>
     <ul className="dropdown__list">
-      <Link to=""><li className="dropdown__list-li">Lancer une partie</li></Link>
+      <Link to="/configurer-ma-partie"><li className="dropdown__list-li">Lancer une partie</li></Link>
       {/* <li className="dropdown__list-li">Trouver une partie</li> */}
       <Link to=""><li className="dropdown__list-li">Trouver un joueur</li></Link>
       <div className="dropdown__list-separator" />
@@ -20,17 +20,18 @@ const DropdownBurger = ({ isBurgerOpen }) => (
       <Link to="/le-jeu/les-villageois"><li className="dropdown__list-li">Les Villageois</li></Link>
       <Link to=""><div className="dropdown__list-separator" /></Link>
       {/* Vue conditionnelle pour les suivants */}
-      <Link to="/se-connecter"><li className="dropdown__list-li">Sign in</li></Link>
-      <Link to="/s'inscrire"><li className="dropdown__list-li">Sign up</li></Link>
-      <Link to="/profil"><li className="dropdown__list-li">Mon Compte</li></Link>
-      <Link to="/ma-messagerie"><li className="dropdown__list-li">Messagerie</li></Link>
-      <Link to="/"><li className="dropdown__list-li">Log out</li></Link>
+      {isConnected && <Link to="/se-connecter"><li className="dropdown__list-li">Sign in</li></Link>}
+      {isConnected && <Link to="/s'inscrire"><li className="dropdown__list-li">Sign up</li></Link>}
+      {isConnected && <Link to="/profil"><li className="dropdown__list-li">Mon Compte</li></Link>}
+      {isConnected && <Link to="/ma-messagerie"><li className="dropdown__list-li">Messagerie</li></Link>}
+      {isConnected && <Link to="/"><li className="dropdown__list-li">Log out</li></Link>}
     </ul>
   </div>
 );
 
 DropdownBurger.propTypes = {
   isBurgerOpen: PropTypes.bool.isRequired,
+  isConnected: PropTypes.bool.isRequired,
 
 };
 

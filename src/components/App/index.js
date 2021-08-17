@@ -16,9 +16,9 @@ import Aboutus from 'src/containers/App/Aboutus';
 import Mailbox from 'src/containers/App/Mailbox';
 import Expansions from 'src/containers/App/Expansions';
 import MessagePrive from 'src/containers/App/Mailbox/MessagePrive';
+import Configuration from 'src/containers/App/Configuration';
 
 import ProfileUser from './ProfileUser';
-
 
 // Free comment
 
@@ -28,10 +28,9 @@ const App = () => (
     <Header />
     <main>
       <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
+        <Route path="/" exact component={Home} />
         <Route path="/le-jeu/:slug" exact component={RolesDescriptions} />
+        <Route path="/configurer-ma-partie" exact component={Configuration} />
         <Route path="/les-jeux">
           <Switch>
             <Route path="/les-jeux/:slug" exact component={Game} />
@@ -39,9 +38,7 @@ const App = () => (
             <Route component={Expansions} />
           </Switch>
         </Route>
-        <Route path="/profil" exact>
-          <ProfileUser />
-        </Route>
+        <Route path="/profil" exact component={ProfileUser} />
         <Route path="/ma-messagerie" exact component={Mailbox} />
         <Route path="/ma-messagerie/:id" exact component={MessagePrive} />
         <Route path="/qui-sommes-nous" exact>
