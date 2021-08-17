@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import Role from 'src/containers/App/RolesDescriptions/Role';
 import Card from 'src/containers/App/RolesDescriptions/Card';
 import Flipcard from 'src/components/Flipcard';
+import NewMoonFlipcard from 'src/components/Flipcard/NewMoonFlipcard';
 
 import './style.scss';
 
@@ -48,7 +49,8 @@ const Results = ({
       >
         <X size={40} onClick={handleClickOnX} />
         <div className="roles__results-info-flipcard">
-          <Flipcard role={flipcardData} />
+          {!newMoonCardsPage && <Flipcard role={flipcardData} />}
+          {newMoonCardsPage && <NewMoonFlipcard card={flipcardData} />}
         </div>
       </div>
     </div>

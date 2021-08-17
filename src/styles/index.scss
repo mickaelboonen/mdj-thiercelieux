@@ -38,8 +38,8 @@ h4 {
   }
 */
 bnm {
-  font-weight: bold;
-  color: rgb(68, 10, 10)
+  color: rgb(207 191 119);
+  font-family: 'Special Elite', cursive;
 }
 
 inm {
@@ -47,3 +47,26 @@ inm {
   display: block;
   margin: 0.5rem 0;
 }
+  
+
+/* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: auto;
+    scrollbar-color: #bbbbbb #12233c;
+  }
+
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #12233c;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: #bbbbbb;
+    border-radius: 0px;
+    border: 3px solid #ababab;
+  }

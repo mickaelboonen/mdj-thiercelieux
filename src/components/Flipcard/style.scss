@@ -101,5 +101,110 @@
         transform: rotateY(180deg);
     }
 }
-  
-  
+// FLIPCARD FOR THE NEW MOON CARDS ----------------------------------------------------------------------------
+
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+.newmoon-flip-card {
+    width: 240px;
+    height: 320px;
+    background: transparent;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    
+
+        /* This container is needed to position the front and back side */
+    &__inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    
+    /* Position the front and back side */
+    &__front, &__back {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden; /* Safari */
+        backface-visibility: hidden;
+        
+    }
+      /* Style the front side (fallback if image is missing) */
+    &__front {
+      color: white;
+      font-size: 0.8em;
+      border-radius: 5px;
+      
+      &-image {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 5px;
+      }
+
+      &-name {
+        width: 100%;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+        font-family: 'Special Elite', cursive;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      
+      &-moon {
+          width: 120px;
+          height: auto;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          mix-blend-mode: exclusion;
+      }
+    }
+
+    /* Style the back side */
+    &__back {
+      color: #000;
+      transform: rotateY(180deg);
+      overflow: auto;
+      padding: 1em;
+      border-radius: 5px;
+
+      &-name {
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 1px;
+        margin-bottom: 0.2rem;
+        font-family: 'Special Elite', cursive;
+        color: white;
+      }
+
+      &-side {
+        font-style: italic;
+        font-size: 0.8em;
+        margin-bottom: 0.5rem;
+      }
+
+      &-description {
+        min-height: 100%;
+        margin: 40px 10px;
+        background: rgb(33 33 33 / 65%);
+        padding: 10px;
+        text-align: justify;
+        color: rgb(186 186 186);
+
+        & p {
+          margin-bottom:0.2rem ;
+        }
+      }
+    }
+
+    /* Do an horizontal flip when you move the mouse over the flip box container */
+    .newmoon-flip-card:hover &__inner {
+        transform: rotateY(180deg);
+    }
+}

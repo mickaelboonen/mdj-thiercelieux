@@ -22,14 +22,17 @@ const Card = ({
     isTooLong = true;
   }
 
+  const divStyle = {
+    backgroundImage: `url(${image})`,
+  }
   return (
-    <div className="card">
-      <img
+    <div className="card" style={divStyle} onClick={handleClick}>
+      {/* <img
         className="card__image"
         src={image}
         alt=""
-        onClick={handleClick}
-      />
+        
+      /> */}
       <div className="card__name">
         <p className={classNames('card__name-text', { 'card__name-text--too-long': isTooLong })}>{name}</p>
       </div>

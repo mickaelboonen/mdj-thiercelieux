@@ -69,7 +69,7 @@ export const sortBy = (order, array) => {
   }
   else if (order === 'phase') {
     const fullMoonArray = array.filter((card) => card.phase === 'Pleine Lune');
-    const warningCrescentArray = array.filter((card) => card.phase === 'Premier Croissant');
+    const warningCrescentArray = array.filter((card) => card.phase === 'Croissant');
     const newMoonArray = array.filter((card) => card.phase === 'Nouvelle Lune');
 
     const sortedFullMoonArray = rolesNames.map((name) => {
