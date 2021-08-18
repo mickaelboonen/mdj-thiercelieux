@@ -26,6 +26,30 @@
   &__settings {
     height: 90%;
 
+      &-container {
+      max-height: 100%;
+      overflow: auto;
+
+      }
+
+    &-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: vars.$gutter;
+
+      &-validate {
+        font-size: 1.2em;
+      }
+
+      &-back {
+        margin: 0.5rem auto;
+        text-decoration: 1px underline dotted;
+        text-underline-offset: 3px;
+      }
+    }
+
     &-players {
       border: 1px solid #1a1a1a;
       padding: vars.$gutter;

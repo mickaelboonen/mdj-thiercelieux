@@ -4,6 +4,7 @@ import AddPlayer from 'src/containers/App/Configuration/AddPlayer';
 
 import '../style.scss';
 import Player from './Player';
+import { Link } from 'react-router-dom';
 
 const Step2 = ({
   configuration,
@@ -14,22 +15,48 @@ const Step2 = ({
   const { playersNumber } = configuration;
   const numberSavedPlayers = players.length;
 
-  const handleClick = () => {
+  const handleClickToAdd = () => {
     addNewPlayer();
+  };
+
+  const handleClickToValidate = () => {
+    // Transférer toutes les données dans un reducer pour le jeu et renommer celui la en config ?
+    // Effectuer les calculs si besoin / Créer les objets players avec toutes les propriétés
+    // Lancer l'animation
   };
   return (
     <div className="configuration__settings">
       {!addingNewPlayer && (
-      <div className="configuration__settings-players">
-        <div className="configuration__settings-players-header">
-          <span>Liste des Joueurs</span>
-          <span>{numberSavedPlayers} / {playersNumber}</span>
+      <div className="configuration__settings-container">
+        <div className="configuration__settings-players">
+          <div className="configuration__settings-players-header">
+            <span>Liste des Joueurs</span>
+            <span>{numberSavedPlayers} / {playersNumber}</span>
+          </div>
+          <ul className="configuration__settings-players-list">
+            {players.map((player) => <Player key={player.id} {...player} />)}
+          </ul>
+          {numberSavedPlayers !== playersNumber && (
+          <div className="configuration__settings-players-add">
+            <button type="button" onClick={handleClickToAdd}>+</button>
+          </div>
+          )}
         </div>
-        <ul className="configuration__settings-players-list">
-          {players.map((player) => <Player key={player.id} {...player} />)}
-        </ul>
-        <div className="configuration__settings-players-add">
-          <button type="button" onClick={handleClick}>+</button>
+        <div className="configuration__settings-buttons">
+          {numberSavedPlayers === playersNumber && (
+          <button
+            className="configuration__settings-buttons-validate"
+            type="button"
+            onClick={handleClickToValidate}
+          >
+            Valider
+          </button>
+          )}
+          <span className="configuration__settings-buttons-back">
+            <Link to="/configurer-ma-partie/etape/1">
+              Retour
+            </Link>
+          </span>
         </div>
       </div>
       )}

@@ -89,6 +89,9 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         players: newPlayersArray,
         addingNewPlayer: false,
+        pseudo: '',
+        role: '',
+        village: '',
       };
     }
     case CHANGE_VALUE: {
