@@ -66,3 +66,50 @@ export const chooseDeterminer = (name) => {
   }
   return determiner;
 };
+
+export const updateHiddenRolesArray = (currentRole, playersArray, list) => {
+  let newRolesArray = [];
+
+  if (currentRole === '2 Soeurs') {
+    const sisters = playersArray.filter((player) => player.hiddenRole === currentRole);
+    if (sisters.length === 2) {
+      newRolesArray = list.filter((role) => role !== currentRole);
+    }
+  }
+  else if (currentRole === '3 Frères') {
+    const brothers = playersArray.filter((player) => player.hiddenRole === currentRole);
+    if (brothers.length === 3) {
+      newRolesArray = list.filter((role) => role !== currentRole);
+    }
+  }
+  else if (currentRole === 'Loup-Garou' || currentRole === 'Simple Villageois') {
+    newRolesArray = list;
+  }
+
+  else {
+    newRolesArray = list.filter((role) => role !== currentRole);
+  }
+
+  return newRolesArray;
+};
+
+export const updateVillageRolesArray = (currentRole, playersArray, list) => {
+  let newVillageArray = list;
+  if (currentRole === 'Fermier') {
+    const farmers = playersArray.filter((player) => player.villageRole === currentRole);
+    if (farmers.length === 6) {
+      newVillageArray = list.filter((role) => role !== currentRole);
+    }
+  }
+  else if (currentRole === 'Vagabond') {
+    const vagabonds = playersArray.filter((player) => player.villageRole === currentRole);
+    if (vagabonds.length === 15) {
+      newVillageArray = list.filter((role) => role !== currentRole);
+    }
+  }
+  else {
+    newVillageArray = list.filter((role) => role !== currentRole);
+  }
+
+  return newVillageArray;
+};

@@ -13,8 +13,6 @@ const AddPlayer = ({
   savePlayer,
 }) => {
   // TODO : vérifier l'attribution des roles
-  // peut pas donner deux fois le meme role (se supprime de la liste)
-  // pareil pour le village (faire les calculs pour fermiers et vagabonds)
   // nettoyer le code
   const isVillageSelected = games.indexOf('Le Village');
 

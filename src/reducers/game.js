@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // ACTIONS
 import {
   SET_GAMES,
@@ -11,12 +12,24 @@ import {
 } from 'src/actions/gameConfiguration';
 import { CHANGE_VALUE } from 'src/actions';
 
+// SELECTORS
+import { updateHiddenRolesArray, updateVillageRolesArray } from 'src/selectors/functions';
+
 // DATA
 import { hiddenRoles } from 'src/data/hiddenRoles';
 import { villagePeople } from 'src/data/villagePeople';
 
 // TEMPORARY DATA
-const villageRoleList = villagePeople.map((role) => role.name);
+const villageRoleList = villagePeople.map((role) => {
+  let deconstructedName = '';
+  if (role.name === "L'Institutrice") {
+    deconstructedName = 'Institutrice';
+  }
+  else {
+    deconstructedName = role.name.split(' ')[1];
+  }
+  return deconstructedName;
+});
 
 const initialState = {
   configuration: {
@@ -78,13 +91,23 @@ const reducer = (state = initialState, action = {}) => {
     case SAVE_PLAYER: {
       const newPlayersArray = state.players;
       const newId = newPlayersArray.length + 1;
+      const roleToSave = state.role;
+      const villageRoleToSave = state.village;
+
       const newPlayer = {
         id: newId,
         name: state.pseudo,
-        hiddenRole: state.role,
+        hiddenRole: roleToSave,
         villageRole: state.village,
       };
       newPlayersArray.push(newPlayer);
+
+      // -------------------------------------------------------------------------------------------
+      const newRolesArray = updateHiddenRolesArray(roleToSave, newPlayersArray, state.rolesList);
+
+      // -------------------------------------------------------------------------------------------
+      const newVillageArray = updateVillageRolesArray(villageRoleToSave, newPlayersArray, state.villageList);
+
       return {
         ...state,
         players: newPlayersArray,
@@ -92,6 +115,8 @@ const reducer = (state = initialState, action = {}) => {
         pseudo: '',
         role: '',
         village: '',
+        rolesList: newRolesArray,
+        villageList: newVillageArray,
       };
     }
     case CHANGE_VALUE: {
@@ -107,12 +132,14 @@ const reducer = (state = initialState, action = {}) => {
     case SAVE_SELECT_CHANGE: {
       const roleToSave = action.value;
       let propriety = '';
+
       if (action.select === 'add-form__roles-select') {
         propriety = 'role';
       }
       else {
         propriety = 'village';
       }
+
       return {
         ...state,
         [propriety]: roleToSave,
