@@ -30,7 +30,7 @@ const Step2 = ({
     // Fonction pour l'attribution des roles random
   };
   let areRolesAttributed = false;
-  const playerWithoutRole = players.filter((player) => player.hiddenRole === '')
+  const playerWithoutRole = players.filter((player) => player.hiddenRole === '');
   if (playerWithoutRole.length === 0) {
     areRolesAttributed = true;
   }
@@ -96,12 +96,14 @@ const Step2 = ({
 };
 
 Step2.propTypes = {
-  configuration: PropTypes.objectOf(PropTypes.shape({
-    playersNumber: PropTypes.number.isRequired,
-  })).isRequired,
+  // configuration: PropTypes.objectOf(PropTypes.shape({
+  //   playersNumber: PropTypes.number.isRequired,
+  // })).isRequired,
+  configuration: PropTypes.object.isRequired,
   players: PropTypes.array.isRequired,
   addingNewPlayer: PropTypes.bool.isRequired,
   addNewPlayer: PropTypes.func.isRequired,
+  currentStep: PropTypes.string.isRequired,
 
 };
 
