@@ -13,8 +13,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  saveRole: (value, id, name = '') => {
-    dispatch(saveRole(value, id, name));
+  saveRole: (value, id, name = '', checked) => {
+    dispatch(saveRole(value, id, name, checked));
   },
 });
 

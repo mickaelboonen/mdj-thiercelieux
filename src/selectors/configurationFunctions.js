@@ -48,6 +48,7 @@ export const updateVillageRolesArray = (currentRole, playersArray, list) => {
 export const checkRolesNumber = (role, value, errors) => {
   let message = '';
   let newErrorsArray = errors;
+  console.log(value);
   if (value >= 0) {
     let max = 1;
 
@@ -82,7 +83,7 @@ export const checkRolesNumber = (role, value, errors) => {
       }
     }
   }
-  else {
+  else if (value < 0) {
     message = 'Vous ne pouvez pas avoir de nombre négatif.';
     newErrorsArray.push(message);
   }

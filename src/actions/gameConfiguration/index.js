@@ -51,9 +51,10 @@ export const savePlayer = () => ({
 });
 
 export const SAVE_ROLE = 'SAVE_ROLE';
-export const saveRole = (value, id, name) => ({
+export const saveRole = (value, id, name, checked) => ({
   type: SAVE_ROLE,
   value,
   id,
   name,
+  checked,
 });

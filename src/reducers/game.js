@@ -98,26 +98,43 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SAVE_ROLE: {
+      // TODO Simplifier avec des fonctions
       let hiddenRolesArray = state.chosenHiddenRoles;
       let villageRolesArray = state.chosenVillageRoles;
       if (action.name === '') {
-        if (action.id === 'hidden-roles-list') {
-          if (action.value === '2 Soeurs') {
-            for (let i = 1; i <= 2; i++) {
-              hiddenRolesArray.push(action.value);
+        if (action.checked) {
+          if (action.id === 'hidden-roles-list') {
+            if (action.value === '2 Soeurs') {
+              for (let i = 1; i <= 2; i++) {
+                hiddenRolesArray.push(action.value);
+              }
             }
-          }
-          else if (action.value === '3 Frères') {
-            for (let i = 1; i <= 3; i++) {
+            else if (action.value === '3 Frères') {
+              for (let i = 1; i <= 3; i++) {
+                hiddenRolesArray.push(action.value);
+              }
+            }
+            else {
               hiddenRolesArray.push(action.value);
             }
           }
           else {
-            hiddenRolesArray.push(action.value);
+            villageRolesArray.push(action.value);
+          }
+        }
+        else if (action.id === 'hidden-roles-list') {
+          if (action.value === '2 Soeurs') {
+            hiddenRolesArray = hiddenRolesArray.filter((role) => role !== action.value);
+          }
+          else if (action.value === '3 Frères') {
+            hiddenRolesArray = hiddenRolesArray.filter((role) => role !== action.value);
+          }
+          else {
+            hiddenRolesArray = hiddenRolesArray.filter((role) => role !== action.value);
           }
         }
         else {
-          villageRolesArray.push(action.value);
+          villageRolesArray = villageRolesArray.filter((role) => role !== action.value);
         }
       }
       else if (action.id === 'hidden-roles-selects') {

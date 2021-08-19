@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const RolesStep = ({
   rolesList,
@@ -24,6 +24,7 @@ const RolesStep = ({
   else if (villageList.length > 0 && (chosenHiddenRoles.length === numberPlayers && chosenVillageRoles.length === numberPlayers)) {
     configDone = true;
   }
+  console.log(chosenHiddenRoles.length === numberPlayers && chosenVillageRoles.length === numberPlayers);
   const history = useHistory();
   const handleClickOnReturn = () => {
     history.goBack();
@@ -32,15 +33,15 @@ const RolesStep = ({
   const newErrorMessageArray = errorMessage.filter((message) => message !== '');
 
   const handleCheck = (event) => {
-    const { value } = event.target;
+    const { value, checked } = event.target;
     const currentId = event.target.parentNode.parentNode.parentNode.id;
-    saveRole(value, currentId);
+    saveRole(value, currentId, '', checked);
   };
-
+  // TODO séparer les deux fonctions ?
   const handleInputNumber = (event) => {
     const { value, name } = event.target;
     const currentId = event.target.parentNode.parentNode.id;
-    saveRole(value, currentId, name);
+    saveRole(value, currentId, name, false);
   };
   return (
     <div className="roles-step">
@@ -103,7 +104,7 @@ const RolesStep = ({
         </p>
       </div> */}
       <div className="roles-step__button">
-        {configDone && <button type="button">Suivant</button>}
+        {configDone && <Link to="/configurer-ma-partie/les-joueurs?mode=aleatoire"><button type="button">Suivant</button></Link>}
         <button type="button" onClick={handleClickOnReturn}>Retour</button>
       </div>
     </div>
