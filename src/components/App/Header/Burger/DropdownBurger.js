@@ -10,7 +10,7 @@ import './style.scss';
 const DropdownBurger = ({ isBurgerOpen, isConnected }) => (
   <div className={classNames('dropdown', { 'dropdown--open': isBurgerOpen })}>
     <ul className="dropdown__list">
-      <Link to="/configurer-ma-partie/etape/1"><li className="dropdown__list-li">Lancer une partie</li></Link>
+      <Link to="/configurer-ma-partie/la-partie"><li className="dropdown__list-li">Lancer une partie</li></Link>
       {/* <li className="dropdown__list-li">Trouver une partie</li> */}
       <Link to=""><li className="dropdown__list-li">Trouver un joueur</li></Link>
       <div className="dropdown__list-separator" />

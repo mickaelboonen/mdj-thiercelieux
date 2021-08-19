@@ -7,6 +7,7 @@ const Player = ({
   name,
   hiddenRole,
   villageRole,
+  showRoles,
 }) => {
   const handleClick = (event) => {
     const target = event.currentTarget;
@@ -25,6 +26,7 @@ const Player = ({
       <p className="player__name">
         {name}
       </p>
+      {showRoles && (
       <p className="player__roles">
         <span
           className="player__roles-hidden"
@@ -40,11 +42,13 @@ const Player = ({
         </span>
         {villageRole !== '' && <span className="player__roles-village"> / {villageRole}</span>}
       </p>
+      )}
     </li>
   );
 };
 
 Player.propTypes = {
+  showRoles: PropTypes.bool.isRequired,
 
   // STRINGS
   name: PropTypes.string.isRequired,

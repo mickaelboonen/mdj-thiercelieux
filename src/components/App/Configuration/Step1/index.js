@@ -12,7 +12,15 @@ const Step1 = ({
   setNewmoonCards,
   setRolesAttribution,
   errorMessage,
+  nextStepSlug,
 }) => {
+  let currentSlug = '';
+  if (nextStepSlug === 'manual') {
+    currentSlug = '/configurer-ma-partie/les-joueurs';
+  }
+  else if (nextStepSlug === 'random') {
+    currentSlug = '/configurer-ma-partie/les-roles';
+  }
   const handleChange = (event) => {
     let currentId = '';
     const newMoonElement = document.querySelector('#newmoon');
@@ -151,7 +159,7 @@ const Step1 = ({
         </div>
       </div>
       <div className="configuration__settings-link">
-        <Link to="/configurer-ma-partie/etape/2">Suivant</Link>
+        <Link to={currentSlug}>Suivant</Link>
       </div>
       {errorMessage.length > 0 && (
         <div className="configuration__settings-error">

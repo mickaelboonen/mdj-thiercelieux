@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Field from 'src/containers/Field';
 
 import './style.scss';
+import { useLocation } from 'react-router-dom';
 
 const AddPlayer = ({
   games,
@@ -24,6 +25,12 @@ const AddPlayer = ({
     event.preventDefault();
     savePlayer();
   };
+
+  let randomMode = false;
+  const location = useLocation();
+  if (location.search === '?mode=aleatoire') {
+    randomMode = true;
+  }
   return (
     <form className="add-form">
       <div className="add-form__search-input">
@@ -55,6 +62,7 @@ const AddPlayer = ({
           <input type="number" name="" id="" />
         </div>
       </div>
+      {!randomMode && (
       <div className="add-form__roles">
         <label htmlFor="">ROLES</label>
         <select name="" id="add-form__roles-select" onChange={handleSelectChange}>
@@ -62,7 +70,8 @@ const AddPlayer = ({
           {rolesList.map((role) => <option key={role} value={role}>{role}</option>)}
         </select>
       </div>
-      {isVillageSelected >= 0 && (
+      )}
+      {(!randomMode && isVillageSelected >= 0) && (
       <div className="add-form__village">
         <label htmlFor="">VILLAGE</label>
         <select name="" id="add-form__village-select" onChange={handleSelectChange}>

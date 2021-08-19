@@ -9,6 +9,7 @@ import {
   ADD_NEW_PLAYER,
   SAVE_SELECT_CHANGE,
   SAVE_PLAYER,
+  SET_NEXT_CONFIGURATION_STEP,
 } from 'src/actions/gameConfiguration';
 import { CHANGE_VALUE } from 'src/actions';
 
@@ -84,10 +85,15 @@ const initialState = {
   villageList: villageRoleList,
   addingNewPlayer: false,
   errorMessage: [],
+
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    // case SET_NEXT_CONFIGURATION_STEP:
+    //   return {
+    //     ...state,
+    //   }
     case SAVE_PLAYER: {
       const newPlayersArray = state.players;
       const newId = newPlayersArray.length + 1;

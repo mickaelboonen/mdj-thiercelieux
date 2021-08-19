@@ -30,7 +30,7 @@ const App = () => (
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/le-jeu/:slug" exact component={RolesDescriptions} />
-        <Route path="/configurer-ma-partie/etape/:id" exact component={Configuration} />
+        <Route path="/configurer-ma-partie/:slug" exact component={Configuration} />
         <Route path="/les-jeux">
           <Switch>
             <Route path="/les-jeux/:slug" exact component={Game} />

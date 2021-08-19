@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AddPlayer from 'src/containers/App/Configuration/AddPlayer';
+import { Link, useLocation } from 'react-router-dom';
 
 import '../style.scss';
 import Player from './Player';
-import { Link } from 'react-router-dom';
 
 const Step2 = ({
   configuration,
   players,
   addNewPlayer,
   addingNewPlayer,
+  currentStep,
 }) => {
   const { playersNumber } = configuration;
   const numberSavedPlayers = players.length;
@@ -24,6 +25,20 @@ const Step2 = ({
     // Effectuer les calculs si besoin / Créer les objets players avec toutes les propriétés
     // Lancer l'animation
   };
+
+  const handleClickToSetRoles = () => {
+    // Fonction pour l'attribution des roles random
+  };
+  let areRolesAttributed = false;
+  const playerWithoutRole = players.filter((player) => player.hiddenRole === '')
+  if (playerWithoutRole.length === 0) {
+    areRolesAttributed = true;
+  }
+  const location = useLocation();
+  let randomMode = false;
+  if (location.search !== '') {
+    randomMode = true;
+  }
   return (
     <div className="configuration__settings">
       {!addingNewPlayer && (
@@ -34,7 +49,13 @@ const Step2 = ({
             <span>{numberSavedPlayers} / {playersNumber}</span>
           </div>
           <ul className="configuration__settings-players-list">
-            {players.map((player) => <Player key={player.id} {...player} />)}
+            {players.map((player) => (
+              <Player
+                key={player.id}
+                showRoles={!randomMode}
+                {...player}
+              />
+            ))}
           </ul>
           {numberSavedPlayers !== playersNumber && (
           <div className="configuration__settings-players-add">
@@ -43,9 +64,18 @@ const Step2 = ({
           )}
         </div>
         <div className="configuration__settings-buttons">
-          {numberSavedPlayers === playersNumber && (
+          {(numberSavedPlayers === playersNumber && randomMode) && (
           <button
-            className="configuration__settings-buttons-validate"
+            className="configuration__settings-buttons-item"
+            type="button"
+            onClick={handleClickToSetRoles}
+          >
+            Attribuer les roles
+          </button>
+          )}
+          {(numberSavedPlayers === playersNumber && areRolesAttributed) && (
+          <button
+            className="configuration__settings-buttons-item"
             type="button"
             onClick={handleClickToValidate}
           >
@@ -60,7 +90,7 @@ const Step2 = ({
         </div>
       </div>
       )}
-      {addingNewPlayer && <AddPlayer />}
+      {addingNewPlayer && <AddPlayer currentStep={currentStep} />}
     </div>
   );
 };

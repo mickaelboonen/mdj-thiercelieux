@@ -1,0 +1,77 @@
+@use 'src/styles/vars';
+
+.roles-step {
+
+  &__configuration {
+    margin: vars.$gutter auto;
+    display: flex;
+    justify-content: center;
+    
+    
+  }
+
+  &__roles {
+      background-color: #979595;
+      border: 1px solid #1a1a1a;
+      padding: vars.$gutter;
+      margin-bottom: 0.5rem;
+    
+    &-title {
+      text-align: center;
+      font-weight: bold;
+      text-transform: uppercase;
+      padding-bottom: vars.$gutter;
+      
+    }
+    
+    &-selects {
+      display: flex;
+      margin-bottom: 1rem;
+      justify-content: space-between;
+
+      & label {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        & input {
+          width: 100%;
+        }
+
+      }
+      
+    }
+    
+    &-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+
+      &-item {
+        font-size: 0.9em;
+        width: 32%;
+        margin-bottom: 0.2rem;
+
+        & label {
+          display: flex;
+          flex-direction: row-reverse;
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+
+  &__error {
+    color: rgb(253, 0, 0);
+    border: 1px solid black;
+    background-color: rgba(128, 41, 41, 0.685);
+    padding: vars.$gutter;
+    margin-top: 0.5rem;
+  }
+
+  &__button {
+    display: flex;
+    justify-content: center;
+    margin: vars.$gutter auto;
+  }
+}
