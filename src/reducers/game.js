@@ -9,12 +9,17 @@ import {
   ADD_NEW_PLAYER,
   SAVE_SELECT_CHANGE,
   SAVE_PLAYER,
-  SET_NEXT_CONFIGURATION_STEP,
+  SAVE_ROLE,
 } from 'src/actions/gameConfiguration';
 import { CHANGE_VALUE } from 'src/actions';
 
 // SELECTORS
-import { updateHiddenRolesArray, updateVillageRolesArray } from 'src/selectors/functions';
+import {
+  updateHiddenRolesArray,
+  updateVillageRolesArray,
+  checkRolesNumber,
+  checkTotalRoles,
+} from 'src/selectors/configurationFunctions';
 
 // DATA
 import { hiddenRoles } from 'src/data/hiddenRoles';
@@ -85,15 +90,69 @@ const initialState = {
   villageList: villageRoleList,
   addingNewPlayer: false,
   errorMessage: [],
+  chosenHiddenRoles: [],
+  chosenVillageRoles: [],
 
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    // case SET_NEXT_CONFIGURATION_STEP:
-    //   return {
-    //     ...state,
-    //   }
+    case SAVE_ROLE: {
+      let hiddenRolesArray = state.chosenHiddenRoles;
+      let villageRolesArray = state.chosenVillageRoles;
+      if (action.name === '') {
+        if (action.id === 'hidden-roles-list') {
+          if (action.value === '2 Soeurs') {
+            for (let i = 1; i <= 2; i++) {
+              hiddenRolesArray.push(action.value);
+            }
+          }
+          else if (action.value === '3 Frères') {
+            for (let i = 1; i <= 3; i++) {
+              hiddenRolesArray.push(action.value);
+            }
+          }
+          else {
+            hiddenRolesArray.push(action.value);
+          }
+        }
+        else {
+          villageRolesArray.push(action.value);
+        }
+      }
+      else if (action.id === 'hidden-roles-selects') {
+        const newArray = hiddenRolesArray.filter((role) => role !== action.name);
+        for (let i = 1; i <= action.value; i++) {
+          newArray.push(action.name);
+        }
+        hiddenRolesArray = newArray;
+      }
+      else {
+        const newArray = villageRolesArray.filter((role) => role !== action.name);
+        for (let i = 1; i <= action.value; i++) {
+          newArray.push(action.name);
+        }
+        villageRolesArray = newArray;
+      }
+
+      const messageError = state.errorMessage;
+      let newMessageArray = [];
+      if (action.id.includes('hidden')) {
+        newMessageArray = checkTotalRoles(hiddenRolesArray, messageError, state.configuration.playersNumber, 'hidden');
+      }
+      else if (action.id.includes('village')) {
+        newMessageArray = checkTotalRoles(villageRolesArray, messageError, state.configuration.playersNumber, 'village');
+      }
+      const finalErrorArray = checkRolesNumber(action.name, action.value, newMessageArray);
+
+
+      return {
+        ...state,
+        chosenHiddenRoles: hiddenRolesArray,
+        chosenVillageRoles: villageRolesArray,
+        errorMessage: finalErrorArray,
+      };
+    }
     case SAVE_PLAYER: {
       const newPlayersArray = state.players;
       const newId = newPlayersArray.length + 1;
