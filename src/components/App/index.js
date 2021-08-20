@@ -16,8 +16,10 @@ import Aboutus from 'src/containers/App/Aboutus';
 import Mailbox from 'src/containers/App/Mailbox';
 import Expansions from 'src/containers/App/Expansions';
 import MessagePrive from 'src/containers/App/Mailbox/MessagePrive';
+import PersonalDetails from './ProfileUser/PersonalDetails';
 
 import ProfileUser from './ProfileUser';
+
 
 
 // Free comment
@@ -39,9 +41,8 @@ const App = () => (
             <Route component={Expansions} />
           </Switch>
         </Route>
-        <Route path="/profil" exact>
-          <ProfileUser />
-        </Route>
+        <Route path="/profil" exact component={ProfileUser} />
+        <Route path="/profil/mes-informations" exact component={PersonalDetails} />
         <Route path="/ma-messagerie" exact component={Mailbox} />
         <Route path="/ma-messagerie/:id" exact component={MessagePrive} />
         <Route path="/qui-sommes-nous" exact>
