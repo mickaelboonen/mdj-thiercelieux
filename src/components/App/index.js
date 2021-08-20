@@ -7,7 +7,6 @@ import { Switch, Route } from 'react-router-dom';
 import Header from 'src/components/App/Header';
 import Home from 'src/components/App/Home';
 import Footer from 'src/components/App/Footer';
-import Sunset from 'src/components/Animations/Sunset';
 import CurrentGame from 'src/components/App/CurrentGame';
 
 import Game from 'src/containers/App/Expansions/Game';
@@ -18,11 +17,11 @@ import Mailbox from 'src/containers/App/Mailbox';
 import Expansions from 'src/containers/App/Expansions';
 import MessagePrive from 'src/containers/App/Mailbox/MessagePrive';
 import Configuration from 'src/containers/App/Configuration';
+import Sunset from 'src/containers/Animations/Sunset';
 
 import PersonalDetails from './ProfileUser/PersonalDetails';
 import ProfileUser from './ProfileUser';
 import Register from './Register';
-
 
 // Free comment
 
