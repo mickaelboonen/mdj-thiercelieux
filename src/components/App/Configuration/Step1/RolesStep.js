@@ -30,7 +30,6 @@ const RolesStep = ({
     const currentId = event.target.parentNode.parentNode.parentNode.id;
     saveRole(value, currentId, '', checked);
   };
-  // TODO séparer les deux fonctions ?
   const handleInputNumber = (event) => {
     const { value, name } = event.target;
     const currentId = event.target.parentNode.parentNode.id;

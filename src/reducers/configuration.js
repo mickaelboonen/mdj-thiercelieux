@@ -22,6 +22,7 @@ import {
   checkTotalRoles,
   setRolesRandomly,
   checkConfiguration,
+  saveRole,
 } from 'src/selectors/configurationFunctions';
 
 // DATA
@@ -105,12 +106,9 @@ const initialState = {
   villageList: villageRoleList,
   addingNewPlayer: false,
   errorMessage: [],
-  chosenHiddenRoles: [
-  ],
-  chosenVillageRoles: [
-  ],
+  chosenHiddenRoles: [],
+  chosenVillageRoles: [],
   configDone: false,
-
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -126,69 +124,25 @@ const reducer = (state = initialState, action = {}) => {
       };
     }
     case SAVE_ROLE: {
-      // TODO Simplifier avec des fonctions
+      const { name, id, value } = action;
+      const messageError = state.errorMessage;
       let hiddenRolesArray = state.chosenHiddenRoles;
       let villageRolesArray = state.chosenVillageRoles;
-      if (action.name === '') {
-        if (action.checked) {
-          if (action.id === 'hidden-roles-list') {
-            if (action.value === '2 Soeurs') {
-              for (let i = 1; i <= 2; i++) {
-                hiddenRolesArray.push(action.value);
-              }
-            }
-            else if (action.value === '3 Frères') {
-              for (let i = 1; i <= 3; i++) {
-                hiddenRolesArray.push(action.value);
-              }
-            }
-            else {
-              hiddenRolesArray.push(action.value);
-            }
-          }
-          else {
-            villageRolesArray.push(action.value);
-          }
-        }
-        else if (action.id === 'hidden-roles-list') {
-          if (action.value === '2 Soeurs') {
-            hiddenRolesArray = hiddenRolesArray.filter((role) => role !== action.value);
-          }
-          else if (action.value === '3 Frères') {
-            hiddenRolesArray = hiddenRolesArray.filter((role) => role !== action.value);
-          }
-          else {
-            hiddenRolesArray = hiddenRolesArray.filter((role) => role !== action.value);
-          }
-        }
-        else {
-          villageRolesArray = villageRolesArray.filter((role) => role !== action.value);
-        }
-      }
-      else if (action.id === 'hidden-roles-selects') {
-        const newArray = hiddenRolesArray.filter((role) => role !== action.name);
-        for (let i = 1; i <= action.value; i++) {
-          newArray.push(action.name);
-        }
-        hiddenRolesArray = newArray;
-      }
-      else {
-        const newArray = villageRolesArray.filter((role) => role !== action.name);
-        for (let i = 1; i <= action.value; i++) {
-          newArray.push(action.name);
-        }
-        villageRolesArray = newArray;
-      }
 
-      const messageError = state.errorMessage;
       let newMessageArray = [];
-      if (action.id.includes('hidden')) {
+      if (id.includes('hidden')) {
+        hiddenRolesArray = saveRole(action, hiddenRolesArray);
         newMessageArray = checkTotalRoles(hiddenRolesArray, messageError, state.configuration.playersNumber, 'hidden');
       }
-      else if (action.id.includes('village')) {
+      else if (id.includes('village')) {
+        villageRolesArray = saveRole(action, villageRolesArray);
         newMessageArray = checkTotalRoles(villageRolesArray, messageError, state.configuration.playersNumber, 'village');
       }
-      const finalErrorArray = checkRolesNumber(action.name, action.value, newMessageArray);
+
+      const finalErrorArray = checkRolesNumber(name, value, newMessageArray);
+
+      // Checks if the number of roles chosen is the same as the number of players
+      // Returns bool
       const configDone = checkConfiguration(state.configuration, hiddenRolesArray.length, villageRolesArray.length);
 
       return {

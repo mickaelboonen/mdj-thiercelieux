@@ -13,8 +13,6 @@ const AddPlayer = ({
   saveSelectChange,
   savePlayer,
 }) => {
-  // TODO : vérifier l'attribution des roles
-  // nettoyer le code
   const isVillageSelected = games.indexOf('Le Village');
 
   const handleSelectChange = (event) => {

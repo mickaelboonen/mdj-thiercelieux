@@ -200,3 +200,69 @@ export const checkConfiguration = (conf, roles, village) => {
   }
   return configDone;
 };
+
+/**
+ * @param {object} action
+ * @param {array} currentArray
+ * @returns array
+ */
+export const saveRole = (action, array) => {
+  let currentArray = array;
+  const {
+    name,
+    checked,
+    id,
+    value,
+  } = action;
+  if (name === '') {
+    if (checked) {
+      if (id === 'hidden-roles-list') {
+        if (value === '2 Soeurs') {
+          for (let i = 1; i <= 2; i++) {
+            currentArray.push(value);
+          }
+        }
+        else if (value === '3 Frères') {
+          for (let i = 1; i <= 3; i++) {
+            currentArray.push(value);
+          }
+        }
+        else {
+          currentArray.push(value);
+        }
+      }
+      else {
+        currentArray.push(value);
+      }
+    }
+    else if (id === 'hidden-roles-list') {
+      if (value === '2 Soeurs') {
+        currentArray = currentArray.filter((role) => role !== value);
+      }
+      else if (value === '3 Frères') {
+        currentArray = currentArray.filter((role) => role !== value);
+      }
+      else {
+        currentArray = currentArray.filter((role) => role !== value);
+      }
+    }
+    else {
+      currentArray = currentArray.filter((role) => role !== value);
+    }
+  }
+  else if (id === 'hidden-roles-selects') {
+    const newArray = currentArray.filter((role) => role !== name);
+    for (let i = 1; i <= value; i++) {
+      newArray.push(name);
+    }
+    currentArray = newArray;
+  }
+  else {
+    const newArray = currentArray.filter((role) => role !== name);
+    for (let i = 1; i <= value; i++) {
+      newArray.push(name);
+    }
+    currentArray = newArray;
+  }
+  return currentArray;
+};
