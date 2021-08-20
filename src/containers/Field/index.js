@@ -8,9 +8,18 @@ import {
   reinitializeData,
 } from 'src/actions/RolesDescriptions';
 
-const mapStateToProps = (state) => ({
-  value: state.rolesDescriptions.rolesInput,
-});
+const mapStateToProps = (state, ownProps) => {
+  let value = '';
+  if (ownProps.name === 'pseudoInput') {
+    value = state.configuration.pseudo;
+  }
+  else if (ownProps.name === 'rolesInput' || ownProps.name === 'cardsInput' || ownProps.name === 'villageInput') {
+    value = state.rolesDescriptions.rolesInput;
+  }
+  return ({
+    value: value,
+  });
+};
 
 const mapDispatchToProps = (dispatch) => ({
   changeValue: (value, name) => {

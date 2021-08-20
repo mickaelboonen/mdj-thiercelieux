@@ -1,0 +1,178 @@
+@use 'src/styles/vars';
+
+@keyframes slidein {
+  from {
+    margin-left: 100%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
+
+.configuration {
+  height: 100vh;
+  background-color: #686767;
+  padding: vars.$navbar-height vars.$gutter vars.$gutter;
+
+  &__title {
+    height: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+  &__settings {
+    height: 90%;
+
+      &-container {
+      max-height: 100%;
+      overflow: auto;
+
+      }
+
+    &-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: vars.$gutter;
+
+      &-item {
+        font-size: 1.2em;
+      }
+
+      &-back {
+        margin: 0.5rem auto;
+        text-decoration: 1px underline dotted;
+        text-underline-offset: 3px;
+      }
+    }
+
+    &-players {
+      border: 1px solid #1a1a1a;
+      padding: vars.$gutter;
+      background-color: #979595;
+
+      &-header {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+
+      &-list {
+        padding: 0 1rem;
+      }
+
+      &-add {
+        display: flex;
+        justify-content: center;
+
+        & button {
+          width: 3rem;
+          height: 3rem;
+          border-radius: 50%;
+          font-size: 2em;
+        }
+      }
+    }
+    
+    &-link {
+      display: none;
+      margin: 1rem auto;
+      text-align: center;
+      justify-content: center;
+
+      & a {
+        border: 1px solid #1a1a1a;
+        padding: 0.5rem;
+        background-color: #979595;
+
+      }
+
+      &--open {
+        display: flex;
+      animation: slidein forwards 1s;
+      }
+    }
+
+    &-error {
+      color: rgb(253, 0, 0);
+      border: 1px solid black;
+      background-color: rgba(128, 41, 41, 0.685);
+      padding: vars.$gutter;
+      margin-top: 0.5rem;
+    }
+    
+    &-field {
+      display: none;
+      border: 1px solid #1a1a1a;
+      border-top: 0;
+      padding: vars.$gutter;
+      background-color: #979595;
+
+      &--open {
+        display: block;
+      animation: slidein forwards 1s;
+      }
+
+      &:first-child {
+        border-top: 1px solid #1a1a1a;
+        display: block;
+        margin: 0;
+      }
+
+      &-title {
+        margin-bottom: 0.3rem;
+        font-weight: bold;
+      }
+
+      &-item {
+        display: flex;
+
+        & label {
+          display: flex;
+          flex-direction: row-reverse;
+        }
+      }
+    }
+  }
+}
+
+.player {
+  list-style-type: disc;
+  margin-bottom: 0.7rem;
+
+  &__name {
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+
+  }
+
+  &__roles {
+    font-style: italic;
+    font-size: 0.9em;
+    &-hidden {
+      display: none;
+
+      &--open {
+        display: inline-block;
+
+      }
+    }
+
+    &-stars {
+      display: none;
+
+      &--open {
+        display: inline-block;
+      }
+    }
+
+    &-village {
+
+    }
+  }
+}

@@ -3,6 +3,7 @@ import DropdownBurger from 'src/components/App/Header/Burger/DropdownBurger';
 
 const mapStateToProps = (state) => ({
   isBurgerOpen: state.app.isBurgerOpen,
+  isConnected: true,
 });
 
 const mapDispatchToProps = {};
