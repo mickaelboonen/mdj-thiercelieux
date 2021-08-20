@@ -1,0 +1,64 @@
+@use 'src/styles/vars';
+
+.personaldetails {
+    width: 100vw;
+    height: 100vh;
+    margin-top: vars.$navbar-height;
+    background-color: rgb(26, 26, 26);
+    padding: vars.$gutter;
+
+    h3 {
+        text-align: center;
+        text-transform: uppercase;
+        padding: vars.$gutter;
+    }
+
+    &__form {
+        background-color: #4d4d4d;
+        width: 100%;
+        height: auto;
+        padding: vars.$gutter;
+
+        label {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em;
+            font-weight: bold;
+        }
+        
+        span {
+            padding-left: 1.5em;
+            font-style: italic;
+            font-weight: 100;
+        }
+        
+        input {
+            height: 2.5em;
+            width: 100%;
+        }
+
+        &-message {
+            padding: 1em;
+            background-color: burlywood;
+            text-align: center;
+            font-weight: bolder;
+            margin: 1em 0em;
+        }
+
+        &-submit {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            padding: 0.5em;
+            margin: 1em 0em;
+        }
+
+        &-editable {
+            
+            .errorMessage {
+                color:rgb(255, 0, 51);
+                font-size: 0.8em;
+            }
+        }
+    }
+}

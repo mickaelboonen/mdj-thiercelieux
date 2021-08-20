@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import Role from 'src/containers/App/RolesDescriptions/Role';
 import Card from 'src/containers/App/RolesDescriptions/Card';
 import Flipcard from 'src/components/Flipcard';
-import NewMoonFlipcard from 'src/components/Flipcard/NewMoonFlipcard';
+import NewMoonFlipcard from 'src/components/Flipcard/newMoonFlipcard';
 
 import './style.scss';
 

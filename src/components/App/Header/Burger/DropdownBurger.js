@@ -25,6 +25,7 @@ const DropdownBurger = ({ isBurgerOpen, isConnected }) => (
       {isConnected && <Link to="/profil"><li className="dropdown__list-li">Mon Compte</li></Link>}
       {isConnected && <Link to="/ma-messagerie"><li className="dropdown__list-li">Messagerie</li></Link>}
       {isConnected && <Link to="/"><li className="dropdown__list-li">Log out</li></Link>}
+
     </ul>
   </div>
 );

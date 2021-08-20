@@ -17,8 +17,12 @@ import Mailbox from 'src/containers/App/Mailbox';
 import Expansions from 'src/containers/App/Expansions';
 import MessagePrive from 'src/containers/App/Mailbox/MessagePrive';
 import Configuration from 'src/containers/App/Configuration';
+import PersonalDetails from './ProfileUser/PersonalDetails';
+
 
 import ProfileUser from './ProfileUser';
+import Register from './Register';
+
 
 // Free comment
 
@@ -29,6 +33,7 @@ const App = () => (
     <main>
       <Switch>
         <Route path="/" exact component={Home} />
+        <Route path="/register" exact component={Register} />
         <Route path="/le-jeu/:slug" exact component={RolesDescriptions} />
         <Route path="/configurer-ma-partie/:slug" exact component={Configuration} />
         <Route path="/les-jeux">
@@ -39,6 +44,7 @@ const App = () => (
           </Switch>
         </Route>
         <Route path="/profil" exact component={ProfileUser} />
+        <Route path="/profil/mes-informations" exact component={PersonalDetails} />
         <Route path="/ma-messagerie" exact component={Mailbox} />
         <Route path="/ma-messagerie/:id" exact component={MessagePrive} />
         <Route path="/qui-sommes-nous" exact>
