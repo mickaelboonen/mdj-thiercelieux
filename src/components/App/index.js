@@ -18,6 +18,7 @@ import Expansions from 'src/containers/App/Expansions';
 import MessagePrive from 'src/containers/App/Mailbox/MessagePrive';
 
 import ProfileUser from './ProfileUser';
+import Register from './Register';
 
 
 // Free comment
@@ -31,6 +32,7 @@ const App = () => (
         <Route path="/" exact>
           <Home />
         </Route>
+        <Route path="/register" exact component={Register} />
         <Route path="/le-jeu/:slug" exact component={RolesDescriptions} />
         <Route path="/les-jeux">
           <Switch>
