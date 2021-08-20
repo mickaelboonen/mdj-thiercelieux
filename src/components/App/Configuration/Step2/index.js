@@ -20,7 +20,6 @@ const Step2 = ({
 
   const history = useHistory();
 
-
   const handleClickToAdd = () => {
     addNewPlayer();
   };
@@ -44,10 +43,9 @@ const Step2 = ({
   const location = useLocation();
   let randomMode = false;
   let visibleMode = false;
-  console.log(location.search);
   if (location.search === '?mode=aleatoire') {
     randomMode = true;
-  } 
+  }
   if (location.search === '?mode=aleatoire&visible=vrai') {
     visibleMode = true;
   }
@@ -108,14 +106,14 @@ const Step2 = ({
 };
 
 Step2.propTypes = {
-  // configuration: PropTypes.objectOf(PropTypes.shape({
-  //   playersNumber: PropTypes.number.isRequired,
-  // })).isRequired,
   configuration: PropTypes.object.isRequired,
   players: PropTypes.array.isRequired,
   addingNewPlayer: PropTypes.bool.isRequired,
-  addNewPlayer: PropTypes.func.isRequired,
   currentStep: PropTypes.string.isRequired,
+
+  // FUNCTIONS
+  addNewPlayer: PropTypes.func.isRequired,
+  setRolesRandomly: PropTypes.func.isRequired,
 
 };
 

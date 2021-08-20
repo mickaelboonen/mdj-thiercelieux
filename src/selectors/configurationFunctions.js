@@ -1,5 +1,11 @@
 import { generateRandomNumber } from 'src/selectors/generateRandomNumber';
 
+/**
+ * @param {string} currentRole
+ * @param {array} playersArray
+ * @param {array} list
+ * @returns array
+ */
 export const updateHiddenRolesArray = (currentRole, playersArray, list) => {
   let newRolesArray = [];
 
@@ -26,6 +32,12 @@ export const updateHiddenRolesArray = (currentRole, playersArray, list) => {
   return newRolesArray;
 };
 
+/**
+ * @param {string} currentRole
+ * @param {array} playersArray
+ * @param {array} list
+ * @returns array
+ */
 export const updateVillageRolesArray = (currentRole, playersArray, list) => {
   let newVillageArray = list;
   if (currentRole === 'Fermier') {
@@ -47,10 +59,15 @@ export const updateVillageRolesArray = (currentRole, playersArray, list) => {
   return newVillageArray;
 };
 
+/**
+ * @param {string} role
+ * @param {string} value
+ * @param {array} errors
+ * @returns array
+ */
 export const checkRolesNumber = (role, value, errors) => {
   let message = '';
   let newErrorsArray = errors;
-  console.log(value);
   if (value >= 0) {
     let max = 1;
 
@@ -93,10 +110,17 @@ export const checkRolesNumber = (role, value, errors) => {
   return finalErrorArray;
 };
 
-export const checkTotalRoles = (roles, errors, number, name) => {
+/**
+ * @param {array} roles
+ * @param {array} errors
+ * @param {number} number
+ * @param {string} category
+ * @returns array
+ */
+export const checkTotalRoles = (roles, errors, number, category) => {
   let message = '';
   let newErrorMessageArray = errors;
-  if (name === 'hidden') {
+  if (category === 'hidden') {
     message = 'Vous avez sélectionné plus de rôles que de joueurs. Veuillez modifier la sélection.';
     if (roles.length > number && newErrorMessageArray.indexOf(message) === -1) {
       newErrorMessageArray.push(message);
@@ -117,6 +141,12 @@ export const checkTotalRoles = (roles, errors, number, name) => {
   return newErrorMessageArray;
 };
 
+/**
+ * @param {array} roles
+ * @param {array} players
+ * @param {string} category
+ * @returns array
+ */
 export const setRolesRandomly = (roles, players, category) => {
   let playersWithRoles = [];
   let newRoles = roles;
@@ -153,10 +183,15 @@ export const setRolesRandomly = (roles, players, category) => {
   return playersWithRoles;
 };
 
+/**
+ * @param {object} conf
+ * @param {number} roles
+ * @param {number} village
+ * @returns bool
+ */
 export const checkConfiguration = (conf, roles, village) => {
   let configDone = false;
   const { games, playersNumber } = conf;
-  console.log(games.indexOf('Le Village') === -1 && roles === Number(playersNumber), roles, Number(playersNumber));
   if (games.indexOf('Le Village') === -1 && roles === Number(playersNumber)) {
     configDone = true;
   }
