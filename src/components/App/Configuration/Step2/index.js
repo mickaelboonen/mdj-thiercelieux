@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import AddPlayer from 'src/containers/App/Configuration/AddPlayer';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import '../style.scss';
 import Player from './Player';
@@ -12,9 +12,14 @@ const Step2 = ({
   addNewPlayer,
   addingNewPlayer,
   currentStep,
+  setRolesRandomly,
 }) => {
-  const { playersNumber } = configuration;
+  let { playersNumber } = configuration;
   const numberSavedPlayers = players.length;
+  playersNumber = Number(playersNumber);
+
+  const history = useHistory();
+
 
   const handleClickToAdd = () => {
     addNewPlayer();
@@ -28,6 +33,8 @@ const Step2 = ({
 
   const handleClickToSetRoles = () => {
     // Fonction pour l'attribution des roles random
+    setRolesRandomly();
+    history.push('/configurer-ma-partie/les-joueurs?mode=aleatoire&visible=vrai');
   };
   let areRolesAttributed = false;
   const playerWithoutRole = players.filter((player) => player.hiddenRole === '');
@@ -36,8 +43,13 @@ const Step2 = ({
   }
   const location = useLocation();
   let randomMode = false;
-  if (location.search !== '') {
+  let visibleMode = false;
+  console.log(location.search);
+  if (location.search === '?mode=aleatoire') {
     randomMode = true;
+  } 
+  if (location.search === '?mode=aleatoire&visible=vrai') {
+    visibleMode = true;
   }
   return (
     <div className="configuration__settings">
@@ -64,7 +76,7 @@ const Step2 = ({
           )}
         </div>
         <div className="configuration__settings-buttons">
-          {(numberSavedPlayers === playersNumber && randomMode) && (
+          {(numberSavedPlayers === playersNumber && (randomMode || visibleMode)) && (
           <button
             className="configuration__settings-buttons-item"
             type="button"

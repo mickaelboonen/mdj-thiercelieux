@@ -4,10 +4,10 @@ import AddPlayer from 'src/components/App/Configuration/Step2/AddPlayer';
 import { saveSelectChange, savePlayer } from 'src/actions/gameConfiguration';
 
 const mapStateToProps = (state) => ({
-  games: state.game.configuration.games,
-  rolesList: state.game.rolesList,
-  villageList: state.game.villageList,
-  inputValue: state.game.pseudo,
+  games: state.configuration.configuration.games,
+  rolesList: state.configuration.rolesList,
+  villageList: state.configuration.villageList,
+  inputValue: state.configuration.pseudo,
 });
 
 const mapDispatchToProps = (dispatch) => ({

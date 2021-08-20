@@ -11,7 +11,7 @@ import {
 const mapStateToProps = (state, ownProps) => {
   let value = '';
   if (ownProps.name === 'pseudoInput') {
-    value = state.game.pseudo;
+    value = state.configuration.pseudo;
   }
   else if (ownProps.name === 'rolesInput' || ownProps.name === 'cardsInput' || ownProps.name === 'villageInput') {
     value = state.rolesDescriptions.rolesInput;

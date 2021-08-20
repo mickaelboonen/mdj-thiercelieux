@@ -4,12 +4,13 @@ import RolesStep from 'src/components/App/Configuration/Step1/RolesStep';
 import { saveRole } from 'src/actions/gameConfiguration';
 
 const mapStateToProps = (state) => ({
-  rolesList: state.game.rolesList,
-  villageList: state.game.villageList,
-  numberPlayers: state.game.configuration.playersNumber,
-  chosenHiddenRoles: state.game.chosenHiddenRoles,
-  chosenVillageRoles: state.game.chosenVillageRoles,
-  errorMessage: state.game.errorMessage,
+  rolesList: state.configuration.rolesList,
+  villageList: state.configuration.villageList,
+  numberPlayers: state.configuration.configuration.playersNumber,
+  chosenHiddenRoles: state.configuration.chosenHiddenRoles,
+  chosenVillageRoles: state.configuration.chosenVillageRoles,
+  errorMessage: state.configuration.errorMessage,
+  configDone: state.configuration.configDone,
 });
 
 const mapDispatchToProps = (dispatch) => ({

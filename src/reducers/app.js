@@ -8,7 +8,7 @@ import {
   DISPLAY_NEW_GAME,
 } from 'src/actions';
 
-import { generateRandomNumber } from 'src/selectors/generateRandomNumber';
+import { generateRandomNumbersArray } from 'src/selectors/generateRandomNumber';
 
 const initialState = {
   isBurgerOpen: false,
@@ -69,7 +69,7 @@ const reducer = (state = initialState, action = {}) => {
       /**
        * returns Array of numbers
        */
-      generateRandomNumber(idArray);
+       generateRandomNumbersArray(idArray, 7, 32);
 
       const rolesToDisplay = [];
 

@@ -13,18 +13,11 @@ const RolesStep = ({
   chosenVillageRoles,
   saveRole,
   errorMessage,
+  configDone,
 }) => {
   const filteredRolesList = rolesList.filter((role) => role !== 'Simple Villageois' && role !== 'Loup-Garou');
   const filteredVillageList = villageList.filter((role) => role !== 'Fermier' && role !== 'Vagabond');
 
-  let configDone = false;
-  if (villageList.length === 0 && chosenHiddenRoles.length === numberPlayers) {
-    configDone = true;
-  }
-  else if (villageList.length > 0 && (chosenHiddenRoles.length === numberPlayers && chosenVillageRoles.length === numberPlayers)) {
-    configDone = true;
-  }
-  console.log(chosenHiddenRoles.length === numberPlayers && chosenVillageRoles.length === numberPlayers);
   const history = useHistory();
   const handleClickOnReturn = () => {
     history.goBack();

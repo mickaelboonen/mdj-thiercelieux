@@ -58,3 +58,8 @@ export const saveRole = (value, id, name, checked) => ({
   name,
   checked,
 });
+
+export const SAVE_ROLES_RANDOMLY = 'SAVE_ROLES_RANDOMLY';
+export const setRolesRandomly = () => ({
+  type: SAVE_ROLES_RANDOMLY,
+});

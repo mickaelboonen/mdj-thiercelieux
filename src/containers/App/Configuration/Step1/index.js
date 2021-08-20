@@ -10,8 +10,8 @@ import {
 } from 'src/actions/gameConfiguration';
 
 const mapStateToProps = (state) => ({
-  errorMessage: state.game.errorMessage,
-  nextStepSlug: state.game.configuration.rolesAttribution,
+  errorMessage: state.configuration.errorMessage,
+  nextStepSlug: state.configuration.configuration.rolesAttribution,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -1,3 +1,5 @@
+import { generateRandomNumber } from 'src/selectors/generateRandomNumber';
+
 export const updateHiddenRolesArray = (currentRole, playersArray, list) => {
   let newRolesArray = [];
 
@@ -113,4 +115,53 @@ export const checkTotalRoles = (roles, errors, number, name) => {
     }
   }
   return newErrorMessageArray;
+};
+
+export const setRolesRandomly = (roles, players, category) => {
+  let playersWithRoles = [];
+  let newRoles = roles;
+  if (category === 'hidden') {
+    playersWithRoles = players.map((player) => {
+      let playersNewRole = '';
+      let randomNumber = generateRandomNumber(newRoles.length);
+
+      if (newRoles.length === 1) {
+        randomNumber = 0;
+      }
+      playersNewRole = newRoles[randomNumber];
+      player.hiddenRole = playersNewRole;
+      newRoles[randomNumber] = '';
+      newRoles = newRoles.filter((role) => role !== '');
+      return player;
+    });
+  }
+  else if (category === 'village') {
+    playersWithRoles = players.map((player) => {
+      let playersNewRole = '';
+      let randomNumber = generateRandomNumber(newRoles.length);
+
+      if (newRoles.length === 1) {
+        randomNumber = 0;
+      }
+      playersNewRole = newRoles[randomNumber];
+      player.villageRole = playersNewRole;
+      newRoles[randomNumber] = '';
+      newRoles = newRoles.filter((role) => role !== '');
+      return player;
+    });
+  }
+  return playersWithRoles;
+};
+
+export const checkConfiguration = (conf, roles, village) => {
+  let configDone = false;
+  const { games, playersNumber } = conf;
+  console.log(games.indexOf('Le Village') === -1 && roles === Number(playersNumber), roles, Number(playersNumber));
+  if (games.indexOf('Le Village') === -1 && roles === Number(playersNumber)) {
+    configDone = true;
+  }
+  else if (games.indexOf('Le Village') > -1 && (roles === Number(playersNumber) && village === Number(playersNumber))) {
+    configDone = true;
+  }
+  return configDone;
 };

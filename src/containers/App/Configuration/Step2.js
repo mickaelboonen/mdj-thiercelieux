@@ -3,17 +3,21 @@ import Step2 from 'src/components/App/Configuration/Step2';
 
 import {
   addNewPlayer,
+  setRolesRandomly,
 } from 'src/actions/gameConfiguration';
 
 const mapStateToProps = (state) => ({
-  configuration: state.game.configuration,
-  players: state.game.players,
-  addingNewPlayer: state.game.addingNewPlayer,
+  configuration: state.configuration.configuration,
+  players: state.configuration.players,
+  addingNewPlayer: state.configuration.addingNewPlayer,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   addNewPlayer: () => {
     dispatch(addNewPlayer());
+  },
+  setRolesRandomly: () => {
+    dispatch(setRolesRandomly());
   },
 });
 
