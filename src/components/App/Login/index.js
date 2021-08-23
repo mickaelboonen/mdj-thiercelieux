@@ -17,7 +17,7 @@ const Login = ({ login }) => {
 
   const onSubmit = (data) => {
     console.log("Succès", data);
-    // login(data);
+    login(data);
   };
   return (
     <div className="login">

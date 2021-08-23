@@ -1,6 +1,6 @@
 // == Import npm
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 // import { users } from 'src/data/users';
 
@@ -28,20 +28,25 @@ import Register from './Register';
 // Free comment
 
 // == Composant
-const App = () => (
+const App = ({ isConnected }) => (
   <div className="app">
     <Switch>
       <Route path="/coucher-de-soleil" exact component={Sunset} />
       <Route path="/partie-en-cours" exact component={CurrentGame} />
       <Route path="/s'inscrire" exact component={Register} />
-      <Route path="/se-connecter" exact component={Login} />
+      <Route path="/se-connecter" exact>
+        {isConnected ? <Redirect to="/" /> : <Login />}
+      </Route>
+
       <Route>
         <Header />
         <main>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/le-jeu/:slug" exact component={RolesDescriptions} />
-            <Route path="/configurer-ma-partie/:slug" exact component={Configuration} />
+            <Route path="/configurer-ma-partie/:slug" exact>
+              {!isConnected ? <Redirect to="/se-connecter" /> : <Configuration />}
+            </Route>
             <Route path="/les-jeux">
               <Switch>
                 <Route path="/les-jeux/:slug" exact component={Game} />

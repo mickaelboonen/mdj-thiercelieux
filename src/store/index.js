@@ -7,6 +7,7 @@ import reducer from 'src/reducers';
 
 // Middlewares
 import gameMiddleware from 'src/middlewares/gameMiddleware';
+import loginMiddleware from 'src/middlewares/loginMiddleware';
 
 // const persistConfig = {
 //   key: 'root',
@@ -24,6 +25,7 @@ import gameMiddleware from 'src/middlewares/gameMiddleware';
 // Lining up all the middlewares
 const middlewares = applyMiddleware(
   gameMiddleware,
+  loginMiddleware,
 
 );
 

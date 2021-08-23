@@ -20,8 +20,8 @@ const DropdownBurger = ({ isBurgerOpen, isConnected }) => (
       <Link to="/le-jeu/les-villageois"><li className="dropdown__list-li">Les Villageois</li></Link>
       <Link to=""><div className="dropdown__list-separator" /></Link>
       {/* Vue conditionnelle pour les suivants */}
-      {isConnected && <Link to="/se-connecter"><li className="dropdown__list-li">Sign in</li></Link>}
-      {isConnected && <Link to="/s'inscrire"><li className="dropdown__list-li">Sign up</li></Link>}
+      {!isConnected && <Link to="/se-connecter"><li className="dropdown__list-li">Sign in</li></Link>}
+      {!isConnected && <Link to="/s'inscrire"><li className="dropdown__list-li">Sign up</li></Link>}
       {isConnected && <Link to="/profil"><li className="dropdown__list-li">Mon Compte</li></Link>}
       {isConnected && <Link to="/ma-messagerie"><li className="dropdown__list-li">Messagerie</li></Link>}
       {isConnected && <Link to="/"><li className="dropdown__list-li">Log out</li></Link>}
