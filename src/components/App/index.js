@@ -7,8 +7,9 @@ import { Switch, Route } from 'react-router-dom';
 import Header from 'src/components/App/Header';
 import Home from 'src/components/App/Home';
 import Footer from 'src/components/App/Footer';
-import CurrentGame from 'src/components/App/CurrentGame';
 
+
+import CurrentGame from 'src/containers/App/CurrentGame';
 import Game from 'src/containers/App/Expansions/Game';
 import Specificity from 'src/containers/App/Expansions/Specificity';
 import RolesDescriptions from 'src/containers/App/RolesDescriptions';
