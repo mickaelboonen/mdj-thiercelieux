@@ -89,7 +89,7 @@ const Step2 = ({
             type="button"
             onClick={handleClickToValidate}
           >
-            Valider
+            <Link to="/coucher-de-soleil">Valider</Link>
           </button>
           )}
           <span className="configuration__settings-buttons-back">
