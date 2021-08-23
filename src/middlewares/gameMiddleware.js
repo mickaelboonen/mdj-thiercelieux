@@ -1,11 +1,28 @@
-import { SET_GAME } from 'src/actions/game';
+// import axios from 'axios';
+
+import { SET_GAME, savePlayersFinalArray } from 'src/actions/game';
 
 import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
-import { savePlayersFinalArray } from 'src/actions/game';
+
+// axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+
+// const api = axios.create({
+//   baseURL: 'http://localhost:3001',
+// });
+
+// api.defaults.headers.common['Authorization'] = 'OurSuperLongRandomSecretToSignOurJWTgre5ezg4jyt5j4ui64gn56bd4sfs5qe4erg5t5yjh46yu6knsw4q';
+// console.log(api.defaults);
 
 const gameMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case SET_GAME: {
+      // api.get('/recipes')
+      //   .then((response) => {
+      //     console.log(response);
+      //   })
+      //   .catch((error) => {
+      //     console.error('tags request', error);
+      //   });
       const {
         configuration: {
           configuration,
