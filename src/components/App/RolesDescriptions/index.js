@@ -22,6 +22,10 @@ const Roles = ({
   useEffect(() => {
     fillReducer(currentPage);
   }, [currentPage]);
+  
+  useEffect(() => {
+    console.log('rnedu');
+  })
   return (
     <div className="roles">
       {!loading && (
