@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Edit } from 'react-feather';
 
@@ -9,6 +9,7 @@ import './style.scss';
 import ancien from 'src/assets/pictures/roles/ancien.png';
 import ange from 'src/assets/pictures/roles/ange.png';
 import chasseur from 'src/assets/pictures/roles/chasseur.png';
+import Avatars from './Avatars';
 
 const PersonalDetails = ({
   pseudo,
@@ -40,8 +41,8 @@ const PersonalDetails = ({
   };
 
   const handleClickOnEdit = () => {
-    const libElement = document.querySelector('.personaldetails__form-identity-avatar-lib');
-    libElement.classList.toggle('personaldetails__form-identity-avatar-lib--open');
+    const avatarsElement = document.querySelector('.avatars');
+    avatarsElement.classList.toggle('avatars--open');
   };
 
   const handleClickToSaveNewAvatar = () => {
@@ -65,7 +66,7 @@ const PersonalDetails = ({
     const emailElement = document.querySelector('#email-value');
     const emailInputElement = document.querySelector('#email-input');
 
-    emailElement.classList.toggle('personaldetails__form-identity-email-value--hidden');
+    emailElement.classList.toggle('personaldetails__form-email-value--hidden');
     emailInputElement.type = 'email';
     emailInputElement.focus();
   };
@@ -78,7 +79,15 @@ const PersonalDetails = ({
     pseudoInputElement.type = 'hidden';
 
     if (watch().pseudo !== '') {
-      pseudoElement.innerText = watch().pseudo;
+      if (watch().email.length < 7) {
+        setError('pseudo', {
+          type: 'manual',
+          message: 'Votre pseudo doit comporter 7 caractères au minimum.',
+        });
+      }
+      else {
+        pseudoElement.innerText = watch().pseudo;
+      }
     }
   };
 
@@ -98,22 +107,37 @@ const PersonalDetails = ({
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="personaldetails__form-identity">
             <div className="personaldetails__form-identity-avatar">
-              <img src={avatar} alt="" />
+              <img className="personaldetails__form-identity-avatar-image" src={avatar} alt="" />
               <button
                 type="button"
+                className="personaldetails__form-identity-avatar-button"
                 onClick={handleClickOnEdit}
               >
-                <Edit />
+                <Edit color="white" />
               </button>
-              <div className="personaldetails__form-identity-avatar-lib">
-                <img className="personaldetails__form-identity-avatar-lib-item" src={ange} alt="ange" id="ange" onClick={handleClickOnNewAvatar} />
-                <img className="personaldetails__form-identity-avatar-lib-item" src={chasseur} alt="" id="chasseur" onClick={handleClickOnNewAvatar} />
-                <img className="personaldetails__form-identity-avatar-lib-item" src={ancien} alt="" id="ancien" onClick={handleClickOnNewAvatar} />
-                <button type="button" onClick={handleClickToSaveNewAvatar}>Choisir l'avatar</button>
-              </div>
+              <Avatars />
+              {/* <div className="personaldetails__form-identity-avatar-lib">
+                <div>
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={ange} alt="ange" id="ange" onClick={handleClickOnNewAvatar} />
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={chasseur} alt="" id="chasseur" onClick={handleClickOnNewAvatar} />
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={ancien} alt="" id="ancien" onClick={handleClickOnNewAvatar} />
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={ange} alt="ange" id="ange" onClick={handleClickOnNewAvatar} />
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={chasseur} alt="" id="chasseur" onClick={handleClickOnNewAvatar} />
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={ancien} alt="" id="ancien" onClick={handleClickOnNewAvatar} />
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={ange} alt="ange" id="ange" onClick={handleClickOnNewAvatar} />
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={chasseur} alt="" id="chasseur" onClick={handleClickOnNewAvatar} />
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={ancien} alt="" id="ancien" onClick={handleClickOnNewAvatar} />
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={ange} alt="ange" id="ange" onClick={handleClickOnNewAvatar} />
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={chasseur} alt="" id="chasseur" onClick={handleClickOnNewAvatar} />
+                  <img className="personaldetails__form-identity-avatar-lib-item" src={ancien} alt="" id="ancien" onClick={handleClickOnNewAvatar} />
+                </div>
+                <div>
+                  <button type="button" onClick={handleClickToSaveNewAvatar}>Choisir l'avatar</button>
+                </div>
+              </div> */}
             </div>
             <div className="personaldetails__form-identity-pseudo">
-              <label>Pseudo :</label>
+              <label>Pseudo</label>
               <p
                 className="personaldetails__form-identity-pseudo-value"
                 onClick={handleClickOnPseudo}
@@ -129,12 +153,13 @@ const PersonalDetails = ({
                 placeholder={pseudo}
                 onBlur={handleBlurOnPseudo}
               />
+              {errors.pseudo && <p className="personaldetails__form-identity-pseudo-error">{errors.pseudo.message}</p>}
             </div>
           </div>
           <div className="personaldetails__form-email">
-            <label>Email :</label>
+          <label>Email</label>
             <p
-              className="personaldetails__form-identity-email-value"
+              className="personaldetails__form-email-value"
               id="email-value"
               onClick={handleClickOnEmail}
             >
@@ -142,16 +167,16 @@ const PersonalDetails = ({
             </p>
             <input
               {...register('email')}
-              className="personaldetails__form-identity-email-input"
+              className="personaldetails__form-email-input"
               placeholder={email}
               type="hidden"
               id="email-input"
               onBlur={handleBlurOnEmail}
             />
-            {errors.email && <p className="errorMessage">{errors.email.message}</p>}
+            {errors.email && <p className="personaldetails__form-email-error">{errors.email.message}</p>}
           </div>
-          <div className="personaldetails__form-editable">
-            <label>Mot de passe actuel :</label>
+          <div className="personaldetails__form-passwords">
+            <label>Mot de passe actuel</label>
             <input
               {...register('actualPassword', {
                 required: 'Vous devez préciser un mot de passe.',
@@ -162,27 +187,33 @@ const PersonalDetails = ({
               })}
               type="password"
               id="actualPassword"
+              className="personaldetails__form-passwords-input"
             />
-            {errors.actualPassword && <p className="errorMessage">{errors.actualPassword.message}</p>}
-            <label>Nouveau mot de passe :</label>
+            {errors.actualPassword && <p className="personaldetails__form-passwords-error">{errors.actualPassword.message}</p>}
+            <label>Nouveau mot de passe</label>
             <input
               type="password"
               id="newPassword"
               {...register('newPassword')}
+              className="personaldetails__form-passwords-input"
             />
-            {errors.newPassword && <p className="errorMessage">{errors.newPassword.message}</p>}
-            <label>Confirmez le mot de passe :</label>
+            {errors.newPassword && <p className="personaldetails__form-passwords-error">{errors.newPassword.message}</p>}
+            <label>Confirmez le mot de passe</label>
             <input
               type="password"
               id="confirmPassword"
+              className="personaldetails__form-passwords-input"
               {...register('confirmPassword', {
                 validate: (value) => value === newPassword.value || 'Les mots de passe ne sont pas identiques.',
               })}
             />
-            {errors.confirmPassword && <p className="errorMessage">{errors.confirmPassword.message}</p>}
+            {errors.confirmPassword && <p className="personaldetails__form-passwords-error">{errors.confirmPassword.message}</p>}
           </div>
           {/* <div className="personaldetails__form-message">Message succès</div> */}
-          <button type="submit" className="personaldetails__form-submit">Valider les changements</button>
+          <div className="personaldetails__form-submit">
+            <button type="submit">Valider les changements</button>
+            <Link to="/profil">Retour</Link>
+          </div>
         </form>
       </div>
     </div>
