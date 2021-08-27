@@ -6,7 +6,7 @@ import chasseur from 'src/assets/pictures/roles/chasseur.png';
 
 import './style.scss';
 
-const Avatars = () => {
+const Avatars = ({ changeAvatar }) => {
   const handleClickOnNewAvatar = (event) => {
     const avatarElements = document.querySelectorAll('.avatars__list-item');
     avatarElements.forEach((el) => {
@@ -15,18 +15,18 @@ const Avatars = () => {
       }
     });
   };
-  
-  const handleClickToSaveNewAvatar = () => {
-    const chosenAvatar = document.querySelectorAll('.avatars__list-item--selected');
-    if (chosenAvatar.length === 1) {
-      // changeAvatar(chosenAvatar[0].id);
-      // handleClickOnEdit();
-    }
-  };
 
   const handleGoBackClick = () => {
     const avatarsElement = document.querySelector('.avatars');
     avatarsElement.classList.remove('avatars--open');
+  };
+
+  const handleClickToSaveNewAvatar = () => {
+    const chosenAvatar = document.querySelectorAll('.avatars__list-item--selected');
+    if (chosenAvatar.length === 1) {
+      changeAvatar(chosenAvatar[0].id);
+      handleGoBackClick();
+    }
   };
   return (
     <div className="avatars">
@@ -46,7 +46,7 @@ const Avatars = () => {
         <img className="avatars__list-item" src={ancien} alt="" id="ancien" onClick={handleClickOnNewAvatar} />
       </div>
       <div className="avatars__button">
-        <button type="button" onClick={handleClickToSaveNewAvatar}>Choisir l'avatar</button>
+        <button type="button" onClick={handleClickToSaveNewAvatar}>Valider le changement</button>
         <p onClick={handleGoBackClick}>Retour</p>
       </div>
     </div>
@@ -54,6 +54,7 @@ const Avatars = () => {
 };
 
 Avatars.propTypes = {
+  changeAvatar: PropTypes.func.isRequired,
 
 };
 

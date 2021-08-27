@@ -6,16 +6,12 @@ import { Edit } from 'react-feather';
 
 import './style.scss';
 
-import ancien from 'src/assets/pictures/roles/ancien.png';
-import ange from 'src/assets/pictures/roles/ange.png';
-import chasseur from 'src/assets/pictures/roles/chasseur.png';
-import Avatars from './Avatars';
+import Avatars from 'src/containers/App/ProfileUser/PersonalDetails/Avatars';
 
 const PersonalDetails = ({
   pseudo,
   email,
   avatar,
-  changeAvatar,
 }) => {
   const {
     register,
@@ -31,26 +27,9 @@ const PersonalDetails = ({
     console.log('Succès', data);
     // login(data);
   };
-  const handleClickOnNewAvatar = (event) => {
-    const avatarElements = document.querySelectorAll('.personaldetails__form-identity-avatar-lib-item');
-    avatarElements.forEach((el) => {
-      if (el === event.currentTarget) {
-        el.classList.toggle('personaldetails__form-identity-avatar-lib-item--selected');
-      }
-    });
-  };
-
   const handleClickOnEdit = () => {
     const avatarsElement = document.querySelector('.avatars');
     avatarsElement.classList.toggle('avatars--open');
-  };
-
-  const handleClickToSaveNewAvatar = () => {
-    const chosenAvatar = document.querySelectorAll('.personaldetails__form-identity-avatar-lib-item--selected');
-    if (chosenAvatar.length === 1) {
-      changeAvatar(chosenAvatar[0].id);
-      handleClickOnEdit();
-    }
   };
 
   const handleClickOnPseudo = () => {
@@ -116,25 +95,6 @@ const PersonalDetails = ({
                 <Edit color="white" />
               </button>
               <Avatars />
-              {/* <div className="personaldetails__form-identity-avatar-lib">
-                <div>
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={ange} alt="ange" id="ange" onClick={handleClickOnNewAvatar} />
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={chasseur} alt="" id="chasseur" onClick={handleClickOnNewAvatar} />
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={ancien} alt="" id="ancien" onClick={handleClickOnNewAvatar} />
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={ange} alt="ange" id="ange" onClick={handleClickOnNewAvatar} />
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={chasseur} alt="" id="chasseur" onClick={handleClickOnNewAvatar} />
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={ancien} alt="" id="ancien" onClick={handleClickOnNewAvatar} />
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={ange} alt="ange" id="ange" onClick={handleClickOnNewAvatar} />
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={chasseur} alt="" id="chasseur" onClick={handleClickOnNewAvatar} />
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={ancien} alt="" id="ancien" onClick={handleClickOnNewAvatar} />
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={ange} alt="ange" id="ange" onClick={handleClickOnNewAvatar} />
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={chasseur} alt="" id="chasseur" onClick={handleClickOnNewAvatar} />
-                  <img className="personaldetails__form-identity-avatar-lib-item" src={ancien} alt="" id="ancien" onClick={handleClickOnNewAvatar} />
-                </div>
-                <div>
-                  <button type="button" onClick={handleClickToSaveNewAvatar}>Choisir l'avatar</button>
-                </div>
-              </div> */}
             </div>
             <div className="personaldetails__form-identity-pseudo">
               <label>Pseudo</label>
@@ -209,7 +169,7 @@ const PersonalDetails = ({
             />
             {errors.confirmPassword && <p className="personaldetails__form-passwords-error">{errors.confirmPassword.message}</p>}
           </div>
-          {/* <div className="personaldetails__form-message">Message succès</div> */}
+          {/* <div className="personaldetails__form-success">Message succès</div> */}
           <div className="personaldetails__form-submit">
             <button type="submit">Valider les changements</button>
             <Link to="/profil">Retour</Link>
@@ -221,7 +181,6 @@ const PersonalDetails = ({
 };
 
 PersonalDetails.propTypes = {
-  changeAvatar: PropTypes.func.isRequired,
 
   // STRINGS
   pseudo: PropTypes.string.isRequired,
