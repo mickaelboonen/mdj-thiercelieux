@@ -8,7 +8,6 @@ import Header from 'src/components/App/Header';
 import Home from 'src/components/App/Home';
 import Footer from 'src/components/App/Footer';
 
-
 import CurrentGame from 'src/containers/App/CurrentGame';
 import Game from 'src/containers/App/Expansions/Game';
 import Specificity from 'src/containers/App/Expansions/Specificity';
@@ -20,10 +19,10 @@ import MessagePrive from 'src/containers/App/Mailbox/MessagePrive';
 import Configuration from 'src/containers/App/Configuration';
 import Sunset from 'src/containers/Animations/Sunset';
 import Login from 'src/containers/App/Login';
+import Register from 'src/containers/App/Register';
 
 import PersonalDetails from './ProfileUser/PersonalDetails';
 import ProfileUser from './ProfileUser';
-import Register from './Register';
 
 // Free comment
 

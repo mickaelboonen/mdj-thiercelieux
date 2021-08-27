@@ -13,14 +13,14 @@ api.defaults.headers.common['Authorization'] = 'OurSuperLongRandomSecretToSignOu
 const gameMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case LOGIN: {
-      api.post('/login')
-        .then((response) => {
-          console.log(response);
-          store.dispatch(saveUser(response.data));
-        })
-        .catch((error) => {
-          console.error('login request', error);
-        });
+      // api.post('/login')
+      //   .then((response) => {
+      //     console.log(response);
+      //     store.dispatch(saveUser(response.data));
+      //   })
+      //   .catch((error) => {
+      //     console.error('login request', error);
+      //   });
       // FAKEDATA
       const user = {
         pseudo: 'Carlos',

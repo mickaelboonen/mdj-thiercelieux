@@ -95,7 +95,7 @@ const gameMiddleware = (store) => (next) => (action) => {
         finalPlayer.villageRole = villageRole;
 
         const { games } = configuration;
-        console.log(games.indexOf('Nouvelle Lune'));
+
         if (games.indexOf('Le Village') === -1) {
           delete finalPlayer.villageAttributes;
         }
@@ -109,6 +109,8 @@ const gameMiddleware = (store) => (next) => (action) => {
         if (att !== undefined) {
           att.forEach((currentAtt) => {
             finalPlayer.roleAttributes[currentAtt] = true;
+            // finalPlayer.roleAttributes.deathPotion = true; (si sorcière)
+            // finalPlayer.roleAttributes.curePotion = true; (si sorcière)
           });
         }
         return finalPlayer;

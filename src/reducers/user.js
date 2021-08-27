@@ -1,4 +1,8 @@
-import { SAVE_USER } from 'src/actions/user';
+import {
+  SAVE_USER,
+  END_REGISTER_PROCESS,
+  SET_REGISTER_ERROR_MESSAGE,
+} from 'src/actions/user';
 
 const initialState = {
   pseudo: '',
@@ -8,7 +12,8 @@ const initialState = {
   preferences: [],
   creations: [],
   statistics: [],
-
+  errors: [],
+  validationMessage: '',
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -33,6 +38,19 @@ const reducer = (state = initialState, action = {}) => {
         creations: creations,
         statistics: statistics,
         favoriteRole: favoriteRole,
+      };
+    }
+    case END_REGISTER_PROCESS:
+      return {
+        ...state,
+        validationMessage: action.message,
+      };
+    case SET_REGISTER_ERROR_MESSAGE: {
+      // TODO GERER TOUTES LES ERREURS COMME DES OBJETS
+      // POUR MATCH LE HOOK
+      return {
+        ...state,
+        errors: action.messages,
       };
     }
     default:
