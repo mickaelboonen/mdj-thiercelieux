@@ -10,8 +10,6 @@ import ancien from 'src/assets/pictures/roles/ancien.png';
 import ange from 'src/assets/pictures/roles/ange.png';
 import chasseur from 'src/assets/pictures/roles/chasseur.png';
 
-// Future evolution : allowing pseudo and email change ?
-
 const PersonalDetails = ({
   pseudo,
   email,
@@ -22,13 +20,14 @@ const PersonalDetails = ({
     register,
     watch,
     handleSubmit,
+    setError,
     formState: {
       errors,
     },
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Succès", data);
+    console.log('Succès', data);
     // login(data);
   };
   const handleClickOnNewAvatar = (event) => {
@@ -54,8 +53,8 @@ const PersonalDetails = ({
   };
 
   const handleClickOnPseudo = () => {
-    const pseudoElement = document.querySelector('.personaldetails__form-identity-pseudo-value');
-    const pseudoInputElement = document.querySelector('.personaldetails__form-identity-pseudo-input');
+    const pseudoElement = document.querySelector('#pseudo-value');
+    const pseudoInputElement = document.querySelector('#pseudo-input');
 
     pseudoElement.classList.toggle('personaldetails__form-identity-pseudo-value--hidden');
     pseudoInputElement.type = 'text';
@@ -63,8 +62,8 @@ const PersonalDetails = ({
   };
 
   const handleClickOnEmail = () => {
-    const emailElement = document.querySelector('.personaldetails__form-identity-email-value');
-    const emailInputElement = document.querySelector('.personaldetails__form-identity-email-input');
+    const emailElement = document.querySelector('#email-value');
+    const emailInputElement = document.querySelector('#email-input');
 
     emailElement.classList.toggle('personaldetails__form-identity-email-value--hidden');
     emailInputElement.type = 'email';
@@ -72,8 +71,8 @@ const PersonalDetails = ({
   };
 
   const handleBlurOnPseudo = () => {
-    const pseudoElement = document.querySelector('.personaldetails__form-identity-pseudo-value--hidden');
-    const pseudoInputElement = document.querySelector('.personaldetails__form-identity-pseudo-input');
+    const pseudoElement = document.querySelector('#pseudo-value');
+    const pseudoInputElement = document.querySelector('#pseudo-input');
 
     pseudoElement.classList.remove('personaldetails__form-identity-pseudo-value--hidden');
     pseudoInputElement.type = 'hidden';
@@ -84,16 +83,14 @@ const PersonalDetails = ({
   };
 
   const handleBlurOnEmail = () => {
-    const emailElement = document.querySelector('.personaldetails__form-identity-email-value--hidden');
-    const emailInputElement = document.querySelector('.personaldetails__form-identity-email-input');
-
-    emailElement.classList.remove('personaldetails__form-identity-email-value--hidden');
-    emailInputElement.type = 'hidden';
-
-    if (watch().email !== '') {
-      emailElement.innerText = watch().email;
+    if (!watch().email.includes('@') && watch().email !== '') {
+      setError('email', {
+        type: 'manual',
+        message: "Veuillez inclure '@' dans l'adresse e-mail",
+      });
     }
   };
+
   return (
     <div className="personaldetails">
       <h3>Mes informations personnelles</h3>
@@ -117,16 +114,17 @@ const PersonalDetails = ({
             </div>
             <div className="personaldetails__form-identity-pseudo">
               <label>Pseudo :</label>
-              <p className="personaldetails__form-identity-pseudo-value" onClick={handleClickOnPseudo}>{pseudo}</p>
+              <p
+                className="personaldetails__form-identity-pseudo-value"
+                onClick={handleClickOnPseudo}
+                id="pseudo-value"
+              >
+                {pseudo}
+              </p>
               <input
-                {...register('pseudo', {
-                  required: 'Vous devez préciser un pseudo.',
-                  minLength: {
-                    value: 3,
-                    message: 'Votre mot de passe doit contenir un minimum de 3 caractères.',
-                  },
-                })}
+                {...register('pseudo')}
                 type="hidden"
+                id="pseudo-input"
                 className="personaldetails__form-identity-pseudo-input"
                 placeholder={pseudo}
                 onBlur={handleBlurOnPseudo}
@@ -135,20 +133,22 @@ const PersonalDetails = ({
           </div>
           <div className="personaldetails__form-email">
             <label>Email :</label>
-            <p className="personaldetails__form-identity-email-value" onClick={handleClickOnEmail}>{email}</p>
+            <p
+              className="personaldetails__form-identity-email-value"
+              id="email-value"
+              onClick={handleClickOnEmail}
+            >
+              {email}
+            </p>
             <input
-              {...register('email', {
-                required: 'Vous devez préciser un email.',
-                minLength: {
-                  value: 3,
-                  message: 'Votre mot de passe doit contenir un minimum de 3 caractères.',
-                },
-              })}
+              {...register('email')}
               className="personaldetails__form-identity-email-input"
               placeholder={email}
               type="hidden"
+              id="email-input"
               onBlur={handleBlurOnEmail}
             />
+            {errors.email && <p className="errorMessage">{errors.email.message}</p>}
           </div>
           <div className="personaldetails__form-editable">
             <label>Mot de passe actuel :</label>
@@ -163,6 +163,7 @@ const PersonalDetails = ({
               type="password"
               id="actualPassword"
             />
+            {errors.actualPassword && <p className="errorMessage">{errors.actualPassword.message}</p>}
             <label>Nouveau mot de passe :</label>
             <input
               type="password"
@@ -180,7 +181,7 @@ const PersonalDetails = ({
             />
             {errors.confirmPassword && <p className="errorMessage">{errors.confirmPassword.message}</p>}
           </div>
-          <div className="personaldetails__form-message">Message succès</div>
+          {/* <div className="personaldetails__form-message">Message succès</div> */}
           <button type="submit" className="personaldetails__form-submit">Valider les changements</button>
         </form>
       </div>
@@ -189,6 +190,7 @@ const PersonalDetails = ({
 };
 
 PersonalDetails.propTypes = {
+  changeAvatar: PropTypes.func.isRequired,
 
   // STRINGS
   pseudo: PropTypes.string.isRequired,
