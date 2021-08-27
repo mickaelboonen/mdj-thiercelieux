@@ -1,13 +1,12 @@
 // == Import npm
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 // import { users } from 'src/data/users';
 
 import Header from 'src/components/App/Header';
 import Home from 'src/components/App/Home';
 import Footer from 'src/components/App/Footer';
-
 
 import CurrentGame from 'src/containers/App/CurrentGame';
 import Game from 'src/containers/App/Expansions/Game';
@@ -19,27 +18,34 @@ import Expansions from 'src/containers/App/Expansions';
 import MessagePrive from 'src/containers/App/Mailbox/MessagePrive';
 import Configuration from 'src/containers/App/Configuration';
 import Sunset from 'src/containers/Animations/Sunset';
+import Login from 'src/containers/App/Login';
+import Register from 'src/containers/App/Register';
 
 import PersonalDetails from './ProfileUser/PersonalDetails';
 import ProfileUser from './ProfileUser';
-import Register from './Register';
 
 // Free comment
 
 // == Composant
-const App = () => (
+const App = ({ isConnected }) => (
   <div className="app">
     <Switch>
       <Route path="/coucher-de-soleil" exact component={Sunset} />
       <Route path="/partie-en-cours" exact component={CurrentGame} />
+      <Route path="/s'inscrire" exact component={Register} />
+      <Route path="/se-connecter" exact>
+        {isConnected ? <Redirect to="/" /> : <Login />}
+      </Route>
+
       <Route>
         <Header />
         <main>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/register" exact component={Register} />
             <Route path="/le-jeu/:slug" exact component={RolesDescriptions} />
-            <Route path="/configurer-ma-partie/:slug" exact component={Configuration} />
+            <Route path="/configurer-ma-partie/:slug" exact>
+              {!isConnected ? <Redirect to="/se-connecter" /> : <Configuration />}
+            </Route>
             <Route path="/les-jeux">
               <Switch>
                 <Route path="/les-jeux/:slug" exact component={Game} />
@@ -57,7 +63,7 @@ const App = () => (
           </Switch>
         </main>
         <Footer />
-        </Route>
+      </Route>
     </Switch>
   </div>
 );

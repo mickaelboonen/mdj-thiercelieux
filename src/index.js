@@ -6,7 +6,7 @@ import { store } from 'src/store';
 // import { persistor } from 'src/store';
 // import { PersistGate } from 'redux-persist/lib/integration/react';
 
-import App from 'src/components/App';
+import App from 'src/containers/App';
 
 const rootReactElement = (
   <Provider store={store}>

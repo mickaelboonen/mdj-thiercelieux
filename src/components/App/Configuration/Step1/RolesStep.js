@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import './style.scss';
 import { Link, useHistory } from 'react-router-dom';
 
+//TODO placeholders
+
 const RolesStep = ({
   rolesList,
   villageList,
@@ -65,7 +67,7 @@ const RolesStep = ({
       </div>
       {villageList.length > 0 && (
       <div className="roles-step__roles">
-        <h5 className="roles-step__roles-title">Les rôles cachés</h5>
+        <h5 className="roles-step__roles-title">Les Villageois</h5>
         <div className="roles-step__roles-selects" id="village-roles-selects">
           <label htmlFor="">Fermiers
             <input type="number" name="Fermier" min="0" max="6" onChange={handleInputNumber} />

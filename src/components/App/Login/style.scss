@@ -1,0 +1,85 @@
+@use 'src/styles/vars';
+
+.login, .register {
+  height: 100vh;
+  background-color: #1a1a1a;
+  color: #707275;
+  font-size: 0.8em;
+  
+  &__logo {
+    height: 35%;
+  }
+
+  &__form {
+    padding: vars.$gutter;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: auto;
+
+    &-validation {
+      background-color: #44ad5b;
+      color: #00461b;
+      padding: 0.7rem;
+      border-radius: 15px;
+      border: 0;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      & a {
+        color: #000;
+        text-decoration: 1px underline dotted;
+        font-style: italic;
+        margin-top: 0.5rem;
+      }
+    }
+
+    &-input {
+      background-color: #3c4b65;
+      padding: 0.7rem;
+      border-radius: 15px;
+      border: 0;
+      margin-top: 0.3rem;
+    }
+
+    &-error {
+      margin: 0.5rem 0;
+      font-style: italic;
+      color: rgb(118,8,23);
+    }
+
+    &-inscription {
+      margin: auto;
+      margin-bottom: 0.7rem;
+      
+
+      & a {
+        font-style: italic;
+        text-decoration: 1px underline dotted;
+        color: rgba(118,8,23,1);
+      }
+    }
+
+    &-link {
+      text-align: right;
+      margin: 1.5rem 0;
+    }
+
+    &-button {
+       display: flex;
+       justify-content: center;
+
+      & button {
+        width: 100%;
+        background-color:rgba(118,8,23);
+        border: 0;
+        padding: 0.7rem;
+        border-radius: 15px;
+        color: #fff;
+
+    }
+  }
+}
+}
