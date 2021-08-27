@@ -2,13 +2,19 @@ import {
   SAVE_USER,
   END_REGISTER_PROCESS,
   SET_REGISTER_ERROR_MESSAGE,
+  SAVE_AVATAR,
+  SAVE_PSEUDO_IN_STATE,
+  SAVE_EMAIL_IN_STATE,
 } from 'src/actions/user';
 
+import avatarPicture from 'src/assets/pictures/cards/croissant.gif';
+
 const initialState = {
-  pseudo: '',
+  pseudo: 'FakePseudo',
   isConnected: false,
+  email: 'fakeemail@lol.com',
   token: '',
-  avatar: '',
+  avatar: avatarPicture,
   preferences: [],
   creations: [],
   statistics: [],
@@ -23,6 +29,7 @@ const reducer = (state = initialState, action = {}) => {
         pseudo,
         token,
         avatar,
+        email,
         preferences,
         creations,
         statistics,
@@ -38,6 +45,7 @@ const reducer = (state = initialState, action = {}) => {
         creations: creations,
         statistics: statistics,
         favoriteRole: favoriteRole,
+        email: email,
       };
     }
     case END_REGISTER_PROCESS:
@@ -51,6 +59,24 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         errors: action.messages,
+      };
+    }
+    case SAVE_AVATAR: {
+      return {
+        ...state,
+        avatar: action.avatar,
+      };
+    }
+    case SAVE_PSEUDO_IN_STATE: {
+      return {
+        ...state,
+        pseudo: action.value,
+      };
+    }
+    case SAVE_EMAIL_IN_STATE: {
+      return {
+        ...state,
+        email: action.value,
       };
     }
     default:

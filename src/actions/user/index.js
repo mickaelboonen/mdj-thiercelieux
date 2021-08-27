@@ -27,3 +27,27 @@ export const setRegisterErrorMessage = (messages) => ({
   type: SET_REGISTER_ERROR_MESSAGE,
   messages,
 });
+
+export const CHANGE_AVATAR = 'CHANGE_AVATAR';
+export const changeAvatar = (name) => ({
+  type: CHANGE_AVATAR,
+  name,
+});
+
+export const SAVE_AVATAR = 'SAVE_AVATAR';
+export const saveAvatar = (avatar) => ({
+  type: SAVE_AVATAR,
+  avatar,
+});
+
+export const SAVE_PSEUDO_IN_STATE = 'SAVE_PSEUDO_IN_STATE';
+export const savePseudoInState = (value) => ({
+  type: SAVE_PSEUDO_IN_STATE,
+  value,
+});
+
+export const SAVE_EMAIL_IN_STATE = 'SAVE_EMAIL_IN_STATE';
+export const saveEmailInState = (value) => ({
+  type: SAVE_EMAIL_IN_STATE,
+  value,
+});
