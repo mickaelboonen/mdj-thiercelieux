@@ -28,6 +28,37 @@ export const setRegisterErrorMessage = (messages) => ({
   messages,
 });
 
+
+export const FETCH_USERS = 'FETCH_USERS';
+export const fetchUsers = (value) => ({
+  type: FETCH_USERS,
+  value,
+});
+
+export const SAVE_USERS_LIST = 'SAVE_USERS_LIST';
+export const saveUsersList = (list) => ({
+  type: SAVE_USERS_LIST,
+  list,
+});
+
+export const ADD_NEW_FRIEND = 'ADD_NEW_FRIEND';
+export const addNewFriend = (name) => ({
+  type: ADD_NEW_FRIEND,
+  name,
+});
+
+export const SAVE_NEW_FRIEND = 'SAVE_NEW_FRIEND';
+export const saveNewFriend = (friend) => ({
+  type: SAVE_NEW_FRIEND,
+  friend,
+});
+
+export const DELETE_FRIEND = 'DELETE_FRIEND';
+export const deleteFriend = (friend) => ({
+  type: DELETE_FRIEND,
+  friend,
+});
+
 export const CHANGE_AVATAR = 'CHANGE_AVATAR';
 export const changeAvatar = (name) => ({
   type: CHANGE_AVATAR,

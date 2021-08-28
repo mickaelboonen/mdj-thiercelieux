@@ -20,7 +20,9 @@ import Configuration from 'src/containers/App/Configuration';
 import Sunset from 'src/containers/Animations/Sunset';
 import Login from 'src/containers/App/Login';
 import Register from 'src/containers/App/Register';
+import Friends from 'src/containers/App/ProfileUser/Friends';
 import PersonalDetails from 'src/containers/App/ProfileUser/PersonalDetails';
+
 
 import ProfileUser from './ProfileUser';
 
@@ -36,7 +38,6 @@ const App = ({ isConnected }) => (
       <Route path="/se-connecter" exact>
         {isConnected ? <Redirect to="/" /> : <Login />}
       </Route>
-
       <Route>
         <Header />
         <main>
@@ -55,6 +56,7 @@ const App = ({ isConnected }) => (
             </Route>
             <Route path="/profil" exact component={ProfileUser} />
             <Route path="/profil/mes-informations" exact component={PersonalDetails} />
+            <Route path="/profil/mes-amis" exact component={Friends} />
             <Route path="/ma-messagerie" exact component={Mailbox} />
             <Route path="/ma-messagerie/:id" exact component={MessagePrive} />
             <Route path="/qui-sommes-nous" exact>
