@@ -2,7 +2,14 @@ import {
   SAVE_USER,
   END_REGISTER_PROCESS,
   SET_REGISTER_ERROR_MESSAGE,
+  SAVE_USERS_LIST,
+  SAVE_NEW_FRIEND,
 } from 'src/actions/user';
+import {
+  CHANGE_VALUE,
+  CLEAR_INPUT,
+  REINITIALIZE_DATA,
+} from 'src/actions/rolesDescriptions';
 
 const initialState = {
   pseudo: '',
@@ -14,10 +21,54 @@ const initialState = {
   statistics: [],
   errors: [],
   validationMessage: '',
+  usersInput: '',
+  usersList: [],
+  friends: [
+    {
+      id: 2,
+      username: 'Hel',
+    },
+    {
+      id: 7,
+      username: 'Quentin',
+    },
+    {
+      id: 11,
+      username: 'Chris',
+    },
+  ],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case REINITIALIZE_DATA:
+      return {
+        ...state,
+        usersList: [],
+      };
+    case SAVE_NEW_FRIEND: {
+      const newArray = state.friends;
+      newArray.push(action.friend);
+      return {
+        ...state,
+        friends: newArray,
+      };
+    }
+    case SAVE_USERS_LIST:
+      return {
+        ...state,
+        usersList: action.list,
+      };
+    case CHANGE_VALUE:
+      return {
+        ...state,
+        usersInput: action.value,
+      };
+    case CLEAR_INPUT:
+      return {
+        ...state,
+        usersInput: '',
+      };
     case SAVE_USER: {
       const {
         pseudo,

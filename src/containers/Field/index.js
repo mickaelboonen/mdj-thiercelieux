@@ -8,6 +8,8 @@ import {
   reinitializeData,
 } from 'src/actions/RolesDescriptions';
 
+import { fetchUsers } from 'src/actions/user';
+
 const mapStateToProps = (state, ownProps) => {
   let value = '';
   if (ownProps.name === 'pseudoInput') {
@@ -15,6 +17,9 @@ const mapStateToProps = (state, ownProps) => {
   }
   else if (ownProps.name === 'rolesInput' || ownProps.name === 'cardsInput' || ownProps.name === 'villageInput') {
     value = state.rolesDescriptions.rolesInput;
+  }
+  else if (ownProps.name === 'usersInput') {
+    value = state.user.usersInput;
   }
   return ({
     value: value,
@@ -26,6 +31,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(changeValue(value, name));
     if (name === 'rolesInput' || name === 'cardsInput' || name === 'villageInput') {
       dispatch(displayResults(value));
+    }
+    else if (name === 'usersInput') {
+      dispatch(fetchUsers(value));
     }
   },
   clearInput: (input) => {

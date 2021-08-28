@@ -27,3 +27,28 @@ export const setRegisterErrorMessage = (messages) => ({
   type: SET_REGISTER_ERROR_MESSAGE,
   messages,
 });
+
+export const FETCH_USERS = 'FETCH_USERS';
+export const fetchUsers = (value) => ({
+  type: FETCH_USERS,
+  value,
+});
+
+export const SAVE_USERS_LIST = 'SAVE_USERS_LIST';
+export const saveUsersList = (list) => ({
+  type: SAVE_USERS_LIST,
+  list,
+});
+
+export const ADD_NEW_FRIEND = 'ADD_NEW_FRIEND';
+export const addNewFriend = (name) => ({
+  type: ADD_NEW_FRIEND,
+  name,
+});
+
+export const SAVE_NEW_FRIEND = 'SAVE_NEW_FRIEND';
+export const saveNewFriend = (friend) => ({
+  type: SAVE_NEW_FRIEND,
+  friend,
+});
+
