@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Field from 'src/containers/Field';
-import Friend from './Friend';
+import Friend from 'src/containers/App/ProfileUser/Friends/Friend';
 
 import './style.scss';
 

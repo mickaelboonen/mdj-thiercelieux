@@ -2,6 +2,7 @@ import axios from 'axios';
 
 import { FETCH_USERS, saveUsersList, ADD_NEW_FRIEND, saveNewFriend } from 'src/actions/user';
 import { users } from 'src/data/users';
+import { DELETE_FRIEND } from '../actions/user';
 
 axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
@@ -30,6 +31,12 @@ const registerMiddleware = (store) => (next) => (action) => {
       const newFriend = users.find((user) => user.username === action.name);
       store.dispatch(saveNewFriend(newFriend));
     }
+      break;
+    case DELETE_FRIEND: // {
+      // TODO request
+      // api.delete('/route', {})
+    // }
+      break;
     default:
   }
   next(action);

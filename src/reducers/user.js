@@ -4,6 +4,7 @@ import {
   SET_REGISTER_ERROR_MESSAGE,
   SAVE_USERS_LIST,
   SAVE_NEW_FRIEND,
+  DELETE_FRIEND,
 } from 'src/actions/user';
 import {
   CHANGE_VALUE,
@@ -41,6 +42,13 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case DELETE_FRIEND: {
+      const newFriendsArray = state.friends.filter((friend) => friend.username !== action.friend);
+      return {
+        ...state,
+        friends: newFriendsArray,
+      };
+    }
     case REINITIALIZE_DATA:
       return {
         ...state,

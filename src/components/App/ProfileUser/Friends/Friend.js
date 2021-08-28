@@ -5,16 +5,19 @@ import { XSquare } from 'react-feather';
 import './style.scss';
 import { Link } from 'react-router-dom';
 
-const Friend = ({ username }) => {
+const Friend = ({
+  username,
+  deleteFriend,
+}) => {
   const handleClickToDelete = (event) => {
     let clickedButtonValue = event.target.id;
     if (clickedButtonValue === '') {
       clickedButtonValue = event.target.parentNode.id;
     }
     if (window.confirm(`Voulez-vous supprimer ${clickedButtonValue} de vos amis ?`)) {
-
+      deleteFriend(clickedButtonValue);
     }
-  }
+  };
   return (
     <div className="friend">
       <Link to="#">
@@ -33,6 +36,7 @@ const Friend = ({ username }) => {
 
 Friend.propTypes = {
   username: PropTypes.string.isRequired,
+  deleteFriend: PropTypes.func.isRequired,
 };
 
 export default Friend;

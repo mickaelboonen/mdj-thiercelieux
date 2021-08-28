@@ -52,3 +52,8 @@ export const saveNewFriend = (friend) => ({
   friend,
 });
 
+export const DELETE_FRIEND = 'DELETE_FRIEND';
+export const deleteFriend = (friend) => ({
+  type: DELETE_FRIEND,
+  friend,
+});
