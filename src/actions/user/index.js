@@ -27,3 +27,26 @@ export const setRegisterErrorMessage = (messages) => ({
   type: SET_REGISTER_ERROR_MESSAGE,
   messages,
 });
+
+export const CHANGE_AVATAR = 'CHANGE_AVATAR';
+export const changeAvatar = (name) => ({
+  type: CHANGE_AVATAR,
+  name,
+});
+
+export const SAVE_AVATAR = 'SAVE_AVATAR';
+export const saveAvatar = (avatar) => ({
+  type: SAVE_AVATAR,
+  avatar,
+});
+
+export const FETCH_AVATARS = 'FETCH_AVATARS';
+export const fetchAvatars = () => ({
+  type: FETCH_AVATARS,
+});
+
+export const SAVE_AVATARS_LIST = 'SAVE_AVATARS_LIST';
+export const saveAvatarsList = (avatars) => ({
+  type: SAVE_AVATARS_LIST,
+  avatars,
+});
