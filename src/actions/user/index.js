@@ -40,14 +40,13 @@ export const saveAvatar = (avatar) => ({
   avatar,
 });
 
-export const SAVE_PSEUDO_IN_STATE = 'SAVE_PSEUDO_IN_STATE';
-export const savePseudoInState = (value) => ({
-  type: SAVE_PSEUDO_IN_STATE,
-  value,
+export const FETCH_AVATARS = 'FETCH_AVATARS';
+export const fetchAvatars = () => ({
+  type: FETCH_AVATARS,
 });
 
-export const SAVE_EMAIL_IN_STATE = 'SAVE_EMAIL_IN_STATE';
-export const saveEmailInState = (value) => ({
-  type: SAVE_EMAIL_IN_STATE,
-  value,
+export const SAVE_AVATARS_LIST = 'SAVE_AVATARS_LIST';
+export const saveAvatarsList = (avatars) => ({
+  type: SAVE_AVATARS_LIST,
+  avatars,
 });

@@ -3,8 +3,7 @@ import {
   END_REGISTER_PROCESS,
   SET_REGISTER_ERROR_MESSAGE,
   SAVE_AVATAR,
-  SAVE_PSEUDO_IN_STATE,
-  SAVE_EMAIL_IN_STATE,
+  SAVE_AVATARS_LIST,
 } from 'src/actions/user';
 
 import avatarPicture from 'src/assets/pictures/cards/croissant.gif';
@@ -19,6 +18,7 @@ const initialState = {
   creations: [],
   statistics: [],
   errors: [],
+  avatars: [],
   validationMessage: '',
 };
 
@@ -67,18 +67,11 @@ const reducer = (state = initialState, action = {}) => {
         avatar: action.avatar,
       };
     }
-    case SAVE_PSEUDO_IN_STATE: {
+    case SAVE_AVATARS_LIST:
       return {
         ...state,
-        pseudo: action.value,
+        avatars: action.avatars,
       };
-    }
-    case SAVE_EMAIL_IN_STATE: {
-      return {
-        ...state,
-        email: action.value,
-      };
-    }
     default:
       return state;
   }

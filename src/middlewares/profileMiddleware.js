@@ -1,9 +1,13 @@
 import axios from 'axios';
-import ancien from 'src/assets/pictures/roles/ancien.png';
-import ange from 'src/assets/pictures/roles/ange.png';
-import chasseur from 'src/assets/pictures/roles/chasseur.png';
 
-import { CHANGE_AVATAR, saveAvatar } from 'src/actions/user';
+import { hiddenRoles } from 'src/data/hiddenRoles';
+
+import {
+  CHANGE_AVATAR,
+  saveAvatar,
+  FETCH_AVATARS,
+  saveAvatarsList,
+} from 'src/actions/user';
 
 axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
@@ -16,10 +20,9 @@ api.defaults.headers.common['Authorization'] = 'OurSuperLongRandomSecretToSignOu
 const gameMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case CHANGE_AVATAR: {
-      // TODO  on modifiie l'vatar dans la base de données avec l'url qu'on transmet
-      // puis on affiche l'avatar
-      // ocmme ça pas de gestion en meme temps que le form
-
+      const { user: { avatars } } = store.getState();
+      const { image } = avatars.find((avatar) => action.name === avatar.name);
+      // Envoie de la variable image dans la requete
       // api.post('/login')
       //   .then((response) => {
       //     console.log(response);
@@ -29,21 +32,29 @@ const gameMiddleware = (store) => (next) => (action) => {
       //     console.error('login request', error);
       //   });
 
-      // FAKEDATA
-      let avatar = '';
-      if (action.name === 'ange') {
-        avatar = ange;
-      }
-      else if (action.name === 'ancien') {
-        avatar = ancien;
-      }
-      else if (action.name === 'chasseur') {
-        avatar = chasseur;
-      }
-      console.log(action.name, avatar);
-      store.dispatch(saveAvatar(avatar));
+      store.dispatch(saveAvatar(image));
     }
       break;
+    case FETCH_AVATARS: {
+      // api.get('/login')
+      //   .then((response) => {
+      //     console.log(response);
+      //     store.dispatch(saveUser(response.data));
+      //   })
+      //   .catch((error) => {
+      //     console.error('login request', error);
+      //   });
+      const avatars = hiddenRoles.map((role) => {
+        delete role.excerpt;
+        delete role.description;
+        delete role.firstNight;
+        delete role.side;
+        delete role.expansion;
+        return role;
+      });
+      store.dispatch(saveAvatarsList(avatars));
+      break;
+    }
     default:
   }
   next(action);
