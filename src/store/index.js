@@ -8,8 +8,10 @@ import reducer from 'src/reducers';
 // Middlewares
 import gameMiddleware from 'src/middlewares/gameMiddleware';
 import loginMiddleware from 'src/middlewares/loginMiddleware';
-import registerMiddleware from 'src/middlewares/registerMiddleware';
 import usersMiddleware from 'src/middlewares/usersMiddleware';
+import profileMiddleware from 'src/middlewares/profileMiddleware';
+import registerMiddleware from 'src/middlewares/registerMiddleware';
+
 
 // const persistConfig = {
 //   key: 'root',
@@ -28,8 +30,9 @@ import usersMiddleware from 'src/middlewares/usersMiddleware';
 const middlewares = applyMiddleware(
   gameMiddleware,
   loginMiddleware,
-  registerMiddleware,
   usersMiddleware,
+  profileMiddleware,
+  registerMiddleware,
 );
 
 // on met bout à bout le redux devtools et nos middlewares

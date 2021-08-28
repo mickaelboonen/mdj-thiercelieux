@@ -20,3 +20,9 @@ export const DELETE_CONVERSATION = 'DELETE_CONVERSATION';
 export const deleteConversation = () => ({
   type: DELETE_CONVERSATION,
 });
+
+export const ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE';
+export const addNewMessage = (data) => ({
+  type: ADD_NEW_MESSAGE,
+  data,
+});

@@ -28,6 +28,7 @@ export const setRegisterErrorMessage = (messages) => ({
   messages,
 });
 
+
 export const FETCH_USERS = 'FETCH_USERS';
 export const fetchUsers = (value) => ({
   type: FETCH_USERS,
@@ -56,4 +57,27 @@ export const DELETE_FRIEND = 'DELETE_FRIEND';
 export const deleteFriend = (friend) => ({
   type: DELETE_FRIEND,
   friend,
+});
+
+export const CHANGE_AVATAR = 'CHANGE_AVATAR';
+export const changeAvatar = (name) => ({
+  type: CHANGE_AVATAR,
+  name,
+});
+
+export const SAVE_AVATAR = 'SAVE_AVATAR';
+export const saveAvatar = (avatar) => ({
+  type: SAVE_AVATAR,
+  avatar,
+});
+
+export const FETCH_AVATARS = 'FETCH_AVATARS';
+export const fetchAvatars = () => ({
+  type: FETCH_AVATARS,
+});
+
+export const SAVE_AVATARS_LIST = 'SAVE_AVATARS_LIST';
+export const saveAvatarsList = (avatars) => ({
+  type: SAVE_AVATARS_LIST,
+  avatars,
 });

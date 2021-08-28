@@ -5,6 +5,8 @@ import {
   SAVE_USERS_LIST,
   SAVE_NEW_FRIEND,
   DELETE_FRIEND,
+  SAVE_AVATAR,
+  SAVE_AVATARS_LIST,
 } from 'src/actions/user';
 import {
   CHANGE_VALUE,
@@ -12,15 +14,19 @@ import {
   REINITIALIZE_DATA,
 } from 'src/actions/rolesDescriptions';
 
+import avatarPicture from 'src/assets/pictures/cards/croissant.gif';
+
 const initialState = {
-  pseudo: '',
+  pseudo: 'FakePseudo',
   isConnected: false,
+  email: 'fakeemail@lol.com',
   token: '',
-  avatar: '',
+  avatar: avatarPicture,
   preferences: [],
   creations: [],
   statistics: [],
   errors: [],
+  avatars: [],
   validationMessage: '',
   usersInput: '',
   usersList: [],
@@ -82,6 +88,7 @@ const reducer = (state = initialState, action = {}) => {
         pseudo,
         token,
         avatar,
+        email,
         preferences,
         creations,
         statistics,
@@ -97,6 +104,7 @@ const reducer = (state = initialState, action = {}) => {
         creations: creations,
         statistics: statistics,
         favoriteRole: favoriteRole,
+        email: email,
       };
     }
     case END_REGISTER_PROCESS:
@@ -112,6 +120,17 @@ const reducer = (state = initialState, action = {}) => {
         errors: action.messages,
       };
     }
+    case SAVE_AVATAR: {
+      return {
+        ...state,
+        avatar: action.avatar,
+      };
+    }
+    case SAVE_AVATARS_LIST:
+      return {
+        ...state,
+        avatars: action.avatars,
+      };
     default:
       return state;
   }

@@ -25,6 +25,7 @@ const gameMiddleware = (store) => (next) => (action) => {
       const user = {
         pseudo: 'Carlos',
         token: '12345',
+        email: 'carloseatsnash@powerbotton.com',
         avatar: '',
         preferences: [],
         creations: [],

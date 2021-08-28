@@ -21,8 +21,9 @@ import Sunset from 'src/containers/Animations/Sunset';
 import Login from 'src/containers/App/Login';
 import Register from 'src/containers/App/Register';
 import Friends from 'src/containers/App/ProfileUser/Friends';
+import PersonalDetails from 'src/containers/App/ProfileUser/PersonalDetails';
 
-import PersonalDetails from './ProfileUser/PersonalDetails';
+
 import ProfileUser from './ProfileUser';
 
 // Free comment
