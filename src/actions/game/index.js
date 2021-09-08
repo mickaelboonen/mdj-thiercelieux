@@ -20,3 +20,9 @@ export const resetPlayerToDisplay = (id) => ({
   type: RESET_PLAYER_TO_DISPLAY,
   id,
 });
+
+export const KILL_BY_VOTE = 'KILL_BY_VOTE';
+export const killByVote = (name) => ({
+  type: KILL_BY_VOTE,
+  name,
+});

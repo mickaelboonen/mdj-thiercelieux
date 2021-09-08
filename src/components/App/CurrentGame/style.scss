@@ -111,15 +111,25 @@
   }
 }
 
-.cercle {
+.player-info {
   width: 3.5rem;
   height: 3.5rem;
-  background-color: rgb(253, 253, 253);
+  background-color: #3c4b65;
+  color: #fff;
   position: absolute;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   transform: translate(-1.75rem, 1.75rem);
+
+  &--to-be-chopped {
+    background-color: rgb(14, 116, 14);
+  }
+
+  &--dead {
+    
+    background-color: red;
+  }
 
 }

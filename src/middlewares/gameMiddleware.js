@@ -39,10 +39,10 @@ const gameMiddleware = (store) => (next) => (action) => {
           side: '', // Pour les roles qui changent de coté en cours de partie
           canBeKilled: true,
           canVote: true,
+          isAlive: true,
           roleAttributes: {
             firstnight_call: false,
             // PROPRIETE THIERCELIEUX
-            isAlive: true,
             deadTonight: false,
             inLove: false,
             seenBySeer: false,
