@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import PlayerInfo from './PlayerInfo';
+import classNames from 'classnames';
+
+import PlayerInfo from 'src/containers/App/CurrentGame/PlayerInfo';
 import './style.scss';
 
-const Game = ({ players }) => {
-  console.log(players);
-
+const Game = ({ players, playerToDisplay, resetPlayerToDisplay }) => {
   useEffect(() => {
     const cercles = document.querySelectorAll('.cercle');
 
@@ -32,29 +32,32 @@ const Game = ({ players }) => {
     }
   }, []);
 
+  const handleClick = () => {
+    resetPlayerToDisplay();
+  };
+
   return (
     <div className="current-game">
       <div className="current-game__buttons">
         <button type="button">La nuit tombe...</button>
         <p>Nom de la carte Nouvelle Lune en cours de jeu</p>
       </div>
-        <div className="current-game__players">
-          {/* {players.map((player) => <PlayerInfo key={player.id} {...player} />)} */}
-          <PlayerInfo id={1} />
-          <PlayerInfo id={2} />
-          <PlayerInfo id={3} />
-          <PlayerInfo id={4} />
-          <PlayerInfo id={5} />
-          <PlayerInfo id={6} />
-          <PlayerInfo id={7} />
-          <PlayerInfo id={8} />
-          <PlayerInfo id={9} />
-          <PlayerInfo id={10} />
-          <PlayerInfo id={11} />
-          <PlayerInfo id={12} />
-          <PlayerInfo id={12} />
-          <PlayerInfo id={12} />
+      <div className="current-game__players">
+        {players.map((player) => <PlayerInfo key={player.id} {...player} />)}
+        <input className="current-game__players-button" type="button" />
+        {playerToDisplay.roleAttributes !== undefined && (
+        <div
+          // TODO : A la place des bordeurs, mettre des icones pour le love et la flute > easier
+          className={classNames('current-game__players-player', {
+            'current-game__players-player--inlove': playerToDisplay.roleAttributes.inLove,
+            'current-game__players-player--charmed': playerToDisplay.roleAttributes.isCharmed,
+          })}
+          onClick={handleClick}
+        >
+          <img src={playerToDisplay.picture} alt="" />
         </div>
+        )}
+      </div>
       <div className="current-game__village">
         <h3 className="current-game__village-title">Les VILLAGEOIS</h3>
         <div className="current-game__village-powers">
@@ -76,6 +79,8 @@ const Game = ({ players }) => {
 
 Game.propTypes = {
   players: PropTypes.array.isRequired,
+  playerToDisplay: PropTypes.object.isRequired,
+  resetPlayerToDisplay: PropTypes.func.isRequired,
 };
 
 export default Game;

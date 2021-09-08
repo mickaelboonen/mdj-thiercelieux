@@ -10,7 +10,6 @@ import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
 //   baseURL: 'http://localhost:3001',
 // });
 
-// api.defaults.headers.common['Authorization'] = 'OurSuperLongRandomSecretToSignOurJWTgre5ezg4jyt5j4ui64gn56bd4sfs5qe4erg5t5yjh46yu6knsw4q';
 // console.log(api.defaults);
 
 const gameMiddleware = (store) => (next) => (action) => {
@@ -75,10 +74,8 @@ const gameMiddleware = (store) => (next) => (action) => {
           },
           villageAttributes: {
             hasPower: true,
-  
           },
           newMoonAttributes: {
-  
           },
         };
         // GENERAL ATTRIBUTIONS-------------------------------

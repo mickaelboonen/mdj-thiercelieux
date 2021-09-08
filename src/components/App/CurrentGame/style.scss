@@ -46,6 +46,34 @@
     // border-radius: 50%;
     position: relative;
     padding: 1rem;
+
+    &-player {
+      position: absolute;
+      width: 8rem;
+      height: 8rem;
+      top: calc(50%-4rem);
+      left: calc(50%-4rem);
+      border-radius: 50%;
+
+      &--inlove {
+        border: 3px solid rgb(255, 0, 76);
+      }
+
+      &--charmed {
+        border: 3px solid #f0f;
+      }
+
+      & img {
+        max-width: 100%;
+        border-radius: 50%;
+      }
+    }
+
+    &-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+    }
   }
 
 
@@ -93,4 +121,5 @@
   align-items: center;
   justify-content: center;
   transform: translate(-1.75rem, 1.75rem);
+
 }
