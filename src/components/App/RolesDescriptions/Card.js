@@ -14,6 +14,9 @@ const Card = ({
   const handleClick = () => {
     displayCard(id);
     toggleFocus();
+    const resultsHeight = document.querySelector('.roles__results').offsetHeight;
+    const roleElement = document.querySelector('.roles__results-info');
+    roleElement.style.height = `${resultsHeight}px`;
   };
 
   const firstWord = name.split(' ')[0];
@@ -31,7 +34,6 @@ const Card = ({
         className="card__image"
         src={image}
         alt=""
-        
       /> */}
       <div className="card__name">
         <p className={classNames('card__name-text', { 'card__name-text--too-long': isTooLong })}>{name}</p>

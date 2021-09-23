@@ -15,15 +15,13 @@ const Footer = () => (
           >
             Qui sommes-nous
           </NavLink>
-          </li>
-        <li>Contactez nous</li>
+        </li>
+        <li>
+          Contactez nous
+        </li>
       </ul>
     </nav>
   </div>
 );
-
-Footer.propTypes = {
-
-};
 
 export default Footer;

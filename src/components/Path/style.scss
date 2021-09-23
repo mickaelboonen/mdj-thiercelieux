@@ -6,14 +6,17 @@
      display: inline-block;
      margin-right: 0.2rem;
    }
+
    position: absolute;
    top: vars.$navbar-height;
    padding: 0.4rem 0 0 0.4rem;
    font-style: italic;
    font-size: 0.8em;
-   color: #696868;
+   z-index: 900;
+   
 
    & a {
+     color: #696868;
      text-decoration: 1px underline dotted #696868;
    }
 }
