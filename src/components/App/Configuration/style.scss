@@ -12,19 +12,31 @@
 
 .configuration {
   height: 100vh;
-  background-color: #686767;
+  background-color: vars.$primary-color;
   padding: vars.$navbar-height vars.$gutter vars.$gutter;
 
   &__title {
-    height: 10%;
+    height: 18%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-end;
     text-transform: uppercase;
+
+    & h3, & h4 {
+      color: vars.$tertiary-color;
+      font-family: vars.$fontAbril;
+      filter: drop-shadow(2px 3px 1px rgb(8, 4, 4));
+      width: 100%;
+      text-align: center;
+    }
+
+    & h3 {
+      font-size: 1.5em;
+    }
   }
 
   &__settings {
-    height: 90%;
+    height: 82%;
 
       &-container {
       max-height: 100%;
@@ -51,9 +63,9 @@
     }
 
     &-players {
-      border: 1px solid #1a1a1a;
+      border: 1px solid vars.$primary-color;
       padding: vars.$gutter;
-      background-color: #979595;
+      background-color: vars.$secondary-color;
 
       &-header {
         display: flex;
