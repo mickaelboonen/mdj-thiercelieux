@@ -6,7 +6,7 @@ import wolf from 'src/assets/pictures/wolf.svg';
 import './style.scss';
 import { Link } from 'react-router-dom';
 
-const Login = ({ login }) => {
+const Login = ({ checkAuth }) => {
   const {
     register,
     handleSubmit,
@@ -16,8 +16,7 @@ const Login = ({ login }) => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log("Succès", data);
-    login(data);
+    checkAuth(data);
   };
   return (
     <div className="login">
@@ -67,7 +66,7 @@ const Login = ({ login }) => {
 };
 
 Login.propTypes = {
-
+  checkAuth: PropTypes.func.isRequired,
 };
 
 export default Login;

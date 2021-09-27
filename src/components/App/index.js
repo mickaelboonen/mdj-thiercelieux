@@ -1,5 +1,6 @@
 // == Import npm
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 // import { users } from 'src/data/users';
@@ -22,7 +23,6 @@ import Login from 'src/containers/App/Login';
 import Register from 'src/containers/App/Register';
 import Friends from 'src/containers/App/ProfileUser/Friends';
 import PersonalDetails from 'src/containers/App/ProfileUser/PersonalDetails';
-
 
 import ProfileUser from './ProfileUser';
 
@@ -70,6 +70,10 @@ const App = ({ isConnected }) => (
     </Switch>
   </div>
 );
+
+App.propTypes = {
+  isConnected: PropTypes.bool.isRequired,
+};
 
 // == Export
 export default App;

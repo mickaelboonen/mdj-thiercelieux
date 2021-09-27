@@ -10,7 +10,6 @@ import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
 //   baseURL: 'http://localhost:3001',
 // });
 
-// api.defaults.headers.common['Authorization'] = 'OurSuperLongRandomSecretToSignOurJWTgre5ezg4jyt5j4ui64gn56bd4sfs5qe4erg5t5yjh46yu6knsw4q';
 // console.log(api.defaults);
 
 const gameMiddleware = (store) => (next) => (action) => {
@@ -40,10 +39,10 @@ const gameMiddleware = (store) => (next) => (action) => {
           side: '', // Pour les roles qui changent de coté en cours de partie
           canBeKilled: true,
           canVote: true,
+          isAlive: true,
           roleAttributes: {
             firstnight_call: false,
             // PROPRIETE THIERCELIEUX
-            isAlive: true,
             deadTonight: false,
             inLove: false,
             seenBySeer: false,
@@ -75,10 +74,8 @@ const gameMiddleware = (store) => (next) => (action) => {
           },
           villageAttributes: {
             hasPower: true,
-  
           },
           newMoonAttributes: {
-  
           },
         };
         // GENERAL ATTRIBUTIONS-------------------------------

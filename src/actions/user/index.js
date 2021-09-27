@@ -1,3 +1,9 @@
+export const CHECK_AUTH = 'CHECK_AUTH';
+export const checkAuth = (data) => ({
+  type: CHECK_AUTH,
+  data,
+});
+
 export const LOGIN = 'LOGIN';
 export const login = (data) => ({
   type: LOGIN,

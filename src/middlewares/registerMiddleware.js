@@ -6,7 +6,7 @@ import { SAVE_NEW_USER, endRegisterProcess, setRegisterErrorMessage } from 'src/
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: 'http://localhost:3000',
 });
 
 // Methods
@@ -20,7 +20,7 @@ const registerMiddleware = (store) => (next) => (action) => {
         avatar: avatar,
       };
       delete newUser.confirmPassword;
-      api.post('/register', newUser)
+      api.post('/api/users/create', newUser)
         .then((response) => {
           console.log(response);
           if (response.status === 201) {
