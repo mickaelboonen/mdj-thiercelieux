@@ -10,10 +10,13 @@
 }
 
 
+
+
 .configuration {
-  height: 100vh;
+  height: vars.$main-layout-height;
   background-color: vars.$primary-color;
-  padding: vars.$navbar-height vars.$gutter vars.$gutter;
+  margin-top: vars.$navbar-height;
+  padding: 0 vars.$gutter;
 
   &__title {
     height: 18%;
@@ -52,13 +55,15 @@
       padding: vars.$gutter;
 
       &-item {
-        font-size: 1.2em;
+        @include vars.button;
+        width: fit-content;
       }
 
       &-back {
         margin: 0.5rem auto;
         text-decoration: 1px underline dotted;
         text-underline-offset: 3px;
+        color: vars.$quenary-color;
       }
     }
 
@@ -82,10 +87,25 @@
         justify-content: center;
 
         & button {
+
+          @include vars.button;
+          @include vars.centered-flex;
           width: 3rem;
           height: 3rem;
           border-radius: 50%;
           font-size: 2em;
+          border-top: 1px solid rgb(240, 98, 98);
+          border-left: 1px solid rgb(240, 98, 98);
+          border-bottom: 1px solid rgb(97, 18, 18);
+          border-right: 1px solid rgb(97, 18, 18);
+
+          &:hover {
+            border-bottom: 1px solid rgb(240, 98, 98);
+            border-right: 1px solid rgb(240, 98, 98);
+            border-top: 1px solid rgb(97, 18, 18);
+            border-left: 1px solid rgb(97, 18, 18);
+            text-shadow: 2px 2px 2px rgba(0, 0, 0, 1);
+          }
         }
       }
     }
@@ -142,6 +162,10 @@
 
       &-item {
         display: flex;
+        position: relative;
+        @include vars.checkboxes;
+        @include vars.radio;
+
 
         & label {
           display: flex;

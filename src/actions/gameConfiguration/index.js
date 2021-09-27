@@ -63,3 +63,10 @@ export const SAVE_ROLES_RANDOMLY = 'SAVE_ROLES_RANDOMLY';
 export const setRolesRandomly = () => ({
   type: SAVE_ROLES_RANDOMLY,
 });
+
+export const SAVE_PLAYER_FROM_USER = 'SAVE_PLAYER_FROM_USER';
+export const savePlayerFromUsers = (username, id) => ({
+  type: SAVE_PLAYER_FROM_USER,
+  username,
+  id,
+});

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Field from 'src/containers/Field';
+import UserLi from 'src/containers/App/Configuration/Step2/UserLi';
 
 import './style.scss';
 import { useLocation } from 'react-router-dom';
@@ -12,6 +13,8 @@ const AddPlayer = ({
   villageList,
   saveSelectChange,
   savePlayer,
+  usersList,
+  pseudo,
 }) => {
   const isVillageSelected = games.indexOf('Le Village');
 
@@ -19,9 +22,14 @@ const AddPlayer = ({
     saveSelectChange(event.target.value, event.target.id);
   };
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    savePlayer();
+  const handleClick = () => {
+    if (pseudo !== '') {
+      savePlayer();
+    }
+    else {
+      // TODO
+      // Message d'erreur
+    }
   };
 
   let randomMode = false;
@@ -31,17 +39,17 @@ const AddPlayer = ({
   }
   return (
     <form className="add-form">
-      <div className="add-form__search-input">
-        <input type="text" name="" id="" />
-        <ul className={classNames('add-form__search-results', { 'add-form__search-results--open': true })}>
-          <li className="add-form__search-results-item">Micka</li>
-          <li className="add-form__search-results-item">Quentin</li>
-          <li className="add-form__search-results-item">Océ</li>
-          <li className="add-form__search-results-item">Hel</li>
-          <li className="add-form__search-results-item">Lud</li>
-          <li className="add-form__search-results-item">Ju</li>
-        </ul>
+      <div className="add-form__users-input">
+        <Field
+          id="add-form__user-input"
+          type="text"
+          name="usersInput"
+          placeholder="Veuillez renseigner le prénom"
+        />
       </div>
+      <ul className={classNames('add-form__users-results-list', { 'add-form__users-results-list--open': usersList.length !== 0 })}>
+        {usersList.map((user) => <UserLi {...user} />)}
+      </ul>
       <div className="add-form__pseudo">
         <p>PSEUDO</p>
         <Field
@@ -50,15 +58,6 @@ const AddPlayer = ({
           name="pseudoInput"
           placeholder="Veuillez renseigner le prénom"
         />
-      </div>
-      <div className="add-form__hidden">
-        <div className="add-form__hidden-radio">
-          <div><input type="radio" name="" id="" /><label>Oui</label></div>
-          <div><input type="radio" name="" id="" /><label>Non</label></div>
-        </div>
-        <div className="add-form__hidden-id">
-          <input type="number" name="" id="" />
-        </div>
       </div>
       {!randomMode && (
       <div className="add-form__roles">
@@ -95,6 +94,7 @@ AddPlayer.propTypes = {
   games: PropTypes.array.isRequired,
   rolesList: PropTypes.array.isRequired,
   villageList: PropTypes.array.isRequired,
+  usersList: PropTypes.array.isRequired,
 };
 
 export default AddPlayer;

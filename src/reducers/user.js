@@ -13,6 +13,7 @@ import {
   CLEAR_INPUT,
   REINITIALIZE_DATA,
 } from 'src/actions/rolesDescriptions';
+import { SAVE_PLAYER_FROM_USER } from 'src/actions/gameConfiguration';
 
 import avatarPicture from 'src/assets/pictures/cards/croissant.gif';
 
@@ -48,6 +49,12 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SAVE_PLAYER_FROM_USER:
+      return {
+        ...state,
+        usersList: [],
+        usersInput: '',
+      };
     case DELETE_FRIEND: {
       const newFriendsArray = state.friends.filter((friend) => friend.username !== action.friend);
       return {

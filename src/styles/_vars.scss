@@ -1,5 +1,8 @@
+@use 'sass:math';
+
 $navbar-height: 4rem;
 $main-height: 100vh;
+$main-layout-height: calc(100vh - 8rem);
 $gutter: 1rem;
 $redGradient: linear-gradient( 178.2deg,  rgba(118,8,23,1) 10.9%, rgba(158,12,33,1) 62.6% );
 
@@ -23,3 +26,72 @@ $error-text-color: $tertiary-color;
 
 
 //BREAKPOINTS
+
+
+// BUTTONS
+@mixin button {
+  width: 100%;
+  background-color: $tertiary-color;
+  border: 0;
+  padding: 0.7rem;
+  border-radius: 15px;
+  color: $quenary-color;
+  margin-bottom: 0.2rem;
+}
+
+
+@mixin checkboxes {
+  
+  & input[type=checkbox]:checked::after {
+    content: "\2713";
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    font-size: 9px;
+    font-weight: bold;
+    width: 13px;
+    height: 13px;
+    border-radius: 2px;
+    color: $quenary-color;
+    text-align: center;
+    background-color: $tertiary-color;
+    position: absolute;
+  }
+}
+
+@mixin radio {
+  
+  & input[type=radio]:checked::before {
+    content: "";
+    background-color: $quenary-color;
+    width : 13px;
+    height: 13px;
+    border: 1.5px solid $tertiary-color;
+    border-radius: 50%;
+    position: absolute;
+  }
+
+  & input[type=radio]:checked::before {
+    content: "\2022";
+    color: $tertiary-color;
+    background-color: #fff;          
+    font-size: 28px;
+    position: absolute;
+    line-height: 11px;
+  }
+}
+
+@mixin input-text {
+  background-color: $secondary-color;
+  padding: 0.7rem;
+  border-radius: 15px;
+  border: 0;
+  margin-top: 0.3rem;
+}
+
+
+// DISPLAYS 
+
+@mixin centered-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
