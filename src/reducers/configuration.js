@@ -164,6 +164,7 @@ const reducer = (state = initialState, action = {}) => {
 
       const newPlayer = {
         id: newId,
+        userId: state.userId,
         name: state.pseudo,
         hiddenRole: roleToSave,
         villageRole: state.village,
@@ -181,6 +182,7 @@ const reducer = (state = initialState, action = {}) => {
         players: newPlayersArray,
         addingNewPlayer: false,
         pseudo: '',
+        userId: null,
         role: '',
         village: '',
         rolesList: newRolesArray,

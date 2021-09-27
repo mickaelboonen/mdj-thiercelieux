@@ -13,7 +13,7 @@ const UserLi = ({ username, id, savePlayerFromUsers }) => {
   };
   return (
     <li
-      className="add-form__search-results-item"
+      className="add-form__users-results-list-item"
       onClick={handleClick}
     >
       {username}

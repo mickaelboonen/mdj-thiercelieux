@@ -14,6 +14,7 @@ const AddPlayer = ({
   saveSelectChange,
   savePlayer,
   usersList,
+  pseudo,
 }) => {
   const isVillageSelected = games.indexOf('Le Village');
 
@@ -21,9 +22,14 @@ const AddPlayer = ({
     saveSelectChange(event.target.value, event.target.id);
   };
 
-  const handleClick = (event) => {
-    event.preventDefault();
-    savePlayer();
+  const handleClick = () => {
+    if (pseudo !== '') {
+      savePlayer();
+    }
+    else {
+      // TODO
+      // Message d'erreur
+    }
   };
 
   let randomMode = false;
@@ -33,17 +39,17 @@ const AddPlayer = ({
   }
   return (
     <form className="add-form">
-      <div className="add-form__search-input">
+      <div className="add-form__users-input">
         <Field
           id="add-form__user-input"
           type="text"
           name="usersInput"
           placeholder="Veuillez renseigner le prénom"
         />
-        <ul className={classNames('add-form__search-results', { 'add-form__search-results--open': usersList.length !== 0 })}>
-          {usersList.map((user) => <UserLi {...user} />)}
-        </ul>
       </div>
+      <ul className={classNames('add-form__users-results-list', { 'add-form__users-results-list--open': usersList.length !== 0 })}>
+        {usersList.map((user) => <UserLi {...user} />)}
+      </ul>
       <div className="add-form__pseudo">
         <p>PSEUDO</p>
         <Field
@@ -52,15 +58,6 @@ const AddPlayer = ({
           name="pseudoInput"
           placeholder="Veuillez renseigner le prénom"
         />
-      </div>
-      <div className="add-form__hidden">
-        <div className="add-form__hidden-radio">
-          <div><input type="radio" name="" id="" /><label>Oui</label></div>
-          <div><input type="radio" name="" id="" /><label>Non</label></div>
-        </div>
-        <div className="add-form__hidden-id">
-          <input type="number" name="" id="" />
-        </div>
       </div>
       {!randomMode && (
       <div className="add-form__roles">

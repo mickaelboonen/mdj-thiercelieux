@@ -13,9 +13,10 @@
 
 
 .configuration {
-  height: 100vh;
+  height: vars.$main-layout-height;
   background-color: vars.$primary-color;
-  padding: vars.$navbar-height vars.$gutter vars.$gutter;
+  margin-top: vars.$navbar-height;
+  padding: 0 vars.$gutter;
 
   &__title {
     height: 18%;
