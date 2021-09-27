@@ -12,6 +12,9 @@ const Role = ({
   const handleClick = () => {
     displayRole(id);
     toggleFocus();
+    const resultsHeight = document.querySelector('.roles__results').offsetHeight;
+    const roleElement = document.querySelector('.roles__results-info');
+    roleElement.style.height = `${resultsHeight}px`;
   };
 
   return (

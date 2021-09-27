@@ -3,8 +3,8 @@
 .footer {
     width: 100vw;
     height: vars.$navbar-height;
-    background-color: #1a1a1a;
-    color: white;
+    background-color: vars.$primary-color;
+    color: vars.$quenary-color;
 
     &__navbar {
         padding: vars.$gutter;

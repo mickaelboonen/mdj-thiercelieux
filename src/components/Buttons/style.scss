@@ -10,9 +10,10 @@
 
     & select {
       flex-grow: 1;
+      max-width: 50%;
       margin-right: 0.5rem;
       padding: 0.2rem 0;
-      background-color: #9b9898;
+      background-color: vars.$secondary-color;
       border: 1px solid black;
 
       &:last-child {

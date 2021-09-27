@@ -2,59 +2,122 @@
 
 .game {
   margin-top: vars.$navbar-height;
-  background-color: #3a3737;
+  height: calc(100vh-8rem);
+  background-color: vars.$primary-color;
+  background-color: vars.$quaternary-color;
 
   &__title {
     font-family: vars.$fontAbril;
-    padding: 2rem;
-    text-align: center;
-    
+    background-color: vars.$primary-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15%;
+
+
+    & h2 {
+      color: vars.$tertiary-color;
+      font-family: vars.$fontAbril;
+      filter: vars.$title-shadow;
+    }  
   }
 
-  &__synopsis {
-    padding: vars.$gutter;
+  &__content {
+    height: 85%;
+    overflow: auto;
 
-    &-title {
-      
+    &-synopsis {
+      padding: vars.$gutter;
+
+      &-title {
+        
+        
+      }
+
+      &-image {
+        width: 100px;
+        height: 100px;
+        margin-right: vars.$gutter;
+        float: left;
+        border: 1px solid black;
+      }
+
+      &-description {
+        text-align: justify;
+        
+      }
       
     }
 
-    &-image {
-      width: 100px;
-      height: 100px;
-      margin-right: vars.$gutter;
-      float: left;
-      border: 1px solid black;
-    }
-
-    &-description {
-      text-align: justify;
+    &-roles {
+      padding: vars.$gutter;
       
+      &-list {
+        padding-left: vars.$gutter;
+
+        &-item {
+          margin-bottom: 0.3rem;
+        }
+      }
     }
-    
-  }
 
-  &__roles {
-    padding: vars.$gutter;
-    
-    &-list {
-      padding-left: vars.$gutter;
+    &-specificity {
+      padding: vars.$gutter;
+      
+      &-list {
+        padding-left: vars.$gutter;
 
-      &-item {
-        margin-bottom: 0.3rem;
+        &-item {
+          margin-bottom: 0.3rem;
+        }
       }
     }
   }
 
-  &__specificity {
-    padding: vars.$gutter;
-    
-    &-list {
-      padding-left: vars.$gutter;
+    &__synopsis {
+      padding: vars.$gutter;
 
-      &-item {
-        margin-bottom: 0.3rem;
+      &-title {
+        
+        
+      }
+
+      &-image {
+        width: 100px;
+        height: 100px;
+        margin-right: vars.$gutter;
+        float: left;
+        border: 1px solid black;
+      }
+
+      &-description {
+        text-align: justify;
+        
+      }
+      
+    }
+
+    &__roles {
+      padding: vars.$gutter;
+      
+      &-list {
+        padding-left: vars.$gutter;
+
+        &-item {
+          margin-bottom: 0.3rem;
+        }
       }
     }
-  }
+
+    &__specificity {
+      padding: vars.$gutter;
+      
+      &-list {
+        padding-left: vars.$gutter;
+
+        &-item {
+          margin-bottom: 0.3rem;
+        }
+      }
+    }
 }

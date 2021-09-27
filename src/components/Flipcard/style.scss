@@ -6,7 +6,7 @@
     width: 15em;
     height: 20em;
     background-color: #1a1a1a;
-    border: 1px solid #fff;
+    // border: 1px solid #fff;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
 
         /* This container is needed to position the front and back side */
@@ -34,7 +34,8 @@
       color: #fff;
       
       &-image {
-        max-width: 100%;
+        width: 100%;
+        max-height: calc(100% - 2.5rem);
       }
 
       &-name {

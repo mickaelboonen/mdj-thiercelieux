@@ -1,14 +1,14 @@
 @use 'src/styles/vars';
 
 .dropdown {
-  background-color: #3a3939;
+  background-color: vars.$quaternary-color;
   position: absolute;
   top: -100vh;
   left: 0;
   width: 100vw;
   height: vars.$main-height;
   padding: vars.$gutter;
-  transition: 1.5s;
+  transition: 0.8s;
   z-index: 998;
 
   &__list {
@@ -24,7 +24,7 @@
     &-separator {
       margin: 1rem auto 1rem;
       width: 80%;
-      border-bottom: 1px solid #fff;
+      border-bottom: 1px solid vars.$quenary-color;
     }
   }
 

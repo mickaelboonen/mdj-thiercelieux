@@ -59,7 +59,7 @@ const RolesStep = ({
           {filteredRolesList.map((role) => (
             <li className="roles-step__roles-list-item" key={role}>
               <label>{role}
-                <input type="checkbox" value={role} id={`checkbox-${role}`} onChange={handleCheck} />
+                <input className="roles-step__roles-list-item-checkbox" type="checkbox" value={role} id={`checkbox-${role}`} onChange={handleCheck} />
               </label>
             </li>
           ))}
@@ -80,7 +80,7 @@ const RolesStep = ({
           {filteredVillageList.map((role) => (
           <li className="roles-step__roles-list-item" key={role}>
             <label>{role}
-              <input type="checkbox" value={role} id={`checkbox-${role}`} onChange={handleCheck} />
+              <input className="roles-step__roles-list-item-checkbox" type="checkbox" value={role} id={`checkbox-${role}`} onChange={handleCheck} />
             </label>
           </li>
           ))}

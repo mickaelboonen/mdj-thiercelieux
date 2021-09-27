@@ -1,9 +1,9 @@
 @use 'src/styles/vars';
 
 .login, .register {
-  height: 100vh;
-  background-color: #1a1a1a;
-  color: #707275;
+  height: vars.$main-height;
+  background-color: vars.$primary-color;
+  color: vars.$quaternary-color;
   font-size: 0.8em;
   
   &__logo {
@@ -18,12 +18,12 @@
     margin: auto;
 
     &-validation {
-      background-color: #44ad5b;
-      color: #00461b;
+      background-color: vars.$success-box-color;
+      color: vars.$succes-text-color;
       padding: 0.7rem;
       border-radius: 15px;
       border: 0;
-      margin-top: 1rem;
+      margin-top: vars.$gutter;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -37,7 +37,7 @@
     }
 
     &-input {
-      background-color: #3c4b65;
+      background-color: vars.$secondary-color;
       padding: 0.7rem;
       border-radius: 15px;
       border: 0;
@@ -47,7 +47,7 @@
     &-error {
       margin: 0.5rem 0;
       font-style: italic;
-      color: rgb(118,8,23);
+      color: vars.$tertiary-color;
     }
 
     &-inscription {
@@ -58,7 +58,7 @@
       & a {
         font-style: italic;
         text-decoration: 1px underline dotted;
-        color: rgba(118,8,23,1);
+        color: vars.$tertiary-color;
       }
     }
 
@@ -73,13 +73,12 @@
 
       & button {
         width: 100%;
-        background-color:rgba(118,8,23);
+        background-color:vars.$tertiary-color;
         border: 0;
         padding: 0.7rem;
         border-radius: 15px;
-        color: #fff;
-
+        color: vars.$quenary-color;
+      }
     }
   }
-}
 }

@@ -3,12 +3,15 @@
 .expansions {
 
   height: 50vh;
-  background-color: red;
+  background-color: vars.$primary-color;
   padding: vars.$gutter;
 
   &__title {
     text-align: center;
     margin-bottom: vars.$gutter;
+    color: vars.$tertiary-color;
+    font-family: vars.$fontAbril;
+    filter: drop-shadow(2px 3px 1px rgb(8, 4, 4));
   }
 
   &__slider {

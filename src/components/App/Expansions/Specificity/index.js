@@ -56,23 +56,28 @@ const Specificity = ({ games }) => {
     currentElementTarget.classList.toggle('specificity__rules-item-description--open');
     currentNameTarget.classList.toggle('specificity__rules-item-name--open');
   };
-
   return (
     <div className="specificity">
       <Path />
-      <h2 className="specificity__title">{name}</h2>
-      <div className="specificity__description">
-        <h4 className="specificity__description-title">Description</h4>
-        <p className="specificity__description-text" dangerouslySetInnerHTML={createMarkup(description)} />
+      <div className="specificity__title">
+        <h2>
+          {name}
+        </h2>
       </div>
-      <div className="specificity__rules">
-        <h4 className="specificity__rules-title">Les règles</h4>
-        {rules.map((rule) => (
-          <div className="specificity__rules-item">
-            <div data-id={rule.id} className="specificity__rules-item-name" onClick={handleClick}>{rule.name} <ChevronDown /></div>
-            <div data-id={rule.id} className="specificity__rules-item-description" dangerouslySetInnerHTML={createMarkup(rule.description)} />
-          </div>
-        ))}
+      <div className="specificity__content">
+        <div className="specificity__content-description">
+          <h4 className="specificity__content-description-title">Description</h4>
+          <p className="specificity__content-description-text" dangerouslySetInnerHTML={createMarkup(description)} />
+        </div>
+        <div className="specificity__content-rules">
+          <h4 className="specificity__content-rules-title">Les règles</h4>
+          {rules.map((rule) => (
+            <div className="specificity__content-rules-item" key={rule.id}>
+              <div data-id={rule.id} className="specificity__content-rules-item-name" onClick={handleClick}>{rule.name} <ChevronDown /></div>
+              <div data-id={rule.id} className="specificity__content-rules-item-description" dangerouslySetInnerHTML={createMarkup(rule.description)} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

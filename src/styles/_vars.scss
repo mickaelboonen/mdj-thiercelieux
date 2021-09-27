@@ -2,5 +2,24 @@ $navbar-height: 4rem;
 $main-height: 100vh;
 $gutter: 1rem;
 $redGradient: linear-gradient( 178.2deg,  rgba(118,8,23,1) 10.9%, rgba(158,12,33,1) 62.6% );
+
+// FONTS
 $fontAbril: 'Abril Fatface', cursive;
 $fontRakkas: 'Rakkas', cursive;
+
+// COLORS
+$primary-color: #1a1a1a;
+$secondary-color: #3c4b65;
+$tertiary-color: #760817;
+$quaternary-color: #707275;
+$quenary-color: #fff;
+
+$succes-text-color: #00461b;
+$success-box-color: #44ad5b;
+
+$title-shadow: drop-shadow(2px 3px 1px rgb(8, 4, 4));
+
+$error-text-color: $tertiary-color;
+
+
+//BREAKPOINTS
