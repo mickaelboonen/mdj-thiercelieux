@@ -11,6 +11,7 @@ import {
   SAVE_PLAYER,
   SAVE_ROLE,
   SAVE_ROLES_RANDOMLY,
+  SAVE_PLAYER_FROM_USER,
 } from 'src/actions/gameConfiguration';
 import { CHANGE_VALUE } from 'src/actions';
 
@@ -50,61 +51,57 @@ const initialState = {
     rolesAttribution: 'manual',
   },
   players: [
-    {
-      id: 1,
-      name: 'Micka',
-      hiddenRole: 'Loup-Garou',
-      villageRole: 'Tavernier',
-    },
-    {
-      id: 2,
-      name: 'Quentin',
-      hiddenRole: 'Sorcière',
-      villageRole: 'Institutrice',
-    },
-    {
-      id: 3,
-      name: 'Océane',
-      hiddenRole: 'Cupidon',
-      villageRole: 'Fermier',
-    },
-    {
-      id: 4,
-      name: 'Lud',
-      hiddenRole: 'Villageois',
-      villageRole: 'Fermier',
-    },
-    {
-      id: 5,
-      name: 'Chris',
-      hiddenRole: 'Idiot du Village',
-      villageRole: 'Vagabond',
-    },
-    {
-      id: 6,
-      name: 'BDR',
-      hiddenRole: 'Bouc Émissaire',
-      villageRole: 'Barbier',
-    },
-    {
-      id: 7,
-      name: 'Sasha',
-      hiddenRole: 'Joueur de Flute',
-      villageRole: 'Vagabond',
-    },
-    {
-      id: 8,
-      name: 'Cara',
-      hiddenRole: 'Servante Dévouée',
-      villageRole: 'Bailli',
-    },
+    // {
+    //   id: 1,
+    //   name: 'Micka',
+    //   hiddenRole: 'Loup-Garou',
+    // },
+    // {
+    //   id: 2,
+    //   name: 'Quentin',
+    //   hiddenRole: 'Sorcière',
+    // },
+    // {
+    //   id: 3,
+    //   name: 'Océane',
+    //   hiddenRole: 'Cupidon',
+    // },
+    // {
+    //   id: 4,
+    //   name: 'Lud',
+    //   hiddenRole: 'Villageois',
+    // },
+    // {
+    //   id: 5,
+    //   name: 'Chris',
+    //   hiddenRole: 'Idiot du Village',
+    // },
+    // {
+    //   id: 6,
+    //   name: 'BDR',
+    //   hiddenRole: 'Bouc Émissaire',
+    // },
+    // {
+    //   id: 7,
+    //   name: 'Sasha',
+    //   hiddenRole: 'Joueur de Flute',
+    // },
+    // {
+    //   id: 8,
+    //   name: 'Cara',
+    //   hiddenRole: 'Servante Dévouée',
+    // },
   ],
   pseudo: '',
+  userId: null,
   role: '',
   village: '',
   rolesList: [],
   villageList: villageRoleList,
   addingNewPlayer: false,
+  addNewPlayer: {
+    state: false,
+  },
   errorMessage: [],
   chosenHiddenRoles: [],
   chosenVillageRoles: [],
@@ -113,6 +110,12 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SAVE_PLAYER_FROM_USER:
+      return {
+        ...state,
+        pseudo: action.username,
+        userId: action.id,
+      };
     case SAVE_ROLES_RANDOMLY: {
       let playersWithRoles = setRolesRandomly(state.chosenHiddenRoles, state.players, 'hidden');
       if (state.configuration.games.indexOf('Le Village') >= 0) {

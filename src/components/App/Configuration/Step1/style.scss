@@ -58,34 +58,24 @@
           justify-content: flex-end;
         }
 
+        @include vars.checkboxes;
         &-checkbox {
           // display: none;
         }
 
-        // &-checkbox::before {
-        //   content: '';
-        //   display: block;
-        //   width: 12px;
-        //   height: 12px;
+        // & input[type=checkbox]:checked::after {
+        //   content: "\2713";
+        //   text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+        //   font-size: 9px;
+        //   font-weight: bold;
+        //   width: 13px;
+        //   height: 13px;
         //   border-radius: 2px;
-        //   background-color: rgba(234, 0, 255, 0.233);
+        //   color: vars.$quenary-color;
+        //   text-align: center;
+        //   background-color: vars.$tertiary-color;
         //   position: absolute;
         // }
-
-        & input[type=checkbox]:checked::after {
-          content: "\2713";
-          // content: '';
-          text-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
-          font-size: 9px;
-          font-weight: bold;
-          width: 13px;
-          height: 13px;
-          border-radius: 2px;
-          color: vars.$quenary-color;
-          text-align: center;
-          background-color: vars.$tertiary-color;
-          position: absolute;
-        }
       }
     }
   }

@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
   rolesList: state.configuration.rolesList,
   villageList: state.configuration.villageList,
   inputValue: state.configuration.pseudo,
+  usersList: state.user.usersList,
 });
 
 const mapDispatchToProps = (dispatch) => ({

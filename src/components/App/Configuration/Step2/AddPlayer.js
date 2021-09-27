@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Field from 'src/containers/Field';
+import UserLi from 'src/containers/App/Configuration/Step2/UserLi';
 
 import './style.scss';
 import { useLocation } from 'react-router-dom';
@@ -12,6 +13,7 @@ const AddPlayer = ({
   villageList,
   saveSelectChange,
   savePlayer,
+  usersList,
 }) => {
   const isVillageSelected = games.indexOf('Le Village');
 
@@ -32,14 +34,14 @@ const AddPlayer = ({
   return (
     <form className="add-form">
       <div className="add-form__search-input">
-        <input type="text" name="" id="" />
-        <ul className={classNames('add-form__search-results', { 'add-form__search-results--open': true })}>
-          <li className="add-form__search-results-item">Micka</li>
-          <li className="add-form__search-results-item">Quentin</li>
-          <li className="add-form__search-results-item">Océ</li>
-          <li className="add-form__search-results-item">Hel</li>
-          <li className="add-form__search-results-item">Lud</li>
-          <li className="add-form__search-results-item">Ju</li>
+        <Field
+          id="add-form__user-input"
+          type="text"
+          name="usersInput"
+          placeholder="Veuillez renseigner le prénom"
+        />
+        <ul className={classNames('add-form__search-results', { 'add-form__search-results--open': usersList.length !== 0 })}>
+          {usersList.map((user) => <UserLi {...user} />)}
         </ul>
       </div>
       <div className="add-form__pseudo">
@@ -95,6 +97,7 @@ AddPlayer.propTypes = {
   games: PropTypes.array.isRequired,
   rolesList: PropTypes.array.isRequired,
   villageList: PropTypes.array.isRequired,
+  usersList: PropTypes.array.isRequired,
 };
 
 export default AddPlayer;
