@@ -23,6 +23,8 @@ const Step1 = ({
   }
   const handleChange = (event) => {
     let currentId = '';
+
+    // TODO : refaire avec closest
     const newMoonElement = document.querySelector('#newmoon');
     const thirdGenUncle = event.target.parentNode.parentNode.parentNode.nextElementSibling;
 

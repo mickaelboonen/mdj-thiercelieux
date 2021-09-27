@@ -22,7 +22,7 @@ const Game = ({ games }) => {
 
   const createMarkup = () => {
     const cleanedSynopsis = DOMPurify.sanitize(description, {
-      ALLOWED_TAGSD: ['strong', 'p'],
+      ALLOWED_TAGS: ['strong', 'p'],
     });
     return {
       __html: cleanedSynopsis,
@@ -39,24 +39,29 @@ const Game = ({ games }) => {
   return (
     <div className="game">
       <Path />
-      <h2 className="game__title">{name}</h2>
-      <div className="game__synopsis">
-        <h4 className="game__synopsis-title">Synopsis</h4>
-        <img className="game__synopsis-image" src={image} alt="" />
-        <p className="game__synopsis-description" dangerouslySetInnerHTML={createMarkup()} />
+      <div className="game__title">
+        <h2>{name}</h2>
       </div>
-      <div className="game__roles">
-        <h4 className="game__roles-title">Roles</h4>
-        <ul className="game__roles-list">
-          {roles.map((role) => <Link key={role.id} to="#"><li className="game__roles-list-item">{role.name}</li></Link>)}
-        </ul>
-      </div>
-      {specificity.length !== 0 && (
-        <div className="game__specificity">
-          <h4 className="game__specificity-title">Spécificité{specificity.length > 1 ? 's' : ''}</h4>
-          {specificityElement}
+      <div className="game__content">
+        <div className="game__content-synopsis">
+          <h4 className="game__content-synopsis-title">Synopsis</h4>
+          <img className="game__content-synopsis-image" src={image} alt="" />
+          <p className="game__content-synopsis-description" dangerouslySetInnerHTML={createMarkup()} />
         </div>
-      )}
+        <div className="game__content-roles">
+          <h4 className="game__content-roles-title">Roles</h4>
+          <ul className="game__content-roles-list">
+            {roles.map((role) => <Link key={role.id} to="#"><li className="game__content-roles-list-item">{role.name}</li></Link>)}
+          </ul>
+        </div>
+        {specificity.length !== 0 && (
+          <div className="game__content-specificity">
+            <h4 className="game__content-specificity-title">Spécificité{specificity.length > 1 ? 's' : ''}</h4>
+            {specificityElement}
+          </div>
+        )}
+      </div>
+
     </div>
   );
 };

@@ -1,10 +1,9 @@
 @use 'src/styles/vars';
 
 .roles {
-
-  height: 100vh;
-  background-color: #686767;
-  padding: 5rem vars.$gutter vars.$gutter;
+  height: calc(100vh - 8rem);
+  background-color: vars.$quaternary-color;
+  margin-top: vars.$navbar-height;
 
   &__search {
     display: flex;
@@ -14,7 +13,7 @@
     // height: fit-content;
     background-color: #1a1a1a;
     padding-bottom: 0.5rem;
-    border-bottom: 2px solid #686767;
+    border-bottom: 2px solid vars.$quaternary-color;
 
     &-title {
         padding: 0.5rem 0;
@@ -23,13 +22,13 @@
         align-items: center;
         justify-content: center;
         font-family: vars.$fontAbril;
-        color: #9b9898;
+        color: vars.$tertiary-color;
         text-shadow: 1px 1px 1px black;
       }
 
       &-input {
         height: 1.5rem;
-        background-color: #686767;
+        background-color: vars.$secondary-color;
         border: 0;
 
         &-btn {
@@ -63,10 +62,9 @@
     
     &-info {
       position: fixed;
-      bottom: 1rem;
-      left: 1rem;
-      width: calc(100% - 2rem);
-      height: 75%;
+      left: 0;
+      right: 0;
+      bottom: 4rem;
       background-color: rgba(32, 31, 31, 0.959);
       padding: 0.5rem;
       display: none;
@@ -99,7 +97,7 @@
 
 .role, .card {
   width: 31.5%;
-  background-color: #686767;
+  background-color: vars.$quaternary-color;
   display: flex;
   margin-bottom: 0.3rem;
   align-items: center;

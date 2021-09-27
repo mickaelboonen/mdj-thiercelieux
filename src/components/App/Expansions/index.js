@@ -8,7 +8,11 @@ import Path from '../../Path';
 const Expansions = ({ expansionsArray }) => (
   <div className="games">
     <Path />
-    <h2 className="games__title">Les Extensions</h2>
+    <div className="games__title">
+      <h2>
+        Les Extensions
+      </h2>
+    </div>
     <div className="games__list">
       {expansionsArray.map((expansion) => <Expansion key={expansion.id} {...expansion} />)}
     </div>

@@ -89,7 +89,7 @@ export const expansions = [
       {
         name: 'Variantes',
         hash: 'variantes',
-        description: '<p>En dehors des règles de base, il existe de nombreuses façons de jouer aux Loups-Garous de Thiercelieux.</p><p>Ces variantes résultent des facéties que nous nous permettons durant les innombrables parties que nous avons animées ainsi qu\'une sélection de certaines de vos nombreuses propositions postées sur notre site <a href="www.loups-garous.com">www.loups-garous.com</a>."</p><p>Nous vous proposons ici le meilleur de ces variantes, testées et optimisées pour renouveler votre plaisir de jouer.',
+        description: '<p>En dehors des règles de base, il existe de nombreuses façons de jouer aux Loups-Garous de Thiercelieux.</p><p>Ces variantes résultent des facéties que nous nous permettons durant les innombrables parties que nous avons animées ainsi qu\'une sélection de certaines de vos nombreuses propositions postées sur notre site <a href="www.loups-garous.com">www.loups-garous.com</a>."</p><p>Nous vous proposons ici le meilleur de ces variantes, testées et optimisées pour renouveler votre plaisir de jouer.</p>',
         rules: [
           {
             id: 1,
@@ -105,7 +105,7 @@ export const expansions = [
           },
           {
             id: 3,
-            name: '"Entout cas c\'est sûrement pas lui !"',
+            name: '"En tout cas c\'est sûrement pas lui !"',
             hash: 'en-tout-cas-c-est-surement-pas-lui',
             description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur commodi ad ratione minus, mollitia, eveniet dolore corporis quasi accusantium at facere asperiores eos neque aut rem excepturi beatae veniam a!',
           },

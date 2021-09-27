@@ -3,7 +3,7 @@
 .characters {
 
   // height: 60vh;
-  background-color: #696868;
+  background-color: vars.$primary-color;
   padding: vars.$gutter;
   display: flex;
   flex-direction: column;
@@ -13,6 +13,9 @@
   &__title {
     text-align: center;
     margin-bottom: vars.$gutter;
+    color: vars.$tertiary-color;
+    font-family: vars.$fontAbril;
+    filter: drop-shadow(2px 3px 1px rgb(8, 4, 4));
   }
 
   &__slider {
