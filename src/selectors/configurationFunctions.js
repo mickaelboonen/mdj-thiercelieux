@@ -149,7 +149,9 @@ export const checkTotalRoles = (roles, errors, number, category) => {
  */
 export const setRolesRandomly = (roles, players, category) => {
   let playersWithRoles = [];
-  let newRoles = roles;
+  let newRoles = [];
+  roles.forEach((currentRole) => newRoles.push(currentRole));
+
   if (category === 'hidden') {
     playersWithRoles = players.map((player) => {
       let playersNewRole = '';
@@ -180,6 +182,7 @@ export const setRolesRandomly = (roles, players, category) => {
       return player;
     });
   }
+  console.log('apres la function', newRoles);
   return playersWithRoles;
 };
 

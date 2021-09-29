@@ -14,7 +14,7 @@
   }
 
   &__roles {
-      background-color: vars.$secondary-color;
+      background-color: vars.$quaternary-color;
       border: 1px solid vars.$primary-color;
       padding: vars.$gutter;
       margin-bottom: 0.5rem;
@@ -65,6 +65,7 @@
         font-size: 0.9em;
         width: 32%;
         margin-bottom: 0.2rem;
+        position: relative;
 
         & label {
           display: flex;
@@ -86,8 +87,12 @@
   }
 
   &__button {
-    display: flex;
-    justify-content: center;
-    margin: vars.$gutter auto;
+    & button {
+      margin: auto;
+
+      &:nth-child(1) {
+        @include vars.button;
+      }
+    }    
   }
 }

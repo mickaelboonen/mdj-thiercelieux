@@ -161,7 +161,7 @@ const Step1 = ({
       </div>
       {errorMessage.length > 0 && (
         <div className="configuration__settings-error">
-          {errorMessage.map((error) => <p>{error}</p>)}
+          {errorMessage.map((error) => <p key={error}>{error}</p>)}
         </div>
       )}
     </div>

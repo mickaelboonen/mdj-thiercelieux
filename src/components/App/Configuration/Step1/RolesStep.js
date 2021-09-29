@@ -48,10 +48,10 @@ const RolesStep = ({
         <h5 className="roles-step__roles-title">Les rôles cachés</h5>
         <div className="roles-step__roles-selects" id="hidden-roles-selects">
           <label htmlFor="Villageois">Simple Villageois
-            <input type="number" id="Villageois" min="0" max={Number(numberPlayers)} onChange={handleInputNumber} placeholder="Nombre de Villageois" />
+            <input type="number" id="Villageois" name="Villageois" min="0" max={Number(numberPlayers)} onChange={handleInputNumber} placeholder="Nombre de Villageois" />
           </label>
           <label htmlFor="Loup-Garou">Loups-Garous
-            <input type="number" id="Loup-Garou" min="0" max={Number(numberPlayers)} onChange={handleInputNumber} placeholder="Nombre de Loups-Garous" />
+            <input type="number" id="Loup-Garou" name="Loup-Garou" min="0" max={Number(numberPlayers)} onChange={handleInputNumber} placeholder="Nombre de Loups-Garous" />
           </label>
         </div>
         <ul className="roles-step__roles-list" id="hidden-roles-list">

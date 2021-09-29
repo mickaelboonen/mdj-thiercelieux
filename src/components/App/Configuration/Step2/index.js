@@ -24,22 +24,19 @@ const Step2 = ({
     addNewPlayer();
   };
 
-  const handleClickToValidate = () => {
-    // Transférer toutes les données dans un reducer pour le jeu et renommer celui la en config ?
-    // Effectuer les calculs si besoin / Créer les objets players avec toutes les propriétés
-    // Lancer l'animation
-  };
-
   const handleClickToSetRoles = () => {
     // Fonction pour l'attribution des roles random
     setRolesRandomly();
     history.push('/configurer-ma-partie/les-joueurs?mode=aleatoire&visible=vrai');
   };
+
   let areRolesAttributed = false;
-  const playerWithoutRole = players.filter((player) => player.hiddenRole === '');
-  if (playerWithoutRole.length === 0) {
+  const playerWithoutRole = players.find((player) => player.hasOwnProperty('hiddenRole'));
+
+  if (playerWithoutRole !== undefined) {
     areRolesAttributed = true;
   }
+
   const location = useLocation();
   let randomMode = false;
   let visibleMode = false;
@@ -80,14 +77,13 @@ const Step2 = ({
             type="button"
             onClick={handleClickToSetRoles}
           >
-            Attribuer les roles
+            {!areRolesAttributed ? 'Attribuer les roles' : 'Réattribuer les roles'}
           </button>
           )}
           {(numberSavedPlayers === playersNumber && areRolesAttributed) && (
           <button
             className="configuration__settings-buttons-item"
             type="button"
-            onClick={handleClickToValidate}
           >
             <Link to="/coucher-de-soleil">Valider</Link>
           </button>
