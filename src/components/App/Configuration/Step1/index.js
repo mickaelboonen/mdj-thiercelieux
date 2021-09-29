@@ -23,35 +23,31 @@ const Step1 = ({
   }
   const handleChange = (event) => {
     let currentId = '';
-
-    // TODO : refaire avec closest
     const newMoonElement = document.querySelector('#newmoon');
-    const thirdGenUncle = event.target.parentNode.parentNode.parentNode.nextElementSibling;
+    const nextField = event.target.closest('.configuration__settings > div').nextElementSibling;
 
     // IFs for extensions, game order, newmoon cards and roles attribution
     if (event.target.parentNode.id === '') {
-      currentId = event.target.parentNode.parentNode.parentNode.id;
-
-      const classNamesArray = event.target.parentNode.parentNode.parentNode.nextElementSibling.className.split(' ');
+      currentId = event.target.closest('.configuration__settings > div').id;
+      const classNamesArray = event.target.closest('.configuration__settings > div').nextElementSibling.className.split(' ');
 
       if (classNamesArray.length === 1) {
+        const { className } = nextField;
+
         if (event.target.id === 'classic-order' || event.target.id === 'preferences-order') {
           // if the newmoon input is checked
           if (newMoonElement.checked) {
             // then add the new className to display the newmoon cards setup
-            const { className } = thirdGenUncle;
-            thirdGenUncle.classList.add(className + '--open');
+            nextField.classList.add(className + '--open');
           }
           else {
             // else, add the new className to the roles attribution setup
-            const { className } = thirdGenUncle;
-            thirdGenUncle.nextElementSibling.classList.add(className + '--open');
+            nextField.nextElementSibling.classList.add(className + '--open');
           }
         }
         else {
           // add the new className to display the next element
-          const { className } = thirdGenUncle;
-          thirdGenUncle.classList.add(className + '--open');
+          nextField.classList.add(className + '--open');
         }
       }
       else {
@@ -173,6 +169,7 @@ const Step1 = ({
 };
 
 Step1.propTypes = {
+  nextStepSlug: PropTypes.string.isRequired,
   errorMessage: PropTypes.array.isRequired,
 
   // FUNCTIONS

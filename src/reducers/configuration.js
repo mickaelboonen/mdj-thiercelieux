@@ -97,7 +97,7 @@ const initialState = {
   role: '',
   village: '',
   rolesList: [],
-  villageList: villageRoleList,
+  villageList: [],
   addingNewPlayer: false,
   addNewPlayer: {
     state: false,
@@ -230,9 +230,8 @@ const reducer = (state = initialState, action = {}) => {
         message.push('Il faut minimum 8 joueurs pour pouvoir jouer.');
       }
       else {
-        newConfigurationObject.playersNumber = action.value;
+        newConfigurationObject.playersNumber = Number(action.value);
       }
-
       return {
         ...state,
         configuration: newConfigurationObject,
@@ -261,10 +260,17 @@ const reducer = (state = initialState, action = {}) => {
           }
         });
       });
+
+      // TODO : to be improved (fake data atm)
+      let villagersRoles = [];
+      if (action.value === 'Le Village') {
+        villagersRoles = villageRoleList;
+      }
       return {
         ...state,
         configuration: newConfigurationObject,
         rolesList: rolesArray,
+        villageList: villagersRoles,
       };
     }
     case SET_GAME_ORDER: {

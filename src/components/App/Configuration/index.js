@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import Step1 from 'src/containers/App/Configuration/Step1';
 import RolesStep from 'src/containers/App/Configuration/Step1/RolesStep';
@@ -24,10 +23,6 @@ const Configuration = () => {
       {currentStep === 'les-roles' && <RolesStep />}
     </div>
   );
-};
-
-Configuration.propTypes = {
-
 };
 
 export default Configuration;
