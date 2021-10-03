@@ -65,11 +65,15 @@ Pour les connaisseurs du jeu mais aussi les novices, l'appli permet de prendre l
 
 #### Front
 
-React - React Router - Redux - React Redux - Redux Persist - React Leaflet - Axios
+React - React Router - Redux - React Redux - Redux Persist - React Leaflet - Axios - React Form
 
-#### Back
+#### Api
 
-NodeJS et ... ?
+NodeJS - Express.JS - MySQL
+
+#### BackOffice
+
+PHP - Bootstrap
 
 ### Navigateurs compatibles
 
