@@ -23,35 +23,31 @@ const Step1 = ({
   }
   const handleChange = (event) => {
     let currentId = '';
-
-    // TODO : refaire avec closest
     const newMoonElement = document.querySelector('#newmoon');
-    const thirdGenUncle = event.target.parentNode.parentNode.parentNode.nextElementSibling;
+    const nextField = event.target.closest('.configuration__settings > div').nextElementSibling;
 
     // IFs for extensions, game order, newmoon cards and roles attribution
     if (event.target.parentNode.id === '') {
-      currentId = event.target.parentNode.parentNode.parentNode.id;
-
-      const classNamesArray = event.target.parentNode.parentNode.parentNode.nextElementSibling.className.split(' ');
+      currentId = event.target.closest('.configuration__settings > div').id;
+      const classNamesArray = event.target.closest('.configuration__settings > div').nextElementSibling.className.split(' ');
 
       if (classNamesArray.length === 1) {
+        const { className } = nextField;
+
         if (event.target.id === 'classic-order' || event.target.id === 'preferences-order') {
           // if the newmoon input is checked
           if (newMoonElement.checked) {
             // then add the new className to display the newmoon cards setup
-            const { className } = thirdGenUncle;
-            thirdGenUncle.classList.add(className + '--open');
+            nextField.classList.add(className + '--open');
           }
           else {
             // else, add the new className to the roles attribution setup
-            const { className } = thirdGenUncle;
-            thirdGenUncle.nextElementSibling.classList.add(className + '--open');
+            nextField.nextElementSibling.classList.add(className + '--open');
           }
         }
         else {
           // add the new className to display the next element
-          const { className } = thirdGenUncle;
-          thirdGenUncle.classList.add(className + '--open');
+          nextField.classList.add(className + '--open');
         }
       }
       else {
@@ -91,6 +87,15 @@ const Step1 = ({
     else if (currentId === 'roles-attribution-field') {
       setRolesAttribution(event.target.value);
     }
+
+    // ScrollTo on the .configuration__settings element as to always have the new fields visible
+    // (so the user doesn't have to scroll down)
+    const configurationElement = document.querySelector('.configuration__settings');
+    configurationElement.scrollTo({
+      left: 0,
+      top: configurationElement.offsetHeight,
+      behavior: 'smooth',
+    });
   };
   return (
     <div className="configuration__settings">
@@ -128,11 +133,11 @@ const Step1 = ({
             <input type="radio" name="game-order" id="classic-order" value="classic" onChange={handleChange} />
           </label>
         </div>
-        <div className="configuration__settings-field-item">
+        {/* <div className="configuration__settings-field-item">
           <label htmlFor="preferences-order">Mes préférences
             <input type="radio" name="game-order" id="preferences-order" value="preferences" onChange={handleChange} />
           </label>
-        </div>
+        </div> */}
       </div>
       <div className="configuration__settings-field" id="newmoon-cards-field">
         <h5 className="configuration__settings-field-title">Cartes Nouvelle Lune</h5>
@@ -141,11 +146,11 @@ const Step1 = ({
             <input type="radio" name="newmoon-cards" id="classic-newmoon" value="classic" onChange={handleChange} />
           </label>
         </div>
-        <div className="configuration__settings-field-item">
+        {/* <div className="configuration__settings-field-item">
           <label htmlFor="newmoon-preferences">Mes préférences
             <input type="radio" name="newmoon-cards" id="newmoon-preferences" value="preferences" onChange={handleChange} />
           </label>
-        </div>
+        </div> */}
       </div>
       <div className="configuration__settings-field" id="roles-attribution-field">
         <h5 className="configuration__settings-field-title">Attribution des Roles</h5>
@@ -165,7 +170,7 @@ const Step1 = ({
       </div>
       {errorMessage.length > 0 && (
         <div className="configuration__settings-error">
-          {errorMessage.map((error) => <p>{error}</p>)}
+          {errorMessage.map((error) => <p key={error}>{error}</p>)}
         </div>
       )}
     </div>
@@ -173,6 +178,7 @@ const Step1 = ({
 };
 
 Step1.propTypes = {
+  nextStepSlug: PropTypes.string.isRequired,
   errorMessage: PropTypes.array.isRequired,
 
   // FUNCTIONS

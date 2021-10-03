@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Field from 'src/containers/Field';
@@ -39,19 +39,23 @@ const AddPlayer = ({
   }
   return (
     <form className="add-form">
-      <div className="add-form__users-input">
+      <div className="add-form__users">
+      <label htmlFor="add-form__user-input">UTILISATEUR</label>
         <Field
           id="add-form__user-input"
           type="text"
           name="usersInput"
           placeholder="Veuillez renseigner le prénom"
+          aria-describedby="specificityHelpBlock"
         />
       </div>
-      <ul className={classNames('add-form__users-results-list', { 'add-form__users-results-list--open': usersList.length !== 0 })}>
-        {usersList.map((user) => <UserLi {...user} />)}
+      <ul
+        className={classNames('add-form__users-results-list', { 'add-form__users-results-list--open': usersList.length !== 0 })}
+      >
+        {usersList.map((user) => <UserLi key={user.id} {...user} />)}
       </ul>
       <div className="add-form__pseudo">
-        <p>PSEUDO</p>
+        <label htmlFor="add-form__pseudo-input">PSEUDO</label>
         <Field
           id="add-form__pseudo-input"
           type="text"
@@ -61,8 +65,8 @@ const AddPlayer = ({
       </div>
       {!randomMode && (
       <div className="add-form__roles">
-        <label htmlFor="">ROLES</label>
-        <select name="" id="add-form__roles-select" onChange={handleSelectChange}>
+        <label htmlFor="add-form__roles-select">ROLES</label>
+        <select name="add-form__roles-select" id="add-form__roles-select" onChange={handleSelectChange}>
           <option value="">Veuillez choisir un rôle</option>
           {rolesList.map((role) => <option key={role} value={role}>{role}</option>)}
         </select>
@@ -70,8 +74,8 @@ const AddPlayer = ({
       )}
       {(!randomMode && isVillageSelected >= 0) && (
       <div className="add-form__village">
-        <label htmlFor="">VILLAGE</label>
-        <select name="" id="add-form__village-select" onChange={handleSelectChange}>
+        <label htmlFor="add-form__village-select">VILLAGE</label>
+        <select name="add-form__village-select" id="add-form__village-select" onChange={handleSelectChange}>
           <option value="">Veuillez choisir un rôle</option>
           {villageList.map((role) => <option key={role} value={role}>{role}</option>)}
         </select>

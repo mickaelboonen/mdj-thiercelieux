@@ -12,8 +12,9 @@ import {
   SAVE_ROLE,
   SAVE_ROLES_RANDOMLY,
   SAVE_PLAYER_FROM_USER,
+  CHANGE_PSEUDO_INPUT_VALUE,
 } from 'src/actions/gameConfiguration';
-import { CHANGE_VALUE } from 'src/actions';
+import { CLEAR_INPUT } from 'src/actions';
 
 // SELECTORS
 import {
@@ -54,42 +55,42 @@ const initialState = {
     // {
     //   id: 1,
     //   name: 'Micka',
-    //   hiddenRole: 'Loup-Garou',
+    //   // hiddenRole: 'Loup-Garou',
     // },
     // {
     //   id: 2,
     //   name: 'Quentin',
-    //   hiddenRole: 'Sorcière',
+    //   // hiddenRole: 'Sorcière',
     // },
     // {
     //   id: 3,
     //   name: 'Océane',
-    //   hiddenRole: 'Cupidon',
+    //   // hiddenRole: 'Cupidon',
     // },
     // {
     //   id: 4,
     //   name: 'Lud',
-    //   hiddenRole: 'Villageois',
+    //   // hiddenRole: 'Villageois',
     // },
     // {
     //   id: 5,
     //   name: 'Chris',
-    //   hiddenRole: 'Idiot du Village',
+    //   // hiddenRole: 'Idiot du Village',
     // },
     // {
     //   id: 6,
     //   name: 'BDR',
-    //   hiddenRole: 'Bouc Émissaire',
+    //   // hiddenRole: 'Bouc Émissaire',
     // },
     // {
     //   id: 7,
     //   name: 'Sasha',
-    //   hiddenRole: 'Joueur de Flute',
+    //   // hiddenRole: 'Joueur de Flute',
     // },
     // {
     //   id: 8,
     //   name: 'Cara',
-    //   hiddenRole: 'Servante Dévouée',
+    //   // hiddenRole: 'Servante Dévouée',
     // },
   ],
   pseudo: '',
@@ -97,7 +98,7 @@ const initialState = {
   role: '',
   village: '',
   rolesList: [],
-  villageList: villageRoleList,
+  villageList: [],
   addingNewPlayer: false,
   addNewPlayer: {
     state: false,
@@ -110,6 +111,11 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CLEAR_INPUT:
+      return {
+        ...state,
+        pseudo: '',
+      };
     case SAVE_PLAYER_FROM_USER:
       return {
         ...state,
@@ -141,7 +147,6 @@ const reducer = (state = initialState, action = {}) => {
         villageRolesArray = saveRole(action, villageRolesArray);
         newMessageArray = checkTotalRoles(villageRolesArray, messageError, state.configuration.playersNumber, 'village');
       }
-
       const finalErrorArray = checkRolesNumber(name, value, newMessageArray);
 
       // Checks if the number of roles chosen is the same as the number of players
@@ -189,16 +194,11 @@ const reducer = (state = initialState, action = {}) => {
         villageList: newVillageArray,
       };
     }
-    case CHANGE_VALUE: {
-      let newPseudo = '';
-      if (action.input === 'pseudoInput') {
-        newPseudo = action.value;
-      }
+    case CHANGE_PSEUDO_INPUT_VALUE:
       return {
         ...state,
-        pseudo: newPseudo,
+        pseudo: action.value,
       };
-    }
     case SAVE_SELECT_CHANGE: {
       const roleToSave = action.value;
       let propriety = '';
@@ -230,9 +230,8 @@ const reducer = (state = initialState, action = {}) => {
         message.push('Il faut minimum 8 joueurs pour pouvoir jouer.');
       }
       else {
-        newConfigurationObject.playersNumber = action.value;
+        newConfigurationObject.playersNumber = Number(action.value);
       }
-
       return {
         ...state,
         configuration: newConfigurationObject,
@@ -261,10 +260,21 @@ const reducer = (state = initialState, action = {}) => {
           }
         });
       });
+      // TODO : to be improved (fake data atm)
+      let villagersRoles = state.villageList;
+      if (action.value === 'Le Village') {
+        if (newConfigurationObject.games.indexOf('Le Village') !== -1) {
+          villagersRoles = villageRoleList;
+        }
+        else {
+          villagersRoles = [];
+        }
+      }
       return {
         ...state,
         configuration: newConfigurationObject,
         rolesList: rolesArray,
+        villageList: villagersRoles,
       };
     }
     case SET_GAME_ORDER: {

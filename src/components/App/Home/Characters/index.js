@@ -36,9 +36,7 @@ const Characters = ({ fetchRandomRoles, roleToDisplay, displayNewRole }) => {
 };
 
 Characters.propTypes = {
-  roleToDisplay: PropTypes.objectOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-  })).isRequired,
+  roleToDisplay: PropTypes.object.isRequired,
 
   // FUNCTIONS
   displayNewRole: PropTypes.func.isRequired,

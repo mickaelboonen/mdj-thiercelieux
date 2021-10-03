@@ -50,3 +50,10 @@ export const displayCard = (id) => ({
   type: DISPLAY_CARD,
   id,
 });
+
+export const CHANGE_ROLES_INPUT_VALUE = 'CHANGE_ROLES_INPUT_VALUE';
+export const changeRolesInputValue = (value, name) => ({
+  type: CHANGE_ROLES_INPUT_VALUE,
+  value,
+  name,
+});

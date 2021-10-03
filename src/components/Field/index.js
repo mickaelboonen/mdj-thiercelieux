@@ -1,6 +1,7 @@
 import React from 'react';
 // import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { X } from 'react-feather';
 import './style.scss';
 
 const Field = ({
@@ -29,15 +30,7 @@ const Field = ({
         placeholder={placeholder}
         {...props}
       />
-      {value !== '' && (
-      <button
-        type="button"
-        className="input__button"
-        onClick={hancleClickToReinitialize}
-      >
-        X
-      </button>
-      )}
+      {value !== '' && <X onClick={hancleClickToReinitialize} />}
     </div>
   );
 };
