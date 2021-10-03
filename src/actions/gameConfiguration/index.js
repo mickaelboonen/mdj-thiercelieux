@@ -70,3 +70,9 @@ export const savePlayerFromUsers = (username, id) => ({
   username,
   id,
 });
+
+export const CHANGE_PSEUDO_INPUT_VALUE = 'CHANGE_PSEUDO_INPUT_VALUE';
+export const changePseudoInputValue = (value) => ({
+  type: CHANGE_PSEUDO_INPUT_VALUE,
+  value,
+});

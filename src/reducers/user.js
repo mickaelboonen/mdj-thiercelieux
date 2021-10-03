@@ -7,12 +7,13 @@ import {
   DELETE_FRIEND,
   SAVE_AVATAR,
   SAVE_AVATARS_LIST,
+  CHANGE_USERS_INPUT_VALUE,
 } from 'src/actions/user';
+// TODO : change both actions below (actions/index.js)
 import {
-  CHANGE_VALUE,
   CLEAR_INPUT,
   REINITIALIZE_DATA,
-} from 'src/actions/rolesDescriptions';
+} from 'src/actions/RolesDescriptions';
 import { SAVE_PLAYER_FROM_USER } from 'src/actions/gameConfiguration';
 
 import avatarPicture from 'src/assets/pictures/cards/croissant.gif';
@@ -80,7 +81,7 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         usersList: action.list,
       };
-    case CHANGE_VALUE:
+    case CHANGE_USERS_INPUT_VALUE:
       return {
         ...state,
         usersInput: action.value,

@@ -12,8 +12,8 @@ import {
   SAVE_ROLE,
   SAVE_ROLES_RANDOMLY,
   SAVE_PLAYER_FROM_USER,
+  CHANGE_PSEUDO_INPUT_VALUE,
 } from 'src/actions/gameConfiguration';
-import { CHANGE_VALUE } from 'src/actions';
 
 // SELECTORS
 import {
@@ -188,16 +188,11 @@ const reducer = (state = initialState, action = {}) => {
         villageList: newVillageArray,
       };
     }
-    case CHANGE_VALUE: {
-      let newPseudo = '';
-      if (action.input === 'pseudoInput') {
-        newPseudo = action.value;
-      }
+    case CHANGE_PSEUDO_INPUT_VALUE:
       return {
         ...state,
-        pseudo: newPseudo,
+        pseudo: action.value,
       };
-    }
     case SAVE_SELECT_CHANGE: {
       const roleToSave = action.value;
       let propriety = '';

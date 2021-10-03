@@ -6,7 +6,6 @@ import { newMoonCards, newMoonCardsSelects } from 'src/data/newMoonCards';
 
 // ACTIONS
 import {
-  CHANGE_VALUE,
   CLEAR_INPUT,
   FILL_REDUCER,
   FILTER_BY,
@@ -15,6 +14,7 @@ import {
   DISPLAY_RESULTS,
   REINITIALIZE_DATA,
   DISPLAY_CARD,
+  CHANGE_ROLES_INPUT_VALUE,
 } from 'src/actions/RolesDescriptions';
 
 // SELECTORS
@@ -115,7 +115,7 @@ const reducer = (state = initialState, action = {}) => {
         data: newArray,
       };
     }
-    case CHANGE_VALUE:
+    case CHANGE_ROLES_INPUT_VALUE:
       return {
         ...state,
         rolesInput: action.value,

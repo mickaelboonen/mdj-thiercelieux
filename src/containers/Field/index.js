@@ -6,9 +6,11 @@ import {
   displayResults,
   clearInput,
   reinitializeData,
+  changeRolesInputValue,
 } from 'src/actions/RolesDescriptions';
 
-import { fetchUsers } from 'src/actions/user';
+import { changeUsersInputValue, fetchUsers } from 'src/actions/user';
+import { changePseudoInputValue } from 'src/actions/gameConfiguration';
 
 const mapStateToProps = (state, ownProps) => {
   let value = '';
@@ -28,12 +30,16 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   changeValue: (value, name) => {
-    dispatch(changeValue(value, name));
     if (name === 'rolesInput' || name === 'cardsInput' || name === 'villageInput') {
+      dispatch(changeRolesInputValue(value, name));
       dispatch(displayResults(value));
     }
     else if (name === 'usersInput') {
+      dispatch(changeUsersInputValue(value));
       dispatch(fetchUsers(value));
+    }
+    else if (name === 'pseudoInput') {
+      dispatch(changePseudoInputValue(value));
     }
   },
   clearInput: (input) => {

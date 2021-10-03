@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Field from 'src/containers/Field';
@@ -39,7 +39,8 @@ const AddPlayer = ({
   }
   return (
     <form className="add-form">
-      <div className="add-form__users-input">
+      <div className="add-form__users">
+      <p>PSEUDO</p>
         <Field
           id="add-form__user-input"
           type="text"
@@ -47,8 +48,10 @@ const AddPlayer = ({
           placeholder="Veuillez renseigner le prénom"
         />
       </div>
-      <ul className={classNames('add-form__users-results-list', { 'add-form__users-results-list--open': usersList.length !== 0 })}>
-        {usersList.map((user) => <UserLi {...user} />)}
+      <ul
+        className={classNames('add-form__users-results-list', { 'add-form__users-results-list--open': usersList.length !== 0 })}
+      >
+        {usersList.map((user) => <UserLi key={user.id} {...user} />)}
       </ul>
       <div className="add-form__pseudo">
         <p>PSEUDO</p>

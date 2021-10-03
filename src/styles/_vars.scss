@@ -81,10 +81,10 @@ $error-text-color: $tertiary-color;
 
 @mixin input-text {
   background-color: $secondary-color;
-  padding: 0.7rem;
+  padding: 0 1.5rem 0 0.5rem;
   border-radius: 15px;
+  height: 1.5rem;
   border: 0;
-  margin-top: 0.3rem;
 }
 
 

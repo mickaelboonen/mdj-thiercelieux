@@ -87,3 +87,9 @@ export const saveAvatarsList = (avatars) => ({
   type: SAVE_AVATARS_LIST,
   avatars,
 });
+
+export const CHANGE_USERS_INPUT_VALUE = 'CHANGE_USERS_INPUT_VALUE';
+export const changeUsersInputValue = (value) => ({
+  type: CHANGE_USERS_INPUT_VALUE,
+  value,
+});
