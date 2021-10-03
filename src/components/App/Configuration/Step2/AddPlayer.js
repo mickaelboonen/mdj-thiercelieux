@@ -61,8 +61,8 @@ const AddPlayer = ({
       </div>
       {!randomMode && (
       <div className="add-form__roles">
-        <label htmlFor="">ROLES</label>
-        <select name="" id="add-form__roles-select" onChange={handleSelectChange}>
+        <label htmlFor="add-form__roles-select">ROLES</label>
+        <select name="add-form__roles-select" id="add-form__roles-select" onChange={handleSelectChange}>
           <option value="">Veuillez choisir un rôle</option>
           {rolesList.map((role) => <option key={role} value={role}>{role}</option>)}
         </select>
@@ -70,8 +70,8 @@ const AddPlayer = ({
       )}
       {(!randomMode && isVillageSelected >= 0) && (
       <div className="add-form__village">
-        <label htmlFor="">VILLAGE</label>
-        <select name="" id="add-form__village-select" onChange={handleSelectChange}>
+        <label htmlFor="add-form__village-select">VILLAGE</label>
+        <select name="add-form__village-select" id="add-form__village-select" onChange={handleSelectChange}>
           <option value="">Veuillez choisir un rôle</option>
           {villageList.map((role) => <option key={role} value={role}>{role}</option>)}
         </select>

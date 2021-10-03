@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 // TODO placeholders
 
@@ -17,11 +17,6 @@ const RolesStep = ({
 }) => {
   const filteredRolesList = rolesList.filter((role) => role !== 'Simple Villageois' && role !== 'Loup-Garou');
   const filteredVillageList = villageList.filter((role) => role !== 'Fermier' && role !== 'Vagabond');
-
-  const history = useHistory();
-  const handleClickOnReturn = () => {
-    history.goBack();
-  };
 
   const newErrorMessageArray = errorMessage.filter((message) => message !== '');
 
@@ -70,10 +65,10 @@ const RolesStep = ({
         <h5 className="roles-step__roles-title">Les Villageois</h5>
         <div className="roles-step__roles-selects" id="village-roles-selects">
           <label htmlFor="Fermier">Fermiers
-            <input type="number" id="Fermier" min="0" max="6" onChange={handleInputNumber} placeholder="Nombre de Fermiers" />
+            <input type="number" id="Fermier" name="Fermier" min="0" max="6" onChange={handleInputNumber} placeholder="Nombre de Fermiers" />
           </label>
           <label htmlFor="Vagabond">Vagabonds
-            <input type="number" id="Vagabond" min="0" max="15" onChange={handleInputNumber} placeholder="Nombre de Vagabonds" />
+            <input type="number" id="Vagabond" name="Vagabond" min="0" max="15" onChange={handleInputNumber} placeholder="Nombre de Vagabonds" />
           </label>
         </div>
         <ul className="roles-step__roles-list" id="village-roles-list">
@@ -100,7 +95,12 @@ const RolesStep = ({
       </div> */}
       <div className="roles-step__button">
         {configDone && <Link to="/configurer-ma-partie/les-joueurs?mode=aleatoire"><button type="button">Suivant</button></Link>}
-        <button type="button" onClick={handleClickOnReturn}>Retour</button>
+        {/* TODO : Onclick, needs to display the values and the dom fully chargent as it was when leaving the page */}
+        <Link
+          to="/configurer-ma-partie/la-partie"
+        >
+          Retour
+        </Link>
       </div>
     </div>
   );

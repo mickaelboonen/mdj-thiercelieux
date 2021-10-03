@@ -141,7 +141,6 @@ const reducer = (state = initialState, action = {}) => {
         villageRolesArray = saveRole(action, villageRolesArray);
         newMessageArray = checkTotalRoles(villageRolesArray, messageError, state.configuration.playersNumber, 'village');
       }
-
       const finalErrorArray = checkRolesNumber(name, value, newMessageArray);
 
       // Checks if the number of roles chosen is the same as the number of players
@@ -260,11 +259,15 @@ const reducer = (state = initialState, action = {}) => {
           }
         });
       });
-
       // TODO : to be improved (fake data atm)
-      let villagersRoles = [];
+      let villagersRoles = state.villageList;
       if (action.value === 'Le Village') {
-        villagersRoles = villageRoleList;
+        if (newConfigurationObject.games.indexOf('Le Village') !== -1) {
+          villagersRoles = villageRoleList;
+        }
+        else {
+          villagersRoles = [];
+        }
       }
       return {
         ...state,

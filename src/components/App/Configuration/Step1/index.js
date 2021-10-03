@@ -133,11 +133,11 @@ const Step1 = ({
             <input type="radio" name="game-order" id="classic-order" value="classic" onChange={handleChange} />
           </label>
         </div>
-        <div className="configuration__settings-field-item">
+        {/* <div className="configuration__settings-field-item">
           <label htmlFor="preferences-order">Mes préférences
             <input type="radio" name="game-order" id="preferences-order" value="preferences" onChange={handleChange} />
           </label>
-        </div>
+        </div> */}
       </div>
       <div className="configuration__settings-field" id="newmoon-cards-field">
         <h5 className="configuration__settings-field-title">Cartes Nouvelle Lune</h5>
@@ -146,11 +146,11 @@ const Step1 = ({
             <input type="radio" name="newmoon-cards" id="classic-newmoon" value="classic" onChange={handleChange} />
           </label>
         </div>
-        <div className="configuration__settings-field-item">
+        {/* <div className="configuration__settings-field-item">
           <label htmlFor="newmoon-preferences">Mes préférences
             <input type="radio" name="newmoon-cards" id="newmoon-preferences" value="preferences" onChange={handleChange} />
           </label>
-        </div>
+        </div> */}
       </div>
       <div className="configuration__settings-field" id="roles-attribution-field">
         <h5 className="configuration__settings-field-title">Attribution des Roles</h5>
