@@ -14,6 +14,7 @@ import {
   SAVE_PLAYER_FROM_USER,
   CHANGE_PSEUDO_INPUT_VALUE,
 } from 'src/actions/gameConfiguration';
+import { CLEAR_INPUT } from 'src/actions';
 
 // SELECTORS
 import {
@@ -110,6 +111,11 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CLEAR_INPUT:
+      return {
+        ...state,
+        pseudo: '',
+      };
     case SAVE_PLAYER_FROM_USER:
       return {
         ...state,

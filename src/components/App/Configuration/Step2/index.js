@@ -27,7 +27,7 @@ const Step2 = ({
   const handleClickToSetRoles = () => {
     // Fonction pour l'attribution des roles random
     setRolesRandomly();
-    history.push('/configurer-ma-partie/les-joueurs?mode=aleatoire&visible=vrai');
+    history.replace('/configurer-ma-partie/les-joueurs?mode=aleatoire&visible=vrai');
   };
 
   let areRolesAttributed = false;
@@ -89,7 +89,7 @@ const Step2 = ({
           </button>
           )}
           <span className="configuration__settings-buttons-back">
-            <Link to="/configurer-ma-partie/etape/1">
+            <Link to="/configurer-ma-partie/la-partie">
               Retour
             </Link>
           </span>

@@ -7,9 +7,8 @@ export const changeValue = (value, input) => ({
 });
 
 export const CLEAR_INPUT = 'CLEAR_INPUT';
-export const clearInput = (input) => ({
+export const clearInput = () => ({
   type: CLEAR_INPUT,
-  input,
 });
 
 // ACTIONS RELATED TO BURGER
