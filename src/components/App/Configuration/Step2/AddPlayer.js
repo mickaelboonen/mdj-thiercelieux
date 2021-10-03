@@ -40,12 +40,13 @@ const AddPlayer = ({
   return (
     <form className="add-form">
       <div className="add-form__users">
-      <p>PSEUDO</p>
+      <label htmlFor="add-form__user-input">UTILISATEUR</label>
         <Field
           id="add-form__user-input"
           type="text"
           name="usersInput"
           placeholder="Veuillez renseigner le prénom"
+          aria-describedby="specificityHelpBlock"
         />
       </div>
       <ul
@@ -54,7 +55,7 @@ const AddPlayer = ({
         {usersList.map((user) => <UserLi key={user.id} {...user} />)}
       </ul>
       <div className="add-form__pseudo">
-        <p>PSEUDO</p>
+        <label htmlFor="add-form__pseudo-input">PSEUDO</label>
         <Field
           id="add-form__pseudo-input"
           type="text"

@@ -9,28 +9,27 @@
     padding: 0 0.5rem;
 
     & select {
-      flex-grow: 1;
-      max-width: 50%;
-      margin-right: 0.5rem;
-      padding: 0.2rem 0;
-      background-color: vars.$secondary-color;
-      border: 1px solid black;
+      @include vars.select;
+      // flex-grow: 1;
+      // max-width: 50%;
+      // margin-right: 0.5rem;
+      // padding: 0.2rem 0;
+      // background-color: vars.$secondary-color;
+      // border: 1px solid black;
 
-      & option {
-        // background-color: red;
+      // & option {
+      //   &:before {
+      //     content: inherit;
+      //   }
 
-        &:before {
-          content: inherit;
-        }
+      //   &:hover {
+      //     box-shadow: 0 0 10px 100px vars.$tertiary-color inset;
+      //   }
+      // }
 
-        &:hover {
-          box-shadow: 0 0 10px 100px vars.$tertiary-color inset;
-        }
-      }
-
-      &:last-child {
-        margin-right: 0;
-      }
+      // &:last-child {
+      //   margin-right: 0;
+      // }
     }
     
   }
