@@ -87,6 +87,15 @@ const Step1 = ({
     else if (currentId === 'roles-attribution-field') {
       setRolesAttribution(event.target.value);
     }
+
+    // ScrollTo on the .configuration__settings element as to always have the new fields visible
+    // (so the user doesn't have to scroll down)
+    const configurationElement = document.querySelector('.configuration__settings');
+    configurationElement.scrollTo({
+      left: 0,
+      top: configurationElement.offsetHeight,
+      behavior: 'smooth',
+    });
   };
   return (
     <div className="configuration__settings">

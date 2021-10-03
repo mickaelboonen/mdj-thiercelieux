@@ -11,6 +11,11 @@
     align-items: center;
     justify-content: space-around;
     padding: vars.$navbar-height 0 1.5rem;
+
+    &-btn {
+      @include vars.button;
+    }
+    
   }
 
   &__presentation {
