@@ -3,161 +3,170 @@
 
 .aboutus {
 
-    width: 100vw;
-    height: 100vh;
-    background-color: aquamarine;
-    margin-top: vars.$navbar-height;
-    
-    h2 {
-        text-align: center;
-        padding: vars.$gutter;
-    }
+  width: 100vw;
+  height: vars.$main-layout-height;
+  background-color: vars.$primary-color;
+  margin-top: vars.$navbar-height;
 
-    &__content {
-        background-color: pink;
-        margin: vars.$gutter;
-        padding: vars.$gutter;
-        height: 70%;
+  &__title {
+    @include vars.centered-flex;
+    font-family: vars.$fontAbril;
+    color: vars.$tertiary-color;
+    text-shadow: 1px 1px 1px black;
+    height: 12%;
+    border-bottom: 2px solid #707275;
+  }
 
-        &-staff {
+  &__content {
+    background-color: vars.$primary-color;
+    height: 88%;
+    display: flex;
+    // justify-content: space-between;
+    flex-direction: column;
 
-            display: flex;
-            justify-content: space-around;
-            background-color: red;
-            padding: 0.5em 0em;
-           
+    &-staff {
+      padding:0  1rem;
+      display: flex;
+      align-items: center;
+      height: 25%;
+      justify-content: space-between;
 
-            &-name {
-                position: relative; 
 
-                &-each {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
+      &-name {
+        position: relative;
 
-                    font-weight: bolder;
-                    font-family: vars.$fontRakkas;
-                    font-variant: small-caps;
-                    text-transform: lowercase;
-                    color: rgb(197, 197, 197);
-                    background-color: #1a1a1a77;
-                    padding: 3px;
-                    border-radius: 5px;
-                }
-            }
+        &-each {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
 
-            img {
-                width: 6em;
-                height: 6em;
-                padding: 0.2em;
-                border-radius: 50%;
-            }
+          font-weight: bolder;
+          font-family: vars.$fontRakkas;
+          font-variant: small-caps;
+          text-transform: lowercase;
+          color: rgb(197, 197, 197);
+          background-color: #1a1a1a77;
+          padding: 3px;
+          border-radius: 5px;
         }
+      }
 
-        &-info {
-            padding: vars.$gutter;
-            display: flex;
-            justify-content: center;
-            width: auto;
-            height: 70%;
-            align-items: center;
-            text-align: center;
-
-            &-each {
-                font-weight: bolder;
-            }
-
-            /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
-            .flip-card {
-                width: 15em;
-                height: 15em;
-                background-color: transparent;
-                // border: 1px solid #f1f1f1;
-                perspective: 1000px; /* Remove this if you don't want the 3D effect */
-                margin-top: 1em;
-
-                    /* This container is needed to position the front and back side */
-                &__inner {
-                position: relative;
-                width: 100%;
-                height: 100%;
-                text-align: center;
-                transition: transform 0.8s;
-                transform-style: preserve-3d;
-                }
-
-                
-                /* Position the front and back side */
-                &__front, &__back {
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-                    -webkit-backface-visibility: hidden; /* Safari */
-                    backface-visibility: hidden;
-                }
-                /* Style the front side (fallback if image is missing) */
-                &__front {
-                // background-color: #bbb;
-                color: black;
-                
-                    &-image {
-                        max-width: 100%;
-                    }
-
-                    &-name {
-                        text-transform: uppercase;
-                        font-weight: bold;
-                        letter-spacing: 1px;
-                    }
-                }
-
-                /* Style the back side */
-                &__back {
-                background-color: dodgerblue;
-                color: #000;
-                transform: rotateY(180deg);
-                overflow: auto;
-                // padding: math.div(vars.$gutter, 2);
-                padding: vars.$gutter;
-
-                    &-name {
-                        text-transform: uppercase;
-                        font-weight: bold;
-                        letter-spacing: 1px;
-                        margin-bottom: 0.2rem;
-                        // font-family: vars.$fontAbril;
-                    }
-
-                    &-side {
-                        font-style: italic;
-                        font-size: 0.8em;
-                        margin-bottom: 0.5rem;
-                    }
-
-                    &-description {
-                        text-align: justify;
-                        // text-overflow: ellipsis;
-                        // height: 10rem;
-                        // white-space: nowrap;
-                        // overflow: hidden;
-                    }
-                }
-
-                /* Do an horizontal flip when you move the mouse over the flip box container */
-                .flip-card:hover &__inner {
-                    transform: rotateY(180deg);
-                } 
-            }
-        }
+      img {
+        width: 6em;
+        height: 6em;
+        padding: 0.2em;
+        border-radius: 50%;
+      }
     }
 
-    &__back-home {
-        display: flex;
-        justify-content: center;
-        font-family: vars.$fontRakkas;
-        font-variant: small-caps;
-        text-transform: lowercase;
-        font-size: 1.2em;
+    &-info {
+      height: 70%;
+      display: flex;
+      justify-content: center;
+      width: auto;
+      height: 70%;
+      align-items: center;
+      text-align: center;
+
+      &-each {
+        font-weight: bolder;
+      }
+
+      /* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
+      // .flip-card {
+      //   width: 15em;
+      //   height: 15em;
+      //   background-color: transparent;
+      //   // border: 1px solid #f1f1f1;
+      //   perspective: 1000px;
+      //   /* Remove this if you don't want the 3D effect */
+      //   margin-top: 1em;
+
+      //   /* This container is needed to position the front and back side */
+      //   &__inner {
+      //     position: relative;
+      //     width: 100%;
+      //     height: 100%;
+      //     text-align: center;
+      //     transition: transform 0.8s;
+      //     transform-style: preserve-3d;
+      //   }
+
+
+      //   /* Position the front and back side */
+      //   &__front,
+      //   &__back {
+      //     position: absolute;
+      //     width: 100%;
+      //     height: 100%;
+      //     -webkit-backface-visibility: hidden;
+      //     /* Safari */
+      //     backface-visibility: hidden;
+      //   }
+
+      //   /* Style the front side (fallback if image is missing) */
+      //   &__front {
+      //     // background-color: #bbb;
+      //     color: black;
+
+      //     &-image {
+      //       max-width: 100%;
+      //     }
+
+      //     &-name {
+      //       text-transform: uppercase;
+      //       font-weight: bold;
+      //       letter-spacing: 1px;
+      //     }
+      //   }
+
+      //   /* Style the back side */
+      //   &__back {
+      //     // background-color: dodgerblue;
+      //     color: #000;
+      //     transform: rotateY(180deg);
+      //     overflow: auto;
+      //     // padding: math.div(vars.$gutter, 2);
+      //     padding: vars.$gutter;
+
+      //     &-name {
+      //       text-transform: uppercase;
+      //       font-weight: bold;
+      //       letter-spacing: 1px;
+      //       margin-bottom: 0.2rem;
+      //       // font-family: vars.$fontAbril;
+      //     }
+
+      //     &-side {
+      //       font-style: italic;
+      //       font-size: 0.8em;
+      //       margin-bottom: 0.5rem;
+      //     }
+
+      //     &-description {
+      //       text-align: justify;
+      //       // text-overflow: ellipsis;
+      //       // height: 10rem;
+      //       // white-space: nowrap;
+      //       // overflow: hidden;
+      //     }
+      //   }
+
+      //   /* Do an horizontal flip when you move the mouse over the flip box container */
+      //   .flip-card:hover &__inner {
+      //     transform: rotateY(180deg);
+      //   }
+      // }
     }
+  }
+
+  &__back-home {
+    display: flex;
+    justify-content: center;
+    font-family: vars.$fontRakkas;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    font-size: 1.2em;
+  }
 }

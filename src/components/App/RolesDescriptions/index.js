@@ -16,16 +16,12 @@ const Roles = ({
   fillReducer,
   loading,
 }) => {
-  // UseEffect qui fera l'appel à l'API pour remplir le reducer.
+  // TODO : UseEffect qui fera l'appel à l'API pour remplir le reducer.
   const location = useLocation().pathname.split('/');
   const currentPage = location[2];
   useEffect(() => {
     fillReducer(currentPage);
   }, [currentPage]);
-  
-  useEffect(() => {
-    console.log('rnedu');
-  })
   return (
     <div className="roles">
       {!loading && (

@@ -55,7 +55,8 @@
 
     /* Style the back side */
     &__back {
-      color: #686767;
+      color: #fff;
+      background-color: vars.$secondary-color;
       transform: rotateY(180deg);
       overflow: auto;
       // padding: math.div(vars.$gutter, 2);
