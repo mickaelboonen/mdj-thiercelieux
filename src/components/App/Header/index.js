@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Burger from 'src/containers/App/Header/Burger';
 import DropdownBurger from 'src/containers/App/Header/Burger/DropdownBurger';
 
@@ -14,7 +13,6 @@ const Header = () => (
       <Burger />
     </nav>
     <DropdownBurger />
-    
   </header>
 );
 

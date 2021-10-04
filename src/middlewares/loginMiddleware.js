@@ -7,6 +7,7 @@ import {
   login,
 } from 'src/actions/user';
 import { setAuthErrorMessage } from 'src/actions/user/login';
+import { LOGOUT } from '../actions/user/login';
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
@@ -45,6 +46,9 @@ const gameMiddleware = (store) => (next) => (action) => {
           console.error('login request', error);
         });
     }
+      break;
+    case LOGOUT:
+      delete api.defaults.headers.common.Authorization;
       break;
     default:
   }

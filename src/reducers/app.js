@@ -7,7 +7,7 @@ import {
   DISPLAY_NEW_ROLE,
   DISPLAY_NEW_GAME,
 } from 'src/actions';
-
+import { LOGOUT } from 'src/actions/user/login';
 import { generateRandomNumbersArray } from 'src/selectors/generateRandomNumber';
 
 const initialState = {
@@ -69,7 +69,7 @@ const reducer = (state = initialState, action = {}) => {
       /**
        * returns Array of numbers
        */
-       generateRandomNumbersArray(idArray, 7, 32);
+      generateRandomNumbersArray(idArray, 7, 32);
 
       const rolesToDisplay = [];
 
@@ -87,6 +87,11 @@ const reducer = (state = initialState, action = {}) => {
         roleToDisplay: rolesToDisplay[3],
       };
     }
+    case LOGOUT:
+      return {
+        ...state,
+        isBurgerOpen: false,
+      };
     default:
       return state;
   }
