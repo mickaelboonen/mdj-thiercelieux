@@ -6,7 +6,7 @@ import wolf from 'src/assets/pictures/wolf.svg';
 import './style.scss';
 import { Link } from 'react-router-dom';
 
-const Login = ({ checkAuth, authErrors}) => {
+const Login = ({ checkAuth, authErrors }) => {
   const {
     register,
     handleSubmit,

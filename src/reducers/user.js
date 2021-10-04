@@ -10,6 +10,7 @@ import {
   CHANGE_USERS_INPUT_VALUE,
 } from 'src/actions/user';
 import { SET_AUTH_ERROR_MESSAGE } from 'src/actions/user/login';
+import history from 'src/utils/history';
 // TODO : change both actions below (actions/index.js)
 import {
   CLEAR_INPUT,
@@ -107,7 +108,8 @@ const reducer = (state = initialState, action = {}) => {
         creations,
         statistics,
         favoriteRole,
-      } = action.data;
+      } = action.data[0];
+      history.goBack();
       return {
         ...state,
         isConnected: true,

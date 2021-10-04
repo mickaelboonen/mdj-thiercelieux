@@ -1,8 +1,13 @@
 // == Import npm
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route, Redirect } from 'react-router-dom';
-
+import {
+  Switch,
+  Route,
+  Redirect,
+  useHistory,
+  useLocation,
+} from 'react-router-dom';
 // import { users } from 'src/data/users';
 
 import Header from 'src/components/App/Header';
