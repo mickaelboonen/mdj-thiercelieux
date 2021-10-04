@@ -9,6 +9,7 @@ import {
   SAVE_AVATARS_LIST,
   CHANGE_USERS_INPUT_VALUE,
 } from 'src/actions/user';
+import { SET_AUTH_ERROR_MESSAGE } from 'src/actions/user/login';
 // TODO : change both actions below (actions/index.js)
 import {
   CLEAR_INPUT,
@@ -50,6 +51,11 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SET_AUTH_ERROR_MESSAGE:
+      return {
+        ...state,
+        errors: [action.message],
+      };
     case SAVE_PLAYER_FROM_USER:
       return {
         ...state,
@@ -113,6 +119,7 @@ const reducer = (state = initialState, action = {}) => {
         statistics: statistics,
         favoriteRole: favoriteRole,
         email: email,
+        errors: [],
       };
     }
     case END_REGISTER_PROCESS:

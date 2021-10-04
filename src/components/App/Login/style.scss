@@ -50,6 +50,14 @@
       color: vars.$tertiary-color;
     }
 
+    &-auth-error {
+      color: vars.$tertiary-color;
+      border: 1px solid black;
+      background-color: rgba(202, 101, 101, 0.685);
+      padding: vars.$gutter;
+      margin-top: 0.5rem;
+    }
+
     &-inscription {
       margin: auto;
       margin-bottom: 0.7rem;
