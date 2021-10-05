@@ -111,7 +111,7 @@ const reducer = (state = initialState, action = {}) => {
         creations,
         statistics,
         favoriteRole,
-      } = action.data[0];
+      } = action.data;
       history.goBack();
       return {
         ...state,

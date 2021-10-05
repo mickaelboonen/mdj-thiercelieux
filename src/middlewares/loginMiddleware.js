@@ -40,6 +40,7 @@ const gameMiddleware = (store) => (next) => (action) => {
       const { data } = action;
       api.post('/api/users/login', data)
         .then((response) => {
+          console.log(response);
           store.dispatch(saveUser(response.data));
         })
         .catch((error) => {
