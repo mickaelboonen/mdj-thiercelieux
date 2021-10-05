@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import RolesDescriptions from 'src/components/App/RolesDescriptions';
 
-import { fillReducer } from 'src/actions/RolesDescriptions';
+import { fetchCards } from 'src/actions/RolesDescriptions';
 
 const mapStateToProps = (state) => ({
   data: state.rolesDescriptions.data,
@@ -14,8 +14,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fillReducer: (currentPage) => {
-    dispatch(fillReducer(currentPage));
+  fetchCards: (currentPage) => {
+    dispatch(fetchCards(currentPage));
   },
 });
 

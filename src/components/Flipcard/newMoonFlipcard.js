@@ -9,7 +9,7 @@ const newMoonFlipcard = ({ card }) => {
   const {
     name,
     description,
-    image,
+    picture,
     phase,
   } = card;
   /**
@@ -25,13 +25,13 @@ const newMoonFlipcard = ({ card }) => {
     };
   };
   const divStyle = {
-    backgroundImage: `url(${image})`,
+    backgroundImage: `url(${picture})`,
   };
   return (
     <div className="newmoon-flip-card">
       <div className="newmoon-flip-card__inner">
         <div className="newmoon-flip-card__front">
-          <img className="newmoon-flip-card__front-image" src={image} alt="newmooncard" />
+          <img className="newmoon-flip-card__front-image" src={picture} alt="newmooncard" />
           <h2 className="newmoon-flip-card__front-name">{name}</h2>
         </div>
         <div className="newmoon-flip-card__back" style={divStyle}>

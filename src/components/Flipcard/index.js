@@ -11,7 +11,7 @@ const Flipcard = ({ role }) => {
   const {
     name,
     description,
-    image,
+    picture,
     side,
     excerpt,
     phase,
@@ -42,7 +42,7 @@ const Flipcard = ({ role }) => {
       <div className="flip-card__inner">
         <div className="flip-card__front">
           <h3 className="flip-card__front-name">{name}</h3>
-          <img className="flip-card__front-image" src={image} alt="character" />
+          <img className="flip-card__front-image" src={picture} alt="character" />
           <div className="flip-card__front-div" />
         </div>
         <div className="flip-card__back">

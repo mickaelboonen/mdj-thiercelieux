@@ -97,12 +97,12 @@
 
 .role, .card {
   width: 31.5%;
-  background-color: vars.$quaternary-color;
+  background-color: transparent;
   display: flex;
   margin-bottom: 0.3rem;
   align-items: center;
 
-  &__image {
+  &__picture {
     max-width: 100%;
   }
 }
@@ -110,6 +110,7 @@
 .role {
   height: fit-content;
   justify-content: center;
+
 }
 
 .card {

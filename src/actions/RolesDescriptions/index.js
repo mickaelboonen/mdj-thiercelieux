@@ -5,11 +5,19 @@ export const filterBy = (value, filter) => ({
   filter,
 });
 
-export const FILL_REDUCER = 'FILL_REDUCER';
-export const fillReducer = (currentPage) => ({
-  type: FILL_REDUCER,
+export const FETCH_CARDS = 'FETCH_CARDS';
+export const fetchCards = (currentPage) => ({
+  type: FETCH_CARDS,
   currentPage,
 });
+
+export const SAVE_CARDS = 'SAVE_CARDS';
+export const saveCards = (data, currentPage) => ({
+  type: SAVE_CARDS,
+  data,
+  currentPage,
+});
+
 
 export const CHANGE_VALUE = 'CHANGE_VALUE';
 export const changeValue = (value, input) => ({

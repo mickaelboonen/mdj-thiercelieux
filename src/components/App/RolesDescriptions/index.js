@@ -13,14 +13,13 @@ const Roles = ({
   rolesInputValue,
   currentPageButtons,
   isFiltered,
-  fillReducer,
+  fetchCards,
   loading,
 }) => {
-  // TODO : UseEffect qui fera l'appel à l'API pour remplir le reducer.
   const location = useLocation().pathname.split('/');
   const currentPage = location[2];
   useEffect(() => {
-    fillReducer(currentPage);
+    fetchCards(currentPage);
   }, [currentPage]);
   return (
     <div className="roles">
@@ -47,7 +46,7 @@ Roles.propTypes = {
   currentPageButtons: PropTypes.array.isRequired,
   flipcardData: PropTypes.object.isRequired,
   rolesInputValue: PropTypes.string.isRequired,
-  fillReducer: PropTypes.func.isRequired,
+  fetchCards: PropTypes.func.isRequired,
 
   // BOOLEENS
   onFocus: PropTypes.bool.isRequired,

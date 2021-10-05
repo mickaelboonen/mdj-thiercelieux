@@ -7,7 +7,7 @@ import { newMoonCards, newMoonCardsSelects } from 'src/data/newMoonCards';
 // ACTIONS
 import {
   CLEAR_INPUT,
-  FILL_REDUCER,
+  SAVE_CARDS,
   FILTER_BY,
   DISPLAY_ROLE,
   TOGGLE_FOCUS,
@@ -125,29 +125,26 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         rolesInput: '',
       };
-    case FILL_REDUCER: {
-      let currentData = [];
+    case SAVE_CARDS: {
+      const currentData = action.data;
       let currentDataSelects = [];
       let currentPage = null;
       let wrongPage = null;
       let wrongPage2 = null;
 
-      if (action.currentPage === 'les-roles') {
-        currentData = hiddenRoles;
+      if (action.currentPage === 'roles') {
         currentDataSelects = rolesSelects;
         currentPage = 'hiddenRolesPage';
         wrongPage = 'newMoonCardsPage';
         wrongPage2 = 'villageRolesPage';
       }
-      else if (action.currentPage === 'les-cartes-nouvelle-lune') {
-        currentData = newMoonCards;
+      else if (action.currentPage === 'newmoon') {
         currentDataSelects = newMoonCardsSelects;
         currentPage = 'newMoonCardsPage';
         wrongPage = 'hiddenRolesPage';
         wrongPage2 = 'villageRolesPage';
       }
-      else if (action.currentPage === 'les-villageois') {
-        currentData = villagePeople;
+      else if (action.currentPage === 'village') {
         currentDataSelects = villageRolesSelects;
         currentPage = 'villageRolesPage';
         wrongPage = 'hiddenRolesPage';
