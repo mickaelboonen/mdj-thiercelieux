@@ -8,14 +8,20 @@ import {
   SAVE_AVATAR,
   SAVE_AVATARS_LIST,
   CHANGE_USERS_INPUT_VALUE,
+  CLEAR_MESSAGES,
 } from 'src/actions/user';
+import {
+  SET_AUTH_ERROR_MESSAGE,
+  LOGOUT,
+} from 'src/actions/user/login';
+import history from 'src/utils/history';
 // TODO : change both actions below (actions/index.js)
 import {
   CLEAR_INPUT,
   REINITIALIZE_DATA,
 } from 'src/actions/RolesDescriptions';
 import { SAVE_PLAYER_FROM_USER } from 'src/actions/gameConfiguration';
-
+import storage from 'redux-persist/lib/storage';
 import avatarPicture from 'src/assets/pictures/cards/croissant.gif';
 
 const initialState = {
@@ -50,6 +56,17 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CLEAR_MESSAGES:
+      return {
+        ...state,
+        errors: [],
+        validationMessage: '',
+      };
+    case SET_AUTH_ERROR_MESSAGE:
+      return {
+        ...state,
+        errors: [action.message],
+      };
     case SAVE_PLAYER_FROM_USER:
       return {
         ...state,
@@ -102,6 +119,7 @@ const reducer = (state = initialState, action = {}) => {
         statistics,
         favoriteRole,
       } = action.data;
+      history.goBack();
       return {
         ...state,
         isConnected: true,
@@ -113,6 +131,7 @@ const reducer = (state = initialState, action = {}) => {
         statistics: statistics,
         favoriteRole: favoriteRole,
         email: email,
+        errors: [],
       };
     }
     case END_REGISTER_PROCESS:
@@ -138,6 +157,20 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         avatars: action.avatars,
+      };
+    case LOGOUT:
+      storage.removeItem('persist:root');
+      history.push('/');
+      return {
+        ...state,
+        pseudo: '',
+        isConnected: false,
+        email: '',
+        token: '',
+        avatar: '',
+        preferences: [],
+        creations: [],
+        statistics: [],
       };
     default:
       return state;

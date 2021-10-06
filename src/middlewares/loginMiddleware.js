@@ -6,6 +6,8 @@ import {
   saveUser,
   login,
 } from 'src/actions/user';
+import { setAuthErrorMessage } from 'src/actions/user/login';
+import { LOGOUT } from '../actions/user/login';
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
@@ -19,11 +21,18 @@ const gameMiddleware = (store) => (next) => (action) => {
       const { data } = action;
       api.post('/api/users/check_auth', data)
         .then((response) => {
-          api.defaults.headers.common['Authorization'] = `bearer ${response.data.token}`;
-          store.dispatch(login(response.data));
+          api.defaults.headers.common.Authorization = `bearer ${response.data.token}`;
+          if (response.data.status === 403) {
+            store.dispatch(setAuthErrorMessage(response.data.message));
+          }
+          else if (response.data.status === 200) {
+            store.dispatch(login(response.data));
+          }
         })
         .catch((error) => {
-          console.error('login request', error);
+          const errorData = {};
+          errorData.message = 'Le serveur a rencontré une erreur. Veuillez recommencer. Si le problème persiste, veuillez contacter X'; // TODO
+          store.dispatch(setAuthErrorMessage(errorData.message));
         });
     }
       break;
@@ -38,6 +47,9 @@ const gameMiddleware = (store) => (next) => (action) => {
           console.error('login request', error);
         });
     }
+      break;
+    case LOGOUT:
+      delete api.defaults.headers.common.Authorization;
       break;
     default:
   }

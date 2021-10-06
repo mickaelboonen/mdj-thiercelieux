@@ -1,8 +1,13 @@
 // == Import npm
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Switch, Route, Redirect } from 'react-router-dom';
-
+import {
+  Switch,
+  Route,
+  Redirect,
+  useHistory,
+  useLocation,
+} from 'react-router-dom';
 // import { users } from 'src/data/users';
 
 import Header from 'src/components/App/Header';
@@ -45,8 +50,8 @@ const App = ({ isConnected }) => (
             <Route path="/" exact component={Home} />
             <Route path="/le-jeu/:slug" exact component={RolesDescriptions} />
             <Route path="/configurer-ma-partie/:slug" exact>
-              {/* {!isConnected ? <Redirect to="/se-connecter" /> : <Configuration />} */}
-              <Configuration />
+              {!isConnected ? <Redirect to="/se-connecter" /> : <Configuration />}
+              {/* <Configuration /> */}
             </Route>
             <Route path="/les-jeux">
               <Switch>

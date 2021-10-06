@@ -1,46 +1,49 @@
-@use 'src/styles/vars';
+// @use 'src/styles/vars';
 
-.register {
-    width: 100vw;
-    height: 100vh;
-    margin-top: vars.$navbar-height;
-    background-color: rgb(133, 133, 133);
-    padding: vars.$gutter;
+// // TODO : revoir tout le css ici
 
-    h3 {
-        font-size: 1.5em;
-        text-transform: uppercase;
-        margin-bottom: 1.5em;
-    }
+// .register {
+//   width: 100vw;
+//   height: 100vh;
+//   margin-top: vars.$navbar-height;
+//   background-color: rgb(133, 133, 133);
+//   padding: vars.$gutter;
 
-    &__form {
+//   h3 {
+//     font-size: 1.5em;
+//     text-transform: uppercase;
+//     margin-bottom: 1.5em;
+//   }
 
-        background-color: azure;
-        padding: vars.$gutter;
+//   &__form {
 
-        label {
-            display: flex;
-            font-weight: bolder;
-        }
+//     background-color: azure;
+//     padding: vars.$gutter;
 
-        input {
-            width: 100%;
-            height: 2.5em;
-            margin: 1em 0em;
-        }
+//     label {
+//       display: flex;
+//       font-weight: bolder;
+//       text-transform: uppercase;
+//     }
 
-        p {
-            color:rgb(255, 0, 51);
-            font-size: 0.8em;
-            padding: 0em 2em 1em;
-        }
-    }
+//     input {
+//       width: 100%;
+//       height: 2.5em;
+//       margin: 1em 0em;
+//     }
 
-    &__back-home {
-        display: block;
-        text-align: center;
-        padding: vars.$gutter;
-        font-family: vars.$fontRakkas;
-        text-transform: uppercase;
-    }
-}
+//     p {
+//       color: rgb(255, 0, 51);
+//       font-size: 0.8em;
+//       padding: 0em 2em 1em;
+//     }
+//   }
+
+//   &__back-home {
+//     display: block;
+//     text-align: center;
+//     padding: vars.$gutter;
+//     font-family: vars.$fontRakkas;
+//     text-transform: uppercase;
+//   }
+// }

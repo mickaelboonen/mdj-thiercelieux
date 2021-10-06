@@ -1,5 +1,4 @@
 import axios from 'axios';
-import avatar from 'src/assets/pictures/cards/croissant.gif';
 
 import { SAVE_NEW_USER, endRegisterProcess, setRegisterErrorMessage } from 'src/actions/user';
 
@@ -17,28 +16,28 @@ const registerMiddleware = (store) => (next) => (action) => {
     case SAVE_NEW_USER: {
       const newUser = {
         ...action.data,
-        avatar: avatar,
+        avatar: 'https://images2.imgbox.com/15/c9/bFUlvk0I_o.png',
       };
       delete newUser.confirmPassword;
       api.post('/api/users/create', newUser)
         .then((response) => {
-          console.log(response);
           if (response.status === 201) {
-            const message = 'Votre compte a été créé avec succès.';
-
+            const message = "Message de validation";
             store.dispatch(endRegisterProcess(message));
           }
-          else {
-            // TODO toutes les erreurs a gérer
+          // If we get a 200 status, resquest encountered an error and did not create the new user
+          else if (response.status === 200) {
             const errorsArray = [];
-            const message = 'Une erreur est survenue pendant la création de votre compte. Veuillez réessayer.'; // erreur type, a voir en fonction des erreurs renvoyées par le back
-            errorsArray.push(message);
-            // Emain + pseudo uniques !
+            errorsArray.push(response.data);
             store.dispatch(setRegisterErrorMessage(errorsArray));
           }
         })
         .catch((error) => {
-          console.error('register request', error);
+          // Couldn't connect to the server
+          const message = 'Le serveur a rencontré un problème. Merci de bien vouloir réessayer. En cas de nouvel échec, merci de contacter X.'; // TODO
+          const errorsArray = [];
+          errorsArray.push(message);
+          store.dispatch(setRegisterErrorMessage(errorsArray));
         });
     }
       break;

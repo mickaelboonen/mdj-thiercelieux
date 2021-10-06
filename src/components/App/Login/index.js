@@ -6,7 +6,7 @@ import wolf from 'src/assets/pictures/wolf.svg';
 import './style.scss';
 import { Link } from 'react-router-dom';
 
-const Login = ({ checkAuth }) => {
+const Login = ({ checkAuth, authErrors }) => {
   const {
     register,
     handleSubmit,
@@ -31,14 +31,9 @@ const Login = ({ checkAuth }) => {
           placeholder="Nom d'utilisateur ou Email"
           className="login__form-input"
           {...register('username', {
-            required: "Hop hop hop mon p'tit loup, t'as oublié ton super pseudo.",
-            minLength: {
-              value: 3,
-              message: 'Ton pseudo est trop court !',
-            },
+            required: "A Thiercelieux, tout le monde a un pseudo. C'est quoi le tien ?",
           })}
         />
-        {/* penser à ajouter un message d'erreur si pseudo existant */}
         {errors.username && <p className="login__form-error">{errors.username.message}</p>}
         <input
           type="password"
@@ -46,14 +41,11 @@ const Login = ({ checkAuth }) => {
           id="password"
           className="login__form-input"
           {...register('password', {
-            required: "Oups, t'as oublié d'indiquer un mot de passe.",
-            minLength: {
-              value: 7,
-              message: 'Le mot de passe est trop court !',
-            },
+            required: "C'est pas que la confiance ne règne pas à Thiercelieux, mais il nous faut un mot de passe !",
           })}
         />
         {errors.password && <p className="login__form-error">{errors.password.message}</p>}
+        {authErrors.length > 0 && <p className="login__form-auth-error">{authErrors[0]}</p>}
         <div className="login__form-link">
           <Link to="#">Mot de passe oublié ?</Link>
         </div>
@@ -67,6 +59,7 @@ const Login = ({ checkAuth }) => {
 
 Login.propTypes = {
   checkAuth: PropTypes.func.isRequired,
+  authErrors: PropTypes.array.isRequired,
 };
 
 export default Login;
