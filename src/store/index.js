@@ -9,6 +9,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import gameMiddleware from 'src/middlewares/gameMiddleware';
 import loginMiddleware from 'src/middlewares/loginMiddleware';
 import usersMiddleware from 'src/middlewares/usersMiddleware';
+import rolesMiddleware from 'src/middlewares/rolesMiddleware';
 import profileMiddleware from 'src/middlewares/profileMiddleware';
 import registerMiddleware from 'src/middlewares/registerMiddleware';
 
@@ -30,6 +31,7 @@ const middlewares = applyMiddleware(
   gameMiddleware,
   loginMiddleware,
   usersMiddleware,
+  rolesMiddleware,
   profileMiddleware,
   registerMiddleware,
 );

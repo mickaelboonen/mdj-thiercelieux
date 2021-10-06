@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const Role = ({
-  image,
+  picture,
   id,
   displayRole,
   toggleFocus,
@@ -20,8 +20,8 @@ const Role = ({
   return (
     <div className="role">
       <img
-        className="role__image"
-        src={image}
+        className="role__picture"
+        src={picture}
         alt=""
         onClick={handleClick}
       />
@@ -30,7 +30,7 @@ const Role = ({
 };
 
 Role.propTypes = {
-  image: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
 
   // FUNCTIONS

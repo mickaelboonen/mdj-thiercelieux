@@ -5,7 +5,7 @@ import './style.scss';
 import classNames from 'classnames';
 
 const Card = ({
-  image,
+  picture,
   id,
   name,
   displayCard,
@@ -26,7 +26,7 @@ const Card = ({
   }
 
   const divStyle = {
-    backgroundImage: `url(${image})`,
+    backgroundImage: `url(${picture})`,
   }
   return (
     <div className="card" style={divStyle} onClick={handleClick}>
@@ -46,7 +46,7 @@ Card.propTypes = {
   id: PropTypes.number.isRequired,
 
   // STRINGS
-  image: PropTypes.string.isRequired,
+  picture: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 
   // FUNCTIONS

@@ -30,7 +30,7 @@ const Aboutus = ({
               onClick={handleMemberClick}
             >
               <span data-id={member.id} className="aboutus__content-staff-name-each">{member.name}</span>
-              <img src={member.icon} data-id={member.id} alt="" />
+              <img src={member.picture} data-id={member.id} alt="" />
             </div>
           ))}
         </div>
@@ -39,7 +39,7 @@ const Aboutus = ({
             <FlipCard role={{
               id: memberToDisplay.id,
               name: memberToDisplay.name,
-              image: memberToDisplay.icon,
+              picture: memberToDisplay.picture,
               excerpt: '',
               description: memberToDisplay.description,
               firstNight: false,
@@ -61,7 +61,7 @@ Aboutus.propTypes = {
   members: PropTypes.arrayOf(PropTypes.shape({
     id: PropTypes.number.isRequired,
     name: PropTypes.string.isRequired,
-    icon: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
   })).isRequired,
 
   memberToDisplay: PropTypes.object.isRequired,
