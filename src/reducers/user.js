@@ -8,6 +8,7 @@ import {
   SAVE_AVATAR,
   SAVE_AVATARS_LIST,
   CHANGE_USERS_INPUT_VALUE,
+  CLEAR_MESSAGES,
 } from 'src/actions/user';
 import {
   SET_AUTH_ERROR_MESSAGE,
@@ -55,6 +56,12 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CLEAR_MESSAGES:
+      return {
+        ...state,
+        errors: [],
+        validationMessage: '',
+      };
     case SET_AUTH_ERROR_MESSAGE:
       return {
         ...state,

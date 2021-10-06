@@ -72,7 +72,7 @@
 
     &-link {
       text-align: right;
-      margin: 1.5rem 0;
+      margin: 1.5rem 0 0;
     }
 
     &-button {
@@ -80,13 +80,13 @@
        justify-content: center;
 
       & button {
-        width: 100%;
-        background-color:vars.$tertiary-color;
-        border: 0;
-        padding: 0.7rem;
-        border-radius: 15px;
-        color: vars.$quenary-color;
+        @include vars.button;
+        margin-top: 1rem;
       }
     }
   }
+}
+
+.register__form-input {
+  margin-bottom: 0.5rem;
 }

@@ -93,3 +93,8 @@ export const changeUsersInputValue = (value) => ({
   type: CHANGE_USERS_INPUT_VALUE,
   value,
 });
+
+export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
+export const clearMessages = () => ({
+  type: CLEAR_MESSAGES,
+});
