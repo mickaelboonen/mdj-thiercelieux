@@ -2,7 +2,7 @@
 // DATA
 import { hiddenRoles, rolesSelects } from 'src/data/hiddenRoles';
 import { villagePeople, villageRolesSelects } from 'src/data/villagePeople';
-import { newMoonCards, newMoonCardsSelects } from 'src/data/newMoonCards';
+import { newMoonCardsSelects } from 'src/data/newMoonCards';
 
 // ACTIONS
 import {
@@ -86,10 +86,11 @@ const reducer = (state = initialState, action = {}) => {
       if (action.filter === 'sorting-select') {
         newArray = sortBy(action.value, state.data);
       }
+      // TODO : fix bug on selects
       else {
         // VILLAGE PEOPLE
         if (action.value !== '' && state.villageRolesPage) {
-          newArray = filterByPower(action.value, villagePeople);
+          newArray = filterByPower(action.value, state.data);
         }
         else if (action.value === '' && action.filter === 'power-select') {
           newArray = villagePeople;
@@ -97,17 +98,17 @@ const reducer = (state = initialState, action = {}) => {
 
         // HIDDEN ROLES
         else if (action.value !== '' && state.hiddenRolesPage) {
-          newArray = filterBySide(action.value, hiddenRoles);
+          newArray = filterBySide(action.value, state.data);
         }
         else if (action.value === '' && action.filter === 'side-select') {
           newArray = hiddenRoles;
         }
         // NEW MOON CARDS
         else if (action.value !== '' && state.newMoonCardsPage) {
-          newArray = filterByPhase(action.value, newMoonCards);
+          newArray = filterByPhase(action.value, state.data);
         }
         else if (action.value === '' && action.filter === 'phase-select') {
-          newArray = newMoonCards;
+          newArray = state.data;
         }
       }
       return {

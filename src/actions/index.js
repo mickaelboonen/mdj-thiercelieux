@@ -42,3 +42,15 @@ export const displayNewGame = (newIndexValue, id) => ({
   newIndexValue,
   id,
 });
+
+export const FETCH_HOME_DATA = 'FETCH_HOME_DATA';
+export const fetchHomeData = () => ({
+  type: FETCH_HOME_DATA,
+});
+
+export const SAVE_HOME_DATA = 'SAVE_HOME_DATA';
+export const saveHomeData = (data, category) => ({
+  type: SAVE_HOME_DATA,
+  data,
+  category,
+});

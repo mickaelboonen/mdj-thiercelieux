@@ -7,10 +7,11 @@ import Flipcard from 'src/components/Flipcard';
 import './style.scss';
 
 const Characters = ({ fetchRandomRoles, roleToDisplay, displayNewRole }) => {
+  console.log(roleToDisplay);
   const { id } = roleToDisplay;
-  useEffect(() => {
-    fetchRandomRoles();
-  }, []);
+  // useEffect(() => {
+  //   fetchRandomRoles();
+  // }, []);
 
   const handleClickOnChevron = (event) => {
     let newIndexValue = 1;
@@ -36,11 +37,11 @@ const Characters = ({ fetchRandomRoles, roleToDisplay, displayNewRole }) => {
 };
 
 Characters.propTypes = {
-  roleToDisplay: PropTypes.object.isRequired,
+  // roleToDisplay: PropTypes.object.isRequired,
 
-  // FUNCTIONS
-  displayNewRole: PropTypes.func.isRequired,
-  fetchRandomRoles: PropTypes.func.isRequired,
+  // // FUNCTIONS
+  // displayNewRole: PropTypes.func.isRequired,
+  // fetchRandomRoles: PropTypes.func.isRequired,
 };
 
 export default Characters;

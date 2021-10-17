@@ -1,11 +1,11 @@
 import { expansions } from 'src/data/expansions';
-import { hiddenRoles } from 'src/data/hiddenRoles';
 import {
   CLOSE_BURGER,
   FETCH_RANDOM_ROLES,
   TOGGLE_BURGER,
   DISPLAY_NEW_ROLE,
   DISPLAY_NEW_GAME,
+  SAVE_HOME_DATA,
 } from 'src/actions';
 import { LOGOUT } from 'src/actions/user/login';
 import { generateRandomNumbersArray } from 'src/selectors/generateRandomNumber';
@@ -17,6 +17,9 @@ const initialState = {
   randomRoles: [],
   roleToDisplay: {},
   gameToDisplay: expansions[0],
+  hiddenRoles: [],
+  games: [],
+
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -63,28 +66,60 @@ const reducer = (state = initialState, action = {}) => {
         roleToDisplay: state.randomRoles[newIndex],
       };
     }
-    case FETCH_RANDOM_ROLES: {
-      const idArray = [];
+    // case FETCH_RANDOM_ROLES: {
+    //   const idArray = [];
 
-      /**
-       * returns Array of numbers
-       */
-      generateRandomNumbersArray(idArray, 7, 32);
+    //   /**
+    //    * returns Array of numbers
+    //    */
+    //   generateRandomNumbersArray(idArray, 7, 32);
 
-      const rolesToDisplay = [];
+    //   const rolesToDisplay = [];
 
-      /**
-       * Pushes into rolesToDisplay the roles whose ids match the numbers in the idArray
-       */
-      hiddenRoles.forEach((role) => {
-        if (idArray.indexOf(role.id) >= 0) {
-          rolesToDisplay.push(role);
-        }
-      });
+    //   /**
+    //    * Pushes into rolesToDisplay the roles whose ids match the numbers in the idArray
+    //    */
+    //   state.hiddenRoles.forEach((role) => {
+    //     if (idArray.indexOf(role.id) >= 0) {
+    //       rolesToDisplay.push(role);
+    //     }
+    //   });
+    //   return {
+    //     ...state,
+    //     randomRoles: rolesToDisplay,
+    //     roleToDisplay: rolesToDisplay[3],
+    //   };
+    // }
+    case SAVE_HOME_DATA: {
+      let rolesToDisplay = state.randomRoles;
+      let { roleToDisplay } = state;
+
+      if (action.category === 'hiddenRoles') {
+        const idArray = [];
+
+        /**
+         * returns Array of numbers
+         */
+        generateRandomNumbersArray(idArray, 7, 32);
+
+        rolesToDisplay = [];
+
+        /**
+         * Pushes into rolesToDisplay the roles whose ids match the numbers in the idArray
+         */
+        action.data.forEach((role) => {
+          if (idArray.indexOf(role.id) >= 0) {
+            rolesToDisplay.push(role);
+          }
+        });
+
+        roleToDisplay = rolesToDisplay[3];
+      }
       return {
         ...state,
         randomRoles: rolesToDisplay,
-        roleToDisplay: rolesToDisplay[3],
+        roleToDisplay: roleToDisplay,
+        [action.category]: action.data,
       };
     }
     case LOGOUT:

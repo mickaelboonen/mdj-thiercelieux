@@ -7,6 +7,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 // Middlewares
 import gameMiddleware from 'src/middlewares/gameMiddleware';
+import homeMiddleware from 'src/middlewares/homeMiddleware';
 import loginMiddleware from 'src/middlewares/loginMiddleware';
 import usersMiddleware from 'src/middlewares/usersMiddleware';
 import rolesMiddleware from 'src/middlewares/rolesMiddleware';
@@ -34,6 +35,7 @@ const middlewares = applyMiddleware(
   rolesMiddleware,
   profileMiddleware,
   registerMiddleware,
+  homeMiddleware,
 );
 
 // on met bout à bout le redux devtools et nos middlewares
