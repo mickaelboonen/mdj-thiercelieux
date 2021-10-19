@@ -19,9 +19,9 @@ const persistConfig = {
   storage: storage,
   stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
   // Reducers we don't want to be persisted
-  blacklist: ['app', 'mails', 'members', 'rolesDescriptions'],
+  blacklist: ['mails', 'members', 'rolesDescriptions'],
   // Reducers that needd to be persisted
-  whitelist: ['game', 'configuration', 'user'],
+  whitelist: ['game', 'configuration', 'user', 'app'],
 };
 
 // Applying the persistConfig to the reducer

@@ -14,7 +14,7 @@ import {
   SAVE_PLAYER_FROM_USER,
   CHANGE_PSEUDO_INPUT_VALUE,
 } from 'src/actions/gameConfiguration';
-import { CLEAR_INPUT } from 'src/actions';
+import { CLEAR_INPUT, SAVE_HOME_DATA } from 'src/actions';
 
 // SELECTORS
 import {
@@ -51,6 +51,7 @@ const initialState = {
     newmoonCards: [], // si classic, on injecte le tableau classic sinon les prefs
     rolesAttribution: 'manual',
   },
+  allRolesArray: [],
   players: [
     // {
     //   id: 1,
@@ -238,24 +239,46 @@ const reducer = (state = initialState, action = {}) => {
         errorMessage: message,
       };
     }
+
+
+
+
+
+
+
+
+
+
     case SET_GAMES: {
       const newConfigurationObject = state.configuration;
+
+      // If the current game (the action value) is already in the games array of the configuration object
       if (newConfigurationObject.games.indexOf(action.value) >= 0) {
+        // We filter this array and delete the current game
         const newArray = newConfigurationObject.games.filter((game) => action.value !== game);
+        // Then we give the new array, stripped from the current game, to the configuration object
         newConfigurationObject.games = newArray;
       }
+      // If it's not the games array
       else {
+        // We push the current game into the array
         newConfigurationObject.games.push(action.value);
       }
+
+      // We create the new array for the Roles that are associated to the selected games
       const rolesArray = [];
-      hiddenRoles.forEach((role) => {
-        if (role.expansion === 'Thiercelieux') {
+      
+      // First, we get all roles from the base game
+      state.allRolesArray.forEach((role) => {
+        // We check if it belongs to the Thiercelieux game
+        if (role.game === 'Loup-Garou de Thiercelieux') {
+          // If it does, we push it already into the role array for every game will need these roles
           rolesArray.push(role.name);
         }
       });
       newConfigurationObject.games.forEach((game) => {
-        hiddenRoles.forEach((role) => {
-          if (game === role.expansion) {
+        state.allRolesArray.forEach((role) => {
+          if (game === role.game) {
             rolesArray.push(role.name);
           }
         });
@@ -277,6 +300,17 @@ const reducer = (state = initialState, action = {}) => {
         villageList: villagersRoles,
       };
     }
+
+
+
+
+
+
+
+
+
+
+
     case SET_GAME_ORDER: {
       const newConfigurationObject = state.configuration;
       if (action.value === 'classic') {
@@ -310,6 +344,31 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         configuration: newConfigurationObject,
+      };
+    }
+    case SAVE_HOME_DATA: {
+      let { allRolesArray, rolesList } = state;
+
+      // If the category is hiddenRoles
+      if (action.category === 'hiddenRoles') {
+        // allRolesArray takes the action data value
+        allRolesArray = action.data;
+        const newRolesList = [];
+
+        // Then, for each role
+        allRolesArray.forEach((role) => {
+          // We check if it belongs to the Thiercelieux game
+          if (role.game === 'Loup-Garou de Thiercelieux') {
+            // If it does, we push it already into the role array for every game will need these roles
+            newRolesList.push(role.name);
+            rolesList = newRolesList;
+          }
+        });
+      }
+      return {
+        ...state,
+        allRolesArray: allRolesArray,
+        rolesList: rolesList,
       };
     }
     default:
