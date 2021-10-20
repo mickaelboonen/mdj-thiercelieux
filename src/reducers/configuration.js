@@ -27,22 +27,6 @@ import {
   saveRole,
 } from 'src/selectors/configurationFunctions';
 
-// DATA
-import { hiddenRoles } from 'src/data/hiddenRoles';
-import { villagePeople } from 'src/data/villagePeople';
-
-// TEMPORARY DATA
-const villageRoleList = villagePeople.map((role) => {
-  let deconstructedName = '';
-  if (role.name === "L'Institutrice") {
-    deconstructedName = 'Institutrice';
-  }
-  else {
-    deconstructedName = role.name.split(' ')[1];
-  }
-  return deconstructedName;
-});
-
 const initialState = {
   configuration: {
     playersNumber: 8,
@@ -52,6 +36,7 @@ const initialState = {
     rolesAttribution: 'manual',
   },
   allRolesArray: [],
+  villageRoles: [],
   players: [
     // {
     //   id: 1,
@@ -239,16 +224,6 @@ const reducer = (state = initialState, action = {}) => {
         errorMessage: message,
       };
     }
-
-
-
-
-
-
-
-
-
-
     case SET_GAMES: {
       const newConfigurationObject = state.configuration;
 
@@ -267,7 +242,7 @@ const reducer = (state = initialState, action = {}) => {
 
       // We create the new array for the Roles that are associated to the selected games
       const rolesArray = [];
-      
+
       // First, we get all roles from the base game
       state.allRolesArray.forEach((role) => {
         // We check if it belongs to the Thiercelieux game
@@ -283,10 +258,29 @@ const reducer = (state = initialState, action = {}) => {
           }
         });
       });
-      // TODO : to be improved (fake data atm)
+
       let villagersRoles = state.villageList;
+      // If the user has selected 'Le Village' for the game
       if (action.value === 'Le Village') {
+      // We strip all roles from their determinants
+        const villageRoleList = state.villageRoles.map((role) => {
+          let deconstructedName = '';
+          let det = '';
+          // TODO : use regex to split string in one time
+          // In the meantime, we strip 'L'institutrice' manually to get only the name
+          if (role.name === "L'Institutrice") {
+            deconstructedName = 'Institutrice';
+          }
+          else {
+            // We split the string : first we get the determinant, second we get the name
+            [det, deconstructedName] = role.name.split(' ');
+          }
+          // We return the name without det.
+          return deconstructedName;
+        });
+        // If 'Le Village' has been added to the games settings
         if (newConfigurationObject.games.indexOf('Le Village') !== -1) {
+          // Then we set the roles list for the game
           villagersRoles = villageRoleList;
         }
         else {
@@ -300,17 +294,6 @@ const reducer = (state = initialState, action = {}) => {
         villageList: villagersRoles,
       };
     }
-
-
-
-
-
-
-
-
-
-
-
     case SET_GAME_ORDER: {
       const newConfigurationObject = state.configuration;
       if (action.value === 'classic') {
@@ -347,7 +330,7 @@ const reducer = (state = initialState, action = {}) => {
       };
     }
     case SAVE_HOME_DATA: {
-      let { allRolesArray, rolesList } = state;
+      let { allRolesArray, rolesList, villageRoles } = state;
 
       // If the category is hiddenRoles
       if (action.category === 'hiddenRoles') {
@@ -365,9 +348,15 @@ const reducer = (state = initialState, action = {}) => {
           }
         });
       }
+      // If the category is villageRoles
+      else if (action.category === 'villageRoles') {
+        // We set the array in the villageRoles variable
+        villageRoles = action.data;
+      }
       return {
         ...state,
         allRolesArray: allRolesArray,
+        villageRoles: villageRoles,
         rolesList: rolesList,
       };
     }
