@@ -39,3 +39,10 @@ export const changePlayersAttributes = (currentRole, victim) => ({
   currentRole,
   victim,
 });
+
+export const SET_WITCH_ATTRIBUTES = 'SET_WITCH_ATTRIBUTES';
+export const setWitchAttributes = (wolfVictim, witchVictim) => ({
+  type: SET_WITCH_ATTRIBUTES,
+  wolfVictim,
+  witchVictim,
+});

@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import lifePotion from 'src/assets/pictures/roles/potion-vie.png';
-import deathPotion from 'src/assets/pictures/roles/potion-mort.png';
-
 import { setButtonsForAction } from 'src/selectors/setGameFunctions';
+
+import Witch from 'src/containers/App/CurrentGame/NightScript/Witch';
 
 import './style.scss';
 
@@ -23,7 +22,7 @@ const NightScript = ({
     action,
   } = roleToPlay;
   let choices = setButtonsForAction(name, players);
-
+  const witch = players.find((player) => player.hiddenRole === 'Sorcière');
   useEffect(() => {
     setNextRoleToPlay();
   }, []);
@@ -32,6 +31,8 @@ const NightScript = ({
     roleToPlay = gameOrder.find((role) => role.hasBeenCalled);
     choices = setButtonsForAction(name, players);
   }, [gameOrder, players]);
+
+
 
   const boxElement = document.querySelector('.nightscript__confirmation');
 
@@ -60,42 +61,28 @@ const NightScript = ({
   const handleNextClick = () => {
     setNextRoleToPlay(name);
   };
-  console.log('dfdsfs', choices);
   return (
     <div className="nightscript">
-      <h3>Première Nuit</h3>
+      <h3 className="nightscript__title">Première Nuit</h3>
       {/* Barre de progression de la nuit ? */}
-      <h4 className="nightscript__name">{name}</h4>
-      <img
-        className="nightscript__image"
-        src={picture}
-        alt=""
-      />
-      <p className="nightscript__description">{text}</p>
+      <div className="nightscript__instructions">
+        <h5 className="nightscript__instructions-name">{name}</h5>
+        <img
+          className="nightscript__instructions-image"
+          src={picture}
+          alt=""
+        />
+        <p className="nightscript__instructions-description">{text}{text}{text}{text}{text}{text}{text}{text}{text}{text}</p>
+      </div>
       <div className="nightscript__action">
-        {action === 'witch' && (
-          <div>
-            {/* change images */}
-            <div>
-              <img src={lifePotion} alt="" />
-              <p>Potion de Vie</p>
-            </div>
-            <div>
-              <img src={deathPotion} alt="" />
-              <p>Potion de Mort</p>
-            </div>
-            <div>
-              Voulez vous sauver {choices[0].name} ?
-            </div>
-            <div><button type="button" onClick={handleNextClick}>Next</button></div>
-          </div>
-        )}
+        {action === 'witch' && (<Witch witch={witch} setNextRoleToPlay={setNextRoleToPlay} />)}
         {action === 'buttons' && (
-          <div>
+          <div className="nightscript__action-buttons">
             {choices.map((button) => (
               <button
                 key={button.name}
                 type="button"
+                className="nightscript__action-buttons-item"
                 onClick={handleToggleValidationBox}
                 value={button.name}
               >
@@ -105,8 +92,8 @@ const NightScript = ({
           </div>
         )}
         {action === 'selects' && (
-          <div>
-            <select name="" id="first-select">
+          <div className="nightscript__action">
+            <select className="nightscript__action" name="" id="first-select">
               <option>Sélectionner un nom</option>
               {choices.map((choice) => (
                 <option
@@ -117,7 +104,7 @@ const NightScript = ({
                 </option>
               ))}
             </select>
-            <select name="" id="second-select">
+            <select className="nightscript__action" name="" id="second-select">
               <option>Sélectionner un nom</option>
               {choices.map((choice) => (
                 <option
@@ -128,11 +115,11 @@ const NightScript = ({
                 </option>
               ))}
             </select>
-            <button id="selects-button" type="button" onClick={handleToggleValidationBox}>Valider</button>
+            <button className="nightscript__action" id="selects-button" type="button" onClick={handleToggleValidationBox}>Valider</button>
           </div>
         )}
 
-        {action === '' && <button type="button" onClick={handleNextClick}>Next</button>}
+        {action === '' && <button className="nightscript__action-buttons-item" type="button" onClick={handleNextClick}>Next</button>}
 
       </div>
       <div className="nightscript__confirmation">

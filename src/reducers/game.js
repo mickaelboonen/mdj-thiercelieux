@@ -19,6 +19,7 @@ import {
 } from 'src/actions/game';
 
 import history from 'src/utils/history';
+import { SET_WITCH_ATTRIBUTES } from '../actions/game';
 
 const initialState = {
   counter: 0,
@@ -37,6 +38,8 @@ const initialState = {
       roleAttributes: {
         inLove: true,
         isCharmed: true,
+        deathPotion: false,
+        curePotion: false,
       },
     },
     {
@@ -53,6 +56,8 @@ const initialState = {
       roleAttributes: {
         inLove: false,
         isCharmed: true,
+        deathPotion: true,
+        curePotion: true,
       },
     },
     {
@@ -69,6 +74,8 @@ const initialState = {
       roleAttributes: {
         inLove: false,
         isCharmed: true,
+        deathPotion: false,
+        curePotion: false,
       },
     },
     {
@@ -85,6 +92,8 @@ const initialState = {
       roleAttributes: {
         inLove: false,
         isCharmed: false,
+        deathPotion: false,
+        curePotion: false,
       },
     },
     {
@@ -101,6 +110,8 @@ const initialState = {
       roleAttributes: {
         inLove: false,
         isCharmed: false,
+        deathPotion: false,
+        curePotion: false,
       },
     },
     {
@@ -117,6 +128,8 @@ const initialState = {
       roleAttributes: {
         inLove: false,
         isCharmed: false,
+        deathPotion: false,
+        curePotion: false,
       },
     },
     {
@@ -133,6 +146,8 @@ const initialState = {
       roleAttributes: {
         inLove: false,
         isCharmed: false,
+        deathPotion: false,
+        curePotion: false,
       },
     },
     {
@@ -149,6 +164,8 @@ const initialState = {
       roleAttributes: {
         inLove: false,
         isCharmed: true,
+        deathPotion: false,
+        curePotion: false,
       },
     },
     {
@@ -165,6 +182,8 @@ const initialState = {
       roleAttributes: {
         inLove: true,
         isCharmed: false,
+        deathPotion: false,
+        curePotion: false,
       },
     },
   ],
@@ -219,6 +238,40 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SET_WITCH_ATTRIBUTES: {
+      let newPlayersArray = state.players;
+      const { wolfVictim, witchVictim } = action;
+
+      if (wolfVictim !== 'Personne') {
+        newPlayersArray = newPlayersArray.map((player) => {
+          if (player.name === wolfVictim) {
+            player.isAlive = true;
+            player.attackedTonight = false;
+          }
+          if (player.hiddenRole === 'Sorcière') {
+            player.roleAttributes.curePotion = false;
+          }
+          return player;
+        });
+      }
+      if (witchVictim !== 'Personne') {
+        newPlayersArray = newPlayersArray.map((player) => {
+          if (player.name === witchVictim) {
+            player.isAlive = false;
+            player.roleAttributes.deadByPotion = true;
+          }
+          if (player.hiddenRole === 'Sorcière') {
+            player.roleAttributes.deathPotion = false;
+          }
+          return player;
+        });
+      }
+
+      return {
+        ...state,
+        players: newPlayersArray,
+      };
+    }
     case CHANGE_PLAYERS_ATTRIBUTES: {
       const { currentRole, victim } = action;
       let newPlayersArray = state.players;

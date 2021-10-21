@@ -10,6 +10,7 @@ const Sunrise = ({ setGame }) => {
     setTimeout(() => {
       history.push('/partie-en-cours');
     }, 5000);
+    // TODO
     // setGame();
   }, []);
   return (

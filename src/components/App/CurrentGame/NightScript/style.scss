@@ -6,18 +6,60 @@
   background-color: #1a1a1a;
   position: relative;
 
-
-  &__name {
+  &__title {
+    text-transform: uppercase;
     text-align: center;
+    color: vars.$tertiary-color;
+    font-size: 1.5em;
+    padding: 1rem;
   }
 
-  &__image {
-    max-width: 80%;
+  &__instructions {
+    height: 45%;
+    @include vars.centered-flex;
+    flex-direction: column;
+    
+    &-name {
+      text-transform: uppercase;
+      font-family: vars.$fontAbril;
+      color: #fff;
+    }
+
+    &-image {
+      max-height: 70%;
+    }
+
+    &-description {
+      height: 20%;
+      // background-color: rgb(226, 128, 7);
+      overflow: auto;
+      padding: 0.5rem;
+      font-size: 0.8em;
+      text-align: justify;
+      color: vars.$quenary-color;
+    }
   }
 
-  &__description {
+  &__action {
+    height: 45%;
 
+    &-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+
+      &-item {
+        @include vars.button;
+        width: 30%;
+
+        &--cancel {
+          background-color: vars.$primary-color;
+        }
+      }
+    }
   }
+
+
 
   &__confirmation {
     position: absolute;
@@ -40,4 +82,107 @@
 
     }
   }
+}
+
+.witch {
+  color: #fff;
+  text-align: center;
+
+  &__container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+
+    &-potion {
+      // width: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &-image {
+        border-top: 2px solid #f3d14e;
+        border-left: 2px solid #39453f;
+        border-right:  2px solid #f3d14e;
+        border-bottom: 2px solid #39453f;
+        border-radius: 50%;
+        width: 50%;
+        margin: 0.5rem;
+
+        &:hover {
+          border-bottom: 2px solid #f3d14e;
+          border-right: 2px solid #39453f;
+          border-left:  2px solid #f3d14e;
+          border-top: 2px solid #39453f;
+        }
+      }
+      &-name {
+        width: fit-content;
+      }
+    }
+  }
+
+  &__message {
+    display: none;
+    position: absolute;
+    inset: 0;
+    background-color: #1a1a1ada;
+
+    &--open {
+      @include vars.centered-flex;
+    }
+
+    &-life, &-death {
+      display: none;
+      background-color: vars.$secondary-color;
+      border: 2px solid vars.$tertiary-color;
+      padding: 0.5rem;
+      width: 70%;
+      color: #000;
+
+      & span {
+        font-style: italic;
+        font-weight: bold;
+        color: vars.$tertiary-color;
+      }
+
+      &-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+
+      & p {
+        margin-bottom: 1rem;
+      }
+
+      &--open {
+        display: block;
+      }
+    }
+  }
+
+  &__recap {
+    margin-top: 1rem;
+
+    & p {
+      margin-bottom: 0.2rem;
+
+      & span {
+        font-style: italic;
+        font-weight: bold;
+      }
+    }
+
+    & button {
+      margin-top: inherit;
+    }
+  }
+}
+
+#save-recap span {
+  color: vars.$secondary-color;
+}
+
+#kill-recap span {
+  color: vars.$tertiary-color;
 }
