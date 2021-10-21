@@ -69,17 +69,7 @@ export const setAttributes = (role) => {
 export const setButtonsForAction = (role, players, array = []) => {
   let newChoices = players;
   if (role === 'Voleur') {
-    // TODO : dynamiser
-    newChoices = [
-      {
-        name: 'Simple Villageois',
-        picture: '',
-      },
-      {
-        name: 'Simple Villageois',
-        picture: '',
-      },
-    ];
+    newChoices = array;
   }
   else if (role === 'Amoureux') {
     // TODO : dynamiser

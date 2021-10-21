@@ -43,6 +43,43 @@
   &__action {
     height: 45%;
 
+    &-container {
+
+      &__error {
+        text-align: center;
+        margin-bottom: 1rem;
+        color: vars.$tertiary-color;
+        font-style: italic;
+      }
+
+      &__selects {
+        display: flex;
+        justify-content: space-evenly;
+
+        padding: 1rem;
+
+        & select {
+          @include vars.select;
+          margin-right: 0.5rem;
+          width: 45%;
+          padding: 0.5rem;
+          font-style: italic;
+          color: vars.$quenary-color;
+          font-weight: bold;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      &__button {
+        @include vars.centered-flex;
+      }
+    }
+
+
+
     &-buttons {
       display: flex;
       flex-wrap: wrap;

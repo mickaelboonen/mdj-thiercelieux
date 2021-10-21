@@ -32,7 +32,7 @@ export const setNextRoleToPlay = (currentName) => ({
   type: SET_NEXT_ROLE_TO_PLAY,
   currentName,
 });
-
+//--------------------------------------------------------------------------------------------------
 export const CHANGE_PLAYERS_ATTRIBUTES = 'CHANGE_PLAYERS_ATTRIBUTES';
 export const changePlayersAttributes = (currentRole, victim) => ({
   type: CHANGE_PLAYERS_ATTRIBUTES,
@@ -45,4 +45,17 @@ export const setWitchAttributes = (wolfVictim, witchVictim) => ({
   type: SET_WITCH_ATTRIBUTES,
   wolfVictim,
   witchVictim,
+});
+
+export const SET_CUPID_ATTRIBUTES = 'SET_CUPID_ATTRIBUTES';
+export const setCupidAttributes = (firstLover, secondLover) => ({
+  type: SET_CUPID_ATTRIBUTES,
+  firstLover,
+  secondLover,
+});
+
+export const SET_THIEF_ATTRIBUTES = 'SET_THIEF_ATTRIBUTES';
+export const setThiefAttributes = (newRole) => ({
+  type: SET_THIEF_ATTRIBUTES,
+  newRole,
 });

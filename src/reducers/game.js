@@ -16,10 +16,14 @@ import {
   KILL_BY_VOTE,
   SET_NEXT_ROLE_TO_PLAY,
   CHANGE_PLAYERS_ATTRIBUTES,
+  SET_CUPID_ATTRIBUTES,
+  SET_WITCH_ATTRIBUTES,
+  SET_THIEF_ATTRIBUTES,
 } from 'src/actions/game';
 
+import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
+
 import history from 'src/utils/history';
-import { SET_WITCH_ATTRIBUTES } from '../actions/game';
 
 const initialState = {
   counter: 0,
@@ -36,8 +40,8 @@ const initialState = {
       isAlive: true,
       attackedTonight: false,
       roleAttributes: {
-        inLove: true,
-        isCharmed: true,
+        inLove: false,
+        isCharmed: false,
         deathPotion: false,
         curePotion: false,
       },
@@ -73,7 +77,7 @@ const initialState = {
       attackedTonight: false,
       roleAttributes: {
         inLove: false,
-        isCharmed: true,
+        isCharmed: false,
         deathPotion: false,
         curePotion: false,
       },
@@ -163,7 +167,7 @@ const initialState = {
       attackedTonight: false,
       roleAttributes: {
         inLove: false,
-        isCharmed: true,
+        isCharmed: false,
         deathPotion: false,
         curePotion: false,
       },
@@ -180,11 +184,21 @@ const initialState = {
       isAlive: true,
       attackedTonight: false,
       roleAttributes: {
-        inLove: true,
+        inLove: false,
         isCharmed: false,
         deathPotion: false,
         curePotion: false,
       },
+    },
+  ],
+  thiefRoles: [
+    {
+      name: 'Simple Villageois',
+      picture: '',
+    },
+    {
+      name: 'Loup-Garou',
+      picture: '',
     },
   ],
   playerToDisplay: {},
@@ -238,6 +252,49 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SET_THIEF_ATTRIBUTES: {
+      const { newRole } = action;
+      const currentThief = state.players.find((player) => player.hiddenRole === 'Voleur');
+      const otherPlayers = state.players.filter((player) => player.hiddenRole !== 'Voleur');
+
+      currentThief.hiddenRole = newRole;
+      currentThief.roleAttributes.firstnight_call = false;
+      currentThief.side = setSide(newRole);
+      const attributes = setAttributes(newRole);
+      if (attributes !== undefined) {
+        attributes.forEach((currentAtt) => {
+          currentThief.roleAttributes[currentAtt] = true;
+        });
+      }
+      const players = [];
+      for (let i = 1; i <= state.players.length; i += 1) {
+        const currentPlayer = otherPlayers.find((player) => player.id === i);
+        // console.log(currentPlayer);
+        if (currentPlayer) {
+          players.push(currentPlayer);
+        }
+        else {
+          players.push(currentThief);
+        }
+      }
+      return {
+        ...state,
+        players: players,
+      };
+    }
+    case SET_CUPID_ATTRIBUTES: {
+      const { firstLover, secondLover } = action;
+      const newPlayersArray = state.players.map((player) => {
+        if (player.name === firstLover || player.name === secondLover) {
+          player.roleAttributes.inLove = true;
+        }
+        return player;
+      });
+      return {
+        ...state,
+        players: newPlayersArray,
+      };
+    }
     case SET_WITCH_ATTRIBUTES: {
       let newPlayersArray = state.players;
       const { wolfVictim, witchVictim } = action;

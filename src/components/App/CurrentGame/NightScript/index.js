@@ -6,14 +6,17 @@ import { setButtonsForAction } from 'src/selectors/setGameFunctions';
 import Witch from 'src/containers/App/CurrentGame/NightScript/Witch';
 
 import './style.scss';
+import Thief from 'src/containers/App/CurrentGame/NightScript/Thief';
+import Cupid from 'src/containers/App/CurrentGame/NightScript/Cupid';
 
 const NightScript = ({
   gameOrder,
   roleToPlay,
   players,
   setNextRoleToPlay,
-  setButtons,
   changePlayersAttributes,
+  setCupidAttributes,
+  thiefRoles,
 }) => {
   const {
     name,
@@ -21,7 +24,7 @@ const NightScript = ({
     text,
     action,
   } = roleToPlay;
-  let choices = setButtonsForAction(name, players);
+  let choices = setButtonsForAction(name, players, thiefRoles);
   const witch = players.find((player) => player.hiddenRole === 'Sorcière');
   useEffect(() => {
     setNextRoleToPlay();
@@ -29,16 +32,39 @@ const NightScript = ({
 
   useEffect(() => {
     roleToPlay = gameOrder.find((role) => role.hasBeenCalled);
-    choices = setButtonsForAction(name, players);
+    choices = setButtonsForAction(name, players, thiefRoles);
   }, [gameOrder, players]);
 
 
 
   const boxElement = document.querySelector('.nightscript__confirmation');
 
-  const handleToggleValidationBox = (event) => {
-    boxElement.classList.toggle('nightscript__confirmation--open');
+  const handleSelectToggleValidationBox = (event) => {
+    const firstSelectValue = document.querySelector('#first-select').value;
+    const secondSelectValue = document.querySelector('#second-select').value;
+
+    if (name === 'Cupidon') {
+      const errorElement = document.querySelector('.nightscript__action-container__error');
+
+      if (firstSelectValue === secondSelectValue) {
+        errorElement.textContent = 'Vous ne pouvez pas sélectionner deux fois le même joueur.';
+      }
+      else if (firstSelectValue === '' || secondSelectValue === '') {
+        errorElement.textContent = 'Vous devez sélectionner deux joueurs.';
+      }
+      else {
+        errorElement.textContent = '';
+        setCupidAttributes(firstSelectValue, secondSelectValue);
+        boxElement.classList.toggle('nightscript__confirmation--open');
+      }
+    }
     boxElement.dataset.name = event.target.value;
+  };
+  const handleButtonToggleValidationBox = (event) => {
+
+    boxElement.classList.toggle('nightscript__confirmation--open');
+
+    // boxElement.dataset.name = event.target.value;
   };
 
   const handleValidationClick = (event) => {
@@ -61,6 +87,7 @@ const NightScript = ({
   const handleNextClick = () => {
     setNextRoleToPlay(name);
   };
+  console.log(name);
   return (
     <div className="nightscript">
       <h3 className="nightscript__title">Première Nuit</h3>
@@ -75,6 +102,8 @@ const NightScript = ({
         <p className="nightscript__instructions-description">{text}{text}{text}{text}{text}{text}{text}{text}{text}{text}</p>
       </div>
       <div className="nightscript__action">
+        {name === 'Voleur' && <Thief choices={choices} setValidationBox={handleButtonToggleValidationBox} />}
+        {name === 'Cupidon' && <Cupid />}
         {action === 'witch' && (<Witch witch={witch} setNextRoleToPlay={setNextRoleToPlay} />)}
         {action === 'buttons' && (
           <div className="nightscript__action-buttons">
@@ -83,7 +112,7 @@ const NightScript = ({
                 key={button.name}
                 type="button"
                 className="nightscript__action-buttons-item"
-                onClick={handleToggleValidationBox}
+                onClick={handleButtonToggleValidationBox}
                 value={button.name}
               >
                 {button.name}
@@ -92,30 +121,35 @@ const NightScript = ({
           </div>
         )}
         {action === 'selects' && (
-          <div className="nightscript__action">
-            <select className="nightscript__action" name="" id="first-select">
-              <option>Sélectionner un nom</option>
-              {choices.map((choice) => (
-                <option
-                  key={choice.name}
-                  value={choice.name}
-                >
-                  {choice.name}
-                </option>
-              ))}
-            </select>
-            <select className="nightscript__action" name="" id="second-select">
-              <option>Sélectionner un nom</option>
-              {choices.map((choice) => (
-                <option
-                  key={choice.name}
-                  value={choice.name}
-                >
-                  {choice.name}
-                </option>
-              ))}
-            </select>
-            <button className="nightscript__action" id="selects-button" type="button" onClick={handleToggleValidationBox}>Valider</button>
+          <div className="nightscript__action-container">
+            <div className="nightscript__action-container__selects">
+              <select name="" id="first-select">
+                <option value=''>Sélectionner un nom</option>
+                {choices.map((choice) => (
+                  <option
+                    key={choice.name}
+                    value={choice.name}
+                  >
+                    {choice.name}
+                  </option>
+                ))}
+              </select>
+              <select className="nightscript__action" name="" id="second-select">
+                <option value=''>Sélectionner un nom</option>
+                {choices.map((choice) => (
+                  <option
+                    key={choice.name}
+                    value={choice.name}
+                  >
+                    {choice.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+            <div className="nightscript__action-container__error" />
+            <div className="nightscript__action-container__button">
+              <button className="nightscript__action-buttons-item" id="selects-button" type="button" onClick={handleSelectToggleValidationBox}>Valider</button>
+            </div>
           </div>
         )}
 
@@ -126,7 +160,7 @@ const NightScript = ({
         <div className="nightscript__confirmation-box">
           <p>Confirmez-vous votre choix ?</p>
           <button id="buttons-button" type="button" value="yes" onClick={handleValidationClick}>yes</button>
-          <button type="button" value="no" onClick={handleToggleValidationBox}>no</button>
+          <button type="button" value="no" onClick={handleButtonToggleValidationBox}>no</button>
         </div>
       </div>
     </div>
@@ -141,7 +175,7 @@ NightScript.propTypes = {
   players: PropTypes.array.isRequired,
   // FUNCTIONS
   setNextRoleToPlay: PropTypes.func.isRequired,
-  setButtons: PropTypes.func.isRequired,
+  // setButtons: PropTypes.func.isRequired,
 };
 
 export default NightScript;
