@@ -5,8 +5,8 @@ import './style.scss';
 
 const Thief = ({ thiefRoles, setThiefAttributes, setValidationBox }) => {
   const handleClick = (event) => {
-    setValidationBox();
     setThiefAttributes(event.target.value);
+    setValidationBox();
   };
   return (
     <div className="nightscript__action-buttons">

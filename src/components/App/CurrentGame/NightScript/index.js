@@ -103,7 +103,9 @@ const NightScript = ({
       </div>
       <div className="nightscript__action">
         {name === 'Voleur' && <Thief choices={choices} setValidationBox={handleButtonToggleValidationBox} />}
-        {name === 'Cupidon' && <Cupid />}
+        {name === 'Cupidon' && <Cupid choices={choices} setValidationBox={handleButtonToggleValidationBox} />}
+        {name === 'Amoureux' && <button className="nightscript__action-buttons-item" type="button" onClick={handleNextClick}>Next</button>}
+
         {action === 'witch' && (<Witch witch={witch} setNextRoleToPlay={setNextRoleToPlay} />)}
         {action === 'buttons' && (
           <div className="nightscript__action-buttons">
@@ -152,9 +154,6 @@ const NightScript = ({
             </div>
           </div>
         )}
-
-        {action === '' && <button className="nightscript__action-buttons-item" type="button" onClick={handleNextClick}>Next</button>}
-
       </div>
       <div className="nightscript__confirmation">
         <div className="nightscript__confirmation-box">
