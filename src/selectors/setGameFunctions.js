@@ -65,3 +65,33 @@ export const setAttributes = (role) => {
   }
   return attributesArray;
 };
+
+export const setButtonsForAction = (role, players, array = []) => {
+  let newChoices = players;
+  if (role === 'Voleur') {
+    // TODO : dynamiser
+    newChoices = [
+      {
+        name: 'Simple Villageois',
+        picture: '',
+      },
+      {
+        name: 'Simple Villageois',
+        picture: '',
+      },
+    ];
+  }
+  else if (role === 'Amoureux') {
+    // TODO : dynamiser
+    newChoices = [];
+  }
+  else if (role === 'Voyante' || role === 'Loup-Garou') {
+    newChoices = newChoices.filter((player) => player.hiddenRole !== role);
+  }
+  else if (role === 'Sorcière') {
+    const deadPlayer = newChoices.find((player) => !player.isAlive && player.attackedTonight);
+    const playersToKill = newChoices.filter((player) => player.isAlive && player.hiddenRole !== 'Sorcière');
+    playersToKill.unshift(deadPlayer);
+  }
+  return newChoices;
+};

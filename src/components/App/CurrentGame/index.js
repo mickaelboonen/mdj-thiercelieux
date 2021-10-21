@@ -5,9 +5,9 @@ import classNames from 'classnames';
 
 import PlayerInfo from 'src/containers/App/CurrentGame/PlayerInfo';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 const Game = ({ players, playerToDisplay, resetPlayerToDisplay }) => {
-
   const playersAlive = players.filter((player) => player.isAlive);
   console.log(playersAlive);
 
@@ -57,11 +57,11 @@ const Game = ({ players, playerToDisplay, resetPlayerToDisplay }) => {
       }
     });
   };
-
+  console.log(playerToDisplay);
   return (
     <div className="current-game">
       <div className="current-game__buttons">
-        <button type="button">La nuit tombe...</button>
+        <Link to="/partie-en-cours/nuit-sur-thiercelieux"><button type="button">La nuit tombe...</button></Link>
         <p>Nom de la carte Nouvelle Lune en cours de jeu</p>
       </div>
       <div className="current-game__players">
@@ -69,7 +69,7 @@ const Game = ({ players, playerToDisplay, resetPlayerToDisplay }) => {
         <input className="current-game__players-button" type="button" />
         {playerToDisplay.roleAttributes !== undefined && (
         <div
-          // TODO : A la place des bordeurs, mettre des icones pour le love et la flute > easier
+          // TODO : A la place des borders, mettre des icones pour le love et la flute > easier
           className={classNames('current-game__players-player', {
             'current-game__players-player--inlove': playerToDisplay.roleAttributes.inLove,
             'current-game__players-player--charmed': playerToDisplay.roleAttributes.isCharmed,

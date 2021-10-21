@@ -15,6 +15,7 @@ import Home from 'src/components/App/Home';
 import Footer from 'src/components/App/Footer';
 
 import CurrentGame from 'src/containers/App/CurrentGame';
+import NightScript from 'src/containers/App/CurrentGame/NightScript';
 import Game from 'src/containers/App/Expansions/Game';
 import Specificity from 'src/containers/App/Expansions/Specificity';
 import RolesDescriptions from 'src/containers/App/RolesDescriptions';
@@ -24,6 +25,7 @@ import Expansions from 'src/containers/App/Expansions';
 import MessagePrive from 'src/containers/App/Mailbox/MessagePrive';
 import Configuration from 'src/containers/App/Configuration';
 import Sunset from 'src/containers/Animations/Sunset';
+import Sunrise from 'src/containers/Animations/Sunrise';
 import Login from 'src/containers/App/Login';
 import Register from 'src/containers/App/Register';
 import Friends from 'src/containers/App/ProfileUser/Friends';
@@ -40,7 +42,9 @@ const App = ({ isConnected, fetchHomeData }) => {
     <div className="app">
       <Switch>
         <Route path="/coucher-de-soleil" exact component={Sunset} />
+        <Route path="/lever-de-soleil" exact component={Sunrise} />
         <Route path="/partie-en-cours" exact component={CurrentGame} />
+        <Route path="/partie-en-cours/nuit-sur-thiercelieux" exact component={NightScript} />
         <Route path="/s'inscrire" exact component={Register} />
         <Route path="/se-connecter" exact>
           {isConnected ? <Redirect to="/" /> : <Login />}

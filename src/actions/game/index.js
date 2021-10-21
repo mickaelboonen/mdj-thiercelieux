@@ -26,3 +26,16 @@ export const killByVote = (name) => ({
   type: KILL_BY_VOTE,
   name,
 });
+
+export const SET_NEXT_ROLE_TO_PLAY = 'SET_NEXT_ROLE_TO_PLAY';
+export const setNextRoleToPlay = (currentName) => ({
+  type: SET_NEXT_ROLE_TO_PLAY,
+  currentName,
+});
+
+export const CHANGE_PLAYERS_ATTRIBUTES = 'CHANGE_PLAYERS_ATTRIBUTES';
+export const changePlayersAttributes = (currentRole, victim) => ({
+  type: CHANGE_PLAYERS_ATTRIBUTES,
+  currentRole,
+  victim,
+});

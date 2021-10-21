@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
 /* eslint-disable no-alert */
-import boucEmissaire from 'src/assets/pictures/roles/bouc-emissaire.png';
+import chasseur from 'src/assets/pictures/roles/chasseur.png';
 import cupidon from 'src/assets/pictures/roles/cupidon.png';
-import grandMechantLoup from 'src/assets/pictures/roles/grand-mechant-loup.png';
-import idiotDuVillage from 'src/assets/pictures/roles/idiot-du-village.png';
-import joueurDeFlute from 'src/assets/pictures/roles/joueur-flute.png';
+import petiteFille from 'src/assets/pictures/roles/petite-fille.png';
+import voyante from 'src/assets/pictures/roles/voyante.png';
+import voleur from 'src/assets/pictures/roles/voleur.png';
 import loupGarou from 'src/assets/pictures/roles/loup-garou.png';
 import simpleVillageois from 'src/assets/pictures/roles/simple-villageois.png';
 import sorciere from 'src/assets/pictures/roles/sorciere.png';
@@ -14,9 +14,14 @@ import {
   DISPLAY_PLAYER,
   RESET_PLAYER_TO_DISPLAY,
   KILL_BY_VOTE,
+  SET_NEXT_ROLE_TO_PLAY,
+  CHANGE_PLAYERS_ATTRIBUTES,
 } from 'src/actions/game';
 
+import history from 'src/utils/history';
+
 const initialState = {
+  counter: 0,
   players: [
     {
       id: 1,
@@ -28,6 +33,7 @@ const initialState = {
       canBeKilled: true,
       canVote: true,
       isAlive: true,
+      attackedTonight: false,
       roleAttributes: {
         inLove: true,
         isCharmed: true,
@@ -43,6 +49,7 @@ const initialState = {
       canBeKilled: true,
       canVote: true,
       isAlive: true,
+      attackedTonight: false,
       roleAttributes: {
         inLove: false,
         isCharmed: true,
@@ -58,6 +65,7 @@ const initialState = {
       canBeKilled: true,
       canVote: true,
       isAlive: true,
+      attackedTonight: false,
       roleAttributes: {
         inLove: false,
         isCharmed: true,
@@ -73,6 +81,7 @@ const initialState = {
       canBeKilled: true,
       canVote: true,
       isAlive: true,
+      attackedTonight: false,
       roleAttributes: {
         inLove: false,
         isCharmed: false,
@@ -81,13 +90,14 @@ const initialState = {
     {
       id: 5,
       name: 'Chris',
-      hiddenRole: 'Idiot du Village',
+      hiddenRole: 'Voyante',
       villageRole: '',
       side: 'Village',
-      picture: idiotDuVillage,
+      picture: voyante,
       canBeKilled: true,
       canVote: true,
       isAlive: true,
+      attackedTonight: false,
       roleAttributes: {
         inLove: false,
         isCharmed: false,
@@ -96,13 +106,14 @@ const initialState = {
     {
       id: 6,
       name: 'BDR',
-      hiddenRole: 'Bouc Émissaire',
+      hiddenRole: 'Chasseur',
       villageRole: '',
       side: 'Village',
-      picture: boucEmissaire,
+      picture: chasseur,
       canBeKilled: true,
       canVote: true,
       isAlive: true,
+      attackedTonight: false,
       roleAttributes: {
         inLove: false,
         isCharmed: false,
@@ -111,13 +122,14 @@ const initialState = {
     {
       id: 7,
       name: 'Sasha',
-      hiddenRole: 'Joueur de Flute',
+      hiddenRole: 'Petite Fille',
       villageRole: '',
       side: 'Solitaire',
-      picture: joueurDeFlute,
+      picture: petiteFille,
       canBeKilled: true,
       canVote: true,
       isAlive: true,
+      attackedTonight: false,
       roleAttributes: {
         inLove: false,
         isCharmed: false,
@@ -126,13 +138,14 @@ const initialState = {
     {
       id: 8,
       name: 'Cara',
-      hiddenRole: 'Grand Méchant Loup',
+      hiddenRole: 'Voleur',
       villageRole: '',
       side: 'Village',
-      picture: grandMechantLoup,
+      picture: voleur,
       canBeKilled: false,
       canVote: true,
       isAlive: true,
+      attackedTonight: false,
       roleAttributes: {
         inLove: false,
         isCharmed: true,
@@ -141,13 +154,14 @@ const initialState = {
     {
       id: 9,
       name: 'Christal',
-      hiddenRole: 'Loup-Garou',
+      hiddenRole: 'Voyante',
       villageRole: 'Châtelain',
       side: 'Loup-Garou',
       picture: loupGarou,
       canBeKilled: true,
       canVote: true,
       isAlive: true,
+      attackedTonight: false,
       roleAttributes: {
         inLove: true,
         isCharmed: false,
@@ -155,10 +169,91 @@ const initialState = {
     },
   ],
   playerToDisplay: {},
+  roleToPlay: {},
+  gameOrder: [
+    {
+      name: 'Voleur',
+      firstNight: true,
+      hasBeenCalled: false,
+      picture: voleur,
+      text: 'Consigne du role',
+      action: 'buttons',
+    },
+    {
+      name: 'Cupidon',
+      firstNight: true,
+      hasBeenCalled: false,
+      picture: cupidon,
+      action: 'selects',
+    },
+    {
+      name: 'Amoureux',
+      firstNight: true,
+      hasBeenCalled: false,
+      picture: cupidon,
+      action: '',
+    },
+    {
+      name: 'Voyante',
+      firstNight: false,
+      hasBeenCalled: false,
+      picture: voyante,
+      action: 'buttons',
+    },
+    {
+      name: 'Loup-Garou',
+      firstNight: false,
+      hasBeenCalled: false,
+      picture: loupGarou,
+      action: 'buttons',
+    },
+    {
+      name: 'Sorcière',
+      firstNight: false,
+      hasBeenCalled: false,
+      picture: sorciere,
+      action: 'witch',
+    },
+  ],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CHANGE_PLAYERS_ATTRIBUTES: {
+      const { currentRole, victim } = action;
+      let newPlayersArray = state.players;
+      if (currentRole === 'Loup-Garou') {
+        newPlayersArray = state.players.map((player) => {
+          if (player.name === victim) {
+            player.isAlive = false;
+            player.attackedTonight = true;
+          }
+          return player;
+        });
+      }
+      return {
+        ...state,
+        players: newPlayersArray,
+      };
+    }
+    case SET_NEXT_ROLE_TO_PLAY: {
+      const newOrder = state.gameOrder.map((role) => {
+        if (role.name === action.currentName) {
+          role.hasBeenCalled = true;
+        }
+        return role;
+      });
+      let newRoleToPlay = newOrder.find((role) => !role.hasBeenCalled);
+      if (newRoleToPlay === undefined) {
+        newRoleToPlay = {};
+        history.push('/lever-de-soleil');
+      }
+      return {
+        ...state,
+        gameOrder: newOrder,
+        roleToPlay: newRoleToPlay,
+      };
+    }
     case SAVE_PLAYERS_FINAL_ARRAY:
       return {
         ...state,
