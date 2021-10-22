@@ -5,7 +5,6 @@ import { X, Moon } from 'react-feather';
 import './style.scss';
 
 const Newspaper = ({ newspaper }) => {
-  console.log();
   const handleClick = () => {
     const el = document.querySelector('.newspaper');
     el.classList.toggle('newspaper--closed');

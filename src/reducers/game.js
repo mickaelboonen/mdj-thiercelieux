@@ -14,7 +14,7 @@ import {
   CHANGE_PLAYERS_ATTRIBUTES,
 } from 'src/actions/game';
 
-import { setNewAttributesToPlayers, breakingNews } from 'src/selectors/setGameFunctions';
+import { setNewAttributesToPlayers, breakingNews, setWinnerStatus } from 'src/selectors/setGameFunctions';
 
 // import history from 'src/utils/history';
 
@@ -37,17 +37,36 @@ const initialState = {
   playerToDisplay: {},
   roleToPlay: {},
   gameOrder: gameFakeOrder,
+  winner: '',
+  percentage: 0,
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SET_DAY: {
-      const { players, newspaper } = state;
+      const { players, newspaper, gameOrder } = state;
       // Resetting the gameOrder and the roleToPlay
+
+      const rolesStillAlive = [];
+      players.forEach((player) => {
+        if (player.isAlive) {
+          rolesStillAlive.push(player.hiddenRole);
+        }
+      });
+
+      const newGameOrder = [];
+      gameOrder.forEach((role) => {
+        if (!role.firstNight && rolesStillAlive.indexOf(role.name) !== -1) {
+          role.hasBeenCalled = false;
+          newGameOrder.push(role);
+        }
+      });
+
+
       // Killing the Lovers if need be -------------------------------------------------------------
       // TODO : merge with kill by vote lovers
       const deadLover = players.find((player) => player.roleAttributes.inLove && player.deadTonight && !player.isAlive);
-      console.log('deadlover', deadLover);
+
       let newPlayersArray = players;
       if (deadLover !== undefined) {
         newPlayersArray = players.map((player) => {
@@ -59,28 +78,12 @@ const reducer = (state = initialState, action = {}) => {
         });
       }
       // Checking if there is any win ---------------------------------------------------------------
-      const sidesArray = [];
-      players.forEach((player) => {
-        if (player.isAlive) {
-          sidesArray.push(player.side);
-        }
+      const winner = setWinnerStatus(newspaper, newPlayersArray);
+
+      const finalPlayerArray = newPlayersArray.map((player) => {
+        player.deadTonight = false;
+        return player;
       });
-      if (newPlayersArray.length === 2) {
-        const areTheyLovers = newPlayersArray.filter((player) => player.roleAttributes.inLove);
-        if (areTheyLovers.length === 2) {
-          console.log('Lovers Win');
-          newspaper.push('Lovers wins');
-        }
-      }
-      else if (sidesArray.indexOf('Loup-Garou') === -1) {
-        console.log('Village wins');
-        newspaper.push('Villages wins');
-      }
-      else if (sidesArray.indexOf('Village') === -1) {
-        console.log('Loup-Garou wins');
-        newspaper.push('Werewolves win');
-      }
-      // TODO : Abominable Sectaire, Joueur de Flute, Ange, Loup Garou Blanc
 
       // Action from dead people during day (hunter)
       const deadHunter = players.find((player) => player.hiddenRole === 'Chasseur' && !player.isAlive && player.deadTonight);
@@ -91,8 +94,11 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         dayCount: state.dayCount + 1,
-        players: newPlayersArray,
+        players: finalPlayerArray,
         newspaper: newspaper,
+        winner: winner,
+        gameOrder: newGameOrder,
+        roleToPlay: newGameOrder[0],
       };
     }
     case SET_CHANGES:
@@ -123,10 +129,14 @@ const reducer = (state = initialState, action = {}) => {
           phase: 'day',
         };
       }
+      const allSteps = newOrder.length;
+      const currentStep = newOrder.indexOf(newRoleToPlay);
+      const percentage = Math.round((currentStep / allSteps) * 100);
       return {
         ...state,
         gameOrder: newOrder,
         roleToPlay: newRoleToPlay,
+        percentage: percentage,
       };
     }
     case SAVE_PLAYERS_FINAL_ARRAY:

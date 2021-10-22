@@ -139,11 +139,12 @@ export const setNewAttributesToPlayers = (changes, players) => {
     });
   }
   else if (name === 'Sorcière') {
+    newPlayersArray = players;
     const { wolfVictim, witchVictim } = values;
-    console.log("witch wolf victim", wolfVictim);
     if (wolfVictim === 'Personne') {
+      // TODO : TO BE CHANGED WHEN NEW ROLES WILL KILL IN THE MEAN TIME
       newPlayersArray = players.map((player) => {
-        if (player.name === wolfVictim) {
+        if (!player.isAlive && player.deadTonight) {
           player.isAlive = true;
           player.deadTonight = false;
         }
@@ -153,7 +154,7 @@ export const setNewAttributesToPlayers = (changes, players) => {
         return player;
       });
     }
-    if (witchVictim !== 'Personne' || witchVictim !== '') {
+    if (witchVictim !== 'Personne' && witchVictim !== '') {
       newPlayersArray = players.map((player) => {
         if (player.name === witchVictim) {
           player.isAlive = false;
@@ -184,4 +185,31 @@ export const breakingNews = (newspaper, changes) => {
     }
   }
   return morningEdition;
-}
+};
+
+export const setWinnerStatus = (newspaper, players) => {
+  let winner = '';
+  const sidesArray = [];
+  players.forEach((player) => {
+    if (player.isAlive) {
+      sidesArray.push(player.side);
+    }
+  });
+  if (players.length === 2) {
+    const areTheyLovers = players.filter((player) => player.roleAttributes.inLove);
+    if (areTheyLovers.length === 2) {
+      winner = 'Amoureux';
+      newspaper.push('Lovers wins');
+    }
+  }
+  else if (sidesArray.indexOf('Loup-Garou') === -1) {
+    winner = 'Village';
+    newspaper.push('Villages wins');
+  }
+  else if (sidesArray.indexOf('Village') === -1) {
+    winner = 'Loup-Garou';
+    newspaper.push('Werewolves win');
+  }
+  // TODO : Abominable Sectaire, Joueur de Flute, Ange, Loup Garou Blanc
+  return winner;
+};

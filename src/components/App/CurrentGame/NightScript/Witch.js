@@ -39,11 +39,11 @@ const Witch = ({ players, setChanges, toggleValidationBox }) => {
     const endWitchTurnButton = document.querySelector('#end-witch-turn');
     endWitchTurnButton.dataset.wolf = deadPlayer.name;
     if (event.target.value === 'yes') {
-      endWitchTurnButton.dataset.wolf = deadPlayer.name;
+      endWitchTurnButton.dataset.wolf = 'Personne';
       saveRecapElement.innerHTML = `Jouer à sauver : <span>${deadPlayer.name}</span>`;
     }
     else {
-      endWitchTurnButton.dataset.wolf = 'Personne';
+      endWitchTurnButton.dataset.wolf = deadPlayer.name;
       saveRecapElement.innerHTML = 'Jouer à sauver : <span>Personne</span>';
     }
     handleTogglePotion(event);

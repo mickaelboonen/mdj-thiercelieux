@@ -10,6 +10,8 @@ const mapStateToProps = (state) => ({
   gameOrder: state.game.gameOrder,
   players: state.game.players,
   roleToPlay: state.game.roleToPlay,
+  nightCount: state.game.nightCount,
+  percentage: state.game.percentage,
 });
 
 const mapDispatchToProps = (dispatch) => ({

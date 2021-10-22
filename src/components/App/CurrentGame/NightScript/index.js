@@ -6,7 +6,6 @@ import Witch from 'src/containers/App/CurrentGame/NightScript/Witch';
 import Thief from 'src/containers/App/CurrentGame/NightScript/Thief';
 import Cupid from 'src/containers/App/CurrentGame/NightScript/Cupid';
 import Werewolf from 'src/containers/App/CurrentGame/NightScript/Werewolf';
-// import FortuneTeller from 'src/containers/App/CurrentGame/NightScript/FortuneTeller';
 
 import { setChoicesForAction } from 'src/selectors/setGameFunctions';
 import './style.scss';
@@ -16,8 +15,18 @@ const NightScript = ({
   players,
   setNextRoleToPlay,
   changePlayersAttributes,
+  nightCount,
+  percentage,
 }) => {
   const { name, picture, text } = roleToPlay;
+
+  let suffix = '';
+  if (nightCount === 1) {
+    suffix = 'ère';
+  }
+  else {
+    suffix = 'ème';
+  }
 
   /**
    * @returns array
@@ -64,8 +73,13 @@ const NightScript = ({
   };
   return (
     <div className="nightscript">
-      <h3 className="nightscript__title">Première Nuit</h3>
-      {/* Barre de progression de la nuit ? */}
+      <h3 className="nightscript__title">{nightCount}<span>{suffix}</span> Nuit</h3>
+      <div className="progress-bar">
+        <div className="progress-bar__background">
+          <div className="progress-bar__background-progress" style={{ width: `${percentage}%` }} />
+        </div>
+        <p className="progress-bar__legend">Nuit en cours : {percentage}%</p>
+      </div>
       <div className="nightscript__instructions">
         <h5 className="nightscript__instructions-name">{name}</h5>
         <img
@@ -79,10 +93,8 @@ const NightScript = ({
         {name === 'Voleur' && <Thief choices={choices} toggleValidationBox={toggleValidationBox} />}
         {name === 'Cupidon' && <Cupid choices={choices} toggleValidationBox={toggleValidationBox} />}
         {name === 'Amoureux' && <button className="nightscript__action-buttons-item" type="button" onClick={handleNextClick}>Next</button>}
-        {/* {name === 'Voyante' && <FortuneTeller choices={choices} toggleValidationBox={toggleValidationBox} handleNextClick={handleNextClick} />} */}
         {name === 'Voyante' && <button className="nightscript__action-buttons-item" type="button" onClick={handleNextClick}>Next</button>}
         {name === 'Loup-Garou' && <Werewolf choices={choices} toggleValidationBox={toggleValidationBox} />}
-
         {name === 'Sorcière' && (<Witch toggleValidationBox={toggleValidationBox} />)}
       </div>
       <div className="nightscript__confirmation">
@@ -97,8 +109,9 @@ const NightScript = ({
 };
 
 NightScript.propTypes = {
-  roleToPlay: PropTypes.object.isRequired,
   players: PropTypes.array.isRequired,
+  nightCount: PropTypes.number.isRequired,
+  roleToPlay: PropTypes.object.isRequired,
 
   // FUNCTIONS
   setNextRoleToPlay: PropTypes.func.isRequired,
