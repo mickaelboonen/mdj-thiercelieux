@@ -6,7 +6,8 @@ import deathPotionImg from 'src/assets/pictures/roles/potion-mort.png';
 
 import './style.scss';
 
-const Witch = ({ setNextRoleToPlay, players, witch, setWitchAttributes }) => {
+const Witch = ({ players, setChanges, toggleValidationBox }) => {
+  const witch = players.find((player) => player.hiddenRole === 'Sorcière');
   const { roleAttributes: { curePotion, deathPotion } } = witch;
   // const endWitchTurnButton = document.querySelector('#end-witch-turn');
   // // const saveRecapElement = document.querySelector('#save-recap');
@@ -58,10 +59,17 @@ const Witch = ({ setNextRoleToPlay, players, witch, setWitchAttributes }) => {
     handleTogglePotion(event);
   };
 
-  const handleNextClick = () => {
+  const handleValidateClick = () => {
     const endWitchTurnButton = document.querySelector('#end-witch-turn');
-    setWitchAttributes(endWitchTurnButton.dataset.save, endWitchTurnButton.dataset.kill);
-    setNextRoleToPlay('Sorcière');
+    const changes = {
+      name: 'Sorcière',
+      values: {
+        savedPlayer: endWitchTurnButton.dataset.save,
+        poisonnedPlayer: endWitchTurnButton.dataset.kill,
+      },
+    };
+    setChanges(changes);
+    toggleValidationBox();
   };
   return (
     <div className="witch">
@@ -140,7 +148,7 @@ const Witch = ({ setNextRoleToPlay, players, witch, setWitchAttributes }) => {
           data-save=""
           data-kill=""
           type="button"
-          onClick={handleNextClick}
+          onClick={handleValidateClick}
         >
           Passer à l'étape suivante
         </button>
@@ -150,9 +158,9 @@ const Witch = ({ setNextRoleToPlay, players, witch, setWitchAttributes }) => {
 };
 
 Witch.propTypes = {
-  setNextRoleToPlay: PropTypes.func.isRequired,
+  toggleValidationBox: PropTypes.func.isRequired,
+  setChanges: PropTypes.func.isRequired,
   players: PropTypes.array.isRequired,
-  witch: PropTypes.object.isRequired,
 };
 
 export default Witch;

@@ -1,11 +1,9 @@
 import { connect } from 'react-redux';
-import Cupid from 'src/components/App/CurrentGame/NightScript/Cupid';
+import Werewolf from 'src/components/App/CurrentGame/NightScript/Werewolf';
 
 import { setChanges } from 'src/actions/game';
 
-const mapStateToProps = (state) => ({
-
-});
+const mapStateToProps = null;
 
 const mapDispatchToProps = (dispatch) => ({
   setChanges: (changes) => {
@@ -14,4 +12,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cupid);
+export default connect(mapStateToProps, mapDispatchToProps)(Werewolf);

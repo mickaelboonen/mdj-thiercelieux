@@ -3,30 +3,34 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const Cupid = ({ choices, setCupidAttributes, setValidationBox }) => {
+const Cupid = ({ choices, toggleValidationBox, setChanges }) => {
   const handleClick = () => {
-    const firstSelectValue = document.querySelector('#first-select').value;
-    const secondSelectValue = document.querySelector('#second-select').value;
+    const firstLover = document.querySelector('#first-select').value;
+    const secondLover = document.querySelector('#second-select').value;
 
     const errorElement = document.querySelector('.nightscript__action-container__error');
 
-    if (firstSelectValue === secondSelectValue) {
+    if (firstLover === secondLover) {
       errorElement.textContent = 'Vous ne pouvez pas sélectionner deux fois le même joueur.';
     }
-    else if (firstSelectValue === '' || secondSelectValue === '') {
+    else if (firstLover === '' || secondLover === '') {
       errorElement.textContent = 'Vous devez sélectionner deux joueurs.';
     }
     else {
       errorElement.textContent = '';
-      setCupidAttributes(firstSelectValue, secondSelectValue);
-      setValidationBox();
+      const changes = {
+        name: 'Cupidon',
+        values: [firstLover, secondLover],
+      };
+      setChanges(changes);
+      toggleValidationBox();
     }
   };
   return (
     <div className="nightscript__action-container">
       <div className="nightscript__action-container__selects">
         <select name="" id="first-select">
-          <option value=''>Sélectionner un nom</option>
+          <option value="">Sélectionner un nom</option>
           {choices.map((choice) => (
             <option
               key={choice.name}
@@ -58,8 +62,8 @@ const Cupid = ({ choices, setCupidAttributes, setValidationBox }) => {
 
 Cupid.propTypes = {
   choices: PropTypes.array.isRequired,
-  setCupidAttributes: PropTypes.func.isRequired,
-  setValidationBox: PropTypes.func.isRequired,
+  setChanges: PropTypes.func.isRequired,
+  toggleValidationBox: PropTypes.func.isRequired,
 };
 
 export default Cupid;

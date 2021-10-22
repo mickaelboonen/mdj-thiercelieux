@@ -85,3 +85,56 @@ export const setButtonsForAction = (role, players, array = []) => {
   }
   return newChoices;
 };
+
+export const setNewAttributesToPlayers = (changes, players) => {
+  const { name, values } = changes;
+  console.log(name, values);
+  let newPlayersArray = [];
+
+  if (name === 'Voleur') {
+    const [newRole] = values;
+    const currentThief = players.find((player) => player.hiddenRole === 'Voleur');
+    const otherPlayers = players.filter((player) => player.hiddenRole !== 'Voleur');
+
+    currentThief.hiddenRole = newRole;
+    currentThief.roleAttributes.firstnight_call = false;
+    currentThief.side = setSide(newRole);
+    const attributes = setAttributes(newRole);
+    if (attributes !== undefined) {
+      attributes.forEach((currentAtt) => {
+        currentThief.roleAttributes[currentAtt] = true;
+      });
+    }
+    for (let i = 1; i <= players.length; i += 1) {
+      const currentPlayer = otherPlayers.find((player) => player.id === i);
+      // console.log(currentPlayer);
+      if (currentPlayer) {
+        newPlayersArray.push(currentPlayer);
+      }
+      else {
+        newPlayersArray.push(currentThief);
+      }
+    }
+  }
+
+  else if (name === 'Cupidon') {
+    const [firstLover, secondLover] = values;
+    newPlayersArray = players.map((player) => {
+      if (player.name === firstLover || player.name === secondLover) {
+        player.roleAttributes.inLove = true;
+      }
+      return player;
+    });
+  }
+  else if (name === 'Loup-Garou') {
+    const [victim] = values;
+    newPlayersArray = players.map((player) => {
+      if (player.name === victim) {
+        player.isAlive = false;
+        player.attackedTonight = true;
+      }
+      return player;
+    });
+  }
+  return newPlayersArray;
+};

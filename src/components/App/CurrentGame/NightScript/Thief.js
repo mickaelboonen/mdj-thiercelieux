@@ -3,23 +3,25 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const Thief = ({ thiefRoles, setThiefAttributes, setValidationBox }) => {
+const Thief = ({ thiefRoles, setChanges, toggleValidationBox }) => {
   const handleClick = (event) => {
-    setThiefAttributes(event.target.value);
-    setValidationBox();
+    const changes = {
+      name: 'Voleur',
+      values: [event.target.value],
+    };
+    setChanges(changes);
+    toggleValidationBox();
   };
   return (
     <div className="nightscript__action-buttons">
       {thiefRoles.map((button) => (
-        <button
+        <input
           key={button.name}
           type="button"
           className="nightscript__action-buttons-item"
           onClick={handleClick}
           value={button.name}
-        >
-          {button.name}
-        </button>
+        />
       ))}
     </div>
   );
@@ -27,8 +29,8 @@ const Thief = ({ thiefRoles, setThiefAttributes, setValidationBox }) => {
 
 Thief.propTypes = {
   thiefRoles: PropTypes.array.isRequired,
-  setThiefAttributes: PropTypes.func.isRequired,
-  setValidationBox: PropTypes.func.isRequired,
+  setChanges: PropTypes.func.isRequired,
+  toggleValidationBox: PropTypes.func.isRequired,
 };
 
 export default Thief;

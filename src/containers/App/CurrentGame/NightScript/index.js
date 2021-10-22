@@ -16,8 +16,8 @@ const mapDispatchToProps = (dispatch) => ({
   setNextRoleToPlay: (name) => {
     dispatch(setNextRoleToPlay(name));
   },
-  changePlayersAttributes: (currentRole, victim) => {
-    dispatch(changePlayersAttributes(currentRole, victim));
+  changePlayersAttributes: () => {
+    dispatch(changePlayersAttributes());
   },
 });
 

@@ -15,15 +15,17 @@ import {
   RESET_PLAYER_TO_DISPLAY,
   KILL_BY_VOTE,
   SET_NEXT_ROLE_TO_PLAY,
-  CHANGE_PLAYERS_ATTRIBUTES,
+  SET_WEREWOLF_ATTRIBUTES,
   SET_CUPID_ATTRIBUTES,
   SET_WITCH_ATTRIBUTES,
   SET_THIEF_ATTRIBUTES,
+  CHANGE_PLAYERS_ATTRIBUTES,
 } from 'src/actions/game';
 
-import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
+import { setSide, setAttributes, setNewAttributesToPlayers } from 'src/selectors/setGameFunctions';
 
 import history from 'src/utils/history';
+import { SET_CHANGES } from '../actions/game';
 
 const initialState = {
   counter: 0,
@@ -191,6 +193,7 @@ const initialState = {
       },
     },
   ],
+  changes: {},
   thiefRoles: [
     {
       name: 'Simple Villageois',
@@ -252,49 +255,39 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case SET_THIEF_ATTRIBUTES: {
-      const { newRole } = action;
-      const currentThief = state.players.find((player) => player.hiddenRole === 'Voleur');
-      const otherPlayers = state.players.filter((player) => player.hiddenRole !== 'Voleur');
-
-      currentThief.hiddenRole = newRole;
-      currentThief.roleAttributes.firstnight_call = false;
-      currentThief.side = setSide(newRole);
-      const attributes = setAttributes(newRole);
-      if (attributes !== undefined) {
-        attributes.forEach((currentAtt) => {
-          currentThief.roleAttributes[currentAtt] = true;
-        });
-      }
-      const players = [];
-      for (let i = 1; i <= state.players.length; i += 1) {
-        const currentPlayer = otherPlayers.find((player) => player.id === i);
-        // console.log(currentPlayer);
-        if (currentPlayer) {
-          players.push(currentPlayer);
-        }
-        else {
-          players.push(currentThief);
-        }
-      }
+    case SET_CHANGES:
       return {
         ...state,
+        changes: action.changes,
+      };
+    case CHANGE_PLAYERS_ATTRIBUTES: {
+      const players = setNewAttributesToPlayers(state.changes, state.players);
+      console.log(players);
+      return {
+        ...state,
+        changes: {},
         players: players,
       };
     }
-    case SET_CUPID_ATTRIBUTES: {
-      const { firstLover, secondLover } = action;
-      const newPlayersArray = state.players.map((player) => {
-        if (player.name === firstLover || player.name === secondLover) {
-          player.roleAttributes.inLove = true;
-        }
-        return player;
-      });
-      return {
-        ...state,
-        players: newPlayersArray,
-      };
-    }
+    // case SET_THIEF_ATTRIBUTES: {
+    //   return {
+    //     ...state,
+    //     changes: action.changes,
+    //   };
+    // }
+    // case SET_CUPID_ATTRIBUTES: {
+    //   const { firstLover, secondLover } = action;
+    //   const newPlayersArray = state.players.map((player) => {
+    //     if (player.name === firstLover || player.name === secondLover) {
+    //       player.roleAttributes.inLove = true;
+    //     }
+    //     return player;
+    //   });
+    //   return {
+    //     ...state,
+    //     players: newPlayersArray,
+    //   };
+    // }
     case SET_WITCH_ATTRIBUTES: {
       let newPlayersArray = state.players;
       const { wolfVictim, witchVictim } = action;
@@ -329,23 +322,21 @@ const reducer = (state = initialState, action = {}) => {
         players: newPlayersArray,
       };
     }
-    case CHANGE_PLAYERS_ATTRIBUTES: {
-      const { currentRole, victim } = action;
-      let newPlayersArray = state.players;
-      if (currentRole === 'Loup-Garou') {
-        newPlayersArray = state.players.map((player) => {
-          if (player.name === victim) {
-            player.isAlive = false;
-            player.attackedTonight = true;
-          }
-          return player;
-        });
-      }
-      return {
-        ...state,
-        players: newPlayersArray,
-      };
-    }
+    // case SET_WEREWOLF_ATTRIBUTES: {
+    //   const { victim } = action;
+    //   console.log(victim);
+    //   const newPlayersArray = state.players.map((player) => {
+    //     if (player.name === victim) {
+    //       player.isAlive = false;
+    //       player.attackedTonight = true;
+    //     }
+    //     return player;
+    //   });
+    //   return {
+    //     ...state,
+    //     players: newPlayersArray,
+    //   };
+    // }
     case SET_NEXT_ROLE_TO_PLAY: {
       const newOrder = state.gameOrder.map((role) => {
         if (role.name === action.currentName) {
