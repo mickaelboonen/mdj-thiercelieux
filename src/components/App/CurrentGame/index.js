@@ -6,11 +6,10 @@ import classNames from 'classnames';
 import PlayerInfo from 'src/containers/App/CurrentGame/PlayerInfo';
 import './style.scss';
 import { Link } from 'react-router-dom';
+import Newspaper from './Newspaper';
 
-const Game = ({ players, playerToDisplay, resetPlayerToDisplay }) => {
+const Game = ({ players, playerToDisplay, resetPlayerToDisplay, newspaper }) => {
   const playersAlive = players.filter((player) => player.isAlive);
-  console.log(playersAlive);
-
   useEffect(() => {
     const cercles = document.querySelectorAll('.player-info');
 
@@ -57,7 +56,6 @@ const Game = ({ players, playerToDisplay, resetPlayerToDisplay }) => {
       }
     });
   };
-  console.log(playerToDisplay);
   return (
     <div className="current-game">
       <div className="current-game__buttons">
@@ -95,6 +93,7 @@ const Game = ({ players, playerToDisplay, resetPlayerToDisplay }) => {
       <div className="current-game__buttons">
         <button type="button" onClick={handleClickVote}>L'heure du vote</button>
       </div>
+      <Newspaper newspaper={newspaper} />
     </div>
   );
 };

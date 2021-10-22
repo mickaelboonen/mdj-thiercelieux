@@ -4,22 +4,21 @@ import { useHistory } from 'react-router-dom';
 
 import './style.scss';
 
-const Sunrise = ({ setGame }) => {
+const Sunrise = ({ setDay }) => {
   const history = useHistory();
   useEffect(() => {
     setTimeout(() => {
       history.push('/partie-en-cours');
     }, 5000);
-    // TODO
-    // setGame();
+    setDay();
   }, []);
   return (
-    <div className="sunset">Sunrise</div>
+    <div className="sunrise">Sunrise</div>
   );
 };
 
 Sunrise.propTypes = {
-  setGame: PropTypes.func.isRequired,
+  setDay: PropTypes.func.isRequired,
 };
 
 export default Sunrise;

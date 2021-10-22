@@ -40,11 +40,10 @@ const gameMiddleware = (store) => (next) => (action) => {
           canBeKilled: true,
           canVote: true,
           isAlive: true,
-          attackedTonight: false,
+          deadTonight: false,
           roleAttributes: {
             firstnight_call: false,
             // PROPRIETE THIERCELIEUX
-            deadTonight: false,
             inLove: false,
             seenBySeer: false,
             savedByWitch: false,

@@ -3,6 +3,11 @@ export const setGame = () => ({
   type: SET_GAME,
 });
 
+export const SET_DAY = 'SET_DAY';
+export const setDay = () => ({
+  type: SET_DAY,
+});
+
 export const SAVE_PLAYERS_FINAL_ARRAY = 'SAVE_PLAYERS_FINAL_ARRAY';
 export const savePlayersFinalArray = (array) => ({
   type: SAVE_PLAYERS_FINAL_ARRAY,

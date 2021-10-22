@@ -31,17 +31,19 @@ const Witch = ({ players, setChanges, toggleValidationBox }) => {
     element.classList.toggle(`witch__message-${potion}--open`);
     container.classList.toggle('witch__message--open');
   };
-  const deadPlayer = players.find((player) => !player.isAlive && player.attackedTonight);
+  const deadPlayer = players.find((player) => !player.isAlive && player.deadTonight);
   const playersToKill = players.filter((player) => player.isAlive && player.hiddenRole !== 'Sorcière');
 
   const handleSaveClick = (event) => {
     const saveRecapElement = document.querySelector('#save-recap');
     const endWitchTurnButton = document.querySelector('#end-witch-turn');
+    endWitchTurnButton.dataset.wolf = deadPlayer.name;
     if (event.target.value === 'yes') {
-      endWitchTurnButton.dataset.save = deadPlayer.name;
+      endWitchTurnButton.dataset.wolf = deadPlayer.name;
       saveRecapElement.innerHTML = `Jouer à sauver : <span>${deadPlayer.name}</span>`;
     }
     else {
+      endWitchTurnButton.dataset.wolf = 'Personne';
       saveRecapElement.innerHTML = 'Jouer à sauver : <span>Personne</span>';
     }
     handleTogglePotion(event);
@@ -64,8 +66,8 @@ const Witch = ({ players, setChanges, toggleValidationBox }) => {
     const changes = {
       name: 'Sorcière',
       values: {
-        savedPlayer: endWitchTurnButton.dataset.save,
-        poisonnedPlayer: endWitchTurnButton.dataset.kill,
+        wolfVictim: endWitchTurnButton.dataset.wolf,
+        witchVictim: endWitchTurnButton.dataset.kill,
       },
     };
     setChanges(changes);
@@ -145,7 +147,7 @@ const Witch = ({ players, setChanges, toggleValidationBox }) => {
         <button
           className="nightscript__action-buttons-item"
           id="end-witch-turn"
-          data-save=""
+          data-wolf={deadPlayer.name}
           data-kill=""
           type="button"
           onClick={handleValidateClick}

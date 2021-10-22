@@ -1,3 +1,5 @@
+import { Cpu } from "react-feather";
+
 /**
  * @param {string} role
  * Returns string
@@ -66,7 +68,7 @@ export const setAttributes = (role) => {
   return attributesArray;
 };
 
-export const setButtonsForAction = (role, players, array = []) => {
+export const setChoicesForAction = (role, players, array = []) => {
   let newChoices = players;
   if (role === 'Voleur') {
     newChoices = array;
@@ -79,7 +81,7 @@ export const setButtonsForAction = (role, players, array = []) => {
     newChoices = newChoices.filter((player) => player.hiddenRole !== role);
   }
   else if (role === 'Sorcière') {
-    const deadPlayer = newChoices.find((player) => !player.isAlive && player.attackedTonight);
+    const deadPlayer = newChoices.find((player) => !player.isAlive && player.deadTonight);
     const playersToKill = newChoices.filter((player) => player.isAlive && player.hiddenRole !== 'Sorcière');
     playersToKill.unshift(deadPlayer);
   }
@@ -131,10 +133,55 @@ export const setNewAttributesToPlayers = (changes, players) => {
     newPlayersArray = players.map((player) => {
       if (player.name === victim) {
         player.isAlive = false;
-        player.attackedTonight = true;
+        player.deadTonight = true;
       }
       return player;
     });
   }
+  else if (name === 'Sorcière') {
+    const { wolfVictim, witchVictim } = values;
+    console.log("witch wolf victim", wolfVictim);
+    if (wolfVictim === 'Personne') {
+      newPlayersArray = players.map((player) => {
+        if (player.name === wolfVictim) {
+          player.isAlive = true;
+          player.deadTonight = false;
+        }
+        if (player.hiddenRole === 'Sorcière') {
+          player.roleAttributes.curePotion = false;
+        }
+        return player;
+      });
+    }
+    if (witchVictim !== 'Personne' || witchVictim !== '') {
+      newPlayersArray = players.map((player) => {
+        if (player.name === witchVictim) {
+          player.isAlive = false;
+          player.deadTonight = true;
+          player.roleAttributes.deadByPotion = true;
+        }
+        if (player.hiddenRole === 'Sorcière') {
+          player.roleAttributes.deathPotion = false;
+        }
+        return player;
+      });
+    }
+  }
   return newPlayersArray;
 };
+
+export const breakingNews = (newspaper, changes) => {
+  const morningEdition = newspaper;
+  const { name, values } = changes;
+
+  if (name === 'Sorcière') {
+    const { wolfVictim, witchVictim } = values;
+    if (wolfVictim !== 'Personne' && wolfVictim !== '') {
+      morningEdition.push(`${wolfVictim} a été attaqué cette nuit et est décédé de ses blessures.`);
+    }
+    if (witchVictim !== 'Personne' && witchVictim !== '') {
+      morningEdition.push(`${witchVictim} a été attaqué cette nuit et est décédé de ses blessures.`);
+    }
+  }
+  return morningEdition;
+}

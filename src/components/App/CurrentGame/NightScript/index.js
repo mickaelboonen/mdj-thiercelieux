@@ -1,57 +1,67 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-import { setButtonsForAction } from 'src/selectors/setGameFunctions';
+import { useHistory } from 'react-router-dom';
 
 import Witch from 'src/containers/App/CurrentGame/NightScript/Witch';
-
-import './style.scss';
 import Thief from 'src/containers/App/CurrentGame/NightScript/Thief';
 import Cupid from 'src/containers/App/CurrentGame/NightScript/Cupid';
-import FortuneTeller from 'src/containers/App/CurrentGame/NightScript/FortuneTeller';
 import Werewolf from 'src/containers/App/CurrentGame/NightScript/Werewolf';
+// import FortuneTeller from 'src/containers/App/CurrentGame/NightScript/FortuneTeller';
 
+import { setChoicesForAction } from 'src/selectors/setGameFunctions';
+import './style.scss';
 
 const NightScript = ({
-  gameOrder,
   roleToPlay,
   players,
   setNextRoleToPlay,
   changePlayersAttributes,
 }) => {
-  const {
-    name,
-    picture,
-    text,
-    action,
-  } = roleToPlay;
-  let choices = setButtonsForAction(name, players);
+  const { name, picture, text } = roleToPlay;
+
+  /**
+   * @returns array
+   */
+  let choices = setChoicesForAction(name, players);
 
   useEffect(() => {
     setNextRoleToPlay();
   }, []);
 
+  const history = useHistory();
   useEffect(() => {
-    roleToPlay = gameOrder.find((role) => role.hasBeenCalled);
-    choices = setButtonsForAction(name, players);
-  }, [gameOrder, players]);
+    // If the phase of the role to play is day, we have finished the night cycle
+    if (roleToPlay.phase === 'day') {
+      // We go to the sunrise page to execute the end of night function
+      history.push('/lever-de-soleil');
+    }
+    // If not, there are still roles to be played
+    else {
+      // so we set the choices array
+      choices = setChoicesForAction(name, players);
+    }
+  }, [roleToPlay]);
 
-  const boxElement = document.querySelector('.nightscript__confirmation');
-
+  // Opens or closes the validation box
   const toggleValidationBox = () => {
+    const boxElement = document.querySelector('.nightscript__confirmation');
     boxElement.classList.toggle('nightscript__confirmation--open');
   };
 
+  // Sets the next role to play on next button click
   const handleNextClick = () => {
     setNextRoleToPlay(name);
   };
 
+  // Handles the choice validation
   const handleYesClick = () => {
+    // Modify the players array according to the user's choices
     changePlayersAttributes();
+    // Closes the validation box
     toggleValidationBox();
+    // Sets the next role
     setNextRoleToPlay(name);
-  }
-  console.log(name, choices);
+  };
   return (
     <div className="nightscript">
       <h3 className="nightscript__title">Première Nuit</h3>
@@ -88,13 +98,11 @@ const NightScript = ({
 
 NightScript.propTypes = {
   roleToPlay: PropTypes.object.isRequired,
-
-  // ARRAYS
-  gameOrder: PropTypes.array.isRequired,
   players: PropTypes.array.isRequired,
+
   // FUNCTIONS
   setNextRoleToPlay: PropTypes.func.isRequired,
-  // setButtons: PropTypes.func.isRequired,
+  changePlayersAttributes: PropTypes.func.isRequired,
 };
 
 export default NightScript;
