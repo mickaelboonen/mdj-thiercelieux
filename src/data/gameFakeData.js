@@ -20,6 +20,7 @@ export const gameFakeData = [
     canVote: true,
     isAlive: true,
     deadTonight: false,
+    deathCause: '',
     roleAttributes: {
       inLove: false,
       isCharmed: false,
@@ -38,6 +39,7 @@ export const gameFakeData = [
     canVote: true,
     isAlive: true,
     deadTonight: false,
+    deathCause: '',
     roleAttributes: {
       inLove: false,
       isCharmed: false,
@@ -56,6 +58,7 @@ export const gameFakeData = [
     canVote: true,
     isAlive: true,
     deadTonight: false,
+    deathCause: '',
     roleAttributes: {
       inLove: false,
       isCharmed: false,
@@ -74,6 +77,7 @@ export const gameFakeData = [
     canVote: true,
     isAlive: true,
     deadTonight: false,
+    deathCause: '',
     roleAttributes: {
       inLove: false,
       isCharmed: false,
@@ -92,6 +96,7 @@ export const gameFakeData = [
     canVote: true,
     isAlive: true,
     deadTonight: false,
+    deathCause: '',
     roleAttributes: {
       inLove: false,
       isCharmed: false,
@@ -110,6 +115,7 @@ export const gameFakeData = [
     canVote: true,
     isAlive: true,
     deadTonight: false,
+    deathCause: '',
     roleAttributes: {
       inLove: false,
       isCharmed: false,
@@ -128,6 +134,7 @@ export const gameFakeData = [
     canVote: true,
     isAlive: true,
     deadTonight: false,
+    deathCause: '',
     roleAttributes: {
       inLove: false,
       isCharmed: false,
@@ -146,6 +153,7 @@ export const gameFakeData = [
     canVote: true,
     isAlive: true,
     deadTonight: false,
+    deathCause: '',
     roleAttributes: {
       inLove: false,
       isCharmed: false,
@@ -164,6 +172,7 @@ export const gameFakeData = [
     canVote: true,
     isAlive: true,
     deadTonight: false,
+    deathCause: '',
     roleAttributes: {
       inLove: false,
       isCharmed: false,

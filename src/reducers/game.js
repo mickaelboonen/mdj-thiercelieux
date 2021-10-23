@@ -12,6 +12,7 @@ import {
   SET_CHANGES,
   SET_DAY,
   CHANGE_PLAYERS_ATTRIBUTES,
+  KILL_PLAYER,
 } from 'src/actions/game';
 
 import { setNewAttributesToPlayers, breakingNews, setWinnerStatus } from 'src/selectors/setGameFunctions';
@@ -43,6 +44,19 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case KILL_PLAYER: {
+      const newPlayersArray = state.players.map((player) => {
+        if (player.name === action.victim) {
+          player.isAlive = false;
+          player.deathCause = 'Chasseur';
+        }
+        return player;
+      });
+      return {
+        ...state,
+        players: newPlayersArray,
+      };
+    }
     case SET_DAY: {
       const { players, newspaper, gameOrder } = state;
       // Resetting the gameOrder and the roleToPlay
@@ -80,17 +94,17 @@ const reducer = (state = initialState, action = {}) => {
       // Checking if there is any win ---------------------------------------------------------------
       const winner = setWinnerStatus(newspaper, newPlayersArray);
 
-      const finalPlayerArray = newPlayersArray.map((player) => {
-        player.deadTonight = false;
-        return player;
-      });
+
 
       // Action from dead people during day (hunter)
       const deadHunter = players.find((player) => player.hiddenRole === 'Chasseur' && !player.isAlive && player.deadTonight);
       if (deadHunter) {
         newspaper.push("Le Chasseur a 30 secondes pour tuer quelqu'un avant de mourir de ses blessures.");
       }
-
+      const finalPlayerArray = newPlayersArray.map((player) => {
+        player.deadTonight = false;
+        return player;
+      });
       return {
         ...state,
         dayCount: state.dayCount + 1,

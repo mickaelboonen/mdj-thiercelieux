@@ -63,16 +63,8 @@ export const setChanges = (changes) => ({
   changes,
 });
 
-
-// export const SET_THIEF_ATTRIBUTES = 'SET_THIEF_ATTRIBUTES';
-// export const setThiefAttributes = (changes) => ({
-//   type: SET_THIEF_ATTRIBUTES,
-//   changes,
-// });
-
-
-// export const SET_WEREWOLF_ATTRIBUTES = 'SET_WEREWOLF_ATTRIBUTES';
-// export const setWerewolfAttributes = (victim) => ({
-//   type: SET_WEREWOLF_ATTRIBUTES,
-//   victim,
-// });
+export const KILL_PLAYER = 'KILL_PLAYER';
+export const killPlayer = (victim) => ({
+  type: KILL_PLAYER,
+  victim,
+});

@@ -41,6 +41,7 @@ const gameMiddleware = (store) => (next) => (action) => {
           canVote: true,
           isAlive: true,
           deadTonight: false,
+          causeOfDeath: '',
           roleAttributes: {
             firstnight_call: false,
             // PROPRIETE THIERCELIEUX

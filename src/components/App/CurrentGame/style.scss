@@ -185,12 +185,19 @@
 
 
     &-list {
-      height: 80%;
+      height: 70%;
       overflow: auto;
 
       &-item {
         margin-bottom: 0.5rem;
         font-family: vars.$fontRakkas;
+      }
+    }
+
+    &-hunter {
+      height: 10%;
+      & img {
+        width: 2rem;
       }
     }
   }
