@@ -26,9 +26,11 @@ const Newspaper = ({ newspaper }) => {
   }
   return (
     <div className="newspaper">
+      {!deadHunter && (
       <div className="newspaper__close-button">
         <X onClick={handleClick} />
       </div>
+      )}
       <div className="newspaper__container">
         <div className="newspaper__container-header">
           <Moon />
@@ -37,7 +39,11 @@ const Newspaper = ({ newspaper }) => {
           <p className="newspaper__container-header__breaking-news">BREAKING NEWS</p>
         </div>
         <ul className="newspaper__container-list">
-          {newspaper.map((news) => <li className="newspaper__container-list-item" key={news}>{news}</li>)}
+          {newspaper.map((news) => (
+            <li className="newspaper__container-list-item" key={news}>
+              {news}
+            </li>
+          ))}
         </ul>
         {deadHunter && (
           <div className="newspaper__container-hunter">

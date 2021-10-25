@@ -5,10 +5,16 @@ import classNames from 'classnames';
 
 import PlayerInfo from 'src/containers/App/CurrentGame/PlayerInfo';
 import './style.scss';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Newspaper from './Newspaper';
 
-const Game = ({ players, playerToDisplay, resetPlayerToDisplay, newspaper }) => {
+const Game = ({
+  players,
+  playerToDisplay,
+  resetPlayerToDisplay,
+  newspaper,
+  isHunterDead,
+}) => {
   const playersAlive = players.filter((player) => player.isAlive);
   useEffect(() => {
     const cercles = document.querySelectorAll('.player-info');
@@ -33,6 +39,11 @@ const Game = ({ players, playerToDisplay, resetPlayerToDisplay, newspaper }) => 
       }
     }
   }, []);
+
+  const history = useHistory();
+  if (isHunterDead) {
+    history.push('/partie-en-cours/jour/chasseur');
+  }
 
   const handleClick = () => {
     resetPlayerToDisplay();
@@ -59,7 +70,7 @@ const Game = ({ players, playerToDisplay, resetPlayerToDisplay, newspaper }) => 
   return (
     <div className="current-game">
       <div className="current-game__buttons">
-        <Link to="/partie-en-cours/nuit-sur-thiercelieux"><button type="button">La nuit tombe...</button></Link>
+        <Link to="/coucher-de-soleil"><button type="button">La nuit tombe...</button></Link>
         <p>Nom de la carte Nouvelle Lune en cours de jeu</p>
       </div>
       <div className="current-game__players">
@@ -100,6 +111,7 @@ const Game = ({ players, playerToDisplay, resetPlayerToDisplay, newspaper }) => 
 
 Game.propTypes = {
   players: PropTypes.array.isRequired,
+  newspaper: PropTypes.array.isRequired,
   playerToDisplay: PropTypes.object.isRequired,
   resetPlayerToDisplay: PropTypes.func.isRequired,
 };

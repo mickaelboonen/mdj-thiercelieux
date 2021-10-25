@@ -8,6 +8,11 @@ export const setDay = () => ({
   type: SET_DAY,
 });
 
+export const SET_NIGHT = 'SET_NIGHT';
+export const setNight = () => ({
+  type: SET_NIGHT,
+});
+
 export const SAVE_PLAYERS_FINAL_ARRAY = 'SAVE_PLAYERS_FINAL_ARRAY';
 export const savePlayersFinalArray = (array) => ({
   type: SAVE_PLAYERS_FINAL_ARRAY,

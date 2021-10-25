@@ -165,7 +165,7 @@ export const gameFakeData = [
     id: 9,
     name: 'Christal',
     hiddenRole: 'Loup-Garou',
-    villageRole: 'Châtelain',
+    villageRole: '',
     side: 'Loup-Garou',
     picture: loupGarou,
     canBeKilled: true,
