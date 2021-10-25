@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const Werewolf = ({ choices, setChanges, toggleValidationBox }) => {
+const Werewolf = ({ setChanges, toggleValidationBox, players }) => {
   const handleClick = (event) => {
     const changes = {
       name: 'Loup-Garou',
@@ -12,18 +12,24 @@ const Werewolf = ({ choices, setChanges, toggleValidationBox }) => {
     setChanges(changes);
     toggleValidationBox();
   };
+  const possibleVictims = [];
+  players.forEach((player) => {
+    if (player.side !== 'Loup-Garou' && player.isAlive) {
+      possibleVictims.push(player);
+    }
+  });
   return (
     <div>
       <div className="nightscript__action-buttons">
-        {choices.map((button) => (
+        {possibleVictims.map((victim) => (
           <button
-            key={button.name}
+            key={victim.name}
             type="button"
             className="nightscript__action-buttons-item"
             onClick={handleClick}
-            value={button.name}
+            value={victim.name}
           >
-            {button.name}
+            {victim.name}
           </button>
         ))}
       </div>
@@ -32,7 +38,7 @@ const Werewolf = ({ choices, setChanges, toggleValidationBox }) => {
 };
 
 Werewolf.propTypes = {
-  choices: PropTypes.array.isRequired,
+  players: PropTypes.array.isRequired,
   setChanges: PropTypes.func.isRequired,
   toggleValidationBox: PropTypes.func.isRequired,
 };

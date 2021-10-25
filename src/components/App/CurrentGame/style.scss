@@ -19,7 +19,7 @@
       height: 6vh;;
     }
 
-    & button {
+    & a, button {
       width: fit-content;
       margin: auto;
       background-color:rgba(118,8,23);
@@ -229,4 +229,10 @@
       }
     }
   }
+}
+.victory {
+  background-color: #f0f;
+  height: 100vh;
+  @include vars.centered-flex;
+  flex-direction: column;
 }

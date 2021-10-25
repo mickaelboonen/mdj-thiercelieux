@@ -4,24 +4,14 @@ import { useHistory } from 'react-router-dom';
 
 import './style.scss';
 
-import { setWinnerStatus } from 'src/selectors/setGameFunctions';
-
-const Sunset = ({ setGame, setNight, isGameSet, newspaper, players }) => {
+const Sunset = ({ setGame, setNight, isGameSet }) => {
   const history = useHistory();
   useEffect(() => {
     let countdown = 5000;
     let url = '/partie-en-cours';
     if (isGameSet) {
       countdown = 3000;
-      // TODO : Lovers don't work
-      const winner = setWinnerStatus(newspaper, players);
-      console.log(winner);
-
       url += '/nuit-sur-thiercelieux';
-      if (winner !== '') {
-        // lien vers la page de victoire
-        url = '';
-      }
     }
     setTimeout(() => {
       history.push(url);

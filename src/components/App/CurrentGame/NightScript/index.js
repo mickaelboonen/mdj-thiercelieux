@@ -12,7 +12,7 @@ import './style.scss';
 
 const NightScript = ({
   roleToPlay,
-  players,
+  // players,
   setNextRoleToPlay,
   changePlayersAttributes,
   nightCount,
@@ -28,11 +28,6 @@ const NightScript = ({
     suffix = 'ème';
   }
 
-  /**
-   * @returns array
-   */
-  let choices = setChoicesForAction(name, players);
-
   useEffect(() => {
     setNextRoleToPlay();
   }, []);
@@ -43,11 +38,6 @@ const NightScript = ({
     if (roleToPlay.phase === 'day') {
       // We go to the sunrise page to execute the end of night function
       history.push('/lever-de-soleil');
-    }
-    // If not, there are still roles to be played
-    else {
-      // so we set the choices array
-      choices = setChoicesForAction(name, players);
     }
   }, [roleToPlay]);
 
@@ -85,23 +75,26 @@ const NightScript = ({
         <img
           className="nightscript__instructions-image"
           src={picture}
-          alt=""
+          alt={`Carte ${name}`}
         />
         <p className="nightscript__instructions-description">{text}{text}{text}{text}{text}{text}{text}{text}{text}{text}</p>
       </div>
       <div className="nightscript__action">
-        {name === 'Voleur' && <Thief choices={choices} toggleValidationBox={toggleValidationBox} />}
-        {name === 'Cupidon' && <Cupid choices={choices} toggleValidationBox={toggleValidationBox} />}
+        {/* TODO : factoriser au possible */}
+        {name === 'Voleur' && <Thief toggleValidationBox={toggleValidationBox} />}
+        {name === 'Cupidon' && <Cupid toggleValidationBox={toggleValidationBox} />}
         {name === 'Amoureux' && <button className="nightscript__action-buttons-item" type="button" onClick={handleNextClick}>Next</button>}
         {name === 'Voyante' && <button className="nightscript__action-buttons-item" type="button" onClick={handleNextClick}>Next</button>}
-        {name === 'Loup-Garou' && <Werewolf choices={choices} toggleValidationBox={toggleValidationBox} />}
-        {name === 'Sorcière' && (<Witch toggleValidationBox={toggleValidationBox} />)}
+        {name === 'Loup-Garou' && <Werewolf toggleValidationBox={toggleValidationBox} />}
+        {name === 'Sorcière' && <Witch toggleValidationBox={toggleValidationBox} />}
       </div>
       <div className="nightscript__confirmation">
         <div className="nightscript__confirmation-box">
           <p>Confirmez-vous votre choix ?</p>
-          <button id="yes-button" type="button" value="yes" onClick={handleYesClick}>yes</button>
-          <button type="button" value="no" onClick={toggleValidationBox}>no</button>
+          <div className="nightscript__confirmation-box-buttons">
+            <button id="yes-button" type="button" value="yes" onClick={handleYesClick}>yes</button>
+            <button type="button" value="no" onClick={toggleValidationBox}>no</button>
+          </div>
         </div>
       </div>
     </div>
@@ -110,8 +103,11 @@ const NightScript = ({
 
 NightScript.propTypes = {
   players: PropTypes.array.isRequired,
-  nightCount: PropTypes.number.isRequired,
   roleToPlay: PropTypes.object.isRequired,
+
+  // NUMBERS
+  nightCount: PropTypes.number.isRequired,
+  percentage: PropTypes.number.isRequired,
 
   // FUNCTIONS
   setNextRoleToPlay: PropTypes.func.isRequired,

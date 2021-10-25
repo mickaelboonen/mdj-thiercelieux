@@ -262,11 +262,16 @@ const reducer = (state = initialState, action = {}) => {
       whoGetsTheChop.forEach((player) => {
         player.classList.remove('player-info--to-be-chopped');
       });
+
+      const winner = setWinnerStatus(newNewspaper, newPlayersArray);
+
+
       return {
         ...state,
         players: newPlayersArray,
         newspaper: newNewspaper,
         isHunterDead: isHunterDead,
+        winner: winner,
       };
     }
     default:

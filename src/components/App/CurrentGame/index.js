@@ -14,6 +14,7 @@ const Game = ({
   resetPlayerToDisplay,
   newspaper,
   isHunterDead,
+  winner,
 }) => {
   const playersAlive = players.filter((player) => player.isAlive);
   useEffect(() => {
@@ -45,6 +46,10 @@ const Game = ({
     history.push('/partie-en-cours/jour/chasseur');
   }
 
+  if (winner !== '') {
+    history.push('/partie-en-cours/victoire');
+  }
+
   const handleClick = () => {
     resetPlayerToDisplay();
   };
@@ -70,7 +75,7 @@ const Game = ({
   return (
     <div className="current-game">
       <div className="current-game__buttons">
-        <Link to="/coucher-de-soleil"><button type="button">La nuit tombe...</button></Link>
+        <Link to="/coucher-de-soleil">La nuit tombe...</Link>
         <p>Nom de la carte Nouvelle Lune en cours de jeu</p>
       </div>
       <div className="current-game__players">

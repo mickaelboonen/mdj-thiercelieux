@@ -3,7 +3,9 @@ import Werewolf from 'src/components/App/CurrentGame/NightScript/Werewolf';
 
 import { setChanges } from 'src/actions/game';
 
-const mapStateToProps = null;
+const mapStateToProps = (state) => ({
+  players: state.game.players,
+});
 
 const mapDispatchToProps = (dispatch) => ({
   setChanges: (changes) => {

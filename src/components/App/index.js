@@ -31,6 +31,7 @@ import Register from 'src/containers/App/Register';
 import Friends from 'src/containers/App/ProfileUser/Friends';
 import PersonalDetails from 'src/containers/App/ProfileUser/PersonalDetails';
 import Hunter from 'src/containers/App/CurrentGame/DayScript/Hunter';
+import Victory from 'src/components/App/CurrentGame/Victory';
 
 import ProfileUser from './ProfileUser';
 
@@ -45,6 +46,7 @@ const App = ({ isConnected, fetchHomeData }) => {
         <Route path="/coucher-de-soleil" exact component={Sunset} />
         <Route path="/lever-de-soleil" exact component={Sunrise} />
         <Route path="/partie-en-cours" exact component={CurrentGame} />
+        <Route path="/partie-en-cours/victoire" exact component={Victory} />
         <Route path="/partie-en-cours/nuit-sur-thiercelieux" exact component={NightScript} />
         <Route path="/partie-en-cours/jour/chasseur" exact component={Hunter} />
         <Route path="/s'inscrire" exact component={Register} />

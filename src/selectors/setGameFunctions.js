@@ -195,14 +195,22 @@ export const setWinnerStatus = (newspaper, players) => {
       sidesArray.push(player.side);
     }
   });
-  if (players.length === 2) {
+  if (sidesArray.length === 2) {
     const areTheyLovers = players.filter((player) => player.roleAttributes.inLove);
     if (areTheyLovers.length === 2) {
       winner = 'Amoureux';
       newspaper.push('Lovers wins');
     }
+    else if (sidesArray.indexOf('Loup-Garou') === -1) {
+      winner = 'Village';
+      newspaper.push('Villages wins');
+    }
+    else if (sidesArray.indexOf('Village') === -1) {
+      winner = 'Loup-Garou';
+      newspaper.push('Werewolves win');
+    }
   }
-  else if (sidesArray.indexOf('Loup-Garou') === -1) {
+  if (sidesArray.indexOf('Loup-Garou') === -1) {
     winner = 'Village';
     newspaper.push('Villages wins');
   }

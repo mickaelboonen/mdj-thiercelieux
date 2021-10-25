@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const Cupid = ({ choices, toggleValidationBox, setChanges }) => {
+const Cupid = ({ players, toggleValidationBox, setChanges }) => {
   const handleClick = () => {
     const firstLover = document.querySelector('#first-select').value;
     const secondLover = document.querySelector('#second-select').value;
@@ -26,28 +26,35 @@ const Cupid = ({ choices, toggleValidationBox, setChanges }) => {
       toggleValidationBox();
     }
   };
+  console.log(players);
+  const livingPlayers = [];
+  players.forEach((player) => {
+    if (player.isAlive) {
+      livingPlayers.push(player);
+    }
+  });
   return (
     <div className="nightscript__action-container">
       <div className="nightscript__action-container__selects">
         <select name="" id="first-select">
           <option value="">Sélectionner un nom</option>
-          {choices.map((choice) => (
+          {livingPlayers.map((player) => (
             <option
-              key={choice.name}
-              value={choice.name}
+              key={player.name}
+              value={player.name}
             >
-              {choice.name}
+              {player.name}
             </option>
           ))}
         </select>
         <select className="nightscript__action" name="" id="second-select">
-          <option value=''>Sélectionner un nom</option>
-          {choices.map((choice) => (
+          <option value="">Sélectionner un nom</option>
+          {livingPlayers.map((player) => (
             <option
-              key={choice.name}
-              value={choice.name}
+              key={player.name}
+              value={player.name}
             >
-              {choice.name}
+              {player.name}
             </option>
           ))}
         </select>
@@ -61,7 +68,7 @@ const Cupid = ({ choices, toggleValidationBox, setChanges }) => {
 };
 
 Cupid.propTypes = {
-  choices: PropTypes.array.isRequired,
+  players: PropTypes.array.isRequired,
   setChanges: PropTypes.func.isRequired,
   toggleValidationBox: PropTypes.func.isRequired,
 };

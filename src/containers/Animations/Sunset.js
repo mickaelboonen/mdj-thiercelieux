@@ -5,8 +5,6 @@ import { setGame, setNight } from 'src/actions/game';
 
 const mapStateToProps = (state) => ({
   isGameSet: state.game.isGameSet,
-  newspaper: state.game.newspaper,
-  players: state.game.players,
 });
 
 const mapDispatchToProps = (dispatch) => ({

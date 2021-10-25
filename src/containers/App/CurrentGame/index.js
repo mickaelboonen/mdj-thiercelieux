@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
   playerToDisplay: state.game.playerToDisplay,
   newspaper: state.game.newspaper,
   isHunterDead: state.game.isHunterDead,
+  winner: state.game.winner,
 });
 
 const mapDispatchToProps = (dispatch) => ({
