@@ -1,34 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { X, Moon } from 'react-feather';
+import { useHistory } from 'react-router-dom';
 import hunterPicture from 'src/assets/pictures/roles/chasseur.png';
 
 import './style.scss';
-import { useHistory } from 'react-router-dom';
 
 const Newspaper = ({ newspaper }) => {
-  const handleClick = () => {
+  // On click, closes the newspaper
+  const handleCloseClick = () => {
     const newspaperElement = document.querySelector('.newspaper');
     newspaperElement.classList.toggle('newspaper--closed');
   };
 
   const deadHunterMessage = "Le Chasseur a 30 secondes pour tuer quelqu'un avant de mourir de ses blessures.";
+  // If the dead hunter message is in the array, returns true;
   const deadHunter = newspaper.indexOf(deadHunterMessage) >= 0;
-  console.log(deadHunter);
 
   const history = useHistory();
+  // Sends to the hunter action page
   const handleHunterClick = () => {
-    // const hunterElement = document.querySelector('.hunter');
-    // hunterElement.classList.toggle('hunter--open');
     history.push('/partie-en-cours/jour/chasseur');
-    // const newspaperElement = document.querySelector('.newspaper');
-    // newspaperElement.classList.toggle('newspaper--closed');
-  }
+  };
   return (
     <div className="newspaper">
       {!deadHunter && (
       <div className="newspaper__close-button">
-        <X onClick={handleClick} />
+        <X onClick={handleCloseClick} />
       </div>
       )}
       <div className="newspaper__container">
@@ -47,7 +45,7 @@ const Newspaper = ({ newspaper }) => {
         </ul>
         {deadHunter && (
           <div className="newspaper__container-hunter">
-            <img src={hunterPicture} alt="" onClick={handleHunterClick} />
+            <img src={hunterPicture} alt="Carte du Chasseur" onClick={handleHunterClick} />
             <p>Cliquez sur l'image</p>
           </div>
         )}

@@ -5,14 +5,20 @@ import './style.scss';
 
 const Werewolf = ({ setChanges, toggleValidationBox, players }) => {
   const handleClick = (event) => {
+    // Setting the action the user did
     const changes = {
       name: 'Loup-Garou',
       values: [event.target.value],
     };
+    // Sending the changes to the reducer to store them
     setChanges(changes);
+    // Modifying the DOM to open the validation box
     toggleValidationBox();
   };
+  // Setting the array of all possible victims
   const possibleVictims = [];
+  // Searching for all players that are still alive and not on the Werewolf side
+  // to push them into the possibleVictims array
   players.forEach((player) => {
     if (player.side !== 'Loup-Garou' && player.isAlive) {
       possibleVictims.push(player);

@@ -5,9 +5,10 @@
   height: 100vh;
   background-color: #1a1a1a;
   position: relative;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
+  display: flex;
+  flex-direction: column;
+  align-items: center   ;
+  justify-content: space-between;
 
   &__buttons {
     height: 10vh;
@@ -15,8 +16,8 @@
     flex-direction: column;
     justify-content: center;
 
-    &:last-child {
-      height: 6vh;;
+    &:nth-last-child(2) {
+      height: 6vh;
     }
 
     & a, button {
@@ -35,16 +36,11 @@
       font-style: italic;
       font-family: 'Special Elite', cursive;
     }
-
   }
 
-
   &__players {
-    // border: 1px solid rgba(255, 255, 0, 0.562);
     height: 50vh;
     width: 80vw;
-    margin: 5rem auto;
-    // border-radius: 50%;
     position: relative;
     padding: 1rem;
 
@@ -55,10 +51,8 @@
       top: calc(50%-4rem);
       left: calc(50%-4rem);
       border-radius: 50%;
-      background-color: #f0f;
 
       &--inlove {
-
         &:after {
           content: '\2764';
           color: rgb(255, 0, 76);
@@ -71,7 +65,6 @@
 
       &--charmed {
         border: 3px solid rgb(0, 204, 255);
-
         // &:after {
         //   content:url(src/assets/icons/flute.jpg);
         //   color: rgb(255, 0, 76);
@@ -97,10 +90,24 @@
     }
   }
 
+  &__footer {
+    position: relative;
+    width: 100%;
 
+    &-input {
+      position: absolute;
+      top: -1.5rem;
+      left: 30vw;
+      color: vars.$quaternary-color;
+      font-style: italic;
+
+      @include vars.checkboxes;
+
+    }
+  }
   &__village {
     background-color: rgb(128, 127, 128);
-    margin: 0 1rem;
+    margin: 0 1rem ;
     height: 10vh;
     display: flex;
     flex-direction: column;
@@ -128,9 +135,7 @@
         }
       }
     }
-
   }
-
 }
 
 .player-info {
@@ -150,10 +155,12 @@
   }
 
   &--dead {
-    
     background-color: red;
   }
-
+ 
+  &--hidden {
+    display: none;
+  }
 }
 
 .newspaper {
@@ -198,7 +205,6 @@
         text-align: center;
         font-size: 1.3em;
         letter-spacing: 0.3rem
-
       }
     }
 
@@ -206,7 +212,6 @@
     &-list {
       height: 60%;
       overflow: auto;
-      // background-color: aquamarine;
 
       &-item {
         margin-bottom: 0.5rem;
@@ -216,8 +221,8 @@
 
     &-hunter {
       height: 16%;
-      // background-color: #992380;
       text-align: center;
+      
       & img {
         width: 2rem;
       }
@@ -230,9 +235,11 @@
     }
   }
 }
+
 .victory {
   background-color: #f0f;
   height: 100vh;
   @include vars.centered-flex;
   flex-direction: column;
 }
+

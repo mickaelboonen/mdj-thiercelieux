@@ -61,6 +61,7 @@
         color: #fff;
         text-shadow: 2px 2px 1px vars.$tertiary-color;
         text-transform: uppercase;
+        text-align: center;
       }
     }
 
@@ -99,8 +100,6 @@
       }
     }
 
-
-
     &-buttons {
       display: flex;
       flex-wrap: wrap;
@@ -118,7 +117,7 @@
   }
 
 
-
+// TODO : FACTORISER
   &__confirmation {
     position: absolute;
     inset: 0;
@@ -131,12 +130,26 @@
     }
     
     &-box {
-      background-color: yellow;
-      border: 2px solid red;
+      background-color: vars.$secondary-color;
+      border: 2px solid vars.$tertiary-color;
       width: 50%;
       margin: auto;
       text-align: center;
       padding: 0.5rem;
+
+      &-buttons {
+        margin-top: 0.5rem;
+        display: flex;
+
+        & button {
+          @include vars.button;
+          margin-right: 0.5rem;
+
+          &:last-child {
+            margin-right: 0;
+        }
+        }
+      }
 
     }
   }

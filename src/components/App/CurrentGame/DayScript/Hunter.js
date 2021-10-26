@@ -17,34 +17,47 @@ const Hunter = ({ players, killPlayer }) => {
     }
   });
 
+  // TODO : check if this works !
   const title = hunter.deadTonight ? 'Au petit matin' : 'Suite au vote';
 
   /**
-   * 
+   * Renders the state countdown : if completed, a DOM element; if not: the time left
    * @param number hours, minutes, seconds
    * @param bool completed
-   * @returns 
+   * @returns mixed (number ou dom element)
    */
-  const renderer = ({ hours, minutes, seconds, completed }) => {
+  const renderer = ({
+    hours,
+    minutes,
+    seconds,
+    completed,
+  }) => {
     if (completed) {
-      // Render a completed state
-      return <span>Bouge toi, t'es en train de crever ! !</span>;
+      return <span>T'as pas l'éternité devant toi ! Plus vite !</span>;
     }
     return seconds;
   };
+
   const history = useHistory();
   const toggleValidationBox = (event) => {
+    // Toggles the validation box
     const confirmationBoxElement = document.querySelector('.dayscript__confirmation');
     confirmationBoxElement.classList.toggle('dayscript__confirmation--open');
+    // Records the event target value in the yes button dataset to save the user choice
     const yesButton = document.querySelector('#yes-button');
     yesButton.dataset.name = event.target.value;
   };
   const handleYesClick = () => {
+    // Gets the hunter victim previously recorded in the dataset
     const yesButton = document.querySelector('#yes-button');
+    // Then kill off player
     killPlayer(yesButton.dataset.name);
+    // We erase the dataset;
     delete yesButton.dataset.name;
+    // Then toggle the confirmation box
     const confirmationBoxElement = document.querySelector('.dayscript__confirmation');
     confirmationBoxElement.classList.toggle('dayscript__confirmation--open');
+    // And then we go back to the game
     history.push('/partie-en-cours');
   };
   return (
@@ -83,8 +96,10 @@ const Hunter = ({ players, killPlayer }) => {
       <div className="dayscript__confirmation">
         <div className="dayscript__confirmation-box">
           <p>Confirmez-vous votre choix ?</p>
-          <button id="yes-button" type="button" value="yes" onClick={handleYesClick}>yes</button>
-          <button type="button" value="no" onClick={toggleValidationBox}>no</button>
+          <div className="dayscript__confirmation-box-buttons">
+            <button id="yes-button" type="button" value="yes" onClick={handleYesClick}>yes</button>
+            <button type="button" value="no" onClick={toggleValidationBox}>no</button>
+          </div>
         </div>
       </div>
     </div>

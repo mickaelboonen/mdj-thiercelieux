@@ -35,7 +35,6 @@
 
     &-description {
       height: 20%;
-      // background-color: rgb(226, 128, 7);
       overflow: auto;
       padding: 0.5rem;
       font-size: 0.8em;
@@ -131,8 +130,7 @@
             margin-right: 0;
           }
         }
-    }
-
+      }
     }
   }
 }
@@ -147,25 +145,24 @@
     justify-content: space-around;
 
     &-potion {
-      // width: 50%;
       display: flex;
       flex-direction: column;
       align-items: center;
 
       &-image {
-        border-top: 2px solid #f3d14e;
-        border-left: 2px solid #39453f;
-        border-right:  2px solid #f3d14e;
-        border-bottom: 2px solid #39453f;
+        border-top: vars.$witch-light-border;
+        border-left: vars.$witch-dark-border;
+        border-right:  vars.$witch-light-border;
+        border-bottom: vars.$witch-dark-border;
         border-radius: 50%;
         width: 50%;
         margin: 0.5rem;
 
         &:hover {
-          border-bottom: 2px solid #f3d14e;
-          border-right: 2px solid #39453f;
-          border-left:  2px solid #f3d14e;
-          border-top: 2px solid #39453f;
+          border-bottom: vars.$witch-light-border;
+          border-right: vars.$witch-dark-border;
+          border-left:  vars.$witch-light-border;
+          border-top: vars.$witch-dark-border;
         }
       }
       &-name {

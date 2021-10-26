@@ -5,11 +5,14 @@ import './style.scss';
 
 const Thief = ({ thiefRoles, setChanges, toggleValidationBox }) => {
   const handleClick = (event) => {
+    // Setting the action the user did
     const changes = {
       name: 'Voleur',
       values: [event.target.value],
     };
+    // Sending the changes to the reducer to store them
     setChanges(changes);
+    // Modifying the DOM to open the validation box
     toggleValidationBox();
   };
   return (

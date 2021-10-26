@@ -20,6 +20,7 @@ const NightScript = ({
 }) => {
   const { name, picture, text } = roleToPlay;
 
+  // Setting the title according to the current night number
   let suffix = '';
   if (nightCount === 1) {
     suffix = 'ère';
@@ -28,6 +29,7 @@ const NightScript = ({
     suffix = 'ème';
   }
 
+  // On first rendering on the page, setting the first role to play
   useEffect(() => {
     setNextRoleToPlay();
   }, []);
@@ -54,7 +56,7 @@ const NightScript = ({
 
   // Handles the choice validation
   const handleYesClick = () => {
-    // Modify the players array according to the user's choices
+    // Modify the players array according to the different actions already saved in the reducer
     changePlayersAttributes();
     // Closes the validation box
     toggleValidationBox();
@@ -77,7 +79,7 @@ const NightScript = ({
           src={picture}
           alt={`Carte ${name}`}
         />
-        <p className="nightscript__instructions-description">{text}{text}{text}{text}{text}{text}{text}{text}{text}{text}</p>
+        <p className="nightscript__instructions-description">{text}</p>
       </div>
       <div className="nightscript__action">
         {/* TODO : factoriser au possible */}
@@ -102,7 +104,6 @@ const NightScript = ({
 };
 
 NightScript.propTypes = {
-  players: PropTypes.array.isRequired,
   roleToPlay: PropTypes.object.isRequired,
 
   // NUMBERS
