@@ -113,7 +113,7 @@ const reducer = (state = initialState, action = {}) => {
           }
         });
 
-        roleToDisplay = rolesToDisplay[3];
+        [roleToDisplay] = rolesToDisplay;
       }
       return {
         ...state,

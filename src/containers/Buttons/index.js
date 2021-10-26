@@ -1,15 +1,15 @@
 import { connect } from 'react-redux';
 import Buttons from 'src/components/Buttons';
 
-import { filterBy } from 'src/actions/RolesDescriptions';
+import { applyFilter } from 'src/actions/RolesDescriptions';
 
 const mapStateToProps = (state) => ({
   inputValue: state.rolesDescriptions.rolesInput,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  filterBy: (value, filter) => {
-    dispatch(filterBy(value, filter));
+  applyFilter: (filter, id) => {
+    dispatch(applyFilter(filter, id));
   },
 });
 

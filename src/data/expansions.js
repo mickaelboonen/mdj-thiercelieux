@@ -9,7 +9,6 @@ import newMoonIcon from 'src/assets/pictures/games/nouvelle-lune-icon.png';
 import personnagesIcon from 'src/assets/pictures/games/personnages-icon.jpg';
 import villageIcon from 'src/assets/pictures/games/village-icon.jpg';
 
-import { newMoonCards } from './newMoonCards';
 import { villagePeople } from './villagePeople';
 // eslint-disable-next-line import/prefer-default-export
 export const expansions = [
@@ -145,7 +144,7 @@ export const expansions = [
         name: 'Nouvelle Lune',
         hash: 'nouvelle-lune',
         description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae, accusamus dolorum et beatae quos eveniet repudiandae, hic consectetur voluptatum aspernatur dolorem dignissimos tempore. Dicta ea nostrum, illum assumenda modi nihil aliquam officia dignissimos, debitis perspiciatis quos corporis architecto illo odit nemo consectetur nesciunt fuga, quidem eligendi doloribus? Ut, vitae doloribus.',
-        rules: newMoonCards,
+        rules: '',
       },
     ],
   },

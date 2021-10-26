@@ -32,7 +32,6 @@ const mapDispatchToProps = (dispatch) => ({
   changeValue: (value, name) => {
     if (name === 'rolesInput' || name === 'cardsInput' || name === 'villageInput') {
       dispatch(changeRolesInputValue(value, name));
-      dispatch(displayResults(value));
     }
     else if (name === 'usersInput') {
       dispatch(changeUsersInputValue(value));

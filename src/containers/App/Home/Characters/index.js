@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Characters from 'src/components/App/Home/Characters';
 
-import { fetchRandomRoles, displayNewRole } from 'src/actions';
+import { displayNewRole } from 'src/actions';
 
 const mapStateToProps = (state) => ({
   roleToDisplay: state.app.roleToDisplay,
@@ -9,9 +9,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchRandomRoles: () => {
-    dispatch(fetchRandomRoles());
-  },
   displayNewRole: (newIndexValue, id) => {
     dispatch(displayNewRole(newIndexValue, id));
   },
