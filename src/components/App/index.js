@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 // == Import npm
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
@@ -33,8 +34,9 @@ import PersonalDetails from 'src/containers/App/ProfileUser/PersonalDetails';
 import Hunter from 'src/containers/App/CurrentGame/DayScript/Hunter';
 import Victory from 'src/components/App/CurrentGame/Victory';
 
+import wolf from 'src/assets/pictures/wolf.svg';
 import ProfileUser from './ProfileUser';
-
+import './style.scss';
 // Free comment
 
 // == Composant
@@ -42,47 +44,70 @@ const App = ({ isConnected, fetchHomeData }) => {
   useEffect(fetchHomeData, []);
   return (
     <div className="app">
-      <Switch>
-        <Route path="/coucher-de-soleil" exact component={Sunset} />
-        <Route path="/lever-de-soleil" exact component={Sunrise} />
-        <Route path="/partie-en-cours" exact component={CurrentGame} />
-        <Route path="/partie-en-cours/victoire" exact component={Victory} />
-        <Route path="/partie-en-cours/nuit-sur-thiercelieux" exact component={NightScript} />
-        <Route path="/partie-en-cours/jour/chasseur" exact component={Hunter} />
-        <Route path="/s'inscrire" exact component={Register} />
-        <Route path="/se-connecter" exact>
-          {isConnected ? <Redirect to="/" /> : <Login />}
-        </Route>
-        <Route>
-          <Header />
-          <main>
-            <Switch>
-              <Route path="/" exact component={Home} />
-              <Route path="/le-jeu/:slug" exact component={RolesDescriptions} />
-              <Route path="/configurer-ma-partie/:slug" exact>
-                {!isConnected ? <Redirect to="/se-connecter" /> : <Configuration />}
-                {/* <Configuration /> */}
-              </Route>
-              <Route path="/les-jeux">
-                <Switch>
-                  <Route path="/les-jeux/:slug" exact component={Game} />
-                  <Route path="/les-jeux/:slug/:slug" exact component={Specificity} />
-                  <Route component={Expansions} />
-                </Switch>
-              </Route>
-              <Route path="/profil" exact component={ProfileUser} />
-              <Route path="/profil/mes-informations" exact component={PersonalDetails} />
-              <Route path="/profil/mes-amis" exact component={Friends} />
-              <Route path="/ma-messagerie" exact component={Mailbox} />
-              <Route path="/ma-messagerie/:id" exact component={MessagePrive} />
-              <Route path="/qui-sommes-nous" exact>
-                <Aboutus />
-              </Route>
-            </Switch>
-          </main>
-          <Footer />
-        </Route>
-      </Switch>
+      {/* Beginning of Temporary HTML */}
+      <div className="desktop">
+        <div className="desktop__container">
+          <h1>Le Maitre du Jeu de Thiercelieux</h1>
+          <div className="desktop__container-text">
+            <div>
+              <p>
+                <span>Bienvenue sur le Maître du Jeu de Thiercelieux</span>, l'application pour tous ces Maîtres du Jeu qui souhaitent enfin faire une partie de Loup-Garou et surtout, la vivre de l'intérieur !
+              </p>
+              <p>
+                L'application est actuellement en <i>phase de développement</i>, la version Desktop n'est pas encore commencée. Je vous invite donc à passer en mode responsive, directement sur votre <i>téléphone</i> ou grâce au <i>DevTools</i>, en dimension iPhone 6/7/8. Le site est développé sous <i>Chrome</i> et n'a pas encore été testé sous d'autres navigateurs.
+              </p>
+              <p>
+                Merci.
+              </p>
+            </div>
+            <img className="desktop__container-logo" src={wolf} alt="Logo" />
+          </div>
+        </div>
+      {/* End of Temporary HTML */}
+      </div>
+      <div className="app__mobile">
+        <Switch>
+          <Route path="/coucher-de-soleil" exact component={Sunset} />
+          <Route path="/lever-de-soleil" exact component={Sunrise} />
+          <Route path="/partie-en-cours" exact component={CurrentGame} />
+          <Route path="/partie-en-cours/victoire" exact component={Victory} />
+          <Route path="/partie-en-cours/nuit-sur-thiercelieux" exact component={NightScript} />
+          <Route path="/partie-en-cours/jour/chasseur" exact component={Hunter} />
+          <Route path="/s'inscrire" exact component={Register} />
+          <Route path="/se-connecter" exact>
+            {isConnected ? <Redirect to="/" /> : <Login />}
+          </Route>
+          <Route>
+            <Header />
+            <main>
+              <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/le-jeu/:slug" exact component={RolesDescriptions} />
+                <Route path="/configurer-ma-partie/:slug" exact>
+                  {!isConnected ? <Redirect to="/se-connecter" /> : <Configuration />}
+                  {/* <Configuration /> */}
+                </Route>
+                <Route path="/les-jeux">
+                  <Switch>
+                    <Route path="/les-jeux/:slug" exact component={Game} />
+                    <Route path="/les-jeux/:slug/:slug" exact component={Specificity} />
+                    <Route component={Expansions} />
+                  </Switch>
+                </Route>
+                <Route path="/profil" exact component={ProfileUser} />
+                <Route path="/profil/mes-informations" exact component={PersonalDetails} />
+                <Route path="/profil/mes-amis" exact component={Friends} />
+                <Route path="/ma-messagerie" exact component={Mailbox} />
+                <Route path="/ma-messagerie/:id" exact component={MessagePrive} />
+                <Route path="/qui-sommes-nous" exact>
+                  <Aboutus />
+                </Route>
+              </Switch>
+            </main>
+            <Footer />
+          </Route>
+        </Switch>
+      </div>
     </div>
   );
 };
