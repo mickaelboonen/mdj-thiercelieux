@@ -32,7 +32,7 @@ import Register from 'src/containers/App/Register';
 import Friends from 'src/containers/App/ProfileUser/Friends';
 import PersonalDetails from 'src/containers/App/ProfileUser/PersonalDetails';
 import Hunter from 'src/containers/App/CurrentGame/DayScript/Hunter';
-import Victory from 'src/components/App/CurrentGame/Victory';
+import Victory from 'src/containers/App/CurrentGame/Victory';
 
 import wolf from 'src/assets/pictures/wolf.svg';
 import ProfileUser from './ProfileUser';

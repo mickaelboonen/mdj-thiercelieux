@@ -237,9 +237,15 @@
 }
 
 .victory {
-  background-color: #f0f;
+  background-color: vars.$primary-color;
   height: 100vh;
   @include vars.centered-flex;
   flex-direction: column;
+  padding: vars.$gutter;
+
+  &__tables {
+    display: flex;
+    width: 100%;
+  }
 }
 
