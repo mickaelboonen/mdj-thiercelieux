@@ -73,3 +73,8 @@ export const setStats = () => ({
   type: SET_STATS,
 });
 
+export const UPDATE_STATS = 'UPDATE_STATS';
+export const updateStats = (stats) => ({
+  type: UPDATE_STATS,
+  stats,
+});

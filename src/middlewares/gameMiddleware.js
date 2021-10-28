@@ -1,7 +1,7 @@
 /* eslint-disable no-lone-blocks */
 import axios from 'axios';
 
-import { SET_GAME, PATCH, savePlayersFinalArray } from 'src/actions/game';
+import { SET_GAME, PATCH, savePlayersFinalArray, updateStats, UPDATE_STATS } from 'src/actions/game';
 
 import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
 
@@ -119,45 +119,70 @@ const gameMiddleware = (store) => (next) => (action) => {
       break;
     case PATCH: {
       const usersStats = [];
-      action.statsArray.forEach((user) => {
+      const { statsArray } = action;
+      statsArray.forEach((user) => {
         api.get(`/api/stats/user/${user.userId}`)
           .then((response) => {
             usersStats.push(response.data);
-            if (usersStats.length === action.statsArray.length) {
+            const newStatsArray = [];
+            if (usersStats.length === statsArray.length) {
               usersStats.forEach((currentUser) => {
-              const xxx = action.statsArray.find((player) => player.userId === currentUser.user_id);
+              const newUserObject = statsArray.find((player) => player.userId === currentUser.user_id);
 
-                xxx.user_id = xxx.userId;
-                delete xxx.userId;
-                xxx.played_parties = currentUser.played_parties + 1;
+                newUserObject.user_id = newUserObject.userId;
+                // delete newUserObject.userId;
+                newUserObject.played_parties = currentUser.played_parties + 1;
 
-                if (xxx.win !== undefined) {
-                  const newProperty = xxx.win;
-                  xxx[newProperty] = currentUser[newProperty] + 1;
-                  delete xxx.win;
+                if (newUserObject.win !== undefined) {
+                  const newProperty = newUserObject.win;
+                  newUserObject[newProperty] = currentUser[newProperty] + 1;
+                  delete newUserObject.win;
                 }
-                if (xxx.lover === 'lover') {
-                  xxx.lover = currentUser.lover + 1;
+                if (newUserObject.lover === 'lover') {
+                  newUserObject.lover = currentUser.lover + 1;
                 }
-                if (xxx.deathCause !== undefined && xxx.deathCause !== '') {
-                  const newProperty = xxx.deathCause;
-                  xxx[newProperty] = currentUser[newProperty] + 1;
+                if (newUserObject.deathCause !== undefined && newUserObject.deathCause !== '') {
+                  const newProperty = newUserObject.deathCause;
+                  newUserObject[newProperty] = currentUser[newProperty] + 1;
                 }
-                delete xxx.deathCause;
-                const newProperty = xxx.hiddenRole;
-                xxx[newProperty] = currentUser[newProperty] + 1;
-                delete xxx.hiddenRole;
+                delete newUserObject.deathCause;
+                const newProperty = newUserObject.hiddenRole;
+                newUserObject[newProperty] = currentUser[newProperty] + 1;
+                delete newUserObject.hiddenRole;
+
+                
+                if (newUserObject.roleAttributes !== undefined) {
+                  delete newUserObject.roleAttributes;
+                }
               // TODO : renvoyer tout ca dans une action qui renvoie ici mais en methode patch pour faire l'update.
-              // Ameliorer les noms. COmmenter. 
+              // Ameliorer les noms. COmmenter.
               // FOnctions qui se fait deux fois, voir pourquoi.
-            });
+              newStatsArray.push(newUserObject);
+              });
+              if (statsArray.length === newStatsArray.length) {
+                store.dispatch(updateStats(newStatsArray));
+              }
             }
           })
           .catch((error) => {
             console.error('patch request', error);
           });
+      });
+    }
+      break;
+    case UPDATE_STATS: {
+      const { stats } = action;
+      console.log('update stats action', stats);
+      stats.forEach((currentStat) => {
+        console.log(currentStat);
+        api.patch(`/api/stats/user/${currentStat.user_id}`, { currentStat })
+          .then((response) => {
+            console.log('resp', response);
+          })
+          .catch((error) => {
+            console.error('update stats error', error);
+          })
       })
-
     }
       break;
     default:

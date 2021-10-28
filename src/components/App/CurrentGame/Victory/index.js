@@ -48,10 +48,8 @@ const Victory = ({ setStats, players, winner, patch, finalStats }) => {
     // TODO
     setStats();
   }, []);
-  useEffect(() => {
-    // TODO
-    patch(finalStats);
-  }, [finalStats]);
+
+  patch(finalStats);
   return (
     <div className="victory">
       <p>{title}</p>

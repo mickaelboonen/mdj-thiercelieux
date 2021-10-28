@@ -47,14 +47,18 @@ const initialState = {
   percentage: 0,
   isHunterDead: false,
   finalStats: [],
+  victory: {
+    finalStats: [],
+    getRequestDone: false,
+    patchRequestDone: false,
+  }
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case SET_STATS: {
-      const newArray = state.players;
+      const newArray = state.players.map((user) => user);
       const finalStats = setFinalStats(newArray, state.winner);
-      console.log(finalStats);
       return {
         ...state,
         finalStats: finalStats,
