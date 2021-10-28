@@ -1,14 +1,15 @@
-// import axios from 'axios';
+/* eslint-disable no-lone-blocks */
+import axios from 'axios';
 
-import { SET_GAME, savePlayersFinalArray } from 'src/actions/game';
+import { SET_GAME, PATCH, savePlayersFinalArray } from 'src/actions/game';
 
 import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
 
-// axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
-// const api = axios.create({
-//   baseURL: 'http://localhost:3001',
-// });
+const api = axios.create({
+  baseURL: 'http://localhost:3000',
+});
 
 // console.log(api.defaults);
 
@@ -114,6 +115,49 @@ const gameMiddleware = (store) => (next) => (action) => {
         return finalPlayer;
       });
       store.dispatch(savePlayersFinalArray(newPlayersArray));
+    }
+      break;
+    case PATCH: {
+      const usersStats = [];
+      action.statsArray.forEach((user) => {
+        api.get(`/api/stats/user/${user.userId}`)
+          .then((response) => {
+            usersStats.push(response.data);
+            if (usersStats.length === action.statsArray.length) {
+              usersStats.forEach((currentUser) => {
+              const xxx = action.statsArray.find((player) => player.userId === currentUser.user_id);
+
+                xxx.user_id = xxx.userId;
+                delete xxx.userId;
+                xxx.played_parties = currentUser.played_parties + 1;
+
+                if (xxx.win !== undefined) {
+                  const newProperty = xxx.win;
+                  xxx[newProperty] = currentUser[newProperty] + 1;
+                  delete xxx.win;
+                }
+                if (xxx.lover === 'lover') {
+                  xxx.lover = currentUser.lover + 1;
+                }
+                if (xxx.deathCause !== undefined && xxx.deathCause !== '') {
+                  const newProperty = xxx.deathCause;
+                  xxx[newProperty] = currentUser[newProperty] + 1;
+                }
+                delete xxx.deathCause;
+                const newProperty = xxx.hiddenRole;
+                xxx[newProperty] = currentUser[newProperty] + 1;
+                delete xxx.hiddenRole;
+              // TODO : renvoyer tout ca dans une action qui renvoie ici mais en methode patch pour faire l'update.
+              // Ameliorer les noms. COmmenter. 
+              // FOnctions qui se fait deux fois, voir pourquoi.
+            });
+            }
+          })
+          .catch((error) => {
+            console.error('patch request', error);
+          });
+      })
+
     }
       break;
     default:

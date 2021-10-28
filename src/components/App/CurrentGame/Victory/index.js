@@ -2,11 +2,12 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+// import { xxx } from 'src/selectors/victoryFunctions';
+
 import './style.scss';
 import Table from './Table';
 // TODO
-const Victory = ({ players, winner }) => {
-
+const Victory = ({ setStats, players, winner, patch, finalStats }) => {
   const setTitle = (currentWinner) => {
     let title = '';
     if (currentWinner === 'Village') {
@@ -23,7 +24,8 @@ const Victory = ({ players, winner }) => {
   const title = setTitle(winner);
 
   const allSides = [];
-  players.forEach((player) => {
+  const componentArray = players;
+  componentArray.forEach((player) => {
     if (allSides.indexOf(player.side) === -1) {
       allSides.push(player.side);
     }
@@ -31,7 +33,7 @@ const Victory = ({ players, winner }) => {
   const werewolves = [];
   const villagers = [];
   const lonely = [];
-  players.forEach((player) => {
+  componentArray.forEach((player) => {
     if (player.side === 'Loup-Garou') {
       werewolves.push(player);
     }
@@ -44,8 +46,12 @@ const Victory = ({ players, winner }) => {
   });
   useEffect(() => {
     // TODO
-    // Au premier rendu, executer toutes les requetes pour modifier toutes les stats des joueurs qui ont un player id
+    setStats();
   }, []);
+  useEffect(() => {
+    // TODO
+    patch(finalStats);
+  }, [finalStats]);
   return (
     <div className="victory">
       <p>{title}</p>

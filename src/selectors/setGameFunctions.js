@@ -134,6 +134,7 @@ export const setNewAttributesToPlayers = (changes, players) => {
       if (player.name === victim) {
         player.isAlive = false;
         player.deadTonight = true;
+        player.deathCause = 'death_by_werewolf';
       }
       return player;
     });
@@ -147,6 +148,7 @@ export const setNewAttributesToPlayers = (changes, players) => {
         if (!player.isAlive && player.deadTonight) {
           player.isAlive = true;
           player.deadTonight = false;
+          player.deathCause = '';
         }
         if (player.hiddenRole === 'Sorcière') {
           player.roleAttributes.curePotion = false;
@@ -159,6 +161,7 @@ export const setNewAttributesToPlayers = (changes, players) => {
         if (player.name === witchVictim) {
           player.isAlive = false;
           player.deadTonight = true;
+          player.deathCause = 'death_by_witch';
           player.roleAttributes.deadByPotion = true;
         }
         if (player.hiddenRole === 'Sorcière') {

@@ -14,11 +14,14 @@ import {
   CHANGE_PLAYERS_ATTRIBUTES,
   KILL_PLAYER,
   SET_NIGHT,
+  SET_STATS,
+  patch,
 } from 'src/actions/game';
 
 import { setNewAttributesToPlayers, breakingNews, setWinnerStatus } from 'src/selectors/setGameFunctions';
+import { setFinalStats } from 'src/selectors/victoryFunctions';
 
-import history from 'src/utils/history';
+// import history from 'src/utils/history';
 
 const initialState = {
   isGameSet: true,
@@ -43,16 +46,26 @@ const initialState = {
   winner: '',
   percentage: 0,
   isHunterDead: false,
+  finalStats: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SET_STATS: {
+      const newArray = state.players;
+      const finalStats = setFinalStats(newArray, state.winner);
+      console.log(finalStats);
+      return {
+        ...state,
+        finalStats: finalStats,
+      };
+    }
     case KILL_PLAYER: {
       let isVictimInLove = false;
       let newPlayersArray = state.players.map((player) => {
         if (player.name === action.victim) {
           player.isAlive = false;
-          player.deathCause = 'Chasseur';
+          player.deathCause = 'death_by_hunter';
 
           if (player.roleAttributes.inLove) {
             isVictimInLove = true;
@@ -69,7 +82,7 @@ const reducer = (state = initialState, action = {}) => {
           if (player.isAlive && player.roleAttributes.inLove) {
             newNewspaper.push(`Témoin de la mort brutale de son âme soeur, ${player.name} décide de la rejoindre dans la mort.`);
             player.isAlive = false;
-            player.deathCause = 'Amour';
+            player.deathCause = 'death_by_love';
           }
           return player;
         });
@@ -112,6 +125,7 @@ const reducer = (state = initialState, action = {}) => {
           if (player.isAlive && player.roleAttributes.inLove) {
             newspaper.push(`Le corps sans vie de son âme soeur, ${player.name} a décidé d'en finir, incapable de continuer sans iel. `);
             player.isAlive = false;
+            player.deathCause = 'death_by_love';
           }
           return player;
         });
@@ -231,7 +245,7 @@ const reducer = (state = initialState, action = {}) => {
         newPlayersArray = state.players.map((player) => {
           if (player.name === action.name) {
             player.isAlive = false;
-            player.deathCause = 'Vote';
+            player.deathCause = 'death_by_vote';
             newNewspaper.push(`Le Village a décidé d'éliminer ${action.name}.`);
             if (player.hiddenRole === 'Chasseur') {
               isHunterDead = true;
@@ -251,7 +265,7 @@ const reducer = (state = initialState, action = {}) => {
           if (player.isAlive && player.roleAttributes.inLove) {
             newNewspaper.push(`Témoin de la mort brutale de son âme soeur, ${player.name} décide de la rejoindre dans la mort.`);
             player.isAlive = false;
-            player.deathCause = 'Amour';
+            player.deathCause = 'death_by_love';
           }
           return player;
         });

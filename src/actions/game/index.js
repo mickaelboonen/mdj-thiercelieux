@@ -59,3 +59,17 @@ export const killPlayer = (victim) => ({
   type: KILL_PLAYER,
   victim,
 });
+
+//-------------------------------------------------
+
+export const PATCH = 'PATCH';
+export const patch = (statsArray) => ({
+  type: PATCH,
+  statsArray,
+});
+
+export const SET_STATS = 'SET_STATS';
+export const setStats = () => ({
+  type: SET_STATS,
+});
+

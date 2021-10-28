@@ -11,6 +11,7 @@ import sorciere from 'src/assets/pictures/roles/sorciere.png';
 export const gameFakeData = [
   {
     id: 1,
+    userId: 1,
     name: 'Micka',
     hiddenRole: 'Loup-Garou',
     villageRole: '',
@@ -30,6 +31,7 @@ export const gameFakeData = [
   },
   {
     id: 2,
+    userId: 8,
     name: 'Quentin',
     hiddenRole: 'Sorcière',
     villageRole: '',
@@ -49,6 +51,7 @@ export const gameFakeData = [
   },
   {
     id: 3,
+    userId: null,
     name: 'Océane',
     hiddenRole: 'Cupidon',
     villageRole: '',
@@ -68,6 +71,7 @@ export const gameFakeData = [
   },
   {
     id: 4,
+    userId: null,
     name: 'Lud',
     hiddenRole: 'Villageois',
     villageRole: '',
@@ -87,6 +91,7 @@ export const gameFakeData = [
   },
   {
     id: 5,
+    userId: null,
     name: 'Chris',
     hiddenRole: 'Voyante',
     villageRole: '',
@@ -106,6 +111,7 @@ export const gameFakeData = [
   },
   {
     id: 6,
+    userId: null,
     name: 'BDR',
     hiddenRole: 'Chasseur',
     villageRole: '',
@@ -125,7 +131,8 @@ export const gameFakeData = [
   },
   {
     id: 7,
-    name: 'Sasha',
+    userId: 41,
+    name: 'Sixtou',
     hiddenRole: 'Petite Fille',
     villageRole: '',
     side: 'Village',
@@ -144,6 +151,7 @@ export const gameFakeData = [
   },
   {
     id: 8,
+    userId: null,
     name: 'Cara',
     hiddenRole: 'Voleur',
     villageRole: '',
@@ -163,6 +171,7 @@ export const gameFakeData = [
   },
   {
     id: 9,
+    userId: 2,
     name: 'Christal',
     hiddenRole: 'Loup-Garou',
     villageRole: '',
