@@ -9,9 +9,19 @@ import {
 
 import Table from './Table';
 import './style.scss';
+import Request from './Request';
 
 // TODO
-const Victory = ({ setStats, players, winner, patch, finalStats, changeForVictoryReducer }) => {
+const Victory = ({
+  setStats,
+  players,
+  winner,
+  patch,
+  finalStats,
+  changeForVictoryReducer,
+  finalStatsGame,
+  changeFinalStatsArray,
+}) => {
   const setTitle = (currentWinner) => {
     let title = '';
     if (currentWinner === 'Village') {
@@ -39,20 +49,10 @@ const Victory = ({ setStats, players, winner, patch, finalStats, changeForVictor
     changeForVictoryReducer();
   }, []);
 
-
-
-  let aaaa = [...finalStats];
-  if (aaaa.length > 0) {
-    aaaa = setFinalStats(aaaa, winner);
-  }
-  // TODO TOUJOURS CE FOUTU PROBLEME D'ARRAY
-  console.log(aaaa, players);
-
   const handleClickStats = () => {
-    // const el = document.querySelector('.victory__message');
-    // el.style.display = 'none';
-    // setStats();
-    // newFunctionForStats
+    const el = document.querySelector('.victory__message');
+    el.style.display = 'none';
+    changeFinalStatsArray();
   };
   return (
     <div className="victory">
@@ -66,10 +66,11 @@ const Victory = ({ setStats, players, winner, patch, finalStats, changeForVictor
         <a type="button">Nouvelle partie</a>
         <a type="button">Quitter</a>
       </div>
+      {/* <Request winner={winner} finalStats={finalStats} /> */}
       <div className="victory__message">
         <div>
           {title}
-          <button type="button" onClick={handleClickStats}>Cliquez sur moi</button>
+          <button type="button" onClick={handleClickStats}>Cliquez sur moi pour accéder au récap et lancer l'enregistrement des stats</button>
         </div>
       </div>
     </div>

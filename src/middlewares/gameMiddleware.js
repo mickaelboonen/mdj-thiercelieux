@@ -161,10 +161,12 @@ const gameMiddleware = (store) => (next) => (action) => {
                   delete newUserObject.roleAttributes;
                 }
                 // FOnctions qui se fait deux fois, voir pourquoi.
+
                 newStatsArray.push(newUserObject);
               });
               if (statsArray.length === newStatsArray.length) {
-                store.dispatch(updateStats(newStatsArray));
+                console.log('b4 updateStats request', newStatsArray);
+                // store.dispatch(updateStats(newStatsArray));
               }
             }
           })

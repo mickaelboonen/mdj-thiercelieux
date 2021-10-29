@@ -16,10 +16,11 @@ import {
   SET_NIGHT,
   SET_STATS,
   patch,
+  CHANGE_FINAL_STATS_ARRAY,
 } from 'src/actions/game';
 
 import { setNewAttributesToPlayers, breakingNews, setWinnerStatus } from 'src/selectors/setGameFunctions';
-// import { setFinalStats } from 'src/selectors/victoryFunctions';
+import { setFinalStats } from 'src/selectors/victoryFunctions';
 
 // import history from 'src/utils/history';
 

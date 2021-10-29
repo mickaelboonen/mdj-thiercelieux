@@ -90,3 +90,8 @@ export const saveIntoVictoryReducer = (players, winner) => ({
   players,
   winner,
 });
+
+export const CHANGE_FINAL_STATS_ARRAY = 'CHANGE_FINAL_STATS_ARRAY';
+export const changeFinalStatsArray = () => ({
+  type: CHANGE_FINAL_STATS_ARRAY,
+});

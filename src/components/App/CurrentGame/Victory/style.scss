@@ -55,7 +55,7 @@
   &__message {
     position: absolute;
     inset: 0;
-    background-color: rgba(245, 245, 220, 0.308);
+    background-color: vars.$primary-color;
     @include vars.centered-flex;
 
     & div {
