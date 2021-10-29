@@ -21,7 +21,7 @@ const persistConfig = {
   // Reducers we don't want to be persisted
   blacklist: ['mails', 'members', 'rolesDescriptions'],
   // Reducers that needd to be persisted
-  whitelist: ['game', 'configuration', 'user', 'app'],
+  whitelist: ['game', 'configuration', 'user', 'app', 'victory'],
 };
 
 // Applying the persistConfig to the reducer

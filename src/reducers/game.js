@@ -19,7 +19,7 @@ import {
 } from 'src/actions/game';
 
 import { setNewAttributesToPlayers, breakingNews, setWinnerStatus } from 'src/selectors/setGameFunctions';
-import { setFinalStats } from 'src/selectors/victoryFunctions';
+// import { setFinalStats } from 'src/selectors/victoryFunctions';
 
 // import history from 'src/utils/history';
 
@@ -47,23 +47,23 @@ const initialState = {
   percentage: 0,
   isHunterDead: false,
   finalStats: [],
-  victory: {
-    finalStats: [],
-    getRequestDone: false,
-    patchRequestDone: false,
-  }
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    case SET_STATS: {
-      const newArray = state.players.map((user) => user);
-      const finalStats = setFinalStats(newArray, state.winner);
-      return {
-        ...state,
-        finalStats: finalStats,
-      };
-    }
+    // case SET_ARRAY_FOR_STAT:
+      // return {
+      //   ...state,
+      //   finalStats: state.players,
+      // };
+    // case SET_STATS: {
+    //   const newArray = [...state.finalStats];
+    //   const newFinalStats = setFinalStats(newArray, state.winner);
+    //   return {
+    //     ...state,
+    //     finalStats: newFinalStats,
+    //   };
+    // }
     case KILL_PLAYER: {
       let isVictimInLove = false;
       let newPlayersArray = state.players.map((player) => {

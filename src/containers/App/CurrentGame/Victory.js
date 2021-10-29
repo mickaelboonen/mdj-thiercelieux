@@ -1,20 +1,23 @@
 import { connect } from 'react-redux';
 import Victory from 'src/components/App/CurrentGame/Victory';
 
-import { patch, setStats } from 'src/actions/game';
+import { patch, setStats, changeForVictoryReducer } from 'src/actions/game';
 
 const mapStateToProps = (state) => ({
-  players: state.game.players,
-  winner: state.game.winner,
-  finalStats: state.game.finalStats,
+  players: state.victory.players,
+  winner: state.victory.winner,
+  finalStats: state.victory.finalStats,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   patch: (statsArray) => {
     dispatch(patch(statsArray));
   },
-  setStats: () => {
-    dispatch(setStats());
+  setStats: (array) => {
+    dispatch(setStats(array));
+  },
+  changeForVictoryReducer: () => {
+    dispatch(changeForVictoryReducer());
   },
 });
 

@@ -38,3 +38,30 @@
     margin-right: 0;
   }
 }
+
+
+.victory {
+  background-color: vars.$primary-color;
+  height: 100vh;
+  @include vars.centered-flex;
+  flex-direction: column;
+  padding: vars.$gutter;
+
+  &__tables {
+    display: flex;
+    width: 100%;
+  }
+
+  &__message {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(245, 245, 220, 0.308);
+    @include vars.centered-flex;
+
+    & div {
+      
+    display:flex;
+    flex-direction: column;
+    }
+  }
+}

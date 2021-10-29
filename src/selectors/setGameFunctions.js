@@ -1,5 +1,3 @@
-import { Cpu } from "react-feather";
-
 /**
  * @param {string} role
  * Returns string

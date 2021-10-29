@@ -78,3 +78,15 @@ export const updateStats = (stats) => ({
   type: UPDATE_STATS,
   stats,
 });
+
+export const CHANGE_FOR_VICTORY_REDUCER = 'CHANGE_FOR_VICTORY_REDUCER';
+export const changeForVictoryReducer = () => ({
+  type: CHANGE_FOR_VICTORY_REDUCER,
+});
+
+export const SAVE_INTO_VICTORY_REDUCER = 'SAVE_INTO_VICTORY_REDUCER';
+export const saveIntoVictoryReducer = (players, winner) => ({
+  type: SAVE_INTO_VICTORY_REDUCER,
+  players,
+  winner,
+});

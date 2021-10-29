@@ -1,7 +1,16 @@
 /* eslint-disable no-lone-blocks */
 import axios from 'axios';
 
-import { SET_GAME, PATCH, savePlayersFinalArray, updateStats, UPDATE_STATS } from 'src/actions/game';
+import {
+  SET_GAME,
+  // NAME TO CHANGE
+  PATCH,
+  savePlayersFinalArray,
+  updateStats,
+  UPDATE_STATS,
+  saveIntoVictoryReducer,
+  CHANGE_FOR_VICTORY_REDUCER,
+} from 'src/actions/game';
 
 import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
 
@@ -10,8 +19,6 @@ axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 const api = axios.create({
   baseURL: 'http://localhost:3000',
 });
-
-// console.log(api.defaults);
 
 const gameMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -127,7 +134,7 @@ const gameMiddleware = (store) => (next) => (action) => {
             const newStatsArray = [];
             if (usersStats.length === statsArray.length) {
               usersStats.forEach((currentUser) => {
-              const newUserObject = statsArray.find((player) => player.userId === currentUser.user_id);
+                const newUserObject = statsArray.find((player) => player.userId === currentUser.user_id);
 
                 newUserObject.user_id = newUserObject.userId;
                 // delete newUserObject.userId;
@@ -150,14 +157,11 @@ const gameMiddleware = (store) => (next) => (action) => {
                 newUserObject[newProperty] = currentUser[newProperty] + 1;
                 delete newUserObject.hiddenRole;
 
-                
                 if (newUserObject.roleAttributes !== undefined) {
                   delete newUserObject.roleAttributes;
                 }
-              // TODO : renvoyer tout ca dans une action qui renvoie ici mais en methode patch pour faire l'update.
-              // Ameliorer les noms. COmmenter.
-              // FOnctions qui se fait deux fois, voir pourquoi.
-              newStatsArray.push(newUserObject);
+                // FOnctions qui se fait deux fois, voir pourquoi.
+                newStatsArray.push(newUserObject);
               });
               if (statsArray.length === newStatsArray.length) {
                 store.dispatch(updateStats(newStatsArray));
@@ -172,17 +176,21 @@ const gameMiddleware = (store) => (next) => (action) => {
       break;
     case UPDATE_STATS: {
       const { stats } = action;
-      console.log('update stats action', stats);
       stats.forEach((currentStat) => {
-        console.log(currentStat);
         api.patch(`/api/stats/user/${currentStat.user_id}`, { currentStat })
           .then((response) => {
-            console.log('resp', response);
+            // console.log('resp', response);
+            // TODO
           })
           .catch((error) => {
             console.error('update stats error', error);
-          })
-      })
+          });
+      });
+    }
+      break;
+    case CHANGE_FOR_VICTORY_REDUCER: {
+      const { game: { players, winner } } = store.getState();
+      store.dispatch(saveIntoVictoryReducer(players, winner));
     }
       break;
     default:

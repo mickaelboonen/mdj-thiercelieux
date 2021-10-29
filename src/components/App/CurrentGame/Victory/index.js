@@ -2,12 +2,16 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-// import { xxx } from 'src/selectors/victoryFunctions';
+import {
+  setSidesArray,
+  setFinalStats,
+} from 'src/selectors/victoryFunctions';
 
-import './style.scss';
 import Table from './Table';
+import './style.scss';
+
 // TODO
-const Victory = ({ setStats, players, winner, patch, finalStats }) => {
+const Victory = ({ setStats, players, winner, patch, finalStats, changeForVictoryReducer }) => {
   const setTitle = (currentWinner) => {
     let title = '';
     if (currentWinner === 'Village') {
@@ -23,33 +27,33 @@ const Victory = ({ setStats, players, winner, patch, finalStats }) => {
   };
   const title = setTitle(winner);
 
-  const allSides = [];
-  const componentArray = players;
-  componentArray.forEach((player) => {
-    if (allSides.indexOf(player.side) === -1) {
-      allSides.push(player.side);
-    }
+  const componentArray = [];
+  players.forEach((player) => {
+    componentArray.push(player);
   });
-  const werewolves = [];
-  const villagers = [];
-  const lonely = [];
-  componentArray.forEach((player) => {
-    if (player.side === 'Loup-Garou') {
-      werewolves.push(player);
-    }
-    else if (player.side === 'Village') {
-      villagers.push(player);
-    }
-    else if (player.side === 'Solitaire') {
-      lonely.push(player);
-    }
-  });
+  const werewolves = setSidesArray(componentArray, 'Loup-Garou');
+  const villagers = setSidesArray(componentArray, 'Village');
+  const lonely = setSidesArray(componentArray, 'Solitaire');
+
   useEffect(() => {
-    // TODO
-    setStats();
+    changeForVictoryReducer();
   }, []);
 
-  patch(finalStats);
+
+
+  let aaaa = [...finalStats];
+  if (aaaa.length > 0) {
+    aaaa = setFinalStats(aaaa, winner);
+  }
+  // TODO TOUJOURS CE FOUTU PROBLEME D'ARRAY
+  console.log(aaaa, players);
+
+  const handleClickStats = () => {
+    // const el = document.querySelector('.victory__message');
+    // el.style.display = 'none';
+    // setStats();
+    // newFunctionForStats
+  };
   return (
     <div className="victory">
       <p>{title}</p>
@@ -61,6 +65,12 @@ const Victory = ({ setStats, players, winner, patch, finalStats }) => {
         {/* Seulement visible une fois que les requetes sont finies */}
         <a type="button">Nouvelle partie</a>
         <a type="button">Quitter</a>
+      </div>
+      <div className="victory__message">
+        <div>
+          {title}
+          <button type="button" onClick={handleClickStats}>Cliquez sur moi</button>
+        </div>
       </div>
     </div>
   );

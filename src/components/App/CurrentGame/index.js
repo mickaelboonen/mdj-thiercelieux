@@ -44,7 +44,6 @@ const Game = ({
   if (isHunterDead) {
     history.push('/partie-en-cours/jour/chasseur');
   }
-
   // If there is a winner, sends to the victory page
   if (winner !== '') {
     history.push('/partie-en-cours/victoire');

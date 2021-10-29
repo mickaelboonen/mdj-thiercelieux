@@ -1,157 +1,174 @@
 /* eslint-disable import/prefer-default-export */
 
-const setWin = (players, winner) => {
-  const newPlayerArray = players.map((player) => {
-    if (player.side === winner && player.isAlive && winner === 'Village') {
-      player.win = 'won_as_village';
+const setWin = (players, newPlayers, winner) => {
+  const newPlayersArray = newPlayers.map((newPlayer) => {
+    const currentPlayer = players.find((player) => player.userId === newPlayer.userId);
+    if (currentPlayer.side === winner && currentPlayer.isAlive && winner === 'Village') {
+      newPlayer.win = 'won_as_village';
     }
-    else if (player.side === winner && player.isAlive && winner === 'Loup-Garou') {
-      player.win = 'won_as_werewolf';
+    else if (currentPlayer.side === winner && currentPlayer.isAlive && winner === 'Loup-Garou') {
+      newPlayer.win = 'won_as_werewolf';
     }
-    else if (player.side === winner && player.isAlive && winner === 'Solitaire') {
-      player.win = 'won_as_solo';
+    else if (currentPlayer.side === winner && currentPlayer.isAlive && winner === 'Solitaire') {
+      newPlayer.win = 'won_as_solo';
     }
-    else if (player.side === winner && player.isAlive && winner === 'Amoureux') {
-      player.win = 'won_as_lovers';
+    else if (currentPlayer.side === winner && currentPlayer.isAlive && winner === 'Amoureux') {
+      newPlayer.win = 'won_as_lovers';
     }
-    return player;
+    return newPlayer;
   });
-  return newPlayerArray;
+
+  return newPlayersArray;
 };
-const setRoles = (players) => {
-  const newPlayerArray = players.map((player) => {
-    if (player.side === 'Village') {
+const setRoles = (players, newPlayers) => {
+  const newPlayersArray = newPlayers.map((newPlayer) => {
+    const currentPlayer = players.find((player) => player.userId === newPlayer.userId);
+    if (currentPlayer.side === 'Village') {
       // TODO : roles to add
-      if (player.hiddenRole === 'Sorcière') {
-        player.hiddenRole = 'witch';
+      if (currentPlayer.hiddenRole === 'Sorcière') {
+        newPlayer.role = 'witch';
       }
-      else if (player.hiddenRole === 'Chasseur') {
-        player.hiddenRole = 'hunter';
+      else if (currentPlayer.hiddenRole === 'Chasseur') {
+        newPlayer.role = 'hunter';
       }
-      else if (player.hiddenRole === 'Cupidon') {
-        player.hiddenRole = 'Cupid';
+      else if (currentPlayer.hiddenRole === 'Cupidon') {
+        newPlayer.role = 'Cupid';
       }
-      else if (player.hiddenRole === 'Petite Fille') {
-        player.hiddenRole = 'little_girl';
+      else if (currentPlayer.hiddenRole === 'Petite Fille') {
+        newPlayer.role = 'little_girl';
       }
-      else if (player.hiddenRole === 'Simple Villageois') {
-        player.hiddenRole = 'villager';
+      else if (currentPlayer.hiddenRole === 'Simple Villageois') {
+        newPlayer.role = 'villager';
       }
-      else if (player.hiddenRole === 'Voleur') {
-        player.hiddenRole = 'thief';
+      else if (currentPlayer.hiddenRole === 'Voleur') {
+        newPlayer.role = 'thief';
       }
-      else if (player.hiddenRole === 'Voyante') {
-        player.hiddenRole = 'seer';
+      else if (currentPlayer.hiddenRole === 'Voyante') {
+        newPlayer.role = 'seer';
       }
     }
-    else if (player.side === 'Loup-Garou') {
+    else if (currentPlayer.side === 'Loup-Garou') {
       // all werewolves roles done
-      if (player.hiddenRole === 'Loup-Garou') {
-        player.hiddenRole = 'werewolf';
+      if (currentPlayer.hiddenRole === 'Loup-Garou') {
+        newPlayer.role = 'werewolf';
       }
-      else if (player.hiddenRole === 'Chien-Loup') {
-        player.hiddenRole = 'dog_wolf';
+      else if (currentPlayer.hiddenRole === 'Chien-Loup') {
+        newPlayer.role = 'dog_wolf';
       }
-      else if (player.hiddenRole === 'Grand Méchant Loup') {
-        player.hiddenRole = 'big_bad_wolf';
+      else if (currentPlayer.hiddenRole === 'Grand Méchant Loup') {
+        newPlayer.role = 'big_bad_wolf';
       }
-      else if (player.hiddenRole === 'Infect Père des Loups') {
-        player.hiddenRole = 'father_of_wolves';
+      else if (currentPlayer.hiddenRole === 'Infect Père des Loups') {
+        newPlayer.role = 'father_of_wolves';
       }
-      else if (player.hiddenRole === 'Enfant Sauvage') {
-        player.hiddenRole = 'wild_chid';
+      else if (currentPlayer.hiddenRole === 'Enfant Sauvage') {
+        newPlayer.role = 'wild_chid';
       }
     }
-    else if (player.side === 'Solitaire') {
+    else if (currentPlayer.side === 'Solitaire') {
       // all solo roles done
-      if (player.hiddenRole === 'Ange') {
-        player.hiddenRole = 'angel';
+      if (currentPlayer.hiddenRole === 'Ange') {
+        newPlayer.role = 'angel';
       }
-      else if (player.hiddenRole === 'Abominable Sectaire') {
-        player.hiddenRole = 'sectarian';
+      else if (currentPlayer.hiddenRole === 'Abominable Sectaire') {
+        newPlayer.role = 'sectarian';
       }
-      else if (player.hiddenRole === 'Joueur de Flute') {
-        player.hiddenRole = 'pied_piper';
+      else if (currentPlayer.hiddenRole === 'Joueur de Flute') {
+        newPlayer.role = 'pied_piper';
       }
-      else if (player.hiddenRole === 'Loup-Garou Blanc') {
-        player.hiddenRole = 'white_werewolf';
+      else if (currentPlayer.hiddenRole === 'Loup-Garou Blanc') {
+        newPlayer.role = 'white_werewolf';
       }
     }
-    return player;
+    return newPlayer;
   });
-  return newPlayerArray;
+  return newPlayersArray;
 };
-const setVillageRoles = (players) => {
-  const newPlayerArray = players.map((player) => {
-    if (player.villageRole === '') {
-      delete player.villageRole;
+const setVillageRoles = (players, newPlayers) => {
+  const newPlayersArray = newPlayers.map((newPlayer) => {
+    const currentPlayer = players.find((player) => player.userId === newPlayer.userId);
+    if (currentPlayer.villageRole === '') {
+      delete newPlayer.villageRole;
     }
-    else if (player.villageRole === 'Fermier') {
-      player.villageRole = 'farmer';
+    else if (currentPlayer.villageRole === 'Fermier') {
+      newPlayer.villageRole = 'farmer';
     }
-    else if (player.villageRole === 'Prêtre') {
-      player.villageRole = 'priest';
+    else if (currentPlayer.villageRole === 'Prêtre') {
+      newPlayer.villageRole = 'priest';
     }
-    else if (player.villageRole === 'Boulanger') {
-      player.villageRole = 'baker';
+    else if (currentPlayer.villageRole === 'Boulanger') {
+      newPlayer.villageRole = 'baker';
     }
-    else if (player.villageRole === 'Infirmière') {
-      player.villageRole = 'mistress';
+    else if (currentPlayer.villageRole === 'Infirmière') {
+      newPlayer.villageRole = 'mistress';
     }
-    else if (player.villageRole === 'Tavernier') {
-      player.villageRole = 'bartender';
+    else if (currentPlayer.villageRole === 'Tavernier') {
+      newPlayer.villageRole = 'bartender';
     }
-    else if (player.villageRole === 'Barbier') {
-      player.villageRole = 'barber';
+    else if (currentPlayer.villageRole === 'Barbier') {
+      newPlayer.villageRole = 'barber';
     }
-    else if (player.villageRole === 'Rebouteux') {
-      player.villageRole = 'bonesettle';
+    else if (currentPlayer.villageRole === 'Rebouteux') {
+      newPlayer.villageRole = 'bonesettle';
     }
-    else if (player.villageRole === 'Châtelain') {
-      player.villageRole = 'lord';
+    else if (currentPlayer.villageRole === 'Châtelain') {
+      newPlayer.villageRole = 'lord';
     }
-    else if (player.villageRole === 'Bailli') {
-      player.villageRole = 'bailiff';
+    else if (currentPlayer.villageRole === 'Bailli') {
+      newPlayer.villageRole = 'bailiff';
     }
-    else if (player.villageRole === 'Vagabond') {
-      player.villageRole = 'vagabond';
+    else if (currentPlayer.villageRole === 'Vagabond') {
+      newPlayer.villageRole = 'vagabond';
     }
-    return player;
+    return newPlayer;
   });
-  return newPlayerArray;
+  return newPlayersArray;
 };
-const wasInLove = (players) => {
-  const newPlayerArray = players.map((player) => {
-    if (player.roleAttributes.inLove) {
-      player.lover = 'lover';
+const wasInLove = (players, newPlayers) => {
+  const newPlayersArray = newPlayers.map((newPlayer) => {
+    const currentPlayer = players.find((player) => player.userId === newPlayer.userId);
+    if (currentPlayer.roleAttributes.inLove) {
+      newPlayer.lover = 'lover';
     }
-    return player;
+    return newPlayer;
   });
-  return newPlayerArray;
+  return newPlayersArray;
 };
-const cleanArray = (players) => {
-  const newArray = players.map((player) => {
-    delete player.id;
-    delete player.canBeKilled;
-    delete player.canVote;
-    delete player.deadTonight;
-    delete player.isAlive;
-    delete player.name;
-    // delete player.roleAttributes;
-    delete player.picture;
-    delete player.side;
-    return player;
+const cleanArray = (newPlayers) => {
+  const newPlayersArray = newPlayers.map((newPlayer) => {
+    delete newPlayer.id;
+    delete newPlayer.canBeKilled;
+    delete newPlayer.canVote;
+    delete newPlayer.deadTonight;
+    delete newPlayer.isAlive;
+    delete newPlayer.name;
+    delete newPlayer.roleAttributes;
+    delete newPlayer.picture;
+    delete newPlayer.side;
+    return newPlayer;
   });
-  return newArray;
+  return newPlayersArray;
 };
 export const setFinalStats = (players, winner) => {
-  // TODO : a améliorer
-  let newArray = players;
-  newArray = newArray.filter((player) => player.userId !== null);
-  newArray = setWin(newArray, winner);
-  newArray = setRoles(newArray);
-  newArray = setVillageRoles(newArray);
-  newArray = wasInLove(newArray);
-  newArray = cleanArray(newArray);
-  return newArray;
+  const newArray = [];
+  players.forEach((player) => {
+    newArray.push(player);
+  });
+  const newPlayers = newArray.filter((player) => player.userId !== null);
+  const playersAfterWin = setWin(players, newPlayers, winner);
+  const playersAfterRoles = setRoles(players, playersAfterWin);
+  const playersAfterVillage = setVillageRoles(players, playersAfterRoles);
+  const playersAfterLove = wasInLove(players, playersAfterVillage);
+  const cleanPlayersArray = cleanArray(playersAfterLove);
+  return cleanPlayersArray;
 };
+
+export const setSidesArray = (array, side) => {
+  const newArray = [];
+  array.forEach((player) => {
+    if (player.side === side) {
+      newArray.push(player);
+    }
+  });
+  return newArray;
+}
