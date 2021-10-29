@@ -44,10 +44,14 @@ const Game = ({
   if (isHunterDead) {
     history.push('/partie-en-cours/jour/chasseur');
   }
-  // If there is a winner, sends to the victory page
-  if (winner !== '') {
-    history.push('/partie-en-cours/victoire');
-  }
+
+  // On winner variable change (from '' to the name of the winning side)
+  // Goes to the Celebration page
+  useEffect(() => {
+    if (winner !== '') {
+      history.push('/partie-en-cours/celebration');
+    }
+  }, [winner]);
 
   // On click, erase the current player that is displayed in the center
   const handleClick = () => {

@@ -27,6 +27,7 @@ import MessagePrive from 'src/containers/App/Mailbox/MessagePrive';
 import Configuration from 'src/containers/App/Configuration';
 import Sunset from 'src/containers/Animations/Sunset';
 import Sunrise from 'src/containers/Animations/Sunrise';
+import Celebration from 'src/containers/Animations/Celebration';
 import Login from 'src/containers/App/Login';
 import Register from 'src/containers/App/Register';
 import Friends from 'src/containers/App/ProfileUser/Friends';
@@ -70,6 +71,7 @@ const App = ({ isConnected, fetchHomeData }) => {
           <Route path="/coucher-de-soleil" exact component={Sunset} />
           <Route path="/lever-de-soleil" exact component={Sunrise} />
           <Route path="/partie-en-cours" exact component={CurrentGame} />
+          <Route path="/partie-en-cours/celebration" exact component={Celebration} />
           <Route path="/partie-en-cours/victoire" exact component={Victory} />
           <Route path="/partie-en-cours/nuit-sur-thiercelieux" exact component={NightScript} />
           <Route path="/partie-en-cours/jour/chasseur" exact component={Hunter} />

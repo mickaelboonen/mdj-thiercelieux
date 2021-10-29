@@ -1,26 +1,15 @@
-/* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-import {
-  setSidesArray,
-  setFinalStats,
-} from 'src/selectors/victoryFunctions';
+import { setSidesArray } from 'src/selectors/victoryFunctions';
 
 import Table from './Table';
 import './style.scss';
-import Request from './Request';
 
-// TODO
 const Victory = ({
-  setStats,
   players,
   winner,
   patch,
-  finalStats,
-  changeForVictoryReducer,
-  finalStatsGame,
-  changeFinalStatsArray,
 }) => {
   const setTitle = (currentWinner) => {
     let title = '';
@@ -37,23 +26,15 @@ const Victory = ({
   };
   const title = setTitle(winner);
 
-  const componentArray = [];
-  players.forEach((player) => {
-    componentArray.push(player);
-  });
-  const werewolves = setSidesArray(componentArray, 'Loup-Garou');
-  const villagers = setSidesArray(componentArray, 'Village');
-  const lonely = setSidesArray(componentArray, 'Solitaire');
+  const werewolves = setSidesArray(players, 'Loup-Garou');
+  const villagers = setSidesArray(players, 'Village');
+  // const lonely = setSidesArray(players, 'Solitaire');
 
   useEffect(() => {
-    changeForVictoryReducer();
+    // TODO change name
+    patch();
   }, []);
 
-  const handleClickStats = () => {
-    const el = document.querySelector('.victory__message');
-    el.style.display = 'none';
-    changeFinalStatsArray();
-  };
   return (
     <div className="victory">
       <p>{title}</p>
@@ -66,19 +47,14 @@ const Victory = ({
         <a type="button">Nouvelle partie</a>
         <a type="button">Quitter</a>
       </div>
-      {/* <Request winner={winner} finalStats={finalStats} /> */}
-      <div className="victory__message">
-        <div>
-          {title}
-          <button type="button" onClick={handleClickStats}>Cliquez sur moi pour accéder au récap et lancer l'enregistrement des stats</button>
-        </div>
-      </div>
     </div>
   );
 };
 
 Victory.propTypes = {
-
+  players: PropTypes.array.isRequired,
+  winner: PropTypes.string.isRequired,
+  patch: PropTypes.func.isRequired,
 };
 
 export default Victory;

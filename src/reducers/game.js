@@ -14,14 +14,13 @@ import {
   CHANGE_PLAYERS_ATTRIBUTES,
   KILL_PLAYER,
   SET_NIGHT,
-  SET_STATS,
-  patch,
-  CHANGE_FINAL_STATS_ARRAY,
+  SET_STATS_ARRAY_FOR_REQUEST,
 } from 'src/actions/game';
 
 import { setNewAttributesToPlayers, breakingNews, setWinnerStatus } from 'src/selectors/setGameFunctions';
-import { setFinalStats } from 'src/selectors/victoryFunctions';
+import { setStatRole, setStatWin, setStatVillageRole } from 'src/selectors/victoryFunctions';
 
+const _ = require('lodash/');
 // import history from 'src/utils/history';
 
 const initialState = {
@@ -48,23 +47,47 @@ const initialState = {
   percentage: 0,
   isHunterDead: false,
   finalStats: [],
+  isArraySet: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
-    // case SET_ARRAY_FOR_STAT:
-      // return {
-      //   ...state,
-      //   finalStats: state.players,
-      // };
-    // case SET_STATS: {
-    //   const newArray = [...state.finalStats];
-    //   const newFinalStats = setFinalStats(newArray, state.winner);
-    //   return {
-    //     ...state,
-    //     finalStats: newFinalStats,
-    //   };
-    // }
+    case SET_STATS_ARRAY_FOR_REQUEST: {
+      const statsArray = [];
+      const { winner } = state;
+      state.players.forEach((player) => {
+        const newPlayer = {};
+        if (player.userId !== null) {
+          newPlayer.userId = player.userId;
+          newPlayer.role = setStatRole(player);
+
+          if (player.side === winner) {
+            newPlayer.win = setStatWin(player, winner);
+          }
+
+          if (player.villageRole !== '') {
+            newPlayer.villageRole = setStatVillageRole(player);
+          }
+
+          if (player.roleAttributes.inLove) {
+            newPlayer.lover = 'lover';
+          }
+
+          if (player.deathCause !== '') {
+            newPlayer.deathCause = player.deathCause;
+          }
+        }
+        const isObjectEmpty = _.isEmpty(newPlayer);
+        if (!isObjectEmpty) {
+          statsArray.push(newPlayer);
+        }
+      });
+      return {
+        ...state,
+        finalStats: statsArray,
+        // isArraySet: true,
+      };
+    }
     case KILL_PLAYER: {
       let isVictimInLove = false;
       let newPlayersArray = state.players.map((player) => {

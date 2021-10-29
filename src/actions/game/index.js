@@ -63,14 +63,8 @@ export const killPlayer = (victim) => ({
 //-------------------------------------------------
 
 export const PATCH = 'PATCH';
-export const patch = (statsArray) => ({
+export const patch = () => ({
   type: PATCH,
-  statsArray,
-});
-
-export const SET_STATS = 'SET_STATS';
-export const setStats = () => ({
-  type: SET_STATS,
 });
 
 export const UPDATE_STATS = 'UPDATE_STATS';
@@ -79,19 +73,8 @@ export const updateStats = (stats) => ({
   stats,
 });
 
-export const CHANGE_FOR_VICTORY_REDUCER = 'CHANGE_FOR_VICTORY_REDUCER';
-export const changeForVictoryReducer = () => ({
-  type: CHANGE_FOR_VICTORY_REDUCER,
-});
-
-export const SAVE_INTO_VICTORY_REDUCER = 'SAVE_INTO_VICTORY_REDUCER';
-export const saveIntoVictoryReducer = (players, winner) => ({
-  type: SAVE_INTO_VICTORY_REDUCER,
-  players,
-  winner,
-});
-
-export const CHANGE_FINAL_STATS_ARRAY = 'CHANGE_FINAL_STATS_ARRAY';
-export const changeFinalStatsArray = () => ({
-  type: CHANGE_FINAL_STATS_ARRAY,
+export const SET_STATS_ARRAY_FOR_REQUEST = 'SET_STATS_ARRAY_FOR_REQUEST';
+export const setsStatsArrayForRequest = (array) => ({
+  type: SET_STATS_ARRAY_FOR_REQUEST,
+  array,
 });

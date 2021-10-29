@@ -5,7 +5,6 @@ import userReducer from './user';
 import gameReducer from './game';
 import membersReducer from './members';
 import mailboxReducer from './mailbox';
-import victoryReducer from './victory';
 import configurationReducer from './configuration';
 import rolesDescriptionsReducer from './rolesDescriptions';
 
@@ -14,7 +13,6 @@ const rootReducer = combineReducers({
   user: userReducer,
   game: gameReducer,
   mails: mailboxReducer,
-  victory: victoryReducer,
   members: membersReducer,
   configuration: configurationReducer,
   rolesDescriptions: rolesDescriptionsReducer,

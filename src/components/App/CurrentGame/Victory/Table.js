@@ -13,17 +13,13 @@ const Table = ({ data, title }) => (
     </thead>
     <tbody className="table__body">
       {data.map((villager) => (
-        <tr className="table__body-row">
+        <tr className="table__body-row" key={villager.id}>
           <td className="table__body-row-column">
             <img src={villager.picture} alt="" />
           </td>
           <td className="table__body-row-column">
             <p className={classNames('table__body-row-column-name', { 'table__body-row-column-name--alive': villager.isAlive })}>{villager.name}</p>
           </td>
-          {/* <td className="table__body-row-column">
-            afficher une icon dead/ alive
-            {villager.isAlive ? 'vivant' : 'mort'}
-          </td> */}
         </tr>
       ))}
     </tbody>
@@ -31,7 +27,8 @@ const Table = ({ data, title }) => (
 );
 
 Table.propTypes = {
-
+  data: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 export default Table;

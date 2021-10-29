@@ -8,8 +8,6 @@ import {
   savePlayersFinalArray,
   updateStats,
   UPDATE_STATS,
-  saveIntoVictoryReducer,
-  CHANGE_FOR_VICTORY_REDUCER,
 } from 'src/actions/game';
 
 import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
@@ -125,16 +123,17 @@ const gameMiddleware = (store) => (next) => (action) => {
     }
       break;
     case PATCH: {
+      // TODO : CLEAN
       const usersStats = [];
-      const { statsArray } = action;
-      statsArray.forEach((user) => {
+      const { game: { finalStats } } = store.getState();
+      finalStats.forEach((user) => {
         api.get(`/api/stats/user/${user.userId}`)
           .then((response) => {
             usersStats.push(response.data);
             const newStatsArray = [];
-            if (usersStats.length === statsArray.length) {
+            if (usersStats.length === finalStats.length) {
               usersStats.forEach((currentUser) => {
-                const newUserObject = statsArray.find((player) => player.userId === currentUser.user_id);
+                const newUserObject = finalStats.find((player) => player.userId === currentUser.user_id);
 
                 newUserObject.user_id = newUserObject.userId;
                 // delete newUserObject.userId;
@@ -164,7 +163,7 @@ const gameMiddleware = (store) => (next) => (action) => {
 
                 newStatsArray.push(newUserObject);
               });
-              if (statsArray.length === newStatsArray.length) {
+              if (finalStats.length === newStatsArray.length) {
                 console.log('b4 updateStats request', newStatsArray);
                 // store.dispatch(updateStats(newStatsArray));
               }
@@ -188,11 +187,6 @@ const gameMiddleware = (store) => (next) => (action) => {
             console.error('update stats error', error);
           });
       });
-    }
-      break;
-    case CHANGE_FOR_VICTORY_REDUCER: {
-      const { game: { players, winner } } = store.getState();
-      store.dispatch(saveIntoVictoryReducer(players, winner));
     }
       break;
     default:
