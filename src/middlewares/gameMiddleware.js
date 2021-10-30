@@ -1,18 +1,22 @@
+/* eslint-disable max-len */
 /* eslint-disable no-lone-blocks */
 import axios from 'axios';
 
 import {
   SET_GAME,
   // NAME TO CHANGE
-  PATCH,
+  PREPARE_FOR_PATCH,
   savePlayersFinalArray,
   updateStats,
   UPDATE_STATS,
+  endPatchRequest,
 } from 'src/actions/game';
 
 import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
 
-axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
+import { setNewStatsForPatchRequest } from 'src/selectors/victoryFunctions';
+
+// axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
 const api = axios.create({
   baseURL: 'http://localhost:3000',
@@ -122,51 +126,22 @@ const gameMiddleware = (store) => (next) => (action) => {
       store.dispatch(savePlayersFinalArray(newPlayersArray));
     }
       break;
-    case PATCH: {
-      // TODO : CLEAN
+    case PREPARE_FOR_PATCH: {
       const usersStats = [];
       const { game: { finalStats } } = store.getState();
       finalStats.forEach((user) => {
         api.get(`/api/stats/user/${user.userId}`)
           .then((response) => {
-            usersStats.push(response.data);
-            const newStatsArray = [];
-            if (usersStats.length === finalStats.length) {
-              usersStats.forEach((currentUser) => {
-                const newUserObject = finalStats.find((player) => player.userId === currentUser.user_id);
+            // Creating a new user object with new attributes and new values from the request response
+            const newUserStatistics = setNewStatsForPatchRequest(user, response.data);
+            // Pushing the request response (a user's stats) into the userStats array
+            usersStats.push(newUserStatistics);
 
-                newUserObject.user_id = newUserObject.userId;
-                // delete newUserObject.userId;
-                newUserObject.played_parties = currentUser.played_parties + 1;
-
-                if (newUserObject.win !== undefined) {
-                  const newProperty = newUserObject.win;
-                  newUserObject[newProperty] = currentUser[newProperty] + 1;
-                  delete newUserObject.win;
-                }
-                if (newUserObject.lover === 'lover') {
-                  newUserObject.lover = currentUser.lover + 1;
-                }
-                if (newUserObject.deathCause !== undefined && newUserObject.deathCause !== '') {
-                  const newProperty = newUserObject.deathCause;
-                  newUserObject[newProperty] = currentUser[newProperty] + 1;
-                }
-                delete newUserObject.deathCause;
-                const newProperty = newUserObject.hiddenRole;
-                newUserObject[newProperty] = currentUser[newProperty] + 1;
-                delete newUserObject.hiddenRole;
-
-                if (newUserObject.roleAttributes !== undefined) {
-                  delete newUserObject.roleAttributes;
-                }
-                // FOnctions qui se fait deux fois, voir pourquoi.
-
-                newStatsArray.push(newUserObject);
-              });
-              if (finalStats.length === newStatsArray.length) {
-                console.log('b4 updateStats request', newStatsArray);
-                // store.dispatch(updateStats(newStatsArray));
-              }
+            // When the new userStats array has the same length as the finalStats array
+            // It means we have all of the data ready for the patch request
+            if (finalStats.length === usersStats.length) {
+              // So we dispatch the updateStats action
+              store.dispatch(updateStats(usersStats));
             }
           })
           .catch((error) => {
@@ -177,16 +152,26 @@ const gameMiddleware = (store) => (next) => (action) => {
       break;
     case UPDATE_STATS: {
       const { stats } = action;
-      stats.forEach((currentStat) => {
-        api.patch(`/api/stats/user/${currentStat.user_id}`, { currentStat })
-          .then((response) => {
-            // console.log('resp', response);
-            // TODO
-          })
-          .catch((error) => {
-            console.error('update stats error', error);
-          });
-      });
+      const { game: { isPatchDone } } = store.getState();
+      let requestsNumber = 0;
+      // If the isPatchDone is true; we're not doing anything
+      // For it means the patch request have already been done
+      if (!isPatchDone) {
+        stats.forEach((currentStat) => {
+          api.patch(`/api/stats/user/${currentStat.user_id}`, { currentStat })
+            .then((response) => {
+              requestsNumber += 1;
+              // When all requests have been done, we end the patch process
+              if (requestsNumber === stats.length) {
+                store.dispatch(endPatchRequest(response.data));
+              }
+            })
+            .catch((error) => {
+              console.error('update stats error', error);
+              // TODO
+            });
+        });
+      }
     }
       break;
     default:

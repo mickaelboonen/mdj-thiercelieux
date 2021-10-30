@@ -9,7 +9,8 @@ import './style.scss';
 const Victory = ({
   players,
   winner,
-  patch,
+  prepareForPatch,
+  isPatchDone,
 }) => {
   const setTitle = (currentWinner) => {
     let title = '';
@@ -31,8 +32,7 @@ const Victory = ({
   // const lonely = setSidesArray(players, 'Solitaire');
 
   useEffect(() => {
-    // TODO change name
-    patch();
+    prepareForPatch();
   }, []);
 
   return (
@@ -42,11 +42,12 @@ const Victory = ({
         <Table data={villagers} title={'Les Villageois'} />
         <Table data={werewolves} title={'Les Loups-Garous'} />
       </div>
+      {isPatchDone && (
       <div>
-        {/* Seulement visible une fois que les requetes sont finies */}
         <a type="button">Nouvelle partie</a>
         <a type="button">Quitter</a>
       </div>
+      )}
     </div>
   );
 };
@@ -54,7 +55,8 @@ const Victory = ({
 Victory.propTypes = {
   players: PropTypes.array.isRequired,
   winner: PropTypes.string.isRequired,
-  patch: PropTypes.func.isRequired,
+  prepareForPatch: PropTypes.func.isRequired,
+  isPatchDone: PropTypes.bool.isRequired,
 };
 
 export default Victory;

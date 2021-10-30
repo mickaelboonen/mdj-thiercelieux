@@ -62,9 +62,9 @@ export const killPlayer = (victim) => ({
 
 //-------------------------------------------------
 
-export const PATCH = 'PATCH';
-export const patch = () => ({
-  type: PATCH,
+export const PREPARE_FOR_PATCH = 'PREPARE_FOR_PATCH';
+export const prepareForPatch = () => ({
+  type: PREPARE_FOR_PATCH,
 });
 
 export const UPDATE_STATS = 'UPDATE_STATS';
@@ -77,4 +77,9 @@ export const SET_STATS_ARRAY_FOR_REQUEST = 'SET_STATS_ARRAY_FOR_REQUEST';
 export const setsStatsArrayForRequest = (array) => ({
   type: SET_STATS_ARRAY_FOR_REQUEST,
   array,
+});
+
+export const END_PATCH_REQUEST = 'END_PATCH_REQUEST';
+export const endPatchRequest = () => ({
+  type: END_PATCH_REQUEST,
 });

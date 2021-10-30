@@ -164,4 +164,33 @@ export const setSidesArray = (array, side) => {
     }
   });
   return newArray;
-}
+};
+
+export const setNewStatsForPatchRequest = (player, dbData) => {
+  const newUserStatistics = {};
+
+  // Setting the user_id
+  newUserStatistics.user_id = player.userId;
+  // Setting the number of parties that have been played
+  newUserStatistics.played_parties = dbData.played_parties + 1;
+  // Setting the role and its new value
+  const newRoleProperty = player.role;
+  newUserStatistics[newRoleProperty] = dbData[newRoleProperty] + 1;
+
+  // If the user has won, set the won_as_SMTH attribute and its new value
+  if (player.win !== undefined && player.win !== '') {
+    const newProperty = player.win;
+    newUserStatistics[newProperty] = dbData[newProperty] + 1;
+  }
+
+  // If the user was a lover, sets the new number of parties played as a lover
+  if (player.lover === 'lover') {
+    newUserStatistics.lover = dbData.lover + 1;
+  }
+  // If the user has been killed, sets the death_by_SMO attribute and its new value
+  if (player.deathCause !== undefined && player.deathCause !== '') {
+    const newProperty = player.deathCause;
+    newUserStatistics[newProperty] = dbData[newProperty] + 1;
+  }
+  return newUserStatistics;
+};

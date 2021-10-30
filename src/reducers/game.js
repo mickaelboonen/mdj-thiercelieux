@@ -15,6 +15,7 @@ import {
   KILL_PLAYER,
   SET_NIGHT,
   SET_STATS_ARRAY_FOR_REQUEST,
+  END_PATCH_REQUEST,
 } from 'src/actions/game';
 
 import { setNewAttributesToPlayers, breakingNews, setWinnerStatus } from 'src/selectors/setGameFunctions';
@@ -47,11 +48,16 @@ const initialState = {
   percentage: 0,
   isHunterDead: false,
   finalStats: [],
-  isArraySet: false,
+  isPatchDone: false,
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case END_PATCH_REQUEST:
+      return {
+        ...state,
+        isPatchDone: true,
+      };
     case SET_STATS_ARRAY_FOR_REQUEST: {
       const statsArray = [];
       const { winner } = state;
@@ -141,8 +147,6 @@ const reducer = (state = initialState, action = {}) => {
           newGameOrder.push(role);
         }
       });
-
-
       // Killing the Lovers if need be -------------------------------------------------------------
       // TODO : merge with kill by vote lovers
       const deadLover = players.find((player) => player.roleAttributes.inLove && player.deadTonight && !player.isAlive);
@@ -160,9 +164,6 @@ const reducer = (state = initialState, action = {}) => {
       }
       // Checking if there is any win ---------------------------------------------------------------
       const winner = setWinnerStatus(newspaper, newPlayersArray);
-
-
-
       // Action from dead people during day (hunter)
       const deadHunter = players.find((player) => player.hiddenRole === 'Chasseur' && !player.isAlive && player.deadTonight);
       if (deadHunter) {
@@ -306,8 +307,6 @@ const reducer = (state = initialState, action = {}) => {
       });
 
       const winner = setWinnerStatus(newNewspaper, newPlayersArray);
-
-
       return {
         ...state,
         players: newPlayersArray,
