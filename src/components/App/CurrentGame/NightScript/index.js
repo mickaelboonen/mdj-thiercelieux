@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 
+import ProgressBar from 'src/components/ProgressBar';
 import Witch from 'src/containers/App/CurrentGame/NightScript/Witch';
 import Thief from 'src/containers/App/CurrentGame/NightScript/Thief';
 import Cupid from 'src/containers/App/CurrentGame/NightScript/Cupid';
@@ -66,12 +67,7 @@ const NightScript = ({
   return (
     <div className="nightscript">
       <h3 className="nightscript__title">{nightCount}<span>{suffix}</span> Nuit</h3>
-      <div className="progress-bar">
-        <div className="progress-bar__background">
-          <div className="progress-bar__background-progress" style={{ width: `${percentage}%` }} />
-        </div>
-        <p className="progress-bar__legend">Nuit en cours : {percentage}%</p>
-      </div>
+      <ProgressBar legend={'Nuit en cours'} percent={percentage} />
       <div className="nightscript__instructions">
         <h5 className="nightscript__instructions-name">{name}</h5>
         <img

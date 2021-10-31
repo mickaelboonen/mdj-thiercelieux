@@ -16,6 +16,7 @@ import {
   SET_NIGHT,
   SET_STATS_ARRAY_FOR_REQUEST,
   END_PATCH_REQUEST,
+  SET_REQUESTS_PROGRESSION_BAR,
 } from 'src/actions/game';
 
 import { setNewAttributesToPlayers, breakingNews, setWinnerStatus } from 'src/selectors/setGameFunctions';
@@ -49,10 +50,16 @@ const initialState = {
   isHunterDead: false,
   finalStats: [],
   isPatchDone: false,
+  requestsPercent: 0,
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SET_REQUESTS_PROGRESSION_BAR:
+      return {
+        ...state,
+        requestsPercent: action.percent,
+      };
     case END_PATCH_REQUEST:
       return {
         ...state,

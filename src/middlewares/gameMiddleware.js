@@ -10,6 +10,7 @@ import {
   updateStats,
   UPDATE_STATS,
   endPatchRequest,
+  setRequestsProgressionBar,
 } from 'src/actions/game';
 
 import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
@@ -161,6 +162,10 @@ const gameMiddleware = (store) => (next) => (action) => {
           api.patch(`/api/stats/user/${currentStat.user_id}`, { currentStat })
             .then((response) => {
               requestsNumber += 1;
+
+              const percent = (requestsNumber / stats.length) * 100;
+
+              store.dispatch(setRequestsProgressionBar(percent));
               // When all requests have been done, we end the patch process
               if (requestsNumber === stats.length) {
                 store.dispatch(endPatchRequest(response.data));

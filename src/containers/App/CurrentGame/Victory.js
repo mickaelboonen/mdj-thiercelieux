@@ -7,6 +7,7 @@ const mapStateToProps = (state) => ({
   players: state.game.players,
   winner: state.game.winner,
   isPatchDone: state.game.isPatchDone,
+  requestsPercent: state.game.requestsPercent,
 });
 
 const mapDispatchToProps = (dispatch) => ({

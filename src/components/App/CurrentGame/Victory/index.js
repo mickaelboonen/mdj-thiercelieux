@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import ProgressBar from 'src/components/ProgressBar';
 import { setSidesArray } from 'src/selectors/victoryFunctions';
 
 import Table from './Table';
@@ -11,6 +12,7 @@ const Victory = ({
   winner,
   prepareForPatch,
   isPatchDone,
+  requestsPercent,
 }) => {
   const setTitle = (currentWinner) => {
     let title = '';
@@ -34,7 +36,6 @@ const Victory = ({
   useEffect(() => {
     prepareForPatch();
   }, []);
-
   return (
     <div className="victory">
       <p>{title}</p>
@@ -42,6 +43,7 @@ const Victory = ({
         <Table data={villagers} title={'Les Villageois'} />
         <Table data={werewolves} title={'Les Loups-Garous'} />
       </div>
+      <ProgressBar percent={requestsPercent} legend={'Enregistrement en cours'} />
       {isPatchDone && (
       <div>
         <a type="button">Nouvelle partie</a>

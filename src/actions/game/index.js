@@ -83,3 +83,9 @@ export const END_PATCH_REQUEST = 'END_PATCH_REQUEST';
 export const endPatchRequest = () => ({
   type: END_PATCH_REQUEST,
 });
+
+export const SET_REQUESTS_PROGRESSION_BAR = 'SET_REQUESTS_PROGRESSION_BAR';
+export const setRequestsProgressionBar = (percent) => ({
+  type: SET_REQUESTS_PROGRESSION_BAR,
+  percent,
+});
