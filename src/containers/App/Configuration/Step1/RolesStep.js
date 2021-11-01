@@ -6,9 +6,9 @@ import { saveRole } from 'src/actions/gameConfiguration';
 const mapStateToProps = (state) => ({
   rolesList: state.configuration.rolesList,
   villageList: state.configuration.villageList,
-  numberPlayers: state.configuration.configuration.playersNumber,
   chosenHiddenRoles: state.configuration.chosenHiddenRoles,
   chosenVillageRoles: state.configuration.chosenVillageRoles,
+  numberPlayers: state.configuration.configuration.playersNumber,
   errorMessage: state.configuration.errorMessage,
   configDone: state.configuration.configDone,
 });

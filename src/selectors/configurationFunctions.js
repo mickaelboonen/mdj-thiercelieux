@@ -148,12 +148,14 @@ export const checkTotalRoles = (roles, errors, number, category) => {
  * @returns array
  */
 export const setRolesRandomly = (roles, players, category) => {
-  let playersWithRoles = [];
+  const finalArray = [];
+  finalArray.playersWithRoles = [];
+  finalArray.thiefRoles = [];
   let newRoles = [];
   roles.forEach((currentRole) => newRoles.push(currentRole));
 
   if (category === 'hidden') {
-    playersWithRoles = players.map((player) => {
+    finalArray.playersWithRoles = players.map((player) => {
       let playersNewRole = '';
       let randomNumber = generateRandomNumber(newRoles.length);
 
@@ -166,9 +168,10 @@ export const setRolesRandomly = (roles, players, category) => {
       newRoles = newRoles.filter((role) => role !== '');
       return player;
     });
+    finalArray.thiefRoles = newRoles;
   }
   else if (category === 'village') {
-    playersWithRoles = players.map((player) => {
+    finalArray.playersWithRoles = players.map((player) => {
       let playersNewRole = '';
       let randomNumber = generateRandomNumber(newRoles.length);
 
@@ -182,8 +185,8 @@ export const setRolesRandomly = (roles, players, category) => {
       return player;
     });
   }
-  console.log('apres la function', newRoles);
-  return playersWithRoles;
+  
+  return finalArray;
 };
 
 /**

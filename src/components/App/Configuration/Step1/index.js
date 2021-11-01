@@ -1,11 +1,12 @@
 /* eslint-disable prefer-template */
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
 import { Link } from 'react-router-dom';
 
 const Step1 = ({
+  games,
   setPlayersNumber,
   setGames,
   setGameOrder,
@@ -97,6 +98,37 @@ const Step1 = ({
       behavior: 'smooth',
     });
   };
+
+  const gamesArray = [
+    {
+      name: 'Nouvelle Lune',
+      value: 'Nouvelle Lune',
+      id: 'newmoon',
+    },
+    {
+      name: 'Personnages',
+      value: 'Personnages',
+      id: 'characters',
+    },
+    {
+      name: 'Le Village',
+      value: 'Le Village',
+      id: 'village',
+    },
+    {
+      name: 'Aucune extension',
+      value: 'none',
+      id: 'none',
+    },
+  ];
+
+  const toggleCheck = (game) => {
+    console.log(games, games.indexOf(game) >= 0);
+    if (games.indexOf(game) >= 0) {
+      return true;
+    }
+  };
+  useEffect
   return (
     <div className="configuration__settings">
       <div className="configuration__settings-field" id="player-number-field">
@@ -105,26 +137,13 @@ const Step1 = ({
       </div>
       <div className="configuration__settings-field" id="expansions-field">
         <h5 className="configuration__settings-field-title">Extensions</h5>
-        <div className="configuration__settings-field-item">
-          <label htmlFor="newmoon">Nouvelle Lune
-            <input type="checkbox" name="extensions" value="Nouvelle Lune" id="newmoon" onChange={handleChange} />
-          </label>
-        </div>
-        <div className="configuration__settings-field-item">
-          <label htmlFor="characters">Personnages
-            <input type="checkbox" name="extensions" value="Personnages" id="characters" onChange={handleChange} />
-          </label>
-        </div>
-        <div className="configuration__settings-field-item">
-          <label htmlFor="village">Le Village
-            <input type="checkbox" name="extensions" value="Le Village" id="village" onChange={handleChange} />
-          </label>
-        </div>
-        <div className="configuration__settings-field-item">
-          <label htmlFor="none">Aucune extension
-            <input type="checkbox" name="extensions" value="none" id="none" onChange={handleChange} />
-          </label>
-        </div>
+        {gamesArray.map((game) => (
+          <div key={game.id} className="configuration__settings-field-item">
+            <label htmlFor={game.id}>{game.name}
+              <input checked={toggleCheck(game.value)} type="checkbox" name="extensions" value={game.value} id={game.id} onChange={handleChange} />
+            </label>
+          </div>
+        ))}
       </div>
       <div className="configuration__settings-field" id="game-order-field">
         <h5 className="configuration__settings-field-title">Ordre de jeu</h5>
@@ -180,6 +199,7 @@ const Step1 = ({
 Step1.propTypes = {
   nextStepSlug: PropTypes.string.isRequired,
   errorMessage: PropTypes.array.isRequired,
+  games: PropTypes.array.isRequired,
 
   // FUNCTIONS
   setPlayersNumber: PropTypes.func.isRequired,

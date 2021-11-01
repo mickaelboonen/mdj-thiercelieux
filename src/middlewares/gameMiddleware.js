@@ -14,6 +14,7 @@ import {
 } from 'src/actions/game';
 
 import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
+import { gameOrder } from 'src/data/gameFakeData';
 
 import { setNewStatsForPatchRequest } from 'src/selectors/victoryFunctions';
 
@@ -30,29 +31,40 @@ const gameMiddleware = (store) => (next) => (action) => {
         .then((response) => {
           const {
             configuration: {
+              thiefRoles,
               configuration,
               players,
               rolesList,
             },
           } = store.getState();
-
-          const nightInstructionsArray = [];
-          const dayInstructionsArray = [];
-
-          response.data.forEach((currentRole) => {
-            if (rolesList.indexOf(currentRole.name) >= 0 && currentRole.night_time === 1) {
-              nightInstructionsArray.push(currentRole);
+          const instructionsArray = [];
+          instructionsArray.night = [];
+          instructionsArray.day = [];
+          // Filling the instructions array with day time roles
+          for (let i = 0; i < rolesList.length; i += 1) {
+            const roleInstructions = response.data.find((role) => role.name === rolesList[i]);
+            if (roleInstructions.night_time === 0) {
+              instructionsArray.day.push(roleInstructions);
             }
-            else if (rolesList.indexOf(currentRole.name) >= 0 && currentRole.night_time === 0) {
-              dayInstructionsArray.push(currentRole);
+          }
+          const newThiefRolesArray = [];
+          response.data.forEach((role) => {
+            if (thiefRoles.indexOf(role.name) >= 0) {
+              newThiefRolesArray.push(role);
             }
           });
-          const instructionsArray = [];
-          instructionsArray.night = nightInstructionsArray;
-          instructionsArray.day = dayInstructionsArray;
 
+          // Filling the instructions array with night time roles
+          gameOrder.forEach((order) => {
+            const lol = response.data.find((role) => role.name === order);
+            if (rolesList.indexOf(lol.name) >= 0) {
+              instructionsArray.night.push(lol);
+              if (lol.name === 'Cupidon') {
+                instructionsArray.night.push(response.data[32]);
+              }
+            }
+          });
           // TODO : requete Cartes Nouvelle Lune si besoin
-
           const newPlayersArray = players.map((player) => {
             const finalPlayer = {
               id: null,
@@ -139,12 +151,11 @@ const gameMiddleware = (store) => (next) => (action) => {
             }
             return finalPlayer;
           });
-          store.dispatch(saveGameaArrays(newPlayersArray, instructionsArray));
+          store.dispatch(saveGameaArrays(newPlayersArray, instructionsArray, newThiefRolesArray));
         })
         .catch((error) => {
           console.error('tags request', error);
         });
-
     }
       break;
     case PREPARE_FOR_PATCH: {

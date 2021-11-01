@@ -13,6 +13,7 @@ import {
   SAVE_ROLES_RANDOMLY,
   SAVE_PLAYER_FROM_USER,
   CHANGE_PSEUDO_INPUT_VALUE,
+  CHECK_FOR_THIEF,
 } from 'src/actions/gameConfiguration';
 import { CLEAR_INPUT, SAVE_HOME_DATA } from 'src/actions';
 
@@ -38,46 +39,51 @@ const initialState = {
   allRolesArray: [],
   villageRoles: [],
   players: [
-    // {
-    //   id: 1,
-    //   name: 'Micka',
-    //   // hiddenRole: 'Loup-Garou',
-    // },
-    // {
-    //   id: 2,
-    //   name: 'Quentin',
-    //   // hiddenRole: 'Sorcière',
-    // },
-    // {
-    //   id: 3,
-    //   name: 'Océane',
-    //   // hiddenRole: 'Cupidon',
-    // },
-    // {
-    //   id: 4,
-    //   name: 'Lud',
-    //   // hiddenRole: 'Villageois',
-    // },
-    // {
-    //   id: 5,
-    //   name: 'Chris',
-    //   // hiddenRole: 'Idiot du Village',
-    // },
-    // {
-    //   id: 6,
-    //   name: 'BDR',
-    //   // hiddenRole: 'Bouc Émissaire',
-    // },
-    // {
-    //   id: 7,
-    //   name: 'Sasha',
-    //   // hiddenRole: 'Joueur de Flute',
-    // },
-    // {
-    //   id: 8,
-    //   name: 'Cara',
-    //   // hiddenRole: 'Servante Dévouée',
-    // },
+    {
+      id: 1,
+      name: 'Micka',
+      // hiddenRole: 'Loup-Garou',
+    },
+    {
+      id: 2,
+      name: 'Quentin',
+      // hiddenRole: 'Sorcière',
+    },
+    {
+      id: 3,
+      name: 'Océane',
+      // hiddenRole: 'Cupidon',
+    },
+    {
+      id: 4,
+      name: 'Lud',
+      // hiddenRole: 'Villageois',
+    },
+    {
+      id: 5,
+      name: 'Chris',
+      // hiddenRole: 'Idiot du Village',
+    },
+    {
+      id: 6,
+      name: 'BDR',
+      // hiddenRole: 'Bouc Émissaire',
+    },
+    {
+      id: 7,
+      name: 'Sasha',
+      // hiddenRole: 'Joueur de Flute',
+    },
+    {
+      id: 8,
+      name: 'Cara',
+      // hiddenRole: 'Servante Dévouée',
+    },
+    {
+      id: 9,
+      name: 'Benoit',
+      // hiddenRole: 'Servante Dévouée',
+    },
   ],
   pseudo: '',
   userId: null,
@@ -93,10 +99,23 @@ const initialState = {
   chosenHiddenRoles: [],
   chosenVillageRoles: [],
   configDone: false,
+  thiefRoles: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case CHECK_FOR_THIEF: {
+      const thief = state.chosenHiddenRoles.find((role) => role === 'Voleur');
+      const newRolesList = state.chosenHiddenRoles;
+      if ((state.configuration.playersNumber + 2) !== newRolesList.length && thief !== undefined) {
+        newRolesList.push('Simple Villageois');
+        newRolesList.push('Simple Villageois');
+      }
+      return {
+        ...state,
+        chosenHiddenRoles: newRolesList,
+      };
+    }
     case CLEAR_INPUT:
       return {
         ...state,
@@ -109,13 +128,17 @@ const reducer = (state = initialState, action = {}) => {
         userId: action.id,
       };
     case SAVE_ROLES_RANDOMLY: {
-      let playersWithRoles = setRolesRandomly(state.chosenHiddenRoles, state.players, 'hidden');
+      const rolesArrays = setRolesRandomly(state.chosenHiddenRoles, state.players, 'hidden');
+      let playersArray = rolesArrays.playersWithRoles;
+      const thiefArray = rolesArrays.thiefRoles;
+
       if (state.configuration.games.indexOf('Le Village') >= 0) {
-        playersWithRoles = setRolesRandomly(state.chosenVillageRoles, playersWithRoles, 'village');
+        playersArray = setRolesRandomly(state.chosenVillageRoles, playersArray, 'village');
       }
       return {
         ...state,
-        players: playersWithRoles,
+        players: playersArray,
+        thiefRoles: thiefArray,
       };
     }
     case SAVE_ROLE: {

@@ -192,5 +192,9 @@ export const setNewStatsForPatchRequest = (player, dbData) => {
     const newProperty = player.deathCause;
     newUserStatistics[newProperty] = dbData[newProperty] + 1;
   }
+  // If the was the Thief at the beginning of the game, sets the new number of games played as Thief
+  if (player.wasThief) {
+    newUserStatistics.thief = dbData.thief + 1;
+  }
   return newUserStatistics;
 };

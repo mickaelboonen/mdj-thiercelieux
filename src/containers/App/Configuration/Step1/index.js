@@ -11,6 +11,7 @@ import {
 
 const mapStateToProps = (state) => ({
   errorMessage: state.configuration.errorMessage,
+  games: state.configuration.configuration.games,
   nextStepSlug: state.configuration.configuration.rolesAttribution,
 });
 

@@ -4,6 +4,7 @@ import Step2 from 'src/components/App/Configuration/Step2';
 import {
   addNewPlayer,
   setRolesRandomly,
+  checkForThief,
 } from 'src/actions/gameConfiguration';
 
 const mapStateToProps = (state) => ({
@@ -18,6 +19,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   setRolesRandomly: () => {
     dispatch(setRolesRandomly());
+  },
+  checkForThief: () => {
+    dispatch(checkForThief());
   },
 });
 

@@ -15,6 +15,7 @@ const Thief = ({ thiefRoles, setChanges, toggleValidationBox }) => {
     // Modifying the DOM to open the validation box
     toggleValidationBox();
   };
+  console.log(thiefRoles);
   return (
     <div className="nightscript__action-buttons">
       {thiefRoles.map((button) => (

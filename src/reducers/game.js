@@ -31,16 +31,7 @@ const initialState = {
   dayCount: 0,
   players: [],
   changes: {},
-  thiefRoles: [
-    {
-      name: 'Simple Villageois',
-      picture: '',
-    },
-    {
-      name: 'Loup-Garou',
-      picture: '',
-    },
-  ],
+  thiefRoles: [],
   newspaper: [],
   playerToDisplay: {},
   roleToPlay: {},
@@ -245,6 +236,7 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         players: action.players,
+        thiefRoles: action.thiefRoles,
         gameOrder: action.instructions.night,
         dayTimeRoles: action.instructions.day,
         isGameSet: true,

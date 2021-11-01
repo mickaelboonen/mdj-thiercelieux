@@ -76,3 +76,8 @@ export const changePseudoInputValue = (value) => ({
   type: CHANGE_PSEUDO_INPUT_VALUE,
   value,
 });
+
+export const CHECK_FOR_THIEF = 'CHECK_FOR_THIEF';
+export const checkForThief = () => ({
+  type: CHECK_FOR_THIEF,
+});

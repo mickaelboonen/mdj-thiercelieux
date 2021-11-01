@@ -241,3 +241,14 @@ export const gameFakeOrder = [
     text: 'Consigne du role',
   },
 ];
+
+export const gameOrder = [
+  'Voleur',
+  'Ancien',
+  'Cupidon',
+  'Amoureux',
+  'Salvateur',
+  'Voyante',
+  'Loup-Garou',
+  'Sorcière',
+];
