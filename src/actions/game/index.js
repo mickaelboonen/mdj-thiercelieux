@@ -13,10 +13,11 @@ export const setNight = () => ({
   type: SET_NIGHT,
 });
 
-export const SAVE_PLAYERS_FINAL_ARRAY = 'SAVE_PLAYERS_FINAL_ARRAY';
-export const savePlayersFinalArray = (array) => ({
-  type: SAVE_PLAYERS_FINAL_ARRAY,
-  array,
+export const SAVE_GAME_ARRAYS = 'SAVE_GAME_ARRAYS';
+export const saveGameaArrays = (players, instructions) => ({
+  type: SAVE_GAME_ARRAYS,
+  players,
+  instructions,
 });
 
 export const DISPLAY_PLAYER = 'DISPLAY_PLAYER';

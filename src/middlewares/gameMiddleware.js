@@ -6,7 +6,7 @@ import {
   SET_GAME,
   // NAME TO CHANGE
   PREPARE_FOR_PATCH,
-  savePlayersFinalArray,
+  saveGameaArrays,
   updateStats,
   UPDATE_STATS,
   endPatchRequest,
@@ -26,105 +26,125 @@ const api = axios.create({
 const gameMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
     case SET_GAME: {
-      // api.get('/recipes')
-      //   .then((response) => {
-      //     console.log(response);
-      //   })
-      //   .catch((error) => {
-      //     console.error('tags request', error);
-      //   });
-      const {
-        configuration: {
-          configuration,
-          players,
-        },
-      } = store.getState();
-      // requete Cartes Nouvelle Lune si besoin
+      api.get('/api/roles/instructions')
+        .then((response) => {
+          const {
+            configuration: {
+              configuration,
+              players,
+              rolesList,
+            },
+          } = store.getState();
 
-      const newPlayersArray = players.map((player) => {
-        const finalPlayer = {
-          id: null,
-          name: '',
-          hiddenRole: '',
-          villageRole: '',
-          side: '', // Pour les roles qui changent de coté en cours de partie
-          canBeKilled: true,
-          canVote: true,
-          isAlive: true,
-          deadTonight: false,
-          causeOfDeath: '',
-          roleAttributes: {
-            firstnight_call: false,
-            // PROPRIETE THIERCELIEUX
-            inLove: false,
-            seenBySeer: false,
-            savedByWitch: false,
-            deathPotion: false,
-            curePotion: false,
-            lastBulletForHunter: false,
-            isCaptain: false,
-            // Voleur ?
-            // PROPRIETE NW MOON
-            hasPower: true,
-            isStupid: false,
-            loveTriangle: false,
-            charmedByPiedPiper: false,
-            protectedByGuard: false,
-            resistOnce: false,
-            // PROPRIETE PERSOS
-            isInfected: false, // anyone
-            canEatTwice: false, // Grand Mechant Loup
-            hasModel: '', // Enfant Sauvage
-            hasTetanus: false, // Loup infecté apr le chevalier
-            isNextToWolf: false, // Montreur d'Ours
-            isInCult: false,
-            isNotInCult: false,
-            // PROPRIETES VILLAGE
-            isJinxed: false,
-            hasBurnt: false,
-            // Comédien ?
-          },
-          villageAttributes: {
-            hasPower: true,
-          },
-          newMoonAttributes: {
-          },
-        };
-        // GENERAL ATTRIBUTIONS-------------------------------
-        const {
-          id,
-          name,
-          hiddenRole,
-          villageRole,
-        } = player;
-        finalPlayer.id = id;
-        finalPlayer.name = name;
-        finalPlayer.hiddenRole = hiddenRole;
-        finalPlayer.side = setSide(hiddenRole);
-        finalPlayer.villageRole = villageRole;
+          const nightInstructionsArray = [];
+          const dayInstructionsArray = [];
 
-        const { games } = configuration;
-
-        if (games.indexOf('Le Village') === -1) {
-          delete finalPlayer.villageAttributes;
-        }
-        else if (games.indexOf('Nouvelle Lune') === -1) {
-          delete finalPlayer.newMoonAttributes;
-        }
-
-        // SPECIFIC ATTRIBUTIONS
-        const att = setAttributes(hiddenRole);
-
-        if (att !== undefined) {
-          att.forEach((currentAtt) => {
-            finalPlayer.roleAttributes[currentAtt] = true;
-            // finalPlayer.roleAttributes.deathPotion = true; (si sorcière)
-            // finalPlayer.roleAttributes.curePotion = true; (si sorcière)
+          response.data.forEach((currentRole) => {
+            if (rolesList.indexOf(currentRole.name) >= 0 && currentRole.night_time === 1) {
+              nightInstructionsArray.push(currentRole);
+            }
+            else if (rolesList.indexOf(currentRole.name) >= 0 && currentRole.night_time === 0) {
+              dayInstructionsArray.push(currentRole);
+            }
           });
-        }
-        return finalPlayer;
-      });
-      store.dispatch(savePlayersFinalArray(newPlayersArray));
+          const instructionsArray = [];
+          instructionsArray.night = nightInstructionsArray;
+          instructionsArray.day = dayInstructionsArray;
+
+          // TODO : requete Cartes Nouvelle Lune si besoin
+
+          const newPlayersArray = players.map((player) => {
+            const finalPlayer = {
+              id: null,
+              userId: null,
+              name: '',
+              hiddenRole: '',
+              villageRole: '',
+              side: '', // Pour les roles qui changent de coté en cours de partie
+              picture: '', // TODO
+              canBeKilled: true,
+              canVote: true,
+              isAlive: true,
+              deadTonight: false,
+              deathCause: '',
+              roleAttributes: {
+                // // PROPRIETE THIERCELIEUX
+                // inLove: false,
+                // seenBySeer: false,
+                // savedByWitch: false,
+                // deathPotion: false,
+                // curePotion: false,
+                // lastBulletForHunter: false,
+                // isCaptain: false,
+                // wasThief: false, // TODO : modifier le jeu pour rajouter l'attribute
+                // // PROPRIETE NW MOON
+                // hasPower: true,
+                // isStupid: false,
+                // loveTriangle: false,
+                // charmedByPiedPiper: false,
+                // protectedByGuard: false,
+                // resistOnce: false,
+                // // PROPRIETE PERSOS
+                // isInfected: false, // anyone
+                // canEatTwice: false, // Grand Mechant Loup
+                // hasModel: '', // Enfant Sauvage
+                // hasTetanus: false, // Loup infecté apr le chevalier
+                // isNextToWolf: false, // Montreur d'Ours
+                // isInCult: false,
+                // isNotInCult: false,
+                // // PROPRIETES VILLAGE
+                // isJinxed: false,
+                // hasBurnt: false,
+                // // Comédien ?
+              },
+              villageAttributes: {
+                hasPower: true,
+              },
+              newMoonAttributes: {
+              },
+            };
+            // GENERAL ATTRIBUTIONS-------------------------------
+            const {
+              id,
+              name,
+              hiddenRole,
+              villageRole,
+            } = player;
+            finalPlayer.id = id;
+            finalPlayer.name = name;
+            finalPlayer.hiddenRole = hiddenRole;
+            finalPlayer.side = setSide(hiddenRole);
+            finalPlayer.villageRole = villageRole;
+
+            const { games } = configuration;
+            if (games.indexOf('Le Village') === -1) {
+              delete finalPlayer.villageAttributes;
+            }
+            else if (games.indexOf('Nouvelle Lune') === -1) {
+              delete finalPlayer.newMoonAttributes;
+            }
+
+            // SPECIFIC ATTRIBUTIONS
+            const att = setAttributes(hiddenRole);
+
+            if (att !== undefined) {
+              att.forEach((currentAtt) => {
+                if (currentAtt === 'inLove') {
+                  finalPlayer.roleAttributes[currentAtt] = false;
+                }
+                else {
+                  finalPlayer.roleAttributes[currentAtt] = true;
+                }
+              });
+            }
+            return finalPlayer;
+          });
+          store.dispatch(saveGameaArrays(newPlayersArray, instructionsArray));
+        })
+        .catch((error) => {
+          console.error('tags request', error);
+        });
+
     }
       break;
     case PREPARE_FOR_PATCH: {

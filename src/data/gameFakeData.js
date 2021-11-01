@@ -199,7 +199,6 @@ export const gameFakeOrder = [
     hasBeenCalled: false,
     picture: voleur,
     text: 'Consigne du role',
-    action: 'buttons',
   },
   {
     phase: 'night',
@@ -207,14 +206,15 @@ export const gameFakeOrder = [
     firstNight: true,
     hasBeenCalled: false,
     picture: cupidon,
-    action: 'selects',
+    text: 'Consigne du role',
   },
   {
+    phase: 'night',
     name: 'Amoureux',
     firstNight: true,
     hasBeenCalled: false,
     picture: cupidon,
-    action: '',
+    text: 'Consigne du role',
   },
   {
     phase: 'night',
@@ -222,7 +222,7 @@ export const gameFakeOrder = [
     firstNight: false,
     hasBeenCalled: false,
     picture: voyante,
-    action: 'buttons',
+    text: 'Consigne du role',
   },
   {
     phase: 'night',
@@ -230,7 +230,7 @@ export const gameFakeOrder = [
     firstNight: false,
     hasBeenCalled: false,
     picture: loupGarou,
-    action: 'buttons',
+    text: 'Consigne du role',
   },
   {
     phase: 'night',
@@ -238,6 +238,6 @@ export const gameFakeOrder = [
     firstNight: false,
     hasBeenCalled: false,
     picture: sorciere,
-    action: 'witch',
+    text: 'Consigne du role',
   },
 ];

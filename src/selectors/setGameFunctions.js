@@ -32,22 +32,26 @@
 
 export const setAttributes = (role) => {
   const attributesArray = [];
+  attributesArray.push('inLove');
   if (role === 'Sorcière') {
     attributesArray.push('deathPotion', 'curePotion');
   }
   else if (role === 'Chasseur') {
     attributesArray.push('lastBulletForHunter');
   }
-  else if (role === 'Cupidon'
-  || role === 'Voleur'
-  || role === 'Enfant Sauvage'
-  || role === 'Chien-Loup'
-  || role === 'Comédien'
-  || role === 'Juge Bègue'
-  || role === '2 Soeurs'
-  || role === '3 Frères') {
-    attributesArray.push('firstnight_call');
+  else if (role === 'Voleur') {
+    attributesArray.push('wasThief');
   }
+  // else if (role === 'Cupidon'
+  // || role === 'Voleur'
+  // || role === 'Enfant Sauvage'
+  // || role === 'Chien-Loup'
+  // || role === 'Comédien'
+  // || role === 'Juge Bègue'
+  // || role === '2 Soeurs'
+  // || role === '3 Frères') {
+  //   attributesArray.push('firstnight_call');
+  // }
   else if (role === 'Ancien') {
     attributesArray.push('firstnight_call', 'resistOnce');
   }

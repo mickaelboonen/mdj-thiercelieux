@@ -1,10 +1,10 @@
 /* eslint-disable max-len */
 /* eslint-disable no-alert */
 
-import { gameFakeData, gameFakeOrder } from 'src/data/gameFakeData';
+// import { gameFakeData, gameFakeOrder } from 'src/data/gameFakeData';
 
 import {
-  SAVE_PLAYERS_FINAL_ARRAY,
+  SAVE_GAME_ARRAYS,
   DISPLAY_PLAYER,
   RESET_PLAYER_TO_DISPLAY,
   KILL_BY_VOTE,
@@ -26,10 +26,10 @@ const _ = require('lodash/');
 // import history from 'src/utils/history';
 
 const initialState = {
-  isGameSet: true,
+  isGameSet: false,
   nightCount: 0,
   dayCount: 0,
-  players: gameFakeData,
+  players: [],
   changes: {},
   thiefRoles: [
     {
@@ -44,7 +44,8 @@ const initialState = {
   newspaper: [],
   playerToDisplay: {},
   roleToPlay: {},
-  gameOrder: gameFakeOrder,
+  gameOrder: [],
+  dayTimeRoles: [],
   winner: '',
   percentage: 0,
   isHunterDead: false,
@@ -240,10 +241,12 @@ const reducer = (state = initialState, action = {}) => {
         percentage: percentage,
       };
     }
-    case SAVE_PLAYERS_FINAL_ARRAY:
+    case SAVE_GAME_ARRAYS:
       return {
         ...state,
-        players: action.array,
+        players: action.players,
+        gameOrder: action.instructions.night,
+        dayTimeRoles: action.instructions.day,
         isGameSet: true,
       };
     case DISPLAY_PLAYER: {
