@@ -90,7 +90,7 @@ export const setChoicesForAction = (role, players, array = []) => {
   return newChoices;
 };
 
-export const setNewAttributesToPlayers = (changes, players, gameOrder) => {
+export const setNewAttributesToPlayers = (changes, players, allRolesInstructions) => {
   const { name, values } = changes;
   let newPlayersArray = [];
 
@@ -101,7 +101,8 @@ export const setNewAttributesToPlayers = (changes, players, gameOrder) => {
 
     currentThief.hiddenRole = newRole;
     currentThief.side = setSide(newRole);
-    const { picture } = gameOrder.find((role) => role.name === newRole);
+    console.log(allRolesInstructions);
+    const { picture } = allRolesInstructions.find((role) => role.name === newRole);
     currentThief.picture = picture;
     const attributes = setAttributes(newRole);
     if (attributes !== undefined) {
@@ -225,4 +226,16 @@ export const setWinnerStatus = (newspaper, players) => {
   }
   // TODO : Abominable Sectaire, Joueur de Flute, Ange, Loup Garou Blanc
   return winner;
+};
+
+export const deleteRoleNotChosen = (chosenName, gameOrder, thiefRoles) => {
+  console.log(chosenName);
+  const roleToDelete = thiefRoles.find((role) => role.name !== chosenName);
+  console.log('roleToDelete', roleToDelete);
+  let newGameOrder = gameOrder.filter((role) => role.name !== roleToDelete.name);
+  if (roleToDelete.name === 'Cupidon') {
+    newGameOrder = gameOrder.filter((role) => role.name !== 'Amoureux');
+  }
+  console.log('ater 2sec filter', newGameOrder);
+  return newGameOrder;
 };

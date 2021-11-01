@@ -55,13 +55,12 @@ const gameMiddleware = (store) => (next) => (action) => {
               newThiefRolesArray.push(role);
             }
           });
-
           // Filling the instructions array with night time roles
           gameOrder.forEach((order) => {
-            const lol = response.data.find((role) => role.name === order);
-            if (rolesList.indexOf(lol.name) >= 0) {
-              instructionsArray.night.push(lol);
-              if (lol.name === 'Cupidon') {
+            const currentRole = response.data.find((role) => role.name === order);
+            if (rolesList.indexOf(currentRole.name) >= 0 && thiefRoles.indexOf(currentRole.name) === -1) {
+              instructionsArray.night.push(currentRole);
+              if (currentRole.name === 'Cupidon') {
                 instructionsArray.night.push(response.data[32]);
               }
             }

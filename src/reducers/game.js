@@ -19,7 +19,7 @@ import {
   SET_REQUESTS_PROGRESSION_BAR,
 } from 'src/actions/game';
 
-import { setNewAttributesToPlayers, breakingNews, setWinnerStatus } from 'src/selectors/setGameFunctions';
+import { setNewAttributesToPlayers, breakingNews, setWinnerStatus, deleteRoleNotChosen } from 'src/selectors/setGameFunctions';
 import { setStatRole, setStatWin, setStatVillageRole } from 'src/selectors/victoryFunctions';
 
 const _ = require('lodash/');
@@ -200,12 +200,27 @@ const reducer = (state = initialState, action = {}) => {
         changes: action.changes,
       };
     case CHANGE_PLAYERS_ATTRIBUTES: {
-      const players = setNewAttributesToPlayers(state.changes, state.players, state.gameOrder);
-      const morningEdition = breakingNews(state.newspaper, state.changes);
+      const {
+        changes,
+        gameOrder,
+        players,
+        newspaper,
+        thiefRoles,
+        dayTimeRoles,
+      } = state;
+      const allRolesInstructions = [...gameOrder, ...dayTimeRoles, ...thiefRoles];
+      const newPlayers = setNewAttributesToPlayers(changes, players, allRolesInstructions);
+      const morningEdition = breakingNews(newspaper, changes);
+      let newGameOrder = gameOrder;
+      if (changes.name === 'Voleur') {
+        newGameOrder = deleteRoleNotChosen(changes.values[0], gameOrder, thiefRoles);
+      }
+      console.log(newGameOrder);
       return {
         ...state,
         changes: {},
-        players: players,
+        gameOrder: newGameOrder,
+        players: newPlayers,
         newspaper: morningEdition,
       };
     }
