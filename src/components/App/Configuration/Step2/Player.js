@@ -40,7 +40,7 @@ const Player = ({
         >
           **********
         </span>
-        {villageRole !== '' && <span className="player__roles-village"> / {villageRole}</span>}
+        {(villageRole !== '' && villageRole !== undefined) && <span className="player__roles-village"> / {villageRole}</span>}
       </p>
       )}
     </li>

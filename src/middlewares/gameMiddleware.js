@@ -35,6 +35,7 @@ const gameMiddleware = (store) => (next) => (action) => {
               configuration,
               players,
               rolesList,
+              allRolesArray,
             },
           } = store.getState();
           const instructionsArray = [];
@@ -47,6 +48,7 @@ const gameMiddleware = (store) => (next) => (action) => {
               instructionsArray.day.push(roleInstructions);
             }
           }
+          // Filling the thief Roles array
           const newThiefRolesArray = [];
           response.data.forEach((role) => {
             if (thiefRoles.indexOf(role.name) >= 0) {
@@ -128,6 +130,8 @@ const gameMiddleware = (store) => (next) => (action) => {
             finalPlayer.side = setSide(hiddenRole);
             finalPlayer.villageRole = villageRole;
 
+            const currentRole = response.data.find((role) => role.name === hiddenRole);
+            finalPlayer.picture = currentRole.picture;
             const { games } = configuration;
             if (games.indexOf('Le Village') === -1) {
               delete finalPlayer.villageAttributes;

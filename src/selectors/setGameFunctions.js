@@ -2,7 +2,7 @@
  * @param {string} role
  * Returns string
  */
- export const setSide = (role) => {
+export const setSide = (role) => {
   let currentSide = '';
 
   if (role === 'Loup-Garou'
@@ -90,9 +90,8 @@ export const setChoicesForAction = (role, players, array = []) => {
   return newChoices;
 };
 
-export const setNewAttributesToPlayers = (changes, players) => {
+export const setNewAttributesToPlayers = (changes, players, gameOrder) => {
   const { name, values } = changes;
-  console.log(name, values);
   let newPlayersArray = [];
 
   if (name === 'Voleur') {
@@ -101,8 +100,9 @@ export const setNewAttributesToPlayers = (changes, players) => {
     const otherPlayers = players.filter((player) => player.hiddenRole !== 'Voleur');
 
     currentThief.hiddenRole = newRole;
-    currentThief.roleAttributes.firstnight_call = false;
     currentThief.side = setSide(newRole);
+    const { picture } = gameOrder.find((role) => role.name === newRole);
+    currentThief.picture = picture;
     const attributes = setAttributes(newRole);
     if (attributes !== undefined) {
       attributes.forEach((currentAtt) => {

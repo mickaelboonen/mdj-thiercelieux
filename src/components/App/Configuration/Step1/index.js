@@ -1,5 +1,6 @@
+/* eslint-disable max-len */
 /* eslint-disable prefer-template */
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
@@ -23,6 +24,7 @@ const Step1 = ({
     currentSlug = '/configurer-ma-partie/les-roles';
   }
   const handleChange = (event) => {
+    // TODO : a améliorer
     let currentId = '';
     const newMoonElement = document.querySelector('#newmoon');
     const nextField = event.target.closest('.configuration__settings > div').nextElementSibling;
@@ -123,12 +125,11 @@ const Step1 = ({
   ];
 
   const toggleCheck = (game) => {
-    console.log(games, games.indexOf(game) >= 0);
     if (games.indexOf(game) >= 0) {
       return true;
     }
+    // Bug if false return;
   };
-  useEffect
   return (
     <div className="configuration__settings">
       <div className="configuration__settings-field" id="player-number-field">

@@ -95,6 +95,7 @@ const Game = ({
       }
     });
   };
+  console.log(playerToDisplay);
   return (
     <div className="current-game">
       <div className="current-game__buttons">

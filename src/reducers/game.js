@@ -200,7 +200,7 @@ const reducer = (state = initialState, action = {}) => {
         changes: action.changes,
       };
     case CHANGE_PLAYERS_ATTRIBUTES: {
-      const players = setNewAttributesToPlayers(state.changes, state.players);
+      const players = setNewAttributesToPlayers(state.changes, state.players, state.gameOrder);
       const morningEdition = breakingNews(state.newspaper, state.changes);
       return {
         ...state,
