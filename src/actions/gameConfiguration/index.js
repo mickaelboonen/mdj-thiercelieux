@@ -92,3 +92,16 @@ export const deletePlayer = (name) => ({
   type: DELETE_PLAYER,
   name,
 });
+
+export const SET_CONFIG_ERROR_MESSAGE = 'SET_CONFIG_ERROR_MESSAGE';
+export const setConfigErrorMessage = (error) => ({
+  type: SET_CONFIG_ERROR_MESSAGE,
+  error,
+});
+
+export const APPLY_SELECTED_CONFIGURATION = 'APPLY_SELECTED_CONFIGURATION';
+export const applySelectedConfiguration = (config) => ({
+  type: APPLY_SELECTED_CONFIGURATION,
+  config,
+});
+

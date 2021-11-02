@@ -29,6 +29,7 @@ import {
   checkConfiguration,
   saveRole,
 } from 'src/selectors/configurationFunctions';
+import { APPLY_SELECTED_CONFIGURATION, SET_CONFIG_ERROR_MESSAGE } from '../actions/gameConfiguration';
 
 const initialState = {
   configuration: {
@@ -104,6 +105,32 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case APPLY_SELECTED_CONFIGURATION: {
+      const { values } = action.config;
+      return {
+        ...state,
+        chosenHiddenRoles: values,
+        errorMessage: [],
+        configDone: true,
+      };
+    }
+    case SET_CONFIG_ERROR_MESSAGE: {
+      const { error } = action;
+      let message = '';
+      if (error === '+') {
+        message = 'Il y a trop de personnages dans cette configuration.';
+      }
+      else {
+        message = "Il n'y a pas assez de personnages dans cette configuration.";
+      }
+      const newErrorMessage = [];
+      newErrorMessage.push(message);
+      return {
+        ...state,
+        errorMessage: newErrorMessage,
+        configDone: false,
+      };
+    }
     case DELETE_PLAYER: {
       const newPlayersArray = state.players.filter((player) => player.name !== action.name);
       return {

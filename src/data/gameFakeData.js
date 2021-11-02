@@ -9,14 +9,71 @@
 // import sorciere from 'src/assets/pictures/roles/sorciere.png';
 
 export const gameOrder = [
-  'Voleur',
-  'Ancien',
-  'Cupidon',
-  'Amoureux',
-  'Salvateur',
-  'Voyante',
-  'Loup-Garou',
-  'Sorcière',
+  {
+    name: 'classic',
+    order: [
+      'Voleur',
+      'Ancien',
+      'Cupidon',
+      'Amoureux',
+      'Salvateur',
+      'Voyante',
+      'Loup-Garou',
+      'Sorcière',
+    ],
+  },
+];
+
+export const gameChangedOrder = [
+  {
+    name: 'ancient-first',
+    type: 'order',
+    values: [
+      'Ancien',
+      'Voleur',
+      'Cupidon',
+      'Amoureux',
+      'Salvateur',
+      'Voyante',
+      'Loup-Garou',
+      'Sorcière',
+    ],
+  },
+  {
+    name: 'Vilagers vs Werewolves 9',
+    type: 'roles',
+    values: [
+      'Loup-Garou',
+      'Loup-Garou',
+      'Loup-Garou',
+      'Simple Villageois',
+      'Simple Villageois',
+      'Simple Villageois',
+      'Simple Villageois',
+      'Simple Villageois',
+      'Simple Villageois',
+    ],
+  },
+  {
+    name: 'selected-cards',
+    type: 'cards',
+    values: [
+    ],
+  },
+  {
+    name: 'seeker-first',
+    type: 'order',
+    values: [
+      'Voyante',
+      'Voleur',
+      'Ancien',
+      'Cupidon',
+      'Amoureux',
+      'Salvateur',
+      'Loup-Garou',
+      'Sorcière',
+    ],
+  },
 ];
 
 // export const gameFakeData = [

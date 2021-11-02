@@ -56,8 +56,9 @@ const gameMiddleware = (store) => (next) => (action) => {
             }
           });
           // Filling the instructions array with night time roles
-          gameOrder.forEach((order) => {
+          gameOrder[0].order.forEach((order) => {
             const currentRole = response.data.find((role) => role.name === order);
+
             if (rolesList.indexOf(currentRole.name) >= 0 && thiefRoles.indexOf(currentRole.name) === -1) {
               instructionsArray.night.push(currentRole);
               if (currentRole.name === 'Cupidon') {

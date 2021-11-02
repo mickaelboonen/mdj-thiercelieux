@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 import { Link } from 'react-router-dom';
+import { Eye } from 'react-feather';
 
 // TODO placeholders
 
@@ -16,6 +17,9 @@ const RolesStep = ({
   configDone,
   chosenHiddenRoles,
   chosenVillageRoles,
+  preferences,
+  setConfigErrorMessage,
+  applySelectedConfiguration,
 }) => {
   const filteredRolesList = rolesList.filter((role) => role !== 'Simple Villageois' && role !== 'Loup-Garou');
   const filteredVillageList = villageList.filter((role) => role !== 'Fermier' && role !== 'Vagabond');
@@ -79,13 +83,33 @@ const RolesStep = ({
     }
     return placeholder;
   };
+  const configPreferences = preferences.filter((pref) => pref.type === 'roles');
+
+  const handleConfigurationChange = (event) => {
+    if (event.target.value !== 'Classic') {
+      const selectedConfiguration = configPreferences.find((pref) => pref.name === event.target.value);
+
+      if (selectedConfiguration.values.length > numberPlayers) {
+        setConfigErrorMessage('+');
+      }
+      else if (selectedConfiguration.values.length < numberPlayers) {
+        setConfigErrorMessage('-');
+      }
+      else {
+        applySelectedConfiguration(selectedConfiguration);
+      }
+    }
+  };
+
   // TODO : .roles-step__roles elements are repeating : factorise
   return (
     <div className="roles-step">
       <div className="roles-step__configuration">
-        <select name="" id="">
-          <option value="">Définir ma configuration</option>
-          <option value="">Mes préférences</option>
+        <select name="" id="" onChange={handleConfigurationChange}>
+          <option value="classic">Choisir une configuration pré-enregistrée</option>
+          {configPreferences.map((pref) => (
+            <option className="config__option" key={pref.name} value={pref.name}>{pref.name} - {pref.values.length} rôles</option>
+          ))}
         </select>
       </div>
       <div className="roles-step__roles">

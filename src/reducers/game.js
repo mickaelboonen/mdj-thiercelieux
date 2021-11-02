@@ -19,7 +19,12 @@ import {
   SET_REQUESTS_PROGRESSION_BAR,
 } from 'src/actions/game';
 
-import { setNewAttributesToPlayers, breakingNews, setWinnerStatus, deleteRoleNotChosen } from 'src/selectors/setGameFunctions';
+import {
+  setNewAttributesToPlayers,
+  breakingNews,
+  setWinnerStatus,
+  deleteRoleNotChosen,
+} from 'src/selectors/setGameFunctions';
 import { setStatRole, setStatWin, setStatVillageRole } from 'src/selectors/victoryFunctions';
 
 const _ = require('lodash/');
