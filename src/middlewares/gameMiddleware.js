@@ -14,7 +14,7 @@ import {
 } from 'src/actions/game';
 
 import { setSide, setAttributes } from 'src/selectors/setGameFunctions';
-import { gameOrder } from 'src/data/gameFakeData';
+import { gameOrder, gameChangedOrder } from 'src/data/gameFakeData';
 
 import { setNewStatsForPatchRequest } from 'src/selectors/victoryFunctions';
 
@@ -55,8 +55,11 @@ const gameMiddleware = (store) => (next) => (action) => {
               newThiefRolesArray.push(role);
             }
           });
+
+          const selectedOrder = gameChangedOrder.find((order) => order.name === configuration.gameOrder);
+          console.log(selectedOrder);
           // Filling the instructions array with night time roles
-          gameOrder[0].order.forEach((order) => {
+          selectedOrder.values.forEach((order) => {
             const currentRole = response.data.find((role) => role.name === order);
 
             if (rolesList.indexOf(currentRole.name) >= 0 && thiefRoles.indexOf(currentRole.name) === -1) {
@@ -66,6 +69,7 @@ const gameMiddleware = (store) => (next) => (action) => {
               }
             }
           });
+          console.log(instructionsArray);
           // TODO : requete Cartes Nouvelle Lune si besoin
           const newPlayersArray = players.map((player) => {
             const finalPlayer = {

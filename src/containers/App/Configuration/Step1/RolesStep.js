@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import RolesStep from 'src/components/App/Configuration/Step1/RolesStep';
 
-import { saveRole, applySelectedConfiguration, setConfigErrorMessage } from 'src/actions/gameConfiguration';
+import { saveRoleAction, applySelectedConfiguration, setConfigErrorMessage } from 'src/actions/gameConfiguration';
 
 const mapStateToProps = (state) => ({
   rolesList: state.configuration.rolesList,
@@ -16,7 +16,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   saveRole: (value, id, name = '', checked) => {
-    dispatch(saveRole(value, id, name, checked));
+    dispatch(saveRoleAction(value, id, name, checked));
   },
   applySelectedConfiguration: (config) => {
     dispatch(applySelectedConfiguration(config));

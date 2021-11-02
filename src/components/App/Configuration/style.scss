@@ -14,6 +14,7 @@
   background-color: vars.$primary-color;
   margin-top: vars.$navbar-height;
   padding: 0 vars.$gutter;
+  position: relative;
 
   &__title {
     height: 18%;
@@ -164,14 +165,27 @@
         position: relative;
         @include vars.checkboxes;
         @include vars.radio;
+        justify-content: space-between;
 
 
         & label {
           display: flex;
           flex-direction: row-reverse;
+          justify-content: space-between;
         }
       }
     }
+
+    // &-preferences {
+    //   position: absolute;
+    //   inset: 40% 0;
+    //   background-color: #e61616;
+    //   display: none;
+
+    //   &--open {
+    //     display: block;
+    //   }
+    // }
   }
 }
 

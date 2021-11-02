@@ -26,6 +26,19 @@ export const gameOrder = [
 
 export const gameChangedOrder = [
   {
+    name: 'classic',
+    order: [
+      'Voleur',
+      'Ancien',
+      'Cupidon',
+      'Amoureux',
+      'Salvateur',
+      'Voyante',
+      'Loup-Garou',
+      'Sorcière',
+    ],
+  },
+  {
     name: 'ancient-first',
     type: 'order',
     values: [

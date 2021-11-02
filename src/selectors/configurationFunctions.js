@@ -218,54 +218,54 @@ export const saveRole = (action, array) => {
     name,
     checked,
     id,
-    value,
+    number,
   } = action;
   if (name === '') {
     if (checked) {
       if (id === 'hidden-roles-list') {
-        if (value === '2 Soeurs') {
+        if (number === '2 Soeurs') {
           for (let i = 1; i <= 2; i++) {
-            currentArray.push(value);
+            currentArray.push(number);
           }
         }
-        else if (value === '3 Frères') {
+        else if (number === '3 Frères') {
           for (let i = 1; i <= 3; i++) {
-            currentArray.push(value);
+            currentArray.push(number);
           }
         }
         else {
-          currentArray.push(value);
+          currentArray.push(number);
         }
       }
       else {
-        currentArray.push(value);
+        currentArray.push(number);
       }
     }
     else if (id === 'hidden-roles-list') {
-      if (value === '2 Soeurs') {
-        currentArray = currentArray.filter((role) => role !== value);
+      if (number === '2 Soeurs') {
+        currentArray = currentArray.filter((role) => role !== number);
       }
-      else if (value === '3 Frères') {
-        currentArray = currentArray.filter((role) => role !== value);
+      else if (number === '3 Frères') {
+        currentArray = currentArray.filter((role) => role !== number);
       }
       else {
-        currentArray = currentArray.filter((role) => role !== value);
+        currentArray = currentArray.filter((role) => role !== number);
       }
     }
     else {
-      currentArray = currentArray.filter((role) => role !== value);
+      currentArray = currentArray.filter((role) => role !== number);
     }
   }
   else if (id === 'hidden-roles-selects') {
     const newArray = currentArray.filter((role) => role !== name);
-    for (let i = 1; i <= value; i++) {
+    for (let i = 1; i <= number; i++) {
       newArray.push(name);
     }
     currentArray = newArray;
   }
   else {
     const newArray = currentArray.filter((role) => role !== name);
-    for (let i = 1; i <= value; i++) {
+    for (let i = 1; i <= number; i++) {
       newArray.push(name);
     }
     currentArray = newArray;

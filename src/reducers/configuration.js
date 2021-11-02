@@ -9,13 +9,15 @@ import {
   ADD_NEW_PLAYER,
   SAVE_SELECT_CHANGE,
   SAVE_PLAYER,
-  SAVE_ROLE,
+  SAVE_ROLE_ACTION,
   SAVE_ROLES_RANDOMLY,
   SAVE_PLAYER_FROM_USER,
   CHANGE_PSEUDO_INPUT_VALUE,
   CHECK_FOR_THIEF,
   GO_BACK_TO_PLAYERS_LIST,
   DELETE_PLAYER,
+  APPLY_SELECTED_CONFIGURATION,
+  SET_CONFIG_ERROR_MESSAGE,
 } from 'src/actions/gameConfiguration';
 import { CLEAR_INPUT, SAVE_HOME_DATA } from 'src/actions';
 
@@ -29,7 +31,6 @@ import {
   checkConfiguration,
   saveRole,
 } from 'src/selectors/configurationFunctions';
-import { APPLY_SELECTED_CONFIGURATION, SET_CONFIG_ERROR_MESSAGE } from '../actions/gameConfiguration';
 
 const initialState = {
   configuration: {
@@ -106,10 +107,10 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case APPLY_SELECTED_CONFIGURATION: {
-      const { values } = action.config;
+      const newChosenRoles = action.config.values;
       return {
         ...state,
-        chosenHiddenRoles: values,
+        chosenHiddenRoles: newChosenRoles,
         errorMessage: [],
         configDone: true,
       };
@@ -180,12 +181,11 @@ const reducer = (state = initialState, action = {}) => {
         thiefRoles: thiefArray,
       };
     }
-    case SAVE_ROLE: {
-      const { name, id, value } = action;
+    case SAVE_ROLE_ACTION: {
+      const { name, id, number } = action;
       const messageError = state.errorMessage;
       let hiddenRolesArray = state.chosenHiddenRoles;
       let villageRolesArray = state.chosenVillageRoles;
-
       let newMessageArray = [];
       if (id.includes('hidden')) {
         hiddenRolesArray = saveRole(action, hiddenRolesArray);
@@ -195,12 +195,11 @@ const reducer = (state = initialState, action = {}) => {
         villageRolesArray = saveRole(action, villageRolesArray);
         newMessageArray = checkTotalRoles(villageRolesArray, messageError, state.configuration.playersNumber, 'village');
       }
-      const finalErrorArray = checkRolesNumber(name, value, newMessageArray);
+      const finalErrorArray = checkRolesNumber(name, number, newMessageArray);
 
       // Checks if the number of roles chosen is the same as the number of players
       // Returns bool
       const configDone = checkConfiguration(state.configuration, hiddenRolesArray.length, villageRolesArray.length);
-
       return {
         ...state,
         chosenHiddenRoles: hiddenRolesArray,
@@ -358,12 +357,7 @@ const reducer = (state = initialState, action = {}) => {
     }
     case SET_GAME_ORDER: {
       const newConfigurationObject = state.configuration;
-      if (action.value === 'classic') {
-        newConfigurationObject.gameOrder = []; // inclure ici le tableau d'ordre classique
-      }
-      else {
-        newConfigurationObject.gameOrder = []; // inclure ici le tableau d'ordre
-      }
+      newConfigurationObject.gameOrder = action.value;
       return {
         ...state,
         configuration: newConfigurationObject,

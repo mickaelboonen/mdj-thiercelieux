@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 import { Link } from 'react-router-dom';
+import { Eye } from 'react-feather';
 
 const Step1 = ({
   games,
@@ -15,6 +16,7 @@ const Step1 = ({
   setRolesAttribution,
   errorMessage,
   nextStepSlug,
+  preferences,
 }) => {
   let currentSlug = '';
   if (nextStepSlug === 'manual') {
@@ -130,6 +132,7 @@ const Step1 = ({
     }
     // Bug if false return;
   };
+  const gameOrder = preferences.filter((pref) => pref.type === 'order');
   return (
     <div className="configuration__settings">
       <div className="configuration__settings-field" id="player-number-field">
@@ -148,16 +151,19 @@ const Step1 = ({
       </div>
       <div className="configuration__settings-field" id="game-order-field">
         <h5 className="configuration__settings-field-title">Ordre de jeu</h5>
+        {/* <Eye size={15} onClick={handleEyeClick} /> */}
         <div className="configuration__settings-field-item">
           <label htmlFor="classic-order">Classique
             <input type="radio" name="game-order" id="classic-order" value="classic" onChange={handleChange} />
           </label>
         </div>
-        {/* <div className="configuration__settings-field-item">
-          <label htmlFor="preferences-order">Mes préférences
-            <input type="radio" name="game-order" id="preferences-order" value="preferences" onChange={handleChange} />
-          </label>
-        </div> */}
+        {gameOrder.map((order) => (
+          <div key={order.name} className="configuration__settings-field-item">
+            <label htmlFor={order.name}>{order.name}
+              <input type="radio" name="game-order" id={order.name} value={order.name} onChange={handleChange} />
+            </label>
+          </div>
+        ))}
       </div>
       <div className="configuration__settings-field" id="newmoon-cards-field">
         <h5 className="configuration__settings-field-title">Cartes Nouvelle Lune</h5>
@@ -193,6 +199,9 @@ const Step1 = ({
           {errorMessage.map((error) => <p key={error}>{error}</p>)}
         </div>
       )}
+      {/* <div className="configuration__settings-preferences">
+
+      </div> */}
     </div>
   );
 };
