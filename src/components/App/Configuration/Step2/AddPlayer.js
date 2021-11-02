@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Field from 'src/containers/Field';
@@ -14,7 +14,9 @@ const AddPlayer = ({
   saveSelectChange,
   savePlayer,
   usersList,
+  usersInput,
   pseudo,
+  goBackToPlayersList,
 }) => {
   const isVillageSelected = games.indexOf('Le Village');
 
@@ -23,12 +25,14 @@ const AddPlayer = ({
   };
 
   const handleClick = () => {
+    const error = document.querySelector('.add-form__error');
     if (pseudo !== '') {
+      error.classList.remove('add-form__error--open');
       savePlayer();
     }
     else {
       // TODO
-      // Message d'erreur
+      error.classList.add('add-form__error--open');
     }
   };
 
@@ -36,6 +40,10 @@ const AddPlayer = ({
   const location = useLocation();
   if (location.search === '?mode=aleatoire') {
     randomMode = true;
+  }
+
+  const handleGoBackClick = () => {
+    goBackToPlayersList();
   }
   return (
     <form className="add-form">
@@ -48,9 +56,12 @@ const AddPlayer = ({
           placeholder="Veuillez renseigner le prénom"
           aria-describedby="specificityHelpBlock"
         />
+        <small className={classNames('add-form__pseudo-small', { 'add-form__pseudo-small--hidden': usersInput.length !== 0 })}>
+          Pour les joueurs qui possèdent un compte sur le Maitre du Jeu de Thiercelieux.
+        </small>
       </div>
       <ul
-        className={classNames('add-form__users-results-list', { 'add-form__users-results-list--open': usersList.length !== 0 })}
+        className={classNames('add-form__users-results-list', { 'add-form__users-results-list--open': usersInput.length !== 0 })}
       >
         {usersList.map((user) => <UserLi key={user.id} {...user} />)}
       </ul>
@@ -62,6 +73,9 @@ const AddPlayer = ({
           name="pseudoInput"
           placeholder="Veuillez renseigner le prénom"
         />
+        {/* <small className="add-form__pseudo-small">
+          Et pour ceux qui ne possèdent pas de compte sur le Maitre du Jeu de Thiercelieux. Pensez à vous inscrire, pour garder vos statistiques de jeu !
+        </small> */}
       </div>
       {!randomMode && (
       <div className="add-form__roles">
@@ -84,15 +98,24 @@ const AddPlayer = ({
       <div className="add-form__button">
         <button type="button" onClick={handleClick}>Ajouter ce joueur</button>
       </div>
+      <div className="add-form__error">
+        <p>Vous devez saisir un pseudo pour pouvoir ajouter un nouveau joueur. Pour annuler, veuillez cliquer sur "Annuler".</p>
+      </div>
+      <div className="add-form__go-back">
+        <button type="button" onClick={handleGoBackClick}>Annuler</button>
+      </div>
     </form>
   );
 };
 
 AddPlayer.propTypes = {
+  pseudo: PropTypes.string.isRequired,
+  usersInput: PropTypes.string.isRequired,
 
   // FUNCTIONS
   savePlayer: PropTypes.func.isRequired,
   saveSelectChange: PropTypes.func.isRequired,
+  goBackToPlayersList: PropTypes.func.isRequired,
 
   // ARRAYS
   games: PropTypes.array.isRequired,

@@ -81,3 +81,8 @@ export const CHECK_FOR_THIEF = 'CHECK_FOR_THIEF';
 export const checkForThief = () => ({
   type: CHECK_FOR_THIEF,
 });
+
+export const GO_BACK_TO_PLAYERS_LIST = 'GO_BACK_TO_PLAYERS_LIST';
+export const goBackToPlayersList = () => ({
+  type: GO_BACK_TO_PLAYERS_LIST,
+});

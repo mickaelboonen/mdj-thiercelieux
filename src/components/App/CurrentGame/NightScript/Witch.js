@@ -74,7 +74,7 @@ const Witch = ({ players, setChanges, toggleValidationBox }) => {
     // And then we toggle the death potion box
     handleTogglePotion(event);
   };
-
+  console.log(deadPlayer);
   // Listening to the Next Step click
   const handleValidateClick = () => {
     // DOM element to end turn

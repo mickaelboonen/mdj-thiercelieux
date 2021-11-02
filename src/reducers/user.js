@@ -20,7 +20,7 @@ import {
   CLEAR_INPUT,
   REINITIALIZE_DATA,
 } from 'src/actions/RolesDescriptions';
-import { SAVE_PLAYER_FROM_USER } from 'src/actions/gameConfiguration';
+import { SAVE_PLAYER_FROM_USER, SAVE_USERNAMES_LIST } from 'src/actions/gameConfiguration';
 import storage from 'redux-persist/lib/storage';
 import avatarPicture from 'src/assets/pictures/cards/croissant.gif';
 
@@ -56,6 +56,11 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case SAVE_USERNAMES_LIST:
+      return {
+        ...state,
+        usersList: action.users,
+      };
     case CLEAR_MESSAGES:
       return {
         ...state,

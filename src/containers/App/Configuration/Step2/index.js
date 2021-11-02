@@ -10,6 +10,7 @@ import {
 const mapStateToProps = (state) => ({
   configuration: state.configuration.configuration,
   players: state.configuration.players,
+  usersList: state.user.usersList,
   addingNewPlayer: state.configuration.addingNewPlayer,
 });
 

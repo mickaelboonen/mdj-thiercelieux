@@ -6,8 +6,7 @@ import {
   saveUser,
   login,
 } from 'src/actions/user';
-import { setAuthErrorMessage } from 'src/actions/user/login';
-import { LOGOUT } from '../actions/user/login';
+import { setAuthErrorMessage, LOGOUT } from 'src/actions/user/login';
 
 axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
