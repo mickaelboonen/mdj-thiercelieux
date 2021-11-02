@@ -136,3 +136,51 @@
     bottom: -3.5rem;
   }
 }
+
+.player {
+  list-style-type: disc;
+  margin-bottom: 0.7rem;
+
+  &__name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & p {
+
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+    }
+
+    & svg {
+      color: vars.$primary-color;
+    }
+
+  }
+
+  &__roles {
+    font-style: italic;
+    font-size: 0.9em;
+    &-hidden {
+      display: none;
+
+      &--open {
+        display: inline-block;
+
+      }
+    }
+
+    &-stars {
+      display: none;
+
+      &--open {
+        display: inline-block;
+      }
+    }
+
+    &-village {
+
+    }
+  }
+}

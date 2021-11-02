@@ -15,6 +15,7 @@ import {
   CHANGE_PSEUDO_INPUT_VALUE,
   CHECK_FOR_THIEF,
   GO_BACK_TO_PLAYERS_LIST,
+  DELETE_PLAYER,
 } from 'src/actions/gameConfiguration';
 import { CLEAR_INPUT, SAVE_HOME_DATA } from 'src/actions';
 
@@ -103,6 +104,13 @@ const initialState = {
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case DELETE_PLAYER: {
+      const newPlayersArray = state.players.filter((player) => player.name !== action.name);
+      return {
+        ...state,
+        players: newPlayersArray,
+      };
+    }
     case GO_BACK_TO_PLAYERS_LIST:
       return {
         ...state,

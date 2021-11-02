@@ -86,3 +86,9 @@ export const GO_BACK_TO_PLAYERS_LIST = 'GO_BACK_TO_PLAYERS_LIST';
 export const goBackToPlayersList = () => ({
   type: GO_BACK_TO_PLAYERS_LIST,
 });
+
+export const DELETE_PLAYER = 'DELETE_PLAYER';
+export const deletePlayer = (name) => ({
+  type: DELETE_PLAYER,
+  name,
+});

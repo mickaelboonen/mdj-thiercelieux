@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AddPlayer from 'src/containers/App/Configuration/AddPlayer';
+import Player from 'src/containers/App/Configuration/Step2/Player';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import '../style.scss';
-import Player from './Player';
 
 const Step2 = ({
   configuration,

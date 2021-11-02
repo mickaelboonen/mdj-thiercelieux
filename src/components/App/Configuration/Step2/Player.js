@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Trash } from 'react-feather';
 
 import '../style.scss';
 
@@ -8,6 +9,7 @@ const Player = ({
   hiddenRole,
   villageRole,
   showRoles,
+  deletePlayer,
 }) => {
   const handleClick = (event) => {
     const target = event.currentTarget;
@@ -21,11 +23,19 @@ const Player = ({
       target.nextElementSibling.classList.toggle('player__roles-stars--open');
     }
   };
+
+  const handleDeletePlayer = (event) => {
+    const playerToDelete = event.target.closest('div').id;
+    deletePlayer(playerToDelete);
+  }
   return (
     <li className="player">
-      <p className="player__name">
-        {name}
-      </p>
+      <div className="player__name" id={name}>
+        <p>
+          {name}
+        </p>
+        <Trash size={20} onClick={handleDeletePlayer} />
+      </div>
       {showRoles && (
       <p className="player__roles">
         <span
@@ -49,6 +59,7 @@ const Player = ({
 
 Player.propTypes = {
   showRoles: PropTypes.bool.isRequired,
+  deletePlayer: PropTypes.func.isRequired,
 
   // STRINGS
   name: PropTypes.string.isRequired,
