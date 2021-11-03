@@ -229,13 +229,14 @@ export const setWinnerStatus = (newspaper, players) => {
 };
 
 export const deleteRoleNotChosen = (chosenName, gameOrder, thiefRoles) => {
-  console.log(chosenName);
   const roleToDelete = thiefRoles.find((role) => role.name !== chosenName);
-  console.log('roleToDelete', roleToDelete);
-  let newGameOrder = gameOrder.filter((role) => role.name !== roleToDelete.name);
-  if (roleToDelete.name === 'Cupidon') {
-    newGameOrder = gameOrder.filter((role) => role.name !== 'Amoureux');
+  const { name } = roleToDelete;
+  if (name === 'Loup-Garou') {
+    return gameOrder;
   }
-  console.log('ater 2sec filter', newGameOrder);
+  let newGameOrder = gameOrder.filter((role) => role.name !== name);
+  if (name === 'Cupidon') {
+    newGameOrder = newGameOrder.filter((role) => role.name !== 'Amoureux');
+  }
   return newGameOrder;
 };

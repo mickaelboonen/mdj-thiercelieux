@@ -11,7 +11,7 @@
 export const gameOrder = [
   {
     name: 'classic',
-    order: [
+    values: [
       'Voleur',
       'Ancien',
       'Cupidon',
@@ -27,7 +27,8 @@ export const gameOrder = [
 export const gameChangedOrder = [
   {
     name: 'classic',
-    order: [
+    type: 'order',
+    values: [
       'Voleur',
       'Ancien',
       'Cupidon',
@@ -68,6 +69,21 @@ export const gameChangedOrder = [
     ],
   },
   {
+    name: 'Classique',
+    type: 'roles',
+    values: [
+      'Loup-Garou',
+      'Loup-Garou',
+      'Voyante',
+      'Simple Villageois',
+      'Sorcière',
+      'Voleur',
+      'Chasseur',
+      'Petite-Fille',
+      'Cupidon',
+    ],
+  },
+  {
     name: 'selected-cards',
     type: 'cards',
     values: [
@@ -89,237 +105,53 @@ export const gameChangedOrder = [
   },
 ];
 
-// export const gameFakeData = [
-//   {
-//     id: 1,
-//     userId: 1,
-//     name: 'Micka',
-//     hiddenRole: 'Loup-Garou',
-//     villageRole: '',
-//     side: 'Loup-Garou',
-//     picture: loupGarou,
-//     canBeKilled: true,
-//     canVote: true,
-//     isAlive: true,
-//     deadTonight: false,
-//     deathCause: '',
-//     roleAttributes: {
-//       inLove: false,
-//       isCharmed: false,
-//       deathPotion: false,
-//       curePotion: false,
-//     },
-//   },
-//   {
-//     id: 2,
-//     userId: 8,
-//     name: 'Quentin',
-//     hiddenRole: 'Sorcière',
-//     villageRole: '',
-//     side: 'Village',
-//     picture: sorciere,
-//     canBeKilled: true,
-//     canVote: true,
-//     isAlive: true,
-//     deadTonight: false,
-//     deathCause: '',
-//     roleAttributes: {
-//       inLove: false,
-//       isCharmed: false,
-//       deathPotion: true,
-//       curePotion: true,
-//     },
-//   },
-//   {
-//     id: 3,
-//     userId: null,
-//     name: 'Océane',
-//     hiddenRole: 'Cupidon',
-//     villageRole: '',
-//     side: 'Village',
-//     picture: cupidon,
-//     canBeKilled: true,
-//     canVote: true,
-//     isAlive: true,
-//     deadTonight: false,
-//     deathCause: '',
-//     roleAttributes: {
-//       inLove: false,
-//       isCharmed: false,
-//       deathPotion: false,
-//       curePotion: false,
-//     },
-//   },
-//   {
-//     id: 4,
-//     userId: null,
-//     name: 'Lud',
-//     hiddenRole: 'Villageois',
-//     villageRole: '',
-//     side: 'Village',
-//     picture: simpleVillageois,
-//     canBeKilled: true,
-//     canVote: true,
-//     isAlive: true,
-//     deadTonight: false,
-//     deathCause: '',
-//     roleAttributes: {
-//       inLove: false,
-//       isCharmed: false,
-//       deathPotion: false,
-//       curePotion: false,
-//     },
-//   },
-//   {
-//     id: 5,
-//     userId: null,
-//     name: 'Chris',
-//     hiddenRole: 'Voyante',
-//     villageRole: '',
-//     side: 'Village',
-//     picture: voyante,
-//     canBeKilled: true,
-//     canVote: true,
-//     isAlive: true,
-//     deadTonight: false,
-//     deathCause: '',
-//     roleAttributes: {
-//       inLove: false,
-//       isCharmed: false,
-//       deathPotion: false,
-//       curePotion: false,
-//     },
-//   },
-//   {
-//     id: 6,
-//     userId: null,
-//     name: 'BDR',
-//     hiddenRole: 'Chasseur',
-//     villageRole: '',
-//     side: 'Village',
-//     picture: chasseur,
-//     canBeKilled: true,
-//     canVote: true,
-//     isAlive: true,
-//     deadTonight: false,
-//     deathCause: '',
-//     roleAttributes: {
-//       inLove: false,
-//       isCharmed: false,
-//       deathPotion: false,
-//       curePotion: false,
-//     },
-//   },
-//   {
-//     id: 7,
-//     userId: 41,
-//     name: 'Sixtou',
-//     hiddenRole: 'Petite Fille',
-//     villageRole: '',
-//     side: 'Village',
-//     picture: petiteFille,
-//     canBeKilled: true,
-//     canVote: true,
-//     isAlive: true,
-//     deadTonight: false,
-//     deathCause: '',
-//     roleAttributes: {
-//       inLove: false,
-//       isCharmed: false,
-//       deathPotion: false,
-//       curePotion: false,
-//     },
-//   },
-//   {
-//     id: 8,
-//     userId: null,
-//     name: 'Cara',
-//     hiddenRole: 'Voleur',
-//     villageRole: '',
-//     side: 'Village',
-//     picture: voleur,
-//     canBeKilled: false,
-//     canVote: true,
-//     isAlive: true,
-//     deadTonight: false,
-//     deathCause: '',
-//     roleAttributes: {
-//       inLove: false,
-//       isCharmed: false,
-//       deathPotion: false,
-//       curePotion: false,
-//     },
-//   },
-//   {
-//     id: 9,
-//     userId: 2,
-//     name: 'Christal',
-//     hiddenRole: 'Loup-Garou',
-//     villageRole: '',
-//     side: 'Loup-Garou',
-//     picture: loupGarou,
-//     canBeKilled: true,
-//     canVote: true,
-//     isAlive: true,
-//     deadTonight: false,
-//     deathCause: '',
-//     roleAttributes: {
-//       inLove: false,
-//       isCharmed: false,
-//       deathPotion: false,
-//       curePotion: false,
-//     },
-//   },
-// ];
-
-// export const gameFakeOrder = [
-//   {
-//     phase: 'night',
-//     name: 'Voleur',
-//     firstNight: true,
-//     hasBeenCalled: false,
-//     picture: voleur,
-//     text: 'Consigne du role',
-//   },
-//   {
-//     phase: 'night',
-//     name: 'Cupidon',
-//     firstNight: true,
-//     hasBeenCalled: false,
-//     picture: cupidon,
-//     text: 'Consigne du role',
-//   },
-//   {
-//     phase: 'night',
-//     name: 'Amoureux',
-//     firstNight: true,
-//     hasBeenCalled: false,
-//     picture: cupidon,
-//     text: 'Consigne du role',
-//   },
-//   {
-//     phase: 'night',
-//     name: 'Voyante',
-//     firstNight: false,
-//     hasBeenCalled: false,
-//     picture: voyante,
-//     text: 'Consigne du role',
-//   },
-//   {
-//     phase: 'night',
-//     name: 'Loup-Garou',
-//     firstNight: false,
-//     hasBeenCalled: false,
-//     picture: loupGarou,
-//     text: 'Consigne du role',
-//   },
-//   {
-//     phase: 'night',
-//     name: 'Sorcière',
-//     firstNight: false,
-//     hasBeenCalled: false,
-//     picture: sorciere,
-//     text: 'Consigne du role',
-//   },
-// ];
-
+// MODEL POUR LE GAME MIDDLEWARE
+const finalPlayer = {
+  id: null,
+  userId: null,
+  name: '',
+  hiddenRole: '',
+  villageRole: '',
+  side: '', // Pour les roles qui changent de coté en cours de partie
+  picture: '', // TODO
+  canBeKilled: true,
+  canVote: true,
+  isAlive: true,
+  deadTonight: false,
+  deathCause: '',
+  roleAttributes: {
+    // // PROPRIETE THIERCELIEUX
+    // inLove: false,
+    // seenBySeer: false,
+    // savedByWitch: false,
+    // deathPotion: false,
+    // curePotion: false,
+    // lastBulletForHunter: false,
+    // isCaptain: false,
+    // wasThief: false, // TODO : modifier le jeu pour rajouter l'attribute
+    // // PROPRIETE NW MOON
+    // hasPower: true,
+    // isStupid: false,
+    // loveTriangle: false,
+    // charmedByPiedPiper: false,
+    // protectedByGuard: false,
+    // resistOnce: false,
+    // // PROPRIETE PERSOS
+    // isInfected: false, // anyone
+    // canEatTwice: false, // Grand Mechant Loup
+    // hasModel: '', // Enfant Sauvage
+    // hasTetanus: false, // Loup infecté apr le chevalier
+    // isNextToWolf: false, // Montreur d'Ours
+    // isInCult: false,
+    // isNotInCult: false,
+    // // PROPRIETES VILLAGE
+    // isJinxed: false,
+    // hasBurnt: false,
+    // // Comédien ?
+  },
+  villageAttributes: {
+    hasPower: true,
+  },
+  newMoonAttributes: {
+  },
+};

@@ -57,19 +57,22 @@ const gameMiddleware = (store) => (next) => (action) => {
           });
 
           const selectedOrder = gameChangedOrder.find((order) => order.name === configuration.gameOrder);
-          console.log(selectedOrder);
+          
           // Filling the instructions array with night time roles
           selectedOrder.values.forEach((order) => {
             const currentRole = response.data.find((role) => role.name === order);
-
-            if (rolesList.indexOf(currentRole.name) >= 0 && thiefRoles.indexOf(currentRole.name) === -1) {
-              instructionsArray.night.push(currentRole);
-              if (currentRole.name === 'Cupidon') {
-                instructionsArray.night.push(response.data[32]);
+            if (rolesList.indexOf(currentRole.name) >= 0) {
+              if (currentRole.name !== 'Voleur') {
+                instructionsArray.night.push(currentRole);
+                if (currentRole.name === 'Cupidon') {
+                  instructionsArray.night.push(response.data[32]);
+                }
+              }
+              else if (currentRole.name === 'Voleur' && thiefRoles.indexOf('Voleur') === -1) {
+                instructionsArray.night.push(currentRole);
               }
             }
           });
-          console.log(instructionsArray);
           // TODO : requete Cartes Nouvelle Lune si besoin
           const newPlayersArray = players.map((player) => {
             const finalPlayer = {
@@ -85,36 +88,7 @@ const gameMiddleware = (store) => (next) => (action) => {
               isAlive: true,
               deadTonight: false,
               deathCause: '',
-              roleAttributes: {
-                // // PROPRIETE THIERCELIEUX
-                // inLove: false,
-                // seenBySeer: false,
-                // savedByWitch: false,
-                // deathPotion: false,
-                // curePotion: false,
-                // lastBulletForHunter: false,
-                // isCaptain: false,
-                // wasThief: false, // TODO : modifier le jeu pour rajouter l'attribute
-                // // PROPRIETE NW MOON
-                // hasPower: true,
-                // isStupid: false,
-                // loveTriangle: false,
-                // charmedByPiedPiper: false,
-                // protectedByGuard: false,
-                // resistOnce: false,
-                // // PROPRIETE PERSOS
-                // isInfected: false, // anyone
-                // canEatTwice: false, // Grand Mechant Loup
-                // hasModel: '', // Enfant Sauvage
-                // hasTetanus: false, // Loup infecté apr le chevalier
-                // isNextToWolf: false, // Montreur d'Ours
-                // isInCult: false,
-                // isNotInCult: false,
-                // // PROPRIETES VILLAGE
-                // isJinxed: false,
-                // hasBurnt: false,
-                // // Comédien ?
-              },
+              roleAttributes: {},
               villageAttributes: {
                 hasPower: true,
               },
