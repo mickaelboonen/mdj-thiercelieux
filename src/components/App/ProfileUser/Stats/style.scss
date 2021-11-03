@@ -1,0 +1,49 @@
+@use 'src/styles/vars';
+
+.stats {
+  
+  background-color: vars.$primary-color;
+  width: 100vw;
+  height: vars.$main-layout-height;
+  margin-top: vars.$navbar-height;
+  text-align: left;
+    overflow: auto;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  // flex-direction: column;
+
+  & h3 {
+    height: 10%;
+    color: vars.$tertiary-color;
+    font-family: vars.$fontAbril;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    filter: drop-shadow(2px 3px 1px rgb(8, 4, 4));
+    width: 100%;
+    @include vars.centered-flex;
+  }
+
+  &__category {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 1rem;
+
+    &-title {
+      margin-bottom: 0.2rem;
+      font-weight: bold;
+      color: vars.$quenary-color;
+    }
+
+    &-list {
+      padding: 0.5rem;
+      background-color: vars.$secondary-color;
+      line-height: 1.2em;
+
+
+      &-item {
+        // margin-bottom: 0.2rem;
+      }
+    }
+  }
+}
