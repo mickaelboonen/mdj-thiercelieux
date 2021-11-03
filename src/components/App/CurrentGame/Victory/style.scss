@@ -1,0 +1,67 @@
+@use 'src/styles/vars';
+
+.table {
+  margin-right: 0.5rem;
+  height: fit-content;
+  width: 50%;
+  border: 1px solid #fff;
+
+  &__header {
+
+  }
+
+  &__body {
+
+    &-row {
+      padding: 0.5rem;
+
+      &-column {
+        padding: 0.1rem;
+        vertical-align: middle;
+
+        & img {
+          width: 2rem;
+        }
+
+        &-name {
+          color: vars.$tertiary-color;
+          text-align: left;
+
+          &--alive {
+            color: vars.$secondary-color;
+          }
+        }
+      }
+    }
+  }
+  &:last-child{
+    margin-right: 0;
+  }
+}
+
+
+.victory {
+  background-color: vars.$primary-color;
+  height: 100vh;
+  @include vars.centered-flex;
+  flex-direction: column;
+  padding: vars.$gutter;
+
+  &__tables {
+    display: flex;
+    width: 100%;
+  }
+
+  &__message {
+    position: absolute;
+    inset: 0;
+    background-color: vars.$primary-color;
+    @include vars.centered-flex;
+
+    & div {
+      
+    display:flex;
+    flex-direction: column;
+    }
+  }
+}

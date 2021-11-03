@@ -50,10 +50,10 @@ export const savePlayer = () => ({
   type: SAVE_PLAYER,
 });
 
-export const SAVE_ROLE = 'SAVE_ROLE';
-export const saveRole = (value, id, name, checked) => ({
-  type: SAVE_ROLE,
-  value,
+export const SAVE_ROLE_ACTION = 'SAVE_ROLE_ACTION';
+export const saveRoleAction = (number, id, name, checked) => ({
+  type: SAVE_ROLE_ACTION,
+  number,
   id,
   name,
   checked,
@@ -76,3 +76,32 @@ export const changePseudoInputValue = (value) => ({
   type: CHANGE_PSEUDO_INPUT_VALUE,
   value,
 });
+
+export const CHECK_FOR_THIEF = 'CHECK_FOR_THIEF';
+export const checkForThief = () => ({
+  type: CHECK_FOR_THIEF,
+});
+
+export const GO_BACK_TO_PLAYERS_LIST = 'GO_BACK_TO_PLAYERS_LIST';
+export const goBackToPlayersList = () => ({
+  type: GO_BACK_TO_PLAYERS_LIST,
+});
+
+export const DELETE_PLAYER = 'DELETE_PLAYER';
+export const deletePlayer = (name) => ({
+  type: DELETE_PLAYER,
+  name,
+});
+
+export const SET_CONFIG_ERROR_MESSAGE = 'SET_CONFIG_ERROR_MESSAGE';
+export const setConfigErrorMessage = (error) => ({
+  type: SET_CONFIG_ERROR_MESSAGE,
+  error,
+});
+
+export const APPLY_SELECTED_CONFIGURATION = 'APPLY_SELECTED_CONFIGURATION';
+export const applySelectedConfiguration = (config) => ({
+  type: APPLY_SELECTED_CONFIGURATION,
+  config,
+});
+

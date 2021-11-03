@@ -7,6 +7,7 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 
 // Middlewares
 import gameMiddleware from 'src/middlewares/gameMiddleware';
+import homeMiddleware from 'src/middlewares/homeMiddleware';
 import loginMiddleware from 'src/middlewares/loginMiddleware';
 import usersMiddleware from 'src/middlewares/usersMiddleware';
 import rolesMiddleware from 'src/middlewares/rolesMiddleware';
@@ -18,9 +19,9 @@ const persistConfig = {
   storage: storage,
   stateReconciler: autoMergeLevel2, // see "Merge Process" section for details.
   // Reducers we don't want to be persisted
-  blacklist: ['app', 'mails', 'members', 'rolesDescriptions'],
+  blacklist: ['mails', 'members', 'rolesDescriptions'],
   // Reducers that needd to be persisted
-  whitelist: ['game', 'configuration', 'user'],
+  whitelist: ['game', 'configuration', 'user', 'app', 'victory'],
 };
 
 // Applying the persistConfig to the reducer
@@ -34,6 +35,7 @@ const middlewares = applyMiddleware(
   rolesMiddleware,
   profileMiddleware,
   registerMiddleware,
+  homeMiddleware,
 );
 
 // on met bout à bout le redux devtools et nos middlewares

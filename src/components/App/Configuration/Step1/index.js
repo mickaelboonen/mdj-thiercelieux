@@ -1,11 +1,14 @@
+/* eslint-disable max-len */
 /* eslint-disable prefer-template */
 import React from 'react';
 import PropTypes from 'prop-types';
 
 import './style.scss';
 import { Link } from 'react-router-dom';
+import { Eye } from 'react-feather';
 
 const Step1 = ({
+  games,
   setPlayersNumber,
   setGames,
   setGameOrder,
@@ -13,6 +16,7 @@ const Step1 = ({
   setRolesAttribution,
   errorMessage,
   nextStepSlug,
+  preferences,
 }) => {
   let currentSlug = '';
   if (nextStepSlug === 'manual') {
@@ -22,6 +26,7 @@ const Step1 = ({
     currentSlug = '/configurer-ma-partie/les-roles';
   }
   const handleChange = (event) => {
+    // TODO : a améliorer
     let currentId = '';
     const newMoonElement = document.querySelector('#newmoon');
     const nextField = event.target.closest('.configuration__settings > div').nextElementSibling;
@@ -97,6 +102,37 @@ const Step1 = ({
       behavior: 'smooth',
     });
   };
+
+  const gamesArray = [
+    {
+      name: 'Nouvelle Lune',
+      value: 'Nouvelle Lune',
+      id: 'newmoon',
+    },
+    {
+      name: 'Personnages',
+      value: 'Personnages',
+      id: 'characters',
+    },
+    {
+      name: 'Le Village',
+      value: 'Le Village',
+      id: 'village',
+    },
+    {
+      name: 'Aucune extension',
+      value: 'none',
+      id: 'none',
+    },
+  ];
+
+  const toggleCheck = (game) => {
+    if (games.indexOf(game) >= 0) {
+      return true;
+    }
+    // Bug if false return;
+  };
+  const gameOrder = preferences.filter((pref) => pref.type === 'order');
   return (
     <div className="configuration__settings">
       <div className="configuration__settings-field" id="player-number-field">
@@ -105,39 +141,29 @@ const Step1 = ({
       </div>
       <div className="configuration__settings-field" id="expansions-field">
         <h5 className="configuration__settings-field-title">Extensions</h5>
-        <div className="configuration__settings-field-item">
-          <label htmlFor="newmoon">Nouvelle Lune
-            <input type="checkbox" name="extensions" value="Nouvelle Lune" id="newmoon" onChange={handleChange} />
-          </label>
-        </div>
-        <div className="configuration__settings-field-item">
-          <label htmlFor="characters">Personnages
-            <input type="checkbox" name="extensions" value="Personnages" id="characters" onChange={handleChange} />
-          </label>
-        </div>
-        <div className="configuration__settings-field-item">
-          <label htmlFor="village">Le Village
-            <input type="checkbox" name="extensions" value="Le Village" id="village" onChange={handleChange} />
-          </label>
-        </div>
-        <div className="configuration__settings-field-item">
-          <label htmlFor="none">Aucune extension
-            <input type="checkbox" name="extensions" value="none" id="none" onChange={handleChange} />
-          </label>
-        </div>
+        {gamesArray.map((game) => (
+          <div key={game.id} className="configuration__settings-field-item">
+            <label htmlFor={game.id}>{game.name}
+              <input checked={toggleCheck(game.value)} type="checkbox" name="extensions" value={game.value} id={game.id} onChange={handleChange} />
+            </label>
+          </div>
+        ))}
       </div>
       <div className="configuration__settings-field" id="game-order-field">
         <h5 className="configuration__settings-field-title">Ordre de jeu</h5>
+        {/* <Eye size={15} onClick={handleEyeClick} /> */}
         <div className="configuration__settings-field-item">
           <label htmlFor="classic-order">Classique
             <input type="radio" name="game-order" id="classic-order" value="classic" onChange={handleChange} />
           </label>
         </div>
-        {/* <div className="configuration__settings-field-item">
-          <label htmlFor="preferences-order">Mes préférences
-            <input type="radio" name="game-order" id="preferences-order" value="preferences" onChange={handleChange} />
-          </label>
-        </div> */}
+        {gameOrder.map((order) => (
+          <div key={order.name} className="configuration__settings-field-item">
+            <label htmlFor={order.name}>{order.name}
+              <input type="radio" name="game-order" id={order.name} value={order.name} onChange={handleChange} />
+            </label>
+          </div>
+        ))}
       </div>
       <div className="configuration__settings-field" id="newmoon-cards-field">
         <h5 className="configuration__settings-field-title">Cartes Nouvelle Lune</h5>
@@ -173,6 +199,9 @@ const Step1 = ({
           {errorMessage.map((error) => <p key={error}>{error}</p>)}
         </div>
       )}
+      {/* <div className="configuration__settings-preferences">
+
+      </div> */}
     </div>
   );
 };
@@ -180,6 +209,7 @@ const Step1 = ({
 Step1.propTypes = {
   nextStepSlug: PropTypes.string.isRequired,
   errorMessage: PropTypes.array.isRequired,
+  games: PropTypes.array.isRequired,
 
   // FUNCTIONS
   setPlayersNumber: PropTypes.func.isRequired,

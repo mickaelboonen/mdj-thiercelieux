@@ -1,30 +1,19 @@
 /* eslint-disable no-lonely-if */
 // DATA
-import { hiddenRoles, rolesSelects } from 'src/data/hiddenRoles';
-import { villagePeople, villageRolesSelects } from 'src/data/villagePeople';
-import { newMoonCards, newMoonCardsSelects } from 'src/data/newMoonCards';
+// TODO : to be changed
+import { rolesSelects, villageRolesSelects, newMoonCardsSelects } from 'src/data/selectsCardsData';
 
 // ACTIONS
 import {
   CLEAR_INPUT,
   SAVE_CARDS,
-  FILTER_BY,
   DISPLAY_ROLE,
   TOGGLE_FOCUS,
-  DISPLAY_RESULTS,
   REINITIALIZE_DATA,
   DISPLAY_CARD,
   CHANGE_ROLES_INPUT_VALUE,
+  APPLY_FILTER,
 } from 'src/actions/RolesDescriptions';
-
-// SELECTORS
-import {
-  sortBy,
-  filterByPower,
-  filterBySide,
-  filterByPhase,
-} from 'src/selectors/sortingFunctions';
-import { selectData } from 'src/selectors/selectData';
 
 const initialState = {
   randomData: [],
@@ -34,6 +23,8 @@ const initialState = {
   onFocus: false,
   isFiltered: false,
   rolesInput: '',
+  filter: '',
+  sort: '',
   loading: true,
   hiddenRolesPage: false,
   villageRolesPage: false,
@@ -43,10 +34,11 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
     case REINITIALIZE_DATA: {
-      const resetData = selectData(state);
+      // TODO
+      // const resetData = selectData(state);
       return {
         ...state,
-        data: resetData,
+        data: state.data,
       };
     }
     case DISPLAY_ROLE: {
@@ -68,51 +60,18 @@ const reducer = (state = initialState, action = {}) => {
         ...state,
         onFocus: !state.onFocus,
       };
-    case DISPLAY_RESULTS: {
-      const currentData = selectData(state);
-      const newRolesArray = currentData.filter((role) => {
-        if (role.name.toLowerCase().includes(action.value.toLowerCase())) {
-          return role;
-        }
-      });
 
-      return {
-        ...state,
-        data: newRolesArray,
-      };
-    }
-    case FILTER_BY: {
-      let newArray = [];
-      if (action.filter === 'sorting-select') {
-        newArray = sortBy(action.value, state.data);
+    case APPLY_FILTER: {
+      let currentSelect = '';
+      if (action.id === 'sorting-select') {
+        currentSelect = 'sort';
       }
       else {
-        // VILLAGE PEOPLE
-        if (action.value !== '' && state.villageRolesPage) {
-          newArray = filterByPower(action.value, villagePeople);
-        }
-        else if (action.value === '' && action.filter === 'power-select') {
-          newArray = villagePeople;
-        }
-
-        // HIDDEN ROLES
-        else if (action.value !== '' && state.hiddenRolesPage) {
-          newArray = filterBySide(action.value, hiddenRoles);
-        }
-        else if (action.value === '' && action.filter === 'side-select') {
-          newArray = hiddenRoles;
-        }
-        // NEW MOON CARDS
-        else if (action.value !== '' && state.newMoonCardsPage) {
-          newArray = filterByPhase(action.value, newMoonCards);
-        }
-        else if (action.value === '' && action.filter === 'phase-select') {
-          newArray = newMoonCards;
-        }
+        currentSelect = 'filter';
       }
       return {
         ...state,
-        data: newArray,
+        [currentSelect]: action.filter,
       };
     }
     case CHANGE_ROLES_INPUT_VALUE:

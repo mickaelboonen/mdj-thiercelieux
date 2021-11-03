@@ -1,0 +1,92 @@
+@use 'src/styles/vars';
+
+.app {
+  // width: 500px;
+  width: 100vw;
+  height: 100vh;
+  // margin: 1em auto;
+  text-align: center;
+
+  // & img {
+  //   max-width: 150px;
+  // }
+
+  // TEMPORARY CSS
+  & .desktop {
+    display: none;
+    height: 100vh;
+    background-color: vars.$primary-color;
+
+      &__container {
+        width: 50%;
+        padding: 1rem;
+        margin: auto;
+        height: 100vh;
+
+        &-text {
+          display: flex;
+          font-family: vars.$fontRakkas;
+          align-items: center;
+          width: 80%;
+          margin: auto;
+
+
+          & div {
+            border: 1px solid #fff;
+            background-color: vars.$primary-color;
+            padding: 1rem;;
+            width: 80%;
+
+            & p {
+              margin: auto;
+              text-align: justify;
+              color: vars.$secondary-color;
+              margin-bottom: 1.5rem;
+              letter-spacing: 1px;
+
+              &:last-child {
+                margin-bottom: 0;
+              }
+              
+              & span {
+                font-weight: bold;
+                color: vars.$tertiary-color;
+                text-shadow: 1px 1px 1px black;
+              }
+
+              & i {
+                font-style: italic;
+                color: vars.$quaternary-color;
+                text-shadow: 1px 1px 1px black;
+
+              }
+            }
+          }
+
+        }
+        &-logo {
+          width: 40%;
+          max-width: 50rem;
+        }
+
+        & h1 {
+          margin: 1rem auto;
+          font-family: vars.$fontRakkas;
+          color: vars.$tertiary-color;
+          text-shadow: 1px 1px 1px rgb(221, 201, 201);
+          font-size: 2em;
+          text-transform: uppercase;
+        }
+      }
+
+  }
+  @media (min-width: 500px) {
+    & .desktop {
+      display: block;
+    }
+
+    &__mobile {
+      display: none;
+    }
+  }
+}

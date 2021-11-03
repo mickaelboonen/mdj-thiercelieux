@@ -24,13 +24,16 @@ import { SAVE_PLAYER_FROM_USER } from 'src/actions/gameConfiguration';
 import storage from 'redux-persist/lib/storage';
 import avatarPicture from 'src/assets/pictures/cards/croissant.gif';
 
+// TEMPORARY DATA
+import { gameChangedOrder } from 'src/data/gameFakeData';
+
 const initialState = {
   pseudo: 'FakePseudo',
   isConnected: false,
   email: 'fakeemail@lol.com',
   token: '',
   avatar: avatarPicture,
-  preferences: [],
+  preferences: gameChangedOrder,
   creations: [],
   statistics: [],
   errors: [],
@@ -114,7 +117,7 @@ const reducer = (state = initialState, action = {}) => {
         token,
         avatar,
         email,
-        preferences,
+        // preferences,
         creations,
         statistics,
         favoriteRole,
@@ -126,7 +129,7 @@ const reducer = (state = initialState, action = {}) => {
         pseudo: pseudo,
         token: token,
         avatar: avatar,
-        preferences: preferences,
+        // preferences: preferences,
         creations: creations,
         statistics: statistics,
         favoriteRole: favoriteRole,

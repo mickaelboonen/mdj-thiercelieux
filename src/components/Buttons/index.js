@@ -5,10 +5,11 @@ import './style.scss';
 
 const Buttons = ({
   data,
-  filterBy,
+  applyFilter,
 }) => {
   const handleChangeToFilter = (event) => {
-    filterBy(event.currentTarget.value, event.currentTarget.id);
+    const { value, id } = event.currentTarget;
+    applyFilter(value, id);
   };
   return (
     <div className="buttons">
@@ -36,7 +37,7 @@ Buttons.propTypes = {
   })).isRequired,
 
   // FUNCTIONS
-  filterBy: PropTypes.func.isRequired,
+  applyFilter: PropTypes.func.isRequired,
 };
 
 export default Buttons;

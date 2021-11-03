@@ -1,15 +1,18 @@
 import { connect } from 'react-redux';
 import Sunset from 'src/components/Animations/Sunset';
 
-import { setGame } from 'src/actions/game';
+import { setGame, setNight } from 'src/actions/game';
 
 const mapStateToProps = (state) => ({
-  
+  isGameSet: state.game.isGameSet,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setGame: () => {
     dispatch(setGame());
+  },
+  setNight: () => {
+    dispatch(setNight());
   },
 });
 

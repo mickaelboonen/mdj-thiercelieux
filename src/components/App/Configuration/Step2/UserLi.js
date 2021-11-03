@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import './style.scss';
 
-const UserLi = ({ username, id, savePlayerFromUsers }) => {
+const UserLi = ({ pseudo, id, savePlayerFromUsers }) => {
   const handleClick = () => {
-    if (window.confirm(`Confirmez-vous l'ajout de ${username} ?`)) {
+    if (window.confirm(`Confirmez-vous l'ajout de ${pseudo} ?`)) {
       // TODO
       // handle the hidden fields
-      savePlayerFromUsers(username, id);
+      savePlayerFromUsers(pseudo, id);
     }
   };
   return (
@@ -16,13 +16,13 @@ const UserLi = ({ username, id, savePlayerFromUsers }) => {
       className="add-form__users-results-list-item"
       onClick={handleClick}
     >
-      {username}
+      {pseudo}
     </li>
   );
 };
 
 UserLi.propTypes = {
-  username: PropTypes.string.isRequired,
+  pseudo: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
   savePlayerFromUsers: PropTypes.func.isRequired,
 };

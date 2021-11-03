@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-import { hiddenRoles } from 'src/data/hiddenRoles';
-
 import {
   CHANGE_AVATAR,
   saveAvatar,
@@ -15,7 +13,7 @@ const api = axios.create({
   baseURL: 'http://localhost:3001',
 });
 
-api.defaults.headers.common['Authorization'] = 'OurSuperLongRandomSecretToSignOurJWTgre5ezg4jyt5j4ui64gn56bd4sfs5qe4erg5t5yjh46yu6knsw4q';
+// api.defaults.headers.common['Authorization'] = 'OurSuperLongRandomSecretToSignOurJWTgre5ezg4jyt5j4ui64gn56bd4sfs5qe4erg5t5yjh46yu6knsw4q';
 
 const gameMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
@@ -44,14 +42,8 @@ const gameMiddleware = (store) => (next) => (action) => {
       //   .catch((error) => {
       //     console.error('login request', error);
       //   });
-      const avatars = hiddenRoles.map((role) => {
-        delete role.excerpt;
-        delete role.description;
-        delete role.firstNight;
-        delete role.side;
-        delete role.expansion;
-        return role;
-      });
+      const { app: { hiddenRoles } } = store.getState();
+      const avatars = hiddenRoles.map((role) => role.avatar);
       store.dispatch(saveAvatarsList(avatars));
       break;
     }

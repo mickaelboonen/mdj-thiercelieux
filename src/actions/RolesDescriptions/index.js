@@ -1,8 +1,8 @@
-export const FILTER_BY = 'FILTER_BY';
-export const filterBy = (value, filter) => ({
-  type: FILTER_BY,
-  value,
+export const APPLY_FILTER = 'APPLY_FILTER';
+export const applyFilter = (filter, id) => ({
+  type: APPLY_FILTER,
   filter,
+  id,
 });
 
 export const FETCH_CARDS = 'FETCH_CARDS';

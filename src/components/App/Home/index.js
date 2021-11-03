@@ -8,7 +8,7 @@ import Expansions from 'src/containers/App/Home/Expansions';
 import './style.scss';
 
 const Home = () => (
-  <div>
+  <div className="home">
     <Introduction />
     <Characters />
     <Expansions />

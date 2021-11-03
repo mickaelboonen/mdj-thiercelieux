@@ -9,9 +9,6 @@
   }
 }
 
-
-
-
 .configuration {
   height: vars.$main-layout-height;
   background-color: vars.$primary-color;
@@ -167,50 +164,16 @@
         position: relative;
         @include vars.checkboxes;
         @include vars.radio;
+        justify-content: space-between;
 
 
         & label {
           display: flex;
           flex-direction: row-reverse;
+          justify-content: space-between;
         }
       }
     }
   }
 }
 
-.player {
-  list-style-type: disc;
-  margin-bottom: 0.7rem;
-
-  &__name {
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 0.3rem;
-
-  }
-
-  &__roles {
-    font-style: italic;
-    font-size: 0.9em;
-    &-hidden {
-      display: none;
-
-      &--open {
-        display: inline-block;
-
-      }
-    }
-
-    &-stars {
-      display: none;
-
-      &--open {
-        display: inline-block;
-      }
-    }
-
-    &-village {
-
-    }
-  }
-}

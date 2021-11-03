@@ -1,0 +1,32 @@
+@use 'src/styles/vars';
+
+.progress-bar {
+  width: 100%;
+
+&__background {
+  width: 90%;
+  height: 1rem;
+  margin: auto;
+  border-radius: 10px;
+  background-color: vars.$quaternary-color;
+  position: relative;
+  border: 1px solid vars.$secondary-color;
+  box-shadow: 1px 1px 1px #111;
+
+  &-progress {
+    height: 100%;
+    border-radius: 10px;
+    background-color: vars.$secondary-color;
+    transition: 0.5s;
+  }
+}
+
+&__legend {
+  margin: 0.2rem;
+  font-size: 0.8em;
+  text-align: center;
+  font-style: italic;
+  color: vars.$quaternary-color;
+}
+
+}

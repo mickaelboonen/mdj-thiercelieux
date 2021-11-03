@@ -1,30 +1,39 @@
 import axios from 'axios';
 
-import { FETCH_USERS, saveUsersList, ADD_NEW_FRIEND, saveNewFriend } from 'src/actions/user';
+import {
+  FETCH_USERS,
+  saveUsersList,
+  ADD_NEW_FRIEND,
+  saveNewFriend,
+  DELETE_FRIEND,
+} from 'src/actions/user';
+
+import { FETCH_USERS_LIST, saveUsernamesList } from 'src/actions/gameConfiguration';
 import { users } from 'src/data/users';
-import { DELETE_FRIEND } from '../actions/user';
 
 axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
 
 const api = axios.create({
-  baseURL: 'http://localhost:3001',
+  baseURL: 'http://localhost:3000',
 });
-
-// Methods
-// GET, POST, PATCH, PUT, DELETE
 
 const registerMiddleware = (store) => (next) => (action) => {
   switch (action.type) {
-    case FETCH_USERS: {
-      // TODO request
-      const filteredUsers = users.map((user) => {
-        if (user.username.toLowerCase().includes(action.value) && action.value !== '') {
-          return user;
-        }
-      });
-      const finalUsers = filteredUsers.filter((user) => user !== undefined);
-      store.dispatch(saveUsersList(finalUsers));
-    }
+    case FETCH_USERS:
+      api.get('/api/users/list')
+        .then((response) => {
+          console.log(action);
+          const filteredUsers = [];
+          response.data.forEach((user) => {
+            if (user.pseudo.toLowerCase().includes(action.value) && action.value !== '') {
+              filteredUsers.push(user);
+            }
+          });
+          store.dispatch(saveUsersList(filteredUsers));
+        })
+        .catch((error) => {
+          console.error('list user', error);
+        });
       break;
     case ADD_NEW_FRIEND: {
       // TODO request

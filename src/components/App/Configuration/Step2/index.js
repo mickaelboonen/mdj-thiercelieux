@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import AddPlayer from 'src/containers/App/Configuration/AddPlayer';
+import Player from 'src/containers/App/Configuration/Step2/Player';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 
 import '../style.scss';
-import Player from './Player';
 
 const Step2 = ({
   configuration,
@@ -13,10 +13,15 @@ const Step2 = ({
   addingNewPlayer,
   currentStep,
   setRolesRandomly,
+  checkForThief,
 }) => {
   let { playersNumber } = configuration;
   const numberSavedPlayers = players.length;
   playersNumber = Number(playersNumber);
+
+  useEffect(() => {
+    checkForThief();
+  }, []);
 
   const history = useHistory();
 
@@ -110,6 +115,7 @@ Step2.propTypes = {
   // FUNCTIONS
   addNewPlayer: PropTypes.func.isRequired,
   setRolesRandomly: PropTypes.func.isRequired,
+  checkForThief: PropTypes.func.isRequired,
 
 };
 

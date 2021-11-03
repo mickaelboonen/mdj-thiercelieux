@@ -4,9 +4,11 @@
   width: 100%;
   height: 100vh;
   background-color: #1a1a1a;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center   ;
+  justify-content: space-between;
 
   &__buttons {
     height: 10vh;
@@ -14,11 +16,11 @@
     flex-direction: column;
     justify-content: center;
 
-    &:last-child {
-      height: 6vh;;
+    &:nth-last-child(2) {
+      height: 6vh;
     }
 
-    & button {
+    & a, button {
       width: fit-content;
       margin: auto;
       background-color:rgba(118,8,23);
@@ -34,16 +36,11 @@
       font-style: italic;
       font-family: 'Special Elite', cursive;
     }
-
   }
 
-
   &__players {
-    // border: 1px solid rgba(255, 255, 0, 0.562);
     height: 50vh;
     width: 80vw;
-    margin: 5rem auto;
-    // border-radius: 50%;
     position: relative;
     padding: 1rem;
 
@@ -56,11 +53,28 @@
       border-radius: 50%;
 
       &--inlove {
-        border: 3px solid rgb(255, 0, 76);
+        &:after {
+          content: '\2764';
+          color: rgb(255, 0, 76);
+          position: absolute;
+          bottom: 0.2rem;
+          right: 0.2rem;
+          font-size: 2em;
+        }
       }
 
       &--charmed {
-        border: 3px solid #f0f;
+        border: 3px solid rgb(0, 204, 255);
+        // &:after {
+        //   content:url(src/assets/icons/flute.jpg);
+        //   color: rgb(255, 0, 76);
+        //   position: absolute;
+        //   // width: 1rem;
+        //   // height: 1rem;
+        //   bottom: 0.2rem;
+        //   left: 0.2rem;
+        //   font-size: 2em;
+        // }
       }
 
       & img {
@@ -76,10 +90,24 @@
     }
   }
 
+  &__footer {
+    position: relative;
+    width: 100%;
 
+    &-input {
+      position: absolute;
+      top: -1.5rem;
+      left: 30vw;
+      color: vars.$quaternary-color;
+      font-style: italic;
+
+      @include vars.checkboxes;
+
+    }
+  }
   &__village {
     background-color: rgb(128, 127, 128);
-    margin: 0 1rem;
+    margin: 0 1rem ;
     height: 10vh;
     display: flex;
     flex-direction: column;
@@ -107,7 +135,6 @@
         }
       }
     }
-
   }
 }
 
@@ -128,8 +155,84 @@
   }
 
   &--dead {
-    
     background-color: red;
   }
-
+ 
+  &--hidden {
+    display: none;
+  }
 }
+
+.newspaper {
+  position: absolute;
+  inset: 0;
+  background-color: #1a1a1ae7;
+  @include vars.centered-flex;
+
+  &--closed {
+    display: none;
+  }
+
+  &__close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #fff;
+  }
+  &__container {
+    background-color: vars.$secondary-color;
+    padding: 0.5rem;
+    width: 70%;
+    height: 50%;
+    box-shadow: 1px 1px 1px black;
+
+    &-header {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      height: 20%;
+      text-transform: uppercase;
+      text-shadow: 1px 1px 1px vars.$primary-color;
+      font-family: vars.$fontRakkas;
+
+      &__title {
+        color: vars.$tertiary-color;
+        font-size: 1.3em;
+      }
+      &__breaking-news {
+        width: 100%;
+        color: vars.$quenary-color;
+        text-align: center;
+        font-size: 1.3em;
+        letter-spacing: 0.3rem
+      }
+    }
+
+
+    &-list {
+      height: 60%;
+      overflow: auto;
+
+      &-item {
+        margin-bottom: 0.5rem;
+        font-family: vars.$fontRakkas;
+      }
+    }
+
+    &-hunter {
+      height: 16%;
+      text-align: center;
+      
+      & img {
+        width: 2rem;
+      }
+
+      & p {
+        font-size: 0.8em;
+        font-style: italic;
+        color: #fff;
+      }
+    }
+  }
+}
+

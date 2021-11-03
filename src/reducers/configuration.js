@@ -9,12 +9,17 @@ import {
   ADD_NEW_PLAYER,
   SAVE_SELECT_CHANGE,
   SAVE_PLAYER,
-  SAVE_ROLE,
+  SAVE_ROLE_ACTION,
   SAVE_ROLES_RANDOMLY,
   SAVE_PLAYER_FROM_USER,
   CHANGE_PSEUDO_INPUT_VALUE,
+  CHECK_FOR_THIEF,
+  GO_BACK_TO_PLAYERS_LIST,
+  DELETE_PLAYER,
+  APPLY_SELECTED_CONFIGURATION,
+  SET_CONFIG_ERROR_MESSAGE,
 } from 'src/actions/gameConfiguration';
-import { CLEAR_INPUT } from 'src/actions';
+import { CLEAR_INPUT, SAVE_HOME_DATA } from 'src/actions';
 
 // SELECTORS
 import {
@@ -27,22 +32,6 @@ import {
   saveRole,
 } from 'src/selectors/configurationFunctions';
 
-// DATA
-import { hiddenRoles } from 'src/data/hiddenRoles';
-import { villagePeople } from 'src/data/villagePeople';
-
-// TEMPORARY DATA
-const villageRoleList = villagePeople.map((role) => {
-  let deconstructedName = '';
-  if (role.name === "L'Institutrice") {
-    deconstructedName = 'Institutrice';
-  }
-  else {
-    deconstructedName = role.name.split(' ')[1];
-  }
-  return deconstructedName;
-});
-
 const initialState = {
   configuration: {
     playersNumber: 8,
@@ -51,6 +40,8 @@ const initialState = {
     newmoonCards: [], // si classic, on injecte le tableau classic sinon les prefs
     rolesAttribution: 'manual',
   },
+  allRolesArray: [],
+  villageRoles: [],
   players: [
     // {
     //   id: 1,
@@ -92,6 +83,11 @@ const initialState = {
     //   name: 'Cara',
     //   // hiddenRole: 'Servante Dévouée',
     // },
+    // // {
+    // //   id: 9,
+    // //   name: 'Benoit',
+    // //   // hiddenRole: 'Servante Dévouée',
+    // // },
   ],
   pseudo: '',
   userId: null,
@@ -100,17 +96,66 @@ const initialState = {
   rolesList: [],
   villageList: [],
   addingNewPlayer: false,
-  addNewPlayer: {
-    state: false,
-  },
+  // addNewPlayer: false,
   errorMessage: [],
   chosenHiddenRoles: [],
   chosenVillageRoles: [],
   configDone: false,
+  thiefRoles: [],
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
+    case APPLY_SELECTED_CONFIGURATION: {
+      const newChosenRoles = action.config.values;
+      return {
+        ...state,
+        chosenHiddenRoles: newChosenRoles,
+        errorMessage: [],
+        configDone: true,
+      };
+    }
+    case SET_CONFIG_ERROR_MESSAGE: {
+      const { error } = action;
+      let message = '';
+      if (error === '+') {
+        message = 'Il y a trop de personnages dans cette configuration.';
+      }
+      else {
+        message = "Il n'y a pas assez de personnages dans cette configuration.";
+      }
+      const newErrorMessage = [];
+      newErrorMessage.push(message);
+      return {
+        ...state,
+        errorMessage: newErrorMessage,
+        configDone: false,
+      };
+    }
+    case DELETE_PLAYER: {
+      const newPlayersArray = state.players.filter((player) => player.name !== action.name);
+      return {
+        ...state,
+        players: newPlayersArray,
+      };
+    }
+    case GO_BACK_TO_PLAYERS_LIST:
+      return {
+        ...state,
+        addingNewPlayer: false,
+      };
+    case CHECK_FOR_THIEF: {
+      const thief = state.chosenHiddenRoles.find((role) => role === 'Voleur');
+      const newRolesList = state.chosenHiddenRoles;
+      if ((state.configuration.playersNumber + 2) !== newRolesList.length && thief !== undefined) {
+        newRolesList.push('Simple Villageois');
+        newRolesList.push('Simple Villageois');
+      }
+      return {
+        ...state,
+        chosenHiddenRoles: newRolesList,
+      };
+    }
     case CLEAR_INPUT:
       return {
         ...state,
@@ -123,21 +168,24 @@ const reducer = (state = initialState, action = {}) => {
         userId: action.id,
       };
     case SAVE_ROLES_RANDOMLY: {
-      let playersWithRoles = setRolesRandomly(state.chosenHiddenRoles, state.players, 'hidden');
+      const rolesArrays = setRolesRandomly(state.chosenHiddenRoles, state.players, 'hidden');
+      let playersArray = rolesArrays.playersWithRoles;
+      const thiefArray = rolesArrays.thiefRoles;
+
       if (state.configuration.games.indexOf('Le Village') >= 0) {
-        playersWithRoles = setRolesRandomly(state.chosenVillageRoles, playersWithRoles, 'village');
+        playersArray = setRolesRandomly(state.chosenVillageRoles, playersArray, 'village');
       }
       return {
         ...state,
-        players: playersWithRoles,
+        players: playersArray,
+        thiefRoles: thiefArray,
       };
     }
-    case SAVE_ROLE: {
-      const { name, id, value } = action;
+    case SAVE_ROLE_ACTION: {
+      const { name, id, number } = action;
       const messageError = state.errorMessage;
       let hiddenRolesArray = state.chosenHiddenRoles;
       let villageRolesArray = state.chosenVillageRoles;
-
       let newMessageArray = [];
       if (id.includes('hidden')) {
         hiddenRolesArray = saveRole(action, hiddenRolesArray);
@@ -147,12 +195,11 @@ const reducer = (state = initialState, action = {}) => {
         villageRolesArray = saveRole(action, villageRolesArray);
         newMessageArray = checkTotalRoles(villageRolesArray, messageError, state.configuration.playersNumber, 'village');
       }
-      const finalErrorArray = checkRolesNumber(name, value, newMessageArray);
+      const finalErrorArray = checkRolesNumber(name, number, newMessageArray);
 
       // Checks if the number of roles chosen is the same as the number of players
       // Returns bool
       const configDone = checkConfiguration(state.configuration, hiddenRolesArray.length, villageRolesArray.length);
-
       return {
         ...state,
         chosenHiddenRoles: hiddenRolesArray,
@@ -240,30 +287,61 @@ const reducer = (state = initialState, action = {}) => {
     }
     case SET_GAMES: {
       const newConfigurationObject = state.configuration;
+
+      // If the current game (the action value) is already in the games array of the configuration object
       if (newConfigurationObject.games.indexOf(action.value) >= 0) {
+        // We filter this array and delete the current game
         const newArray = newConfigurationObject.games.filter((game) => action.value !== game);
+        // Then we give the new array, stripped from the current game, to the configuration object
         newConfigurationObject.games = newArray;
       }
+      // If it's not the games array
       else {
+        // We push the current game into the array
         newConfigurationObject.games.push(action.value);
       }
+
+      // We create the new array for the Roles that are associated to the selected games
       const rolesArray = [];
-      hiddenRoles.forEach((role) => {
-        if (role.expansion === 'Thiercelieux') {
+
+      // First, we get all roles from the base game
+      state.allRolesArray.forEach((role) => {
+        // We check if it belongs to the Thiercelieux game
+        if (role.game === 'Loup-Garou de Thiercelieux') {
+          // If it does, we push it already into the role array for every game will need these roles
           rolesArray.push(role.name);
         }
       });
       newConfigurationObject.games.forEach((game) => {
-        hiddenRoles.forEach((role) => {
-          if (game === role.expansion) {
+        state.allRolesArray.forEach((role) => {
+          if (game === role.game) {
             rolesArray.push(role.name);
           }
         });
       });
-      // TODO : to be improved (fake data atm)
+
       let villagersRoles = state.villageList;
+      // If the user has selected 'Le Village' for the game
       if (action.value === 'Le Village') {
+      // We strip all roles from their determinants
+        const villageRoleList = state.villageRoles.map((role) => {
+          let deconstructedName = '';
+          let det = '';
+          // TODO : use regex to split string in one time
+          // In the meantime, we strip 'L'institutrice' manually to get only the name
+          if (role.name === "L'Institutrice") {
+            deconstructedName = 'Institutrice';
+          }
+          else {
+            // We split the string : first we get the determinant, second we get the name
+            [det, deconstructedName] = role.name.split(' ');
+          }
+          // We return the name without det.
+          return deconstructedName;
+        });
+        // If 'Le Village' has been added to the games settings
         if (newConfigurationObject.games.indexOf('Le Village') !== -1) {
+          // Then we set the roles list for the game
           villagersRoles = villageRoleList;
         }
         else {
@@ -279,12 +357,7 @@ const reducer = (state = initialState, action = {}) => {
     }
     case SET_GAME_ORDER: {
       const newConfigurationObject = state.configuration;
-      if (action.value === 'classic') {
-        newConfigurationObject.gameOrder = []; // inclure ici le tableau d'ordre classique
-      }
-      else {
-        newConfigurationObject.gameOrder = []; // inclure ici le tableau d'ordre
-      }
+      newConfigurationObject.gameOrder = action.value;
       return {
         ...state,
         configuration: newConfigurationObject,
@@ -310,6 +383,37 @@ const reducer = (state = initialState, action = {}) => {
       return {
         ...state,
         configuration: newConfigurationObject,
+      };
+    }
+    case SAVE_HOME_DATA: {
+      let { allRolesArray, rolesList, villageRoles } = state;
+
+      // If the category is hiddenRoles
+      if (action.category === 'hiddenRoles') {
+        // allRolesArray takes the action data value
+        allRolesArray = action.data;
+        const newRolesList = [];
+
+        // Then, for each role
+        allRolesArray.forEach((role) => {
+          // We check if it belongs to the Thiercelieux game
+          if (role.game === 'Loup-Garou de Thiercelieux') {
+            // If it does, we push it already into the role array for every game will need these roles
+            newRolesList.push(role.name);
+            rolesList = newRolesList;
+          }
+        });
+      }
+      // If the category is villageRoles
+      else if (action.category === 'villageRoles') {
+        // We set the array in the villageRoles variable
+        villageRoles = action.data;
+      }
+      return {
+        ...state,
+        allRolesArray: allRolesArray,
+        villageRoles: villageRoles,
+        rolesList: rolesList,
       };
     }
     default:

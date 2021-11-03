@@ -4,13 +4,26 @@ import { useHistory } from 'react-router-dom';
 
 import './style.scss';
 
-const Sunset = ({ setGame }) => {
+const Sunset = ({ setGame, setNight, isGameSet }) => {
   const history = useHistory();
   useEffect(() => {
+    let countdown = 5000;
+    let url = '/partie-en-cours';
+    if (isGameSet) {
+      countdown = 3000;
+      url += '/nuit-sur-thiercelieux';
+    }
     setTimeout(() => {
-      history.push('/partie-en-cours');
-    }, 5000);
-    setGame();
+      history.push(url);
+    }, countdown);
+
+    if (isGameSet) {
+      countdown = 3000;
+      setNight();
+    }
+    else {
+      setGame();
+    }
   }, []);
   return (
     <div className="sunset">Sunset</div>
@@ -19,6 +32,8 @@ const Sunset = ({ setGame }) => {
 
 Sunset.propTypes = {
   setGame: PropTypes.func.isRequired,
+  setNight: PropTypes.func.isRequired,
+  isGameSet: PropTypes.bool.isRequired,
 };
 
 export default Sunset;

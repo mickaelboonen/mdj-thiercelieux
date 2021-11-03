@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { ChevronRight, ChevronLeft } from 'react-feather';
 import { Link } from 'react-router-dom';
@@ -6,11 +6,8 @@ import { Link } from 'react-router-dom';
 import Flipcard from 'src/components/Flipcard';
 import './style.scss';
 
-const Characters = ({ fetchRandomRoles, roleToDisplay, displayNewRole }) => {
+const Characters = ({ roleToDisplay, displayNewRole }) => {
   const { id } = roleToDisplay;
-  useEffect(() => {
-    fetchRandomRoles();
-  }, []);
 
   const handleClickOnChevron = (event) => {
     let newIndexValue = 1;
@@ -40,7 +37,6 @@ Characters.propTypes = {
 
   // FUNCTIONS
   displayNewRole: PropTypes.func.isRequired,
-  fetchRandomRoles: PropTypes.func.isRequired,
 };
 
 export default Characters;

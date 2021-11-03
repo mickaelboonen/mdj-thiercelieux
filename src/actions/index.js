@@ -24,11 +24,6 @@ export const closeBurger = () => ({
 
 // ACTIONS RELATED TO THE HOME COMPONENT
 
-export const FETCH_RANDOM_ROLES = 'FETCH_RANDOM_ROLES';
-export const fetchRandomRoles = () => ({
-  type: FETCH_RANDOM_ROLES,
-});
-
 export const DISPLAY_NEW_ROLE = 'DISPLAY_NEW_ROLE';
 export const displayNewRole = (newIndexValue, id) => ({
   type: DISPLAY_NEW_ROLE,
@@ -41,4 +36,16 @@ export const displayNewGame = (newIndexValue, id) => ({
   type: DISPLAY_NEW_GAME,
   newIndexValue,
   id,
+});
+
+export const FETCH_HOME_DATA = 'FETCH_HOME_DATA';
+export const fetchHomeData = () => ({
+  type: FETCH_HOME_DATA,
+});
+
+export const SAVE_HOME_DATA = 'SAVE_HOME_DATA';
+export const saveHomeData = (data, category) => ({
+  type: SAVE_HOME_DATA,
+  data,
+  category,
 });

@@ -6,6 +6,9 @@ import { resetPlayerToDisplay } from 'src/actions/game';
 const mapStateToProps = (state) => ({
   players: state.game.players,
   playerToDisplay: state.game.playerToDisplay,
+  newspaper: state.game.newspaper,
+  isHunterDead: state.game.isHunterDead,
+  winner: state.game.winner,
 });
 
 const mapDispatchToProps = (dispatch) => ({
