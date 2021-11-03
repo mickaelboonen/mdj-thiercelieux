@@ -64,8 +64,8 @@ const App = ({ isConnected, fetchHomeData }) => {
             <img className="desktop__container-logo" src={wolf} alt="Logo" />
           </div>
         </div>
-      {/* End of Temporary HTML */}
       </div>
+      {/* End of Temporary HTML */}
       <div className="app__mobile">
         <Switch>
           <Route path="/coucher-de-soleil" exact component={Sunset} />
