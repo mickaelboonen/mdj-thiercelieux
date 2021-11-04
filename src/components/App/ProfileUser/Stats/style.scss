@@ -1,4 +1,7 @@
 @use 'src/styles/vars';
+@use 'sass:color';
+
+
 
 .stats {
   
@@ -35,15 +38,68 @@
       color: vars.$quenary-color;
     }
 
+    &-chart {
+
+      & div {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        // position: relative;
+
+        @each $color in vars.$chart-colors {
+          .p-#{$color} {
+            width: 45%;
+            padding-left: 0.9rem;
+            position: relative;
+
+            &::before {
+              content: ' ';
+              left: 0;
+              top: 25%;
+              width: 10px;
+              height: 10px;
+              position: absolute;
+              background-color: ##{$color};
+            }
+          }
+        }
+      }
+    }
+
     &-list {
       padding: 0.5rem;
       background-color: vars.$secondary-color;
       line-height: 1.2em;
 
+      &--hidden-roles {
+        // display: flex;
+        // flex-wrap: wrap;
+        // justify-content: space-around;
 
+        .stats__category-list__sublist {
+          // width: 48%;
+          background-color: color.adjust(vars.$secondary-color, $lightness: 30%);
+
+          margin-bottom: 0.5rem;
+          font-size: 0.9em;
+
+          &:first-child {
+            // width: 98%;
+          }
+        }
+
+      }
       &-item {
         // margin-bottom: 0.2rem;
       }
     }
+  }
+}
+
+$sizes: 191, 363, 535, 707;
+
+@each $size in $sizes {
+  .p-#{$size}::before {
+    background-color: $size;
   }
 }
