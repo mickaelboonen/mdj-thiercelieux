@@ -66,6 +66,27 @@
       }
     }
 
+    &-data {
+      background-color: vars.$secondary-color;
+      padding: 0.5rem;
+      line-height: 1.2em;
+      text-align: center;
+
+      &-list {
+        display: none;
+        flex-wrap: wrap;
+
+        & li {
+          width: 50%;
+        }
+        &--open {
+          display: flex;
+
+        }
+      }
+    }
+
+
     &-list {
       padding: 0.5rem;
       background-color: vars.$secondary-color;

@@ -24,6 +24,7 @@ export const setWinningStats = (keyArray, stats) => {
 
 export const setDeathStats = (keyArray, stats) => {
   let newStatsArray = {};
+  newStatsArray['Total'] = 0;
   keyArray.forEach((key) => {
     if (key === 'death_by_vote') {
       newStatsArray['Condamné à la potence'] = stats[key];
@@ -49,6 +50,7 @@ export const setDeathStats = (keyArray, stats) => {
     else if (key === 'death_by_barber') {
       newStatsArray['Assassiné par le Barbier'] = stats[key];
     }
+    newStatsArray['Total'] += stats[key];
     delete newStatsArray[key];
   });
   newStatsArray = Object.entries(newStatsArray);
@@ -279,19 +281,19 @@ export const setChartData = (array, number) => {
     const trueArrayLength = currentArray.length - 1;
     if (trueArrayLength > 15) {
       dataObject.x = 'Village';
-      dataObject.color = '0066cc';
+      dataObject.fill = '0066cc';
     }
     else if (trueArrayLength === 3) {
       dataObject.x = 'Loup-Garou';
-      dataObject.color = '8bc1f7';
+      dataObject.fill = '8bc1f7';
     }
     else if (trueArrayLength === 4) {
       dataObject.x = 'Solitaire';
-      dataObject.color = '519de9';
+      dataObject.fill = '519de9';
     }
     else if (trueArrayLength === 5) {
       dataObject.x = 'Ambigü';
-      dataObject.color = '002f5d';
+      dataObject.fill = '002f5d';
     }
     dataObject.y = (currentArray[trueArrayLength][1] * 100) / number;
     return dataObject;
