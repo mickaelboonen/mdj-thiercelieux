@@ -58,42 +58,95 @@ export const setDeathStats = (keyArray, stats) => {
 };
 
 export const setVillageStats = (keyArray, stats) => {
-  let newStatsArray = {};
+  const newStatsArray = {};
+  let totalRoles = 0;
   keyArray.forEach((key) => {
     if (key === 'farmer') {
       newStatsArray['Le Fermier'] = stats[key];
+      totalRoles += stats[key];
     }
     else if (key === 'priest') {
       newStatsArray['Le Confesseur'] = stats[key];
+      totalRoles += stats[key];
     }
     else if (key === 'baker') {
       newStatsArray['Le Boulanger'] = stats[key];
+      totalRoles += stats[key];
     }
     else if (key === 'mistress') {
       newStatsArray["L'Institutrice"] = stats[key];
+      totalRoles += stats[key]+4;
     }
     else if (key === 'bartender') {
       newStatsArray['Le Tavernier'] = stats[key];
+      totalRoles += stats[key];
     }
     else if (key === 'barber') {
       newStatsArray['Le Barbier'] = stats[key];
+      totalRoles += stats[key]+2;
     }
     else if (key === 'bonesettler') {
       newStatsArray['Le Rebouteux'] = stats[key];
+      totalRoles += stats[key]+3;
     }
     else if (key === 'lord') {
       newStatsArray['Le Châtelain'] = stats[key];
+      totalRoles += stats[key]+7;
     }
     else if (key === 'bailiff') {
       newStatsArray['Le Bailli'] = stats[key];
+      totalRoles += stats[key]+9;
     }
     else if (key === 'vagabond') {
       newStatsArray['Le Vagabond'] = stats[key];
+      totalRoles += stats[key];
     }
     delete newStatsArray[key];
   });
-  newStatsArray = Object.entries(newStatsArray);
-  return newStatsArray;
+  const finalStatsArray = Object.entries(newStatsArray);
+  const array = [...finalStatsArray, ['Total', totalRoles]];
+  console.log(array);
+  return array;
+};
+
+export const setVillageChartData = (array) => {
+  const newArray = array.map((currentArray) => {
+    const newObject = {};
+    newObject.x = currentArray[0];
+    newObject.y = currentArray[1];
+    if (currentArray[1] === 'Le Fermier') {
+      newObject.fill = '#000';
+    }
+    else if (currentArray[1] === 'Le Confesseur') {
+      newObject.fill = '#111';
+    }
+    else if (currentArray[1] === 'Le Boulanger') {
+      newObject.fill = '#222';
+    }
+    else if (currentArray[1] === "L'Institutrice") {
+      newObject.fill = '#333';
+    }
+    else if (currentArray[1] === 'Le Tavernier') {
+      newObject.fill = '#444';
+    }
+    else if (currentArray[1] === 'Le Barbier') {
+      newObject.fill = '#555';
+    }
+    else if (currentArray[1] === 'Le Rebouteux') {
+      newObject.fill = '#666';
+    }
+    else if (currentArray[1] === 'Le Châtelain') {
+      newObject.fill = '#777';
+    }
+    else if (currentArray[1] === 'Le Bailli') {
+      newObject.fill = '#888';
+    }
+    else if (currentArray[1] === 'Le Vagabond') {
+      newObject.fill = '#999';
+    }
+    return newObject;
+  });
+  return newArray;
 };
 
 export const setVillageSideRolesStats = (keyArray, stats) => {
@@ -102,6 +155,10 @@ export const setVillageSideRolesStats = (keyArray, stats) => {
   keyArray.forEach((key) => {
     if (key === 'hunter') {
       newStatsArray['Le Chasseur'] = stats[key];
+      totalRoles += stats[key];
+    }
+    else if (key === 'cupid') {
+      newStatsArray['Cupidon'] = stats[key];
       totalRoles += stats[key];
     }
     else if (key === 'little_girl') {
@@ -276,27 +333,31 @@ export const setOtherRolesStats = (keyArray, stats) => {
 };
 
 export const setChartData = (array, number) => {
+  let totalRoles = 0;
   const chartData = array.map((currentArray) => {
     const dataObject = {};
     const trueArrayLength = currentArray.length - 1;
     if (trueArrayLength > 15) {
       dataObject.x = 'Village';
-      dataObject.fill = '0066cc';
+      dataObject.fill = 'dfc68a';
     }
     else if (trueArrayLength === 3) {
       dataObject.x = 'Loup-Garou';
-      dataObject.fill = '8bc1f7';
+      dataObject.fill = '760817';
     }
     else if (trueArrayLength === 4) {
       dataObject.x = 'Solitaire';
-      dataObject.fill = '519de9';
+      dataObject.fill = '3d103d';
     }
-    else if (trueArrayLength === 5) {
-      dataObject.x = 'Ambigü';
-      dataObject.fill = '002f5d';
-    }
-    dataObject.y = (currentArray[trueArrayLength][1] * 100) / number;
+    // else if (trueArrayLength === 5) {
+    //   dataObject.x = 'Ambigü';
+    //   dataObject.fill = '002f5d';
+    // }
+    dataObject.y = Math.round((currentArray[trueArrayLength][1] * 100) / number);
+    totalRoles += dataObject.y;
     return dataObject;
   });
+  chartData.push(['Total', totalRoles]);
+  console.log(chartData);
   return chartData;
 };

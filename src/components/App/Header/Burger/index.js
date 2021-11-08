@@ -18,7 +18,9 @@ const Burger = ({ isBurgerOpen, toggleBurger, closeBurger }) => {
   // useEffect allows to re render the page only when an indicated variable is changed
   // useEffect(classBack function, array)
   useEffect(() => {
-    closeBurger();
+    if (isBurgerOpen) {
+      closeBurger();
+    }
   }, [location.pathname]);
 
   return (

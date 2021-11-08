@@ -1,15 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ChartDonut, ChartPie } from '@patternfly/react-charts';
+import { ChartPie } from '@patternfly/react-charts';
 // TEMPORARY
 import {
   ChevronDown,
-  User,
-  Heart,
-  Users,
-  Gitlab,
-  Target,
-  Coffee,
+  ChevronUp,
 } from 'react-feather';
 
 import {
@@ -22,9 +17,12 @@ import {
   setAmbiguousSideRolesStats,
   setOtherRolesStats,
   setChartData,
+  setVillageChartData,
 } from 'src/selectors/statsFunctions';
 
 import './style.scss';
+import BiDataChart from './BiDataChart';
+import SideStats from './SideStats';
 
 const Stats = ({ stats }) => {
   const keys = Object.keys(stats);
@@ -37,7 +35,8 @@ const Stats = ({ stats }) => {
     if (key.includes('death')
     || key.includes('won')
     || key.includes('parties')
-    || key.includes('id')
+    || key === 'id'
+    || key === 'user_id'
     || key.includes('ed_at')) {
       return;
     }
@@ -52,15 +51,39 @@ const Stats = ({ stats }) => {
   const otherRolesArray = setOtherRolesStats(filteredRolesStats, stats);
   const array = [
     rolesStatsArray,
-    soloSideRolesArray,
-    ambiguousSideRolesArray,
     werewolfSideRolesArray,
+    soloSideRolesArray,
+    // ambiguousSideRolesArray,
   ];
   const chartData = setChartData(array, stats.played_parties);
-  console.log(chartData);
+  const villageChartData = setVillageChartData(villagesStatsArray);
   const handleClick = (event) => {
-    const statsElement = document.querySelector(`#${event.currentTarget.parentNode.id}-list`);
-    statsElement.classList.toggle('stats__category-data-list--open');
+    const statsElement = document.querySelector(`#${event.currentTarget.id}-list`);
+    statsElement.classList.toggle('stats__category-data-lists--open');
+    const spanElement = document.querySelector(`#${event.currentTarget.id}-span`);
+
+    const isDivClosed = spanElement.textContent === 'Plus de statistiques';
+    const chevronUpElement = document.querySelectorAll(`.${event.currentTarget.id}-chevron-up`);
+    const chevronDownElement = document.querySelectorAll(`.${event.currentTarget.id}-chevron-down`);
+
+    if (isDivClosed) {
+      spanElement.textContent = 'Cacher les statistiques';
+      chevronUpElement.forEach((el) => {
+        el.style.display = 'block';
+      });
+      chevronDownElement.forEach((el) => {
+        el.style.display = 'none';
+      });
+    }
+    else {
+      spanElement.textContent = 'Plus de statistiques';
+      chevronUpElement.forEach((el) => {
+        el.style.display = 'none';
+      });
+      chevronDownElement.forEach((el) => {
+        el.style.display = 'block';
+      });
+    }
   };
   return (
     <div className="stats">
@@ -74,68 +97,18 @@ const Stats = ({ stats }) => {
       </div>
       <div className="stats__category">
         <h5 className="stats__category-title">NOMBRES DE VICTOIRES :</h5>
-        {/* <div style={{ :height: '230px', width: '350px' }}> */}
-
-        <div className="stats__category-data">
-          <ChartPie
-            style={{ data: { fill: ({ datum }) => datum.fill } }}
-            ariaDesc="Winning statistics of the player"
-            ariaTitle="Winning pie chart"
-            constrainToVisibleArea
-            data={[{ x: 'Défaite', y: stats.played_parties - winningStatsArray[0][1], fill: '#760817' }, { x: 'Victoire', y: winningStatsArray[0][1], fill: '#1a1a1a' }]}
-            height={230}
-            labels={({ datum }) => `${datum.x}: ${datum.y}`}
-            width={600}
-          />
-          <div>Legend</div>
-          <p id="winning-stats">Plus de statistiques <ChevronDown onClick={handleClick} /></p>
-          <ul id="winning-stats-list" className="stats__category-data-list">
-            {/* {winningStatsArray.map((key) => (
-              <li className="stats__category-list-item">{key[0]}: {key[1]}</li>
-            ))} */}
-            <li><Users /> = 70%</li>
-            <li><Gitlab /> = 15%</li>
-            <li><User /> = 10%</li>
-            <li><Heart /> = 5%</li>
-          </ul>
-        </div>
+        <BiDataChart firstField={'Victoire'} secondField={'Défaite'} data={winningStatsArray} totalGameNumber={stats.played_parties} />
       </div>
       <div className="stats__category">
         <h5 className="stats__category-title">NOMBRES DE MORTS :</h5>
-        <div className="stats__category-data">
-          <ChartPie
-            style={{ data: { fill: ({ datum }) => datum.fill } }}
-            ariaDesc="Winning statistics of the player"
-            ariaTitle="Winning pie chart"
-            constrainToVisibleArea
-            data={[{ x: 'Défaite', y: stats.played_parties - deathStatsArray[0][1], fill: '#760817' }, { x: 'Victoire', y: deathStatsArray[0][1], fill: '#1a1a1a' }]}
-            height={230}
-            labels={({ datum }) => `${datum.x}: ${datum.y}`}
-            width={600}
-          />
-          <div>Legend</div>
-          <p id="death-stats">Plus de statistiques <ChevronDown onClick={handleClick} /></p>
-          <ul id="death-stats-list" className="stats__category-data-list">
-            {/* {deathStatsArray.map((key) => (
-              <li className="stats__category-list-item">{key[0]}: {key[1]}</li>
-            ))} */}
-            <li><Users /> = 70%</li>
-            <li><Gitlab /> = 15%</li>
-            <li><Target /> = 10%</li>
-            <li><Heart /> = 5%</li>
-            <li><Coffee /> = 5%</li>
-          </ul>
-        </div>
+        <BiDataChart firstField={'Mort'} secondField={'Survie'} data={deathStatsArray} totalGameNumber={stats.played_parties} />
       </div>
       <div className="stats__category">
         <h5 className="stats__category-title">STATISTIQUES PAR ROLES CACHÉS :</h5>
         <div className="stats__category-list stats__category-list--hidden-roles">
           <div className="stats__category-data">
-            {/* {otherRolesArray.map((key) => (
-              <li className="stats__category-list-item">{key[0]}: {key[1]}</li>
-            ))} */}
             <ChartPie
-              style={{ data: { fill: ({ datum }) => `#${datum.fill}` } }}
+              style={{ data: { fill: ({ datum }) => `#${datum.fill}`, stroke: '#3c4b65', strokeWidth: '5px' } }}
               ariaDesc="Average number of pets"
               ariaTitle="Donut chart example"
               constrainToVisibleArea
@@ -144,48 +117,59 @@ const Stats = ({ stats }) => {
               labels={({ datum }) => `${datum.x}: ${datum.y}%`}
               width={600}
             />
-            <div>
-              {chartData.map((data) => (
-                <p className={`p-${data.fill}`}>{data.x} : {data.y}</p>
-              ))}
+            <div className="stats__category-data-legend stats__category-data-legend--sides">
+              <span>Camp des Villageois</span>
+              <span>Camp des Loups-Garous</span>
+              <span>En Solitaire</span>
             </div>
-            <div>Legend</div>
-            <p id="roles-stats">Plus de statistiques <ChevronDown onClick={handleClick} /></p>
-            <div id="roles-stats-list" className="stats__category-data-list">
-              {/* A ARRANGER */}
-              <ul className="stats__category-list__sublist">
-                {rolesStatsArray.map((key) => (
-                  <li className="stats__category-list-item">{key[0]}: {key[1]}</li>
-                ))}
-              </ul>
-              <ul className="stats__category-list__sublist">
-                {werewolfSideRolesArray.map((key) => (
-                  <li className="stats__category-list-item">{key[0]}: {key[1]}</li>
-                ))}
-              </ul>
-              <ul className="stats__category-list__sublist">
-                {soloSideRolesArray.map((key) => (
-                  <li className="stats__category-list-item">{key[0]}: {key[1]}</li>
-                ))}
-              </ul>
-              <ul className="stats__category-list__sublist">
-                {ambiguousSideRolesArray.map((key) => (
-                  <li className="stats__category-list-item">{key[0]}: {key[1]}</li>
-                ))}
-              </ul>
+            <div className="stats__category-data-more" id="roles-stats" onClick={handleClick}>
+              <ChevronDown size={20} className="roles-stats-chevron-down" />
+              <ChevronUp size={20} className="roles-stats-chevron-up" style={{ display: 'none' }} />
+              <span id="roles-stats-span">Plus de statistiques</span>
+              <ChevronUp size={20} className="roles-stats-chevron-up" style={{ display: 'none' }} />
+              <ChevronDown size={20} className="roles-stats-chevron-down" />
+            </div>
+            <div id="roles-stats-list" className="stats__category-data-lists">
+              <SideStats title={'Titres et Autres Rôles'} data={otherRolesArray} id={'title'} />
+              <SideStats title={'Les Villageois'} data={rolesStatsArray} id={'roles'} />
+              <SideStats title={'Les Loups-Garous'} data={werewolfSideRolesArray} id={'werewolves'} />
+              <SideStats title={'Les Solitaires'} data={soloSideRolesArray} id={'solos'} />
+              <SideStats title={'Les Ambigüs'} data={ambiguousSideRolesArray} id={'ambiguous'} />
             </div>
           </div>
 
         </div>
       </div>
-      <div className="stats__category">
-        <h5 className="stats__category-title">STATISTIQUES PAR ROLES DU VILLAGE :</h5>
-        <ul className="stats__category-list">
-          {villagesStatsArray.map((key) => (
-            <li className="stats__category-list-item">{key[0]}: {key[1]}</li>
-          ))}
-        </ul>
-      </div>
+      {/* TODO : graphique a partir de values 0 et visible que si au moins joué une fois */}
+      {true && (
+        <div className="stats__category">
+          <h5 className="stats__category-title">STATISTIQUES PAR ROLES DU VILLAGE :</h5>
+          <div className="stats__category-data">
+            <ChartPie
+              style={{ data: { fill: ({ datum }) => `#${datum.fill}`, stroke: '#3c4b65', strokeWidth: '5px' } }}
+              ariaDesc="Average number of pets"
+              ariaTitle="Pie chart example"
+              constrainToVisibleArea
+              data={villageChartData.pop()}
+              domain={[
+                { x: 'Le Barbier', y: 0 },
+                { x: 'Le Barbier', y: 0 },
+                { x: 'Le Barbier', y: 0 },
+                { x: 'Le Barbier', y: 0 },
+                { x: 'Le Barbier', y: 0 },
+                { x: 'Le Barbier', y: 0 },
+                { x: 'Le Barbier', y: 0 },
+                { x: 'Le Barbier', y: 0 },
+                { x: 'Le Barbier', y: 0 },
+                { x: 'Le Barbier', y: 0 },
+              ]}
+              height={230}
+              labels={({ datum }) => `${datum.x}: ${datum.y}`}
+              width={600}
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
