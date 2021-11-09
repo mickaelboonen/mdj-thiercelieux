@@ -1,0 +1,190 @@
+@use 'src/styles/vars';
+@use 'sass:color';
+
+// TODO : clean code
+// TODO : finc colors for legend and chart
+$colors: ("1": #f0f, "2": #0f0, "3": #f00,"4": #f0f, "5": #0f0, "6": #f00,"7": #f0f, "8": #0f0, "9": #f00, "10": #f00);
+
+.statistics {
+  margin-top: 0.5rem;
+
+  &__header {
+    display: flex;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: bold;
+
+  }
+  &__list {
+    display: none;
+
+    & li {
+      margin-left: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    &--open {
+      display: block;
+    }
+  }
+}
+
+.stats {
+  background-color: vars.$primary-color;
+  width: 100vw;
+  height: vars.$main-layout-height;
+  margin-top: vars.$navbar-height;
+  text-align: left;
+  overflow: auto;
+
+  & h3 {
+    height: 10%;
+    color: vars.$tertiary-color;
+    font-family: vars.$fontAbril;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    filter: drop-shadow(2px 3px 1px rgb(8, 4, 4));
+    width: 100%;
+    @include vars.centered-flex;
+  }
+
+  &__category {
+    width: 90%;
+    margin: auto;
+    margin-bottom: 1rem;
+
+    &-list {
+      background-color: vars.$secondary-color;
+      padding: 1rem;
+
+      &-item {
+        margin-bottom: 0.5rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &-title {
+      margin-bottom: 0.2rem;
+      font-weight: bold;
+      color: vars.$quenary-color;
+    }
+
+    &-data {
+      background-color: vars.$secondary-color;
+      padding: 0.5rem;
+      line-height: 1.2em;
+      text-align: center;
+
+      &-legend {
+        display: flex;
+        justify-content: center;
+
+        @each $id, $color in $colors {
+          &-li {
+            width: fit-content;
+            position: relative;
+            margin-left: 1.5rem;
+
+            &:before {
+              content: '';
+              width: 0.6rem;
+              height: 0.6rem;
+              position: absolute;
+              left : -1rem;
+              top : 25%;
+              border: 1px solid black;
+            }
+
+            &:nth-child(0n+#{$id}) {
+              &:before {
+                background-color: $color;
+              }
+            }
+          }
+        }
+        
+
+        & span {
+          width: fit-content;
+          position: relative;
+          margin-left: 1.5rem;
+
+          &:nth-child(0n+2) {
+            &:before {
+              background-color: vars.$tertiary-color;
+            }
+          }
+
+          &:nth-child(0n+3) {
+            &:before {
+              background-color: #3d103d;
+            }
+          }
+
+          &:before {
+            content: '';
+            width: 0.6rem;
+            height: 0.6rem;
+            background-color: #dfc68a;
+            position: absolute;
+            left : -1rem;
+            top : 25%;
+            border: 1px solid black;
+          }
+        }
+        
+        &--sides {
+          flex-direction: column;
+
+          & span {
+            margin: auto;
+          }
+        }
+
+        &--village {
+          flex-wrap: wrap;
+
+          & li {
+            width: 45%
+          };
+
+        }
+      }
+
+      &-more {
+        color: rgb(196, 189, 196);
+        font-style: italic;
+        font-size: 0.8em;
+        @include vars.centered-flex;
+        margin-top: 1rem;
+        justify-content: space-evenly;
+      }
+
+      &-list {
+        display: none;
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+
+        & li {
+          width: 50%;
+        }
+        &--open {
+          display: flex;
+
+        }
+      }
+
+      &-lists {
+        text-align: left;
+        display: none;
+
+        &--open {
+          display: block;
+        }
+      }
+    }
+  }
+}

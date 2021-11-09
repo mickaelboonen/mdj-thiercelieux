@@ -6,9 +6,10 @@ import {
   ADD_NEW_FRIEND,
   saveNewFriend,
   DELETE_FRIEND,
+  FETCH_STATS_FOR_PROFILE,
+  saveCurrentUserStats,
 } from 'src/actions/user';
 
-import { FETCH_USERS_LIST, saveUsernamesList } from 'src/actions/gameConfiguration';
 import { users } from 'src/data/users';
 
 axios.defaults.headers.get['Access-Control-Allow-Origin'] = '*';
@@ -22,7 +23,6 @@ const registerMiddleware = (store) => (next) => (action) => {
     case FETCH_USERS:
       api.get('/api/users/list')
         .then((response) => {
-          console.log(action);
           const filteredUsers = [];
           response.data.forEach((user) => {
             if (user.pseudo.toLowerCase().includes(action.value) && action.value !== '') {
@@ -45,6 +45,17 @@ const registerMiddleware = (store) => (next) => (action) => {
       // TODO request
       // api.delete('/route', {})
     // }
+      break;
+    case FETCH_STATS_FOR_PROFILE: {
+      const { user: { id } } = store.getState();
+      api.get(`/api/stats/user/${id}`)
+        .then((response) => {
+          store.dispatch(saveCurrentUserStats(response.data));
+        })
+        .catch((error) => {
+          console.error('list user', error);
+        });
+    }
       break;
     default:
   }

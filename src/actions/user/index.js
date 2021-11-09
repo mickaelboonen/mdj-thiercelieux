@@ -98,3 +98,14 @@ export const CLEAR_MESSAGES = 'CLEAR_MESSAGES';
 export const clearMessages = () => ({
   type: CLEAR_MESSAGES,
 });
+
+export const FETCH_STATS_FOR_PROFILE = 'FETCH_STATS_FOR_PROFILE';
+export const fetchStatsForProfile = () => ({
+  type: FETCH_STATS_FOR_PROFILE,
+});
+
+export const SAVE_CURRENT_USER_STATS = 'SAVE_CURRENT_USER_STATS';
+export const saveCurrentUserStats = (stats) => ({
+  type: SAVE_CURRENT_USER_STATS,
+  stats,
+});

@@ -6,17 +6,12 @@ import {
   Switch,
   Route,
   Redirect,
-  useHistory,
-  useLocation,
 } from 'react-router-dom';
-// import { users } from 'src/data/users';
 
 import Header from 'src/components/App/Header';
 import Home from 'src/components/App/Home';
 import Footer from 'src/components/App/Footer';
 
-import CurrentGame from 'src/containers/App/CurrentGame';
-import NightScript from 'src/containers/App/CurrentGame/NightScript';
 import Game from 'src/containers/App/Expansions/Game';
 import Specificity from 'src/containers/App/Expansions/Specificity';
 import RolesDescriptions from 'src/containers/App/RolesDescriptions';
@@ -25,15 +20,22 @@ import Mailbox from 'src/containers/App/Mailbox';
 import Expansions from 'src/containers/App/Expansions';
 import MessagePrive from 'src/containers/App/Mailbox/MessagePrive';
 import Configuration from 'src/containers/App/Configuration';
+import Login from 'src/containers/App/Login';
+import Register from 'src/containers/App/Register';
+
+// ANIMATIONS
 import Sunset from 'src/containers/Animations/Sunset';
 import Sunrise from 'src/containers/Animations/Sunrise';
 import Celebration from 'src/containers/Animations/Celebration';
-import Login from 'src/containers/App/Login';
-import Register from 'src/containers/App/Register';
-import Friends from 'src/containers/App/ProfileUser/Friends';
-import PersonalDetails from 'src/containers/App/ProfileUser/PersonalDetails';
+// CURRENT GAME
+import CurrentGame from 'src/containers/App/CurrentGame';
+import NightScript from 'src/containers/App/CurrentGame/NightScript';
 import Hunter from 'src/containers/App/CurrentGame/DayScript/Hunter';
 import Victory from 'src/containers/App/CurrentGame/Victory';
+// PROFILE
+import Stats from 'src/containers/App/ProfileUser/Stats';
+import Friends from 'src/containers/App/ProfileUser/Friends';
+import PersonalDetails from 'src/containers/App/ProfileUser/PersonalDetails';
 
 import wolf from 'src/assets/pictures/wolf.svg';
 import ProfileUser from './ProfileUser';
@@ -99,6 +101,7 @@ const App = ({ isConnected, fetchHomeData }) => {
                 <Route path="/profil" exact component={ProfileUser} />
                 <Route path="/profil/mes-informations" exact component={PersonalDetails} />
                 <Route path="/profil/mes-amis" exact component={Friends} />
+                <Route path="/profil/mes-statistiques" exact component={Stats} />
                 <Route path="/ma-messagerie" exact component={Mailbox} />
                 <Route path="/ma-messagerie/:id" exact component={MessagePrive} />
                 <Route path="/qui-sommes-nous" exact>
