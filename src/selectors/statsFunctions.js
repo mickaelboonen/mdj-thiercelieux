@@ -75,7 +75,7 @@ export const setVillageStats = (keyArray, stats) => {
     }
     else if (key === 'mistress') {
       newStatsArray["L'Institutrice"] = stats[key];
-      totalRoles += stats[key]+4;
+      totalRoles += stats[key];
     }
     else if (key === 'bartender') {
       newStatsArray['Le Tavernier'] = stats[key];
@@ -83,19 +83,19 @@ export const setVillageStats = (keyArray, stats) => {
     }
     else if (key === 'barber') {
       newStatsArray['Le Barbier'] = stats[key];
-      totalRoles += stats[key]+2;
+      totalRoles += stats[key];
     }
     else if (key === 'bonesettler') {
       newStatsArray['Le Rebouteux'] = stats[key];
-      totalRoles += stats[key]+3;
+      totalRoles += stats[key];
     }
     else if (key === 'lord') {
       newStatsArray['Le Châtelain'] = stats[key];
-      totalRoles += stats[key]+7;
+      totalRoles += stats[key];
     }
     else if (key === 'bailiff') {
       newStatsArray['Le Bailli'] = stats[key];
-      totalRoles += stats[key]+9;
+      totalRoles += stats[key];
     }
     else if (key === 'vagabond') {
       newStatsArray['Le Vagabond'] = stats[key];
@@ -105,7 +105,6 @@ export const setVillageStats = (keyArray, stats) => {
   });
   const finalStatsArray = Object.entries(newStatsArray);
   const array = [...finalStatsArray, ['Total', totalRoles]];
-  console.log(array);
   return array;
 };
 
@@ -114,35 +113,35 @@ export const setVillageChartData = (array) => {
     const newObject = {};
     newObject.x = currentArray[0];
     newObject.y = currentArray[1];
-    if (currentArray[1] === 'Le Fermier') {
-      newObject.fill = '#000';
+    if (currentArray[0] === 'Le Fermier') {
+      newObject.fill = '#000000';
     }
-    else if (currentArray[1] === 'Le Confesseur') {
-      newObject.fill = '#111';
+    else if (currentArray[0] === 'Le Confesseur') {
+      newObject.fill = '#111111';
     }
-    else if (currentArray[1] === 'Le Boulanger') {
-      newObject.fill = '#222';
+    else if (currentArray[0] === 'Le Boulanger') {
+      newObject.fill = '#222222';
     }
-    else if (currentArray[1] === "L'Institutrice") {
-      newObject.fill = '#333';
+    else if (currentArray[0] === "L'Institutrice") {
+      newObject.fill = '#333333';
     }
-    else if (currentArray[1] === 'Le Tavernier') {
-      newObject.fill = '#444';
+    else if (currentArray[0] === 'Le Tavernier') {
+      newObject.fill = '#444444';
     }
-    else if (currentArray[1] === 'Le Barbier') {
-      newObject.fill = '#555';
+    else if (currentArray[0] === 'Le Barbier') {
+      newObject.fill = '#555555';
     }
-    else if (currentArray[1] === 'Le Rebouteux') {
-      newObject.fill = '#666';
+    else if (currentArray[0] === 'Le Rebouteux') {
+      newObject.fill = '#666666';
     }
-    else if (currentArray[1] === 'Le Châtelain') {
-      newObject.fill = '#777';
+    else if (currentArray[0] === 'Le Châtelain') {
+      newObject.fill = '#777777';
     }
-    else if (currentArray[1] === 'Le Bailli') {
-      newObject.fill = '#888';
+    else if (currentArray[0] === 'Le Bailli') {
+      newObject.fill = '#888888';
     }
-    else if (currentArray[1] === 'Le Vagabond') {
-      newObject.fill = '#999';
+    else if (currentArray[0] === 'Le Vagabond') {
+      newObject.fill = '#999999';
     }
     return newObject;
   });

@@ -1,8 +1,35 @@
 @use 'src/styles/vars';
 @use 'sass:color';
 
-.stats {
+// TODO : clean code
+// TODO : finc colors for legend and chart
+$colors: ("1": #f0f, "2": #0f0, "3": #f00,"4": #f0f, "5": #0f0, "6": #f00,"7": #f0f, "8": #0f0, "9": #f00, "10": #f00);
 
+.statistics {
+  margin-top: 0.5rem;
+
+  &__header {
+    display: flex;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: bold;
+
+  }
+  &__list {
+    display: none;
+
+    & li {
+      margin-left: 1rem;
+      margin-bottom: 0.2rem;
+    }
+    &--open {
+      display: block;
+    }
+  }
+}
+
+.stats {
   background-color: vars.$primary-color;
   width: 100vw;
   height: vars.$main-layout-height;
@@ -26,38 +53,23 @@
     margin: auto;
     margin-bottom: 1rem;
 
+    &-list {
+      background-color: vars.$secondary-color;
+      padding: 1rem;
+
+      &-item {
+        margin-bottom: 0.5rem;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+
     &-title {
       margin-bottom: 0.2rem;
       font-weight: bold;
       color: vars.$quenary-color;
-    }
-
-    &-chart {
-
-      & div {
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        // position: relative;
-
-        @each $color in vars.$chart-colors {
-          .p-#{$color} {
-            width: 45%;
-            padding-left: 0.9rem;
-            position: relative;
-
-            &::before {
-              content: ' ';
-              left: 0;
-              top: 25%;
-              width: 10px;
-              height: 10px;
-              position: absolute;
-              background-color: ##{$color};
-            }
-          }
-        }
-      }
     }
 
     &-data {
@@ -69,6 +81,31 @@
       &-legend {
         display: flex;
         justify-content: center;
+
+        @each $id, $color in $colors {
+          &-li {
+            width: fit-content;
+            position: relative;
+            margin-left: 1.5rem;
+
+            &:before {
+              content: '';
+              width: 0.6rem;
+              height: 0.6rem;
+              position: absolute;
+              left : -1rem;
+              top : 25%;
+              border: 1px solid black;
+            }
+
+            &:nth-child(0n+#{$id}) {
+              &:before {
+                background-color: $color;
+              }
+            }
+          }
+        }
+        
 
         & span {
           width: fit-content;
@@ -86,6 +123,7 @@
               background-color: #3d103d;
             }
           }
+
           &:before {
             content: '';
             width: 0.6rem;
@@ -104,6 +142,15 @@
           & span {
             margin: auto;
           }
+        }
+
+        &--village {
+          flex-wrap: wrap;
+
+          & li {
+            width: 45%
+          };
+
         }
       }
 
@@ -138,67 +185,6 @@
           display: block;
         }
       }
-    }
-
-
-    &-list {
-      padding: 0.5rem;
-      background-color: vars.$secondary-color;
-      line-height: 1.2em;
-
-      &--hidden-roles {
-        // display: flex;
-        // flex-wrap: wrap;
-        // justify-content: space-around;
-
-        .stats__category-list__sublist {
-          // width: 48%;
-          background-color: color.adjust(vars.$secondary-color, $lightness: 30%);
-
-          margin-bottom: 0.5rem;
-          font-size: 0.9em;
-
-          &:first-child {
-            // width: 98%;
-          }
-        }
-
-      }
-      &-item {
-        // margin-bottom: 0.2rem;
-      }
-    }
-  }
-}
-
-$sizes: 191, 363, 535, 707;
-
-@each $size in $sizes {
-  .p-#{$size}::before {
-    background-color: $size;
-  }
-}
-
-.statistics {
-  margin-top: 0.5rem;
-
-  &__header {
-    display: flex;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    font-size: 0.8em;
-    font-weight: bold;
-
-  }
-  &__list {
-    display: none;
-
-    & li {
-      margin-left: 1rem;
-      margin-bottom: 0.2rem;
-    }
-    &--open {
-      display: block;
     }
   }
 }

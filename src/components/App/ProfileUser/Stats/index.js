@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ChartPie } from '@patternfly/react-charts';
-// TEMPORARY
 import {
   ChevronDown,
   ChevronUp,
@@ -57,6 +56,8 @@ const Stats = ({ stats }) => {
   ];
   const chartData = setChartData(array, stats.played_parties);
   const villageChartData = setVillageChartData(villagesStatsArray);
+  const newVillageChartData = villageChartData;
+  newVillageChartData.pop();
   const handleClick = (event) => {
     const statsElement = document.querySelector(`#${event.currentTarget.id}-list`);
     statsElement.classList.toggle('stats__category-data-lists--open');
@@ -87,12 +88,12 @@ const Stats = ({ stats }) => {
   };
   return (
     <div className="stats">
-      <h3>Stats</h3>
+      <h3>MES STATISTIQUES</h3>
       <div className="stats__category">
         <h5 className="stats__category-title">NOMBRES DE PARTIES :</h5>
         <ul className="stats__category-list">
-          <li className="stats__category-list-item">Animées: {stats.hosted_parties}</li>
-          <li className="stats__category-list-item">Jouées: {stats.played_parties}</li>
+          <li className="stats__category-list-item">Nombre de parties animées: {stats.hosted_parties}</li>
+          <li className="stats__category-list-item">Nombre de parties jouées: {stats.played_parties}</li>
         </ul>
       </div>
       <div className="stats__category">
@@ -140,33 +141,23 @@ const Stats = ({ stats }) => {
 
         </div>
       </div>
-      {/* TODO : graphique a partir de values 0 et visible que si au moins joué une fois */}
-      {true && (
+      {villagesStatsArray[10][1] > 0 && (
         <div className="stats__category">
           <h5 className="stats__category-title">STATISTIQUES PAR ROLES DU VILLAGE :</h5>
           <div className="stats__category-data">
             <ChartPie
-              style={{ data: { fill: ({ datum }) => `#${datum.fill}`, stroke: '#3c4b65', strokeWidth: '5px' } }}
+              style={{ data: { fill: ({ datum }) => `${datum.fill}`, stroke: '#3c4b65', strokeWidth: '5px' } }}
               ariaDesc="Average number of pets"
               ariaTitle="Pie chart example"
               constrainToVisibleArea
-              data={villageChartData.pop()}
-              domain={[
-                { x: 'Le Barbier', y: 0 },
-                { x: 'Le Barbier', y: 0 },
-                { x: 'Le Barbier', y: 0 },
-                { x: 'Le Barbier', y: 0 },
-                { x: 'Le Barbier', y: 0 },
-                { x: 'Le Barbier', y: 0 },
-                { x: 'Le Barbier', y: 0 },
-                { x: 'Le Barbier', y: 0 },
-                { x: 'Le Barbier', y: 0 },
-                { x: 'Le Barbier', y: 0 },
-              ]}
+              data={newVillageChartData}
               height={230}
               labels={({ datum }) => `${datum.x}: ${datum.y}`}
               width={600}
             />
+            <ul className="stats__category-data-legend stats__category-data-legend--village">
+              {newVillageChartData.map((villager) => <li className="stats__category-data-legend-li" key={villager.x}>{villager.x}</li>)}
+            </ul>
           </div>
         </div>
       )}
