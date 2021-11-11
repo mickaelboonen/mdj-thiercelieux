@@ -94,7 +94,7 @@ const PersonalDetails = ({
               >
                 <Edit color="white" />
               </button>
-              <Avatars />
+              {/* <Avatars /> */}
             </div>
             <div className="personaldetails__form-identity-pseudo">
               <label>Pseudo</label>

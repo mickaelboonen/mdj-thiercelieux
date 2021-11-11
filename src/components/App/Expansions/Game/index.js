@@ -36,7 +36,6 @@ const Game = ({ games }) => {
       </ul>
     </div>
   ));
-  console.log(roles);
   return (
     <div className="game">
       <Path />

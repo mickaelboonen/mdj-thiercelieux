@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import './style.scss';
 
 const Avatars = ({ changeAvatar, fetchAvatars, avatars }) => {
+  console.log(avatars);
   useEffect(() => {
     fetchAvatars();
   }, []);
