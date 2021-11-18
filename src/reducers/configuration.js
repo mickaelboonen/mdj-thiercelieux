@@ -34,60 +34,78 @@ import {
 
 const initialState = {
   configuration: {
-    playersNumber: 8,
+    playersNumber: 9,
     games: [],
-    gameOrder: [], // si classic, on injecte le tableau classic sinon les prefs
+    gameOrder: 'classic', // si classic, on injecte le tableau classic sinon les prefs
     newmoonCards: [], // si classic, on injecte le tableau classic sinon les prefs
     rolesAttribution: 'manual',
   },
   allRolesArray: [],
   villageRoles: [],
   players: [
-    // {
-    //   id: 1,
-    //   name: 'Micka',
-    //   // hiddenRole: 'Loup-Garou',
-    // },
-    // {
-    //   id: 2,
-    //   name: 'Quentin',
-    //   // hiddenRole: 'Sorcière',
-    // },
-    // {
-    //   id: 3,
-    //   name: 'Océane',
-    //   // hiddenRole: 'Cupidon',
-    // },
-    // {
-    //   id: 4,
-    //   name: 'Lud',
-    //   // hiddenRole: 'Villageois',
-    // },
-    // {
-    //   id: 5,
-    //   name: 'Chris',
-    //   // hiddenRole: 'Idiot du Village',
-    // },
-    // {
-    //   id: 6,
-    //   name: 'BDR',
-    //   // hiddenRole: 'Bouc Émissaire',
-    // },
-    // {
-    //   id: 7,
-    //   name: 'Sasha',
-    //   // hiddenRole: 'Joueur de Flute',
-    // },
-    // {
-    //   id: 8,
-    //   name: 'Cara',
-    //   // hiddenRole: 'Servante Dévouée',
-    // },
-    // // {
-    // //   id: 9,
-    // //   name: 'Benoit',
-    // //   // hiddenRole: 'Servante Dévouée',
-    // // },
+    {
+      id: 1,
+      name: 'Micka',
+      hiddenRole: 'Loup-Garou',
+      userId: null,
+      villageRole: '',
+    },
+    {
+      id: 2,
+      name: 'Quentin',
+      hiddenRole: 'Sorcière',
+      userId: null,
+      villageRole: '',
+    },
+    {
+      id: 3,
+      name: 'Océane',
+      hiddenRole: 'Cupidon',
+      userId: null,
+      villageRole: '',
+    },
+    {
+      id: 4,
+      name: 'Lud',
+      hiddenRole: 'Simple Villageois',
+      userId: null,
+      villageRole: '',
+    },
+    {
+      id: 5,
+      name: 'Chris',
+      hiddenRole: 'Voyante',
+      userId: null,
+      villageRole: '',
+    },
+    {
+      id: 6,
+      name: 'BDR',
+      hiddenRole: 'Loup-Garou',
+      userId: null,
+      villageRole: '',
+    },
+    {
+      id: 7,
+      name: 'Sasha',
+      hiddenRole: 'Chasseur',
+      userId: null,
+      villageRole: '',
+    },
+    {
+      id: 8,
+      name: 'Cara',
+      hiddenRole: 'Simple Villageois',
+      userId: null,
+      villageRole: '',
+    },
+    {
+      id: 9,
+      name: 'Benoit',
+      hiddenRole: 'Petite Fille',
+      userId: null,
+      villageRole: '',
+    },
   ],
   pseudo: '',
   userId: null,

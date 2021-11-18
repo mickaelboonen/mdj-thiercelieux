@@ -88,8 +88,8 @@ const App = ({ isConnected, fetchHomeData }) => {
                 <Route path="/" exact component={Home} />
                 <Route path="/le-jeu/:slug" exact component={RolesDescriptions} />
                 <Route path="/configurer-ma-partie/:slug" exact>
-                  {!isConnected ? <Redirect to="/se-connecter" /> : <Configuration />}
-                  {/* <Configuration /> */}
+                  {/* {!isConnected ? <Redirect to="/se-connecter" /> : <Configuration />} */}
+                  <Configuration />
                 </Route>
                 <Route path="/les-jeux">
                   <Switch>
