@@ -66,30 +66,6 @@ const reducer = (state = initialState, action = {}) => {
         roleToDisplay: state.randomRoles[newIndex],
       };
     }
-    // case FETCH_RANDOM_ROLES: {
-    //   const idArray = [];
-
-    //   /**
-    //    * returns Array of numbers
-    //    */
-    //   generateRandomNumbersArray(idArray, 7, 32);
-
-    //   const rolesToDisplay = [];
-
-    //   /**
-    //    * Pushes into rolesToDisplay the roles whose ids match the numbers in the idArray
-    //    */
-    //   state.hiddenRoles.forEach((role) => {
-    //     if (idArray.indexOf(role.id) >= 0) {
-    //       rolesToDisplay.push(role);
-    //     }
-    //   });
-    //   return {
-    //     ...state,
-    //     randomRoles: rolesToDisplay,
-    //     roleToDisplay: rolesToDisplay[3],
-    //   };
-    // }
     case SAVE_HOME_DATA: {
       let rolesToDisplay = state.randomRoles;
       let { roleToDisplay } = state;

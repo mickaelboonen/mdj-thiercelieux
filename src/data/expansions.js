@@ -144,7 +144,7 @@ export const expansions = [
         name: 'Nouvelle Lune',
         hash: 'nouvelle-lune',
         description: 'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vitae, accusamus dolorum et beatae quos eveniet repudiandae, hic consectetur voluptatum aspernatur dolorem dignissimos tempore. Dicta ea nostrum, illum assumenda modi nihil aliquam officia dignissimos, debitis perspiciatis quos corporis architecto illo odit nemo consectetur nesciunt fuga, quidem eligendi doloribus? Ut, vitae doloribus.',
-        rules: '',
+        rules: [],
       },
     ],
   },
@@ -248,7 +248,7 @@ export const expansions = [
       {
         name: 'Le Village',
         hash: 'le-village',
-        description: '',
+        description: 'Description UC',
         rules: villagePeople,
       },
     ],

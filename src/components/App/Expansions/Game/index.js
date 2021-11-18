@@ -32,7 +32,7 @@ const Game = ({ games }) => {
     <div>
       <Link to={`${location.pathname}/${item.hash}`}><h5 className="game__roles-title">{item.name}</h5></Link>
       <ul className="game__roles-list">
-        {item.rules.map((rule) => <Link to={`${location.pathname}/${rule.hash}`}><li key={rule.id}>{rule.name}</li></Link>)}
+        {item.rules.map((rule) => <li key={rule.id}>{rule.name}</li>)}
       </ul>
     </div>
   ));
@@ -51,7 +51,7 @@ const Game = ({ games }) => {
         <div className="game__content-roles">
           <h4 className="game__content-roles-title">Roles</h4>
           <ul className="game__content-roles-list">
-            {roles.map((role) => <Link key={role.id} to="#"><li className="game__content-roles-list-item">{role.name}</li></Link>)}
+            {roles.map((role) => <li key={role.name} className="game__content-roles-list-item">{role.name}</li>)}
           </ul>
         </div>
         {specificity.length !== 0 && (

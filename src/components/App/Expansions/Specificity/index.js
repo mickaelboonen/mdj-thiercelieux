@@ -40,21 +40,21 @@ const Specificity = ({ games }) => {
    */
   const handleClick = (event) => {
     // DOM elements
-    const descriptionElements = document.querySelectorAll('.specificity__rules-item-description');
-    const nameElements = document.querySelectorAll('.specificity__rules-item-name');
+    const descriptionElements = document.querySelectorAll('.specificity__content-rules-item-description');
+    const nameElements = document.querySelectorAll('.specificity__content-rules-item-name');
 
     // Targeting the DOM element we're intereted in
-    const currentId = Number(event.target.dataset.id) - 1; // -1 'cause the array starts at 0, unlike the IDs
+    const currentId = Number(event.currentTarget.dataset.id) - 1; // -1 'cause the array starts at 0, unlike the IDs
     const currentElementTarget = descriptionElements[currentId];
     const currentNameTarget = nameElements[currentId];
 
     // Removing the className from all elements
-    descriptionElements.forEach((el) => el.classList.remove('specificity__rules-item-description--open'));
-    nameElements.forEach((el) => el.classList.remove('specificity__rules-item-name--open'));
+    descriptionElements.forEach((el) => el.classList.remove('specificity__content-rules-item-description--open'));
+    nameElements.forEach((el) => el.classList.remove('specificity__content-rules-item-name--open'));
 
     // Adding the className to the targeted elements
-    currentElementTarget.classList.toggle('specificity__rules-item-description--open');
-    currentNameTarget.classList.toggle('specificity__rules-item-name--open');
+    currentElementTarget.classList.toggle('specificity__content-rules-item-description--open');
+    currentNameTarget.classList.toggle('specificity__content-rules-item-name--open');
   };
   return (
     <div className="specificity">
